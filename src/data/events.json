@@ -1,0 +1,135 @@
+[
+  {
+    "id": "budapest-major-2025",
+    "name": "2025 布达佩斯 Major",
+    "teams": [
+      { "name": "Legacy", "shortName": "Legacy", "stage": "stage-1" },
+      { "name": "FlyQuest", "shortName": "FlyQuest", "stage": "stage-1" },
+      { "name": "FaZe Clan", "shortName": "Faze", "stage": "stage-1" },
+      { "name": "Lynn Vision Gaming", "shortName": "LVG", "stage": "stage-1" },
+      { "name": "B8", "shortName": "B8", "stage": "stage-1" },
+      { "name": "M80", "shortName": "M80", "stage": "stage-1" },
+      { "name": "GamerLegion", "shortName": "GL", "stage": "stage-1" },
+      { "name": "Fluxo", "shortName": "Fluxo", "stage": "stage-1" },
+      { "name": "Fnatic", "shortName": "Fnatic", "stage": "stage-1" },
+      { "name": "RED Canids", "shortName": "RED", "stage": "stage-1" },
+      { "name": "PARIVISION", "shortName": "PV", "stage": "stage-1" },
+      { "name": "The Huns Esports", "shortName": "Huns", "stage": "stage-1" },
+      { "name": "Ninjas in Pyjamas", "shortName": "NIP", "stage": "stage-1" },
+      { "name": "NRG", "shortName": "NRG", "stage": "stage-1" },
+      { "name": "Imperial Esports", "shortName": "Imperial", "stage": "stage-1" },
+      { "name": "Rare Atom", "shortName": "RA", "stage": "stage-1" },
+
+      { "name": "Aurora Gaming", "shortName": "Aurora", "stage": "stage-2" },
+      { "name": "Natus Vincere", "shortName": "NAVI", "stage": "stage-2" },
+      { "name": "Team Liquid", "shortName": "Liquid", "stage": "stage-2" },
+      { "name": "3DMAX", "shortName": "3DMAX", "stage": "stage-2" },
+      { "name": "Astralis", "shortName": "Astralis", "stage": "stage-2" },
+      { "name": "TYLOO", "shortName": "TYLOO", "stage": "stage-2" },
+      { "name": "MIBR", "shortName": "MIBR", "stage": "stage-2" },
+      { "name": "Passion UA", "shortName": "PUA", "stage": "stage-2" },
+
+      { "name": "FURIA", "shortName": "FURIA", "stage": "stage-3" },
+      { "name": "Team Vitality", "shortName": "Vitality", "stage": "stage-3" },
+      { "name": "Team Falcons", "shortName": "Falcons", "stage": "stage-3" },
+      { "name": "The MongolZ", "shortName": "MongolZ", "stage": "stage-3" },
+      { "name": "MOUZ", "shortName": "MOUZ", "stage": "stage-3" },
+      { "name": "Team Spirit", "shortName": "Spirit", "stage": "stage-3" },
+      { "name": "G2 Esports", "shortName": "G2", "stage": "stage-3" },
+      { "name": "paiN Gaming", "shortName": "paiN", "stage": "stage-3" }
+    ],
+    "stage-1": {
+      "name": "第一阶段",
+      "teams": [
+        "Legacy",
+        "FlyQuest",
+        "Faze",
+        "LVG",
+        "B8",
+        "M80",
+        "GL",
+        "Fluxo",
+        "Fnatic",
+        "RED",
+        "PV",
+        "Huns",
+        "NIP",
+        "NRG",
+        "Imperial",
+        "RA"
+      ],
+      "result": {
+        "1-0": [],
+        "0-1": [],
+        "1-1": [],
+        "2-1": [],
+        "1-2": [],
+        "2-2": [],
+
+        "3-0": ["M80", "FlyQuest"],
+        "3-1": ["B8", "Fnatic", "NIP"],
+        "3-2": ["PV", "Imperial", "FaZe"],
+        "2-3": ["NRG", "Fluxo", "Legacy"],
+        "1-3": ["Huns", "RED", "GL"],
+        "0-3": ["LVG", "RA"]
+      }
+    },
+    "stage-2": {
+      "name": "第二阶段",
+      "teams": ["Aurora", "NAVI", "Liquid", "3DMAX", "Astralis", "TYLOO", "MIBR", "PUA"],
+      "advancedTeams": ["M80", "FlyQuest", "B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
+      "result": {
+        "1-0": [],
+        "0-1": [],
+        "1-1": [],
+        "2-1": [],
+        "1-2": [],
+        "2-2": [],
+
+        "3-0": ["NAVI", "FaZe"],
+        "3-1": ["B8", "Imperial", "PV"],
+        "3-2": ["Liquid", "PUA", "3DMAX"],
+        "2-3": ["NIP", "M80", "Astralis"],
+        "1-3": ["Aurora", "Fnatic", "TYLOO"],
+        "0-3": ["MIBR", "FlyQuest"]
+      }
+    },
+    "stage-3": {
+      "name": "第三阶段",
+      "teams": ["FURIA", "Vitality", "Falcons", "MongolZ", "MOUZ", "Spirit", "G2", "paiN"],
+      "advancedTeams": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
+      "result": {
+        "1-0": ["Spirit", "Vitality"],
+        "0-1": ["G2", "MOUZ"],
+        "1-1": ["FURIA", "MongolZ"],
+        "2-1": [],
+        "1-2": [],
+        "2-2": [],
+
+        "3-0": [],
+        "3-1": [],
+        "3-2": [],
+        "2-3": [],
+        "1-3": [],
+        "0-3": []
+      }
+    },
+    "finals": {
+      "teams": [],
+      "result": {
+        "8-to-4": {
+          "winners": [],
+          "losers": []
+        },
+        "4-to-2": {
+          "winners": [],
+          "losers": []
+        },
+        "2-to-1": {
+          "winner": null,
+          "loser": null
+        }
+      }
+    }
+  }
+]

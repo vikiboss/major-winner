@@ -1,0 +1,25 @@
+{
+  "version": 1.1,
+  "atDirectives": [
+    {
+      "name": "@theme",
+      "description": "Tailwind CSS v4 theme configuration"
+    },
+    {
+      "name": "@plugin",
+      "description": "Tailwind CSS v4 plugin import"
+    },
+    {
+      "name": "@source",
+      "description": "Tailwind CSS v4 content source configuration"
+    },
+    {
+      "name": "@import",
+      "description": "Import CSS files"
+    },
+    {
+      "name": "@view-transition",
+      "description": "View Transitions API configuration"
+    }
+  ]
+}

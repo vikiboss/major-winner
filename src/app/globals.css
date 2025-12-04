@@ -1,0 +1,77 @@
+@import 'tailwindcss';
+
+@theme {
+  /* CS2 橙色 */
+  --color-primary-400: #fb923c;
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
+
+  /* 扁平深色系 */
+  --color-surface-0: #0c0c10;
+  --color-surface-1: #111116;
+  --color-surface-2: #18181e;
+  --color-surface-3: #1f1f27;
+  --color-border: #2a2a35;
+  --color-border-active: #3d3d4a;
+
+  /* 状态色 */
+  --color-win: #22c55e;
+  --color-lose: #ef4444;
+  --color-muted: #71717a;
+
+  /* 字体 */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', monospace;
+}
+
+:root {
+  --foreground: #e4e4e7;
+  --background: #0c0c10;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 滚动条 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-border-active);
+}
+
+::selection {
+  background: rgb(249 115 22 / 0.25);
+}
+
+.dark {
+  --foreground: #e4e4e7;
+  --background: #0c0c10;
+}
+
+.light {
+  --foreground: #18181b;
+  --background: #fafafa;
+  --color-surface-0: #ffffff;
+  --color-surface-1: #f4f4f5;
+  --color-surface-2: #e4e4e7;
+  --color-surface-3: #d4d4d8;
+  --color-border: #d4d4d8;
+  --color-border-active: #a1a1aa;
+}

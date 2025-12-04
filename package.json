@@ -1,0 +1,43 @@
+{
+  "name": "major-winner",
+  "version": "0.0.0-alpha.0",
+  "description": "CS2 Major 竞猜结果展示与排行榜",
+  "scripts": {
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",
+  "license": "MIT",
+  "packageManager": "pnpm@10.24.0",
+  "dependencies": {
+    "next": "16.1.0-canary.13",
+    "react": "^19.2.1",
+    "react-dom": "^19.2.1"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.17",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "autoprefixer": "^10.4.22",
+    "postcss": "^8.5.6",
+    "prettier": "^3.7.4",
+    "prettier-plugin-tailwindcss": "^0.7.2",
+    "tailwindcss": "^4.1.17",
+    "typescript": "^5.9.3"
+  },
+  "prettier": {
+    "semi": false,
+    "singleQuote": true,
+    "trailingComma": "all",
+    "tabWidth": 2,
+    "printWidth": 100,
+    "plugins": [
+      "prettier-plugin-tailwindcss"
+    ]
+  }
+}

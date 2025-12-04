@@ -1,0 +1,11 @@
+{
+  "css.customData": [".vscode/tailwind.json"],
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": "on"
+  },
+  "css.lint.unknownAtRules": "ignore",
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

@@ -1,0 +1,30 @@
+import { Inter } from 'next/font/google'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import { Header } from '@/components/Header'
+import { Footer } from '@/components/Footer'
+
+import './globals.css'
+
+import type { Metadata } from 'next'
+
+const inter = Inter({ subsets: ['latin'] })
+
+export const metadata: Metadata = {
+  title: 'Major Winner - CS2 Major 竞猜结果展示',
+  description: '查看 Counter Strike 2 Major 赛事竞猜结果、预测准确率排行榜',
+  keywords: ['CS2', 'Counter Strike', 'Major', '竞猜', '预测', '排行榜'],
+}
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="zh-CN" suppressHydrationWarning>
+      <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
+        <ThemeProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  )
+}

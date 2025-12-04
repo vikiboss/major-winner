@@ -1,0 +1,172 @@
+// 队员信息
+export interface TeamMember {
+  nickname: string
+  role: string
+}
+
+// 阶段 ID 类型
+export type StageId = 'stage-1' | 'stage-2' | 'stage-3'
+
+// 战队信息(包含所属阶段)
+export interface Team {
+  name: string
+  shortName: string
+  stage: StageId
+}
+
+// 瑞士轮结果(包含最终结果和进行中的战绩)
+export interface SwissResult {
+  // 进行中的战绩(比赛进行时填充这些字段)
+  '1-0'?: string[]
+  '0-1'?: string[]
+  '1-1'?: string[]
+  '2-0'?: string[]
+  '0-2'?: string[]
+  '2-1'?: string[]
+  '1-2'?: string[]
+  '2-2'?: string[]
+  // 最终结果(比赛结束后填充这些字段)
+  '3-0': string[]
+  '3-1': string[]
+  '3-2': string[]
+  '2-3': string[]
+  '1-3': string[]
+  '0-3': string[]
+}
+
+// 阶段信息(瑞士轮)
+export interface SwissStage {
+  name: string
+  teams: string[]
+  // 第二、三阶段有晋级队伍,第一阶段没有
+  advancedTeams: string[]
+  result: SwissResult
+}
+
+// 决赛阶段单轮结果
+export interface FinalsRoundResult {
+  winners: string[]
+  losers: string[]
+}
+
+// 决赛总决赛结果(冠军赛)
+export interface FinalChampionshipResult {
+  winner: string | null
+  loser: string | null
+}
+
+// 决赛阶段完整结果
+export interface FinalsResult {
+  '8-to-4': FinalsRoundResult
+  '4-to-2': FinalsRoundResult
+  '2-to-1': FinalChampionshipResult
+}
+
+// 决赛阶段
+export interface FinalsStage {
+  teams: string[]
+  result: FinalsResult
+}
+
+// 赛事信息
+export interface MajorEvent {
+  id: string
+  name: string
+  teams: Team[]
+  'stage-1': SwissStage | null
+  'stage-2': SwissStage | null
+  'stage-3': SwissStage | null
+  finals: FinalsStage | null
+}
+
+// 预测数据 - 瑞士轮阶段(预测者只预测 3-0 / 3-1-or-3-2 / 0-3)
+export interface StagePrediction {
+  '3-0': string[] // 2 支队伍
+  '3-1-or-3-2': string[] // 6 支队伍
+  '0-3': string[] // 2 支队伍
+}
+
+// 预测数据 - 决赛阶段
+export interface FinalsPrediction {
+  '8-to-4': string[] // 4 支队伍(四强)
+  '4-to-2': string[] // 2 支队伍(决赛)
+  '2-to-1': string | null // 1 支队伍(冠军)或 null
+}
+
+// 单个预测者数据
+export interface PredictorPrediction {
+  predictor: string
+  platform?: string
+  description?: string
+  link?: string
+  'stage-1': StagePrediction | null
+  'stage-2': StagePrediction | null
+  'stage-3': StagePrediction | null
+  finals: FinalsPrediction | null
+}
+
+// 赛事预测数据
+export interface EventPredictions {
+  id: string
+  predictions: PredictorPrediction[]
+}
+
+// 决赛轮次类型
+export type FinalsRound = '8-to-4' | '4-to-2' | '2-to-1'
+
+// 阶段通过状态
+export interface StagePassStatus {
+  stageId: string
+  passed: boolean
+  correctCount: number
+  requiredCount: number
+  details: string
+}
+
+// 计算统计用类型
+export interface PredictorStats {
+  predictor: string
+  platform: string
+  description?: string
+  link?: string
+  totalPassed: number // 通过的阶段数
+  totalStages: number // 总阶段数
+  passRate: number // 通过率 (0-100)
+  totalCorrect: number // 总正确数
+  totalPredictions: number // 总预测数
+  stageResults: StagePassStatus[]
+}
+
+// 赛事状态枚举
+export enum EventStatus {
+  NOT_STARTED = 'not_started', // 未开始
+  STAGE_1 = 'stage_1', // 第一阶段进行中
+  STAGE_1_COMPLETED = 'stage_1_completed', // 第一阶段已完成
+  STAGE_2 = 'stage_2', // 第二阶段进行中
+  STAGE_2_COMPLETED = 'stage_2_completed', // 第二阶段已完成
+  STAGE_3 = 'stage_3', // 第三阶段进行中
+  STAGE_3_COMPLETED = 'stage_3_completed', // 第三阶段已完成
+  FINALS_8_TO_4 = 'finals_8_to_4', // 八进四进行中
+  FINALS_4_TO_2 = 'finals_4_to_2', // 半决赛进行中
+  FINALS_2_TO_1 = 'finals_2_to_1', // 决赛进行中
+  COMPLETED = 'completed', // 赛事已完成
+}
+
+// 阶段进度信息
+export interface StageProgress {
+  stageId: string
+  stageName: string
+  status: 'not_started' | 'in_progress' | 'completed'
+  hasResults: boolean
+  isResultsComplete: boolean
+}
+
+// 赛事整体进度信息
+export interface EventProgress {
+  eventStatus: EventStatus
+  currentStage: string | null
+  completedStages: string[]
+  stagesProgress: StageProgress[]
+  canShowResults: boolean // 是否可以显示结果
+  canShowLeaderboard: boolean // 是否可以显示排行榜
+}

@@ -38,24 +38,24 @@ export default async function PredictorDetailPage({ params }: Props) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-4 py-8">
+    <div className="mx-auto max-w-4xl w-full px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-muted mb-6 flex items-center gap-2 text-sm">
-        <Link href="/" className="transition-colors hover:text-white">
+        <Link href="/" className="transition-colors hover:text-zinc-900 dark:hover:text-white">
           首页
         </Link>
         <span>/</span>
-        <Link href="/predictors" className="transition-colors hover:text-white">
+        <Link href="/predictors" className="transition-colors hover:text-zinc-900 dark:hover:text-white">
           竞猜者
         </Link>
         <span>/</span>
-        <span className="text-white">{predictorName}</span>
+        <span className="text-zinc-900 dark:text-white">{predictorName}</span>
       </nav>
 
       {/* Header */}
-      <div className="mb-8 flex items-center justify-between">
+      <div className="mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-semibold text-white">{predictorName}</h1>
+          <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white">{predictorName}</h1>
           {prediction.platform && <p className="text-muted mt-1 text-sm">{prediction.platform}</p>}
           {prediction.description && (
             <p className="text-muted mt-1 text-sm">{prediction.description}</p>
@@ -73,14 +73,14 @@ export default async function PredictorDetailPage({ params }: Props) {
         </div>
         <div className="flex items-center gap-6">
           <div className="text-right">
-            <p className="text-2xl font-semibold text-white">
+            <p className="text-2xl font-semibold text-zinc-900 dark:text-white">
               {stats.totalCorrect}
               <span className="text-muted text-base">/{stats.totalPredictions}</span>
             </p>
             <p className="text-muted text-xs">猜对</p>
           </div>
           <div className="text-right">
-            <p className="text-2xl font-semibold text-white">
+            <p className="text-2xl font-semibold text-zinc-900 dark:text-white">
               {stats.totalPassed}
               <span className="text-muted text-base">/{stats.totalStages}</span>
             </p>
@@ -128,7 +128,7 @@ export default async function PredictorDetailPage({ params }: Props) {
             <div key={stageKey} className="bg-surface-1 border-border rounded-lg border">
               <div className="border-border flex items-center justify-between border-b px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <h2 className="font-medium text-white">{getStageName(stageKey)}</h2>
+                  <h2 className="font-medium text-zinc-900 dark:text-white">{getStageName(stageKey)}</h2>
                   {stageProgress && stageProgress.status !== 'not_started' && (
                     <span
                       className={`rounded px-2 py-0.5 text-xs font-medium ${
@@ -258,7 +258,7 @@ export default async function PredictorDetailPage({ params }: Props) {
               <div key="finals" className="bg-surface-1 border-border rounded-lg border">
                 <div className="border-border border-b px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <h2 className="font-medium text-white">决赛阶段</h2>
+                    <h2 className="font-medium text-zinc-900 dark:text-white">决赛阶段</h2>
                     {finalsProgress && finalsProgress.status !== 'not_started' && (
                       <span
                         className={`rounded px-2 py-0.5 text-xs font-medium ${

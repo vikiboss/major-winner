@@ -202,10 +202,10 @@ export default function TeamsPage() {
   })
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6">
+    <div className="mx-auto max-w-7xl w-full px-4 py-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-white">参赛战队</h1>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">参赛战队</h1>
         <p className="text-muted mt-1 text-sm">
           {event.name} • 共 {teams.length} 支队伍
         </p>
@@ -221,20 +221,20 @@ export default function TeamsPage() {
       )}
 
       {/* Teams Table */}
-      <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
-        <table className="w-full">
+      <div className="overflow-x-auto rounded-lg">
+        <table className="w-full min-w-[500px]">
           <thead className="bg-surface-2 border-border border-b">
             <tr>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
                 战队
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
                 起始组别
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
                 当前状态
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
                 比赛战绩
               </th>
             </tr>
@@ -247,7 +247,7 @@ export default function TeamsPage() {
               return (
                 <tr key={team.name} className="hover:bg-surface-2/50 transition-colors">
                   <td className="px-4 py-2.5">
-                    <span className="font-medium text-white">{team.name}</span>
+                    <span className="font-medium text-zinc-900 dark:text-white">{team.name}</span>
                   </td>
                   <td className="px-4 py-2.5">
                     <span className="text-muted text-sm">

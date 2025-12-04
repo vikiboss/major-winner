@@ -31,10 +31,10 @@ export default function ComparePage() {
   }))
 
   return (
-    <div className="mx-auto max-w-6xl px-4 py-8">
+    <div className="mx-auto max-w-6xl w-full px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-white">竞猜对比</h1>
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white">竞猜对比</h1>
         <p className="text-muted mt-1 text-sm">选择 2-4 位竞猜者</p>
       </div>
 
@@ -47,8 +47,8 @@ export default function ComparePage() {
               onClick={() => togglePredictor(p.predictor)}
               className={`rounded px-3 py-1.5 text-sm transition-colors ${
                 selected.includes(p.predictor)
-                  ? 'bg-primary-500 text-white'
-                  : 'bg-surface-2 text-zinc-400 hover:text-white'
+                  ? 'bg-primary-500 text-zinc-900 dark:text-white'
+                  : 'bg-surface-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
               }`}
             >
               {p.predictor}
@@ -58,8 +58,8 @@ export default function ComparePage() {
       </div>
 
       {/* Comparison Table */}
-      <div className="bg-surface-1 border-border mb-6 overflow-hidden rounded-lg border">
-        <table className="w-full">
+      <div className="bg-surface-1 border-border mb-6 overflow-x-auto rounded-lg border">
+        <table className="w-full min-w-[600px]">
           <thead>
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="px-4 py-3">指标</th>

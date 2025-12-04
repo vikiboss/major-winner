@@ -10,11 +10,11 @@ export default function LeaderboardPage() {
   const hasEnoughData = eventProgress.canShowLeaderboard && stats.length > 0
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-8">
+    <div className="mx-auto max-w-5xl w-full px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-white">竞猜排行</h1>
-        <div className="mt-1 flex items-center gap-3">
+        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white">竞猜排行</h1>
+        <div className="mt-1 flex flex-wrap items-center gap-3">
           <p className="text-muted text-sm">按猜对数排名</p>
           <span className="text-muted">·</span>
           <div className="flex items-center gap-2">
@@ -40,7 +40,7 @@ export default function LeaderboardPage() {
             <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
               <span className="text-muted text-2xl">📊</span>
             </div>
-            <h3 className="mb-2 text-lg font-medium text-white">暂无排行数据</h3>
+            <h3 className="mb-2 text-lg font-medium text-zinc-900 dark:text-white">暂无排行数据</h3>
             <p className="text-muted text-sm">至少需要完成一个阶段才能显示排行榜</p>
           </div>
         </div>
@@ -96,8 +96,8 @@ function LeaderboardTable({
   ]
 
   return (
-    <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
-      <table className="w-full">
+    <div className="bg-surface-1 border-border overflow-x-auto rounded-lg border">
+      <table className="w-full min-w-[600px]">
         <thead>
           <tr className="border-border text-muted border-b text-left text-xs">
             <th className="w-12 px-4 py-3">#</th>
@@ -129,14 +129,14 @@ function LeaderboardTable({
                   href={`/predictors/${encodeURIComponent(stat.predictor)}`}
                   className="hover:text-primary-400 transition-colors"
                 >
-                  <span className="font-medium text-white">{stat.predictor}</span>
+                  <span className="font-medium text-zinc-900 dark:text-white">{stat.predictor}</span>
                   {stat.platform && (
                     <span className="text-muted ml-2 text-xs">{stat.platform}</span>
                   )}
                 </Link>
               </td>
               <td className="px-4 py-3 text-center">
-                <span className="font-semibold text-white">{stat.totalCorrect}</span>
+                <span className="font-semibold text-zinc-900 dark:text-white">{stat.totalCorrect}</span>
                 <span className="text-muted text-xs">/{stat.totalPredictions}</span>
               </td>
               <td className="text-muted hidden px-4 py-3 text-center sm:table-cell">

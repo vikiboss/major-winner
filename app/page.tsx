@@ -92,41 +92,25 @@ export default function Home() {
       {/* 顶部标题栏 */}
       <div className="border-border bg-surface-1 border-b">
         <div className="mx-auto max-w-7xl px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-semibold text-white">{event.name}</h1>
-              <div className="mt-1 flex items-center gap-3">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex-1 min-w-0">
+              <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">{event.name}</h1>
+              <div className="mt-1 flex flex-wrap items-center gap-3">
                 <p className="text-muted text-sm">竞猜追踪 · {stats.length} 位竞猜者</p>
                 <span className="text-muted">·</span>
                 <div className="flex items-center gap-2">
-                  <div
-                    className={`h-2 w-2 rounded-full ${
-                      eventProgress.currentStage
-                        ? 'bg-primary-400 animate-pulse'
-                        : eventProgress.eventStatus === 'completed'
-                          ? 'bg-win'
-                          : 'bg-muted'
-                    }`}
-                  />
-                  <span className="text-sm text-zinc-400">
-                    {getEventStatusText(eventProgress.eventStatus)}
-                  </span>
+                  <div className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`} />
+                  <span className="text-sm text-zinc-400">{getEventStatusText(eventProgress.eventStatus)}</span>
                 </div>
               </div>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-wrap gap-2 w-full sm:w-auto">
               {eventProgress.canShowLeaderboard && (
-                <Link
-                  href="/leaderboard"
-                  className="bg-surface-2 border-border hover:border-border-active rounded-md border px-4 py-2 text-sm font-medium text-white transition-colors"
-                >
+                <Link href="/leaderboard" className="bg-surface-2 border-border hover:border-border-active rounded-md border px-4 py-2 text-sm font-medium text-zinc-900 dark:text-white transition-colors w-full sm:w-auto text-center">
                   排行榜
                 </Link>
               )}
-              <Link
-                href="/compare"
-                className="text-primary-400 bg-primary-500/10 border-primary-500/20 hover:bg-primary-500/15 rounded-md border px-4 py-2 text-sm font-medium transition-colors"
-              >
+              <Link href="/compare" className="text-primary-400 bg-primary-500/10 border-primary-500/20 hover:bg-primary-500/15 rounded-md border px-4 py-2 text-sm font-medium transition-colors w-full sm:w-auto text-center">
                 竞猜对比
               </Link>
             </div>
@@ -134,15 +118,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 阶段导航 */}
-      <div className="bg-surface-0 border-border sticky top-16 z-40 border-b">
+      {/* 阶段导航条 */}
+      <div className="bg-surface-0 border-border sticky top-16 z-40 border-b stage-nav">
         <div className="mx-auto max-w-7xl px-4">
-          <nav className="flex gap-1 overflow-x-auto py-2">
+          <nav className="flex gap-1 overflow-x-auto py-2 stage-nav" role="navigation">
             {stages.map((stage) => (
               <a
                 key={stage.id}
                 href={`#${stage.id}`}
-                className="hover:bg-surface-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-white"
+                className="hover:bg-surface-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white min-w-20"
               >
                 {getStageName(stage.id as string)}
               </a>
@@ -151,7 +135,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 阶段内容 */}
+      {/* 内容区适配，表格/卡片横向滚动优化 */}
       <div className="mx-auto max-w-7xl space-y-16 px-4 py-8">
         {stages.length === 0 ? (
           <div className="flex min-h-[400px] items-center justify-center">
@@ -159,7 +143,7 @@ export default function Home() {
               <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
                 <span className="text-muted text-2xl">📅</span>
               </div>
-              <h3 className="mb-2 text-lg font-medium text-white">赛事尚未开始</h3>
+              <h3 className="mb-2 text-lg font-medium text-zinc-900 dark:text-white">赛事尚未开始</h3>
               <p className="text-muted text-sm">比赛结果将在赛事开始后实时更新</p>
             </div>
           </div>
@@ -224,7 +208,7 @@ function StageSection({
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-semibold text-white">{stageName}</h2>
+            <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">{stageName}</h2>
             {stageStatus && (
               <span
                 className={`rounded px-2 py-0.5 text-xs font-medium ${
@@ -366,7 +350,7 @@ function StageSection({
                   {round === '2-to-1' && finalsData.result['2-to-1'].winner && (
                     <div>
                       <p className="text-primary-400 mb-1 text-xs">🏆 冠军</p>
-                      <p className="text-lg font-semibold text-white">
+                      <p className="text-lg font-semibold text-zinc-900 dark:text-white">
                         {finalsData.result['2-to-1'].winner}
                       </p>
                       {finalsData.result['2-to-1'].loser && (
@@ -446,7 +430,7 @@ function PredictorPredictions({
                   href={`/predictors/${encodeURIComponent(p.predictor)}`}
                   className="hover:text-primary-400 flex items-center gap-2 transition-colors"
                 >
-                  <span className="font-medium text-white">{p.predictor}</span>
+                  <span className="font-medium text-zinc-900 dark:text-white">{p.predictor}</span>
                   {p.platform && <span className="text-muted text-xs">{p.platform}</span>}
                 </Link>
                 <span className="text-muted bg-muted/5 rounded px-2 py-0.5 text-xs">
@@ -464,7 +448,7 @@ function PredictorPredictions({
                 href={`/predictors/${encodeURIComponent(p.predictor)}`}
                 className="hover:text-primary-400 flex items-center gap-2 transition-colors"
               >
-                <span className="font-medium text-white">{p.predictor}</span>
+                <span className="font-medium text-zinc-900 dark:text-white">{p.predictor}</span>
                 {p.platform && <span className="text-muted text-xs">{p.platform}</span>}
               </Link>
               {/* 只在结束时显示通过/未通过 */}

@@ -326,7 +326,7 @@ export function calculatePredictorStats(
       stageResults.push(result)
       totalStages++
       totalCorrect += result.correctCount
-      totalPredictions += 10 // 每个瑞士轮阶段竞猜 10 支队伍
+      totalPredictions += pred['3-0'].length + pred['3-1-or-3-2'].length + pred['0-3'].length
       if (result.passed) totalPassed++
     }
   }
@@ -340,7 +340,7 @@ export function calculatePredictorStats(
     stageResults.push(result84)
     totalStages++
     totalCorrect += result84.correctCount
-    totalPredictions += 4 // 竞猜 4 支四强
+    totalPredictions += predictor.finals['8-to-4'].length
     if (result84.passed) totalPassed++
 
     // 4 进 2
@@ -348,7 +348,7 @@ export function calculatePredictorStats(
     stageResults.push(result42)
     totalStages++
     totalCorrect += result42.correctCount
-    totalPredictions += 2 // 竞猜 2 支决赛队伍
+    totalPredictions += predictor.finals['4-to-2'].length
     if (result42.passed) totalPassed++
 
     // 冠军
@@ -356,7 +356,7 @@ export function calculatePredictorStats(
     stageResults.push(result21)
     totalStages++
     totalCorrect += result21.correctCount
-    totalPredictions += 1 // 竞猜 1 个冠军
+    totalPredictions += predictor.finals['2-to-1'] ? 1 : 0
     if (result21.passed) totalPassed++
   }
 
@@ -442,7 +442,21 @@ function isSwissResultComplete(result: SwissResult | undefined): boolean {
 function hasSwissResults(result: SwissResult | undefined): boolean {
   if (!result) return false
 
-  const allGroups = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'] as const
+  const allGroups = [
+    '3-0',
+    '3-1',
+    '3-2',
+    '2-3',
+    '1-3',
+    '0-3',
+    '1-0',
+    '0-1',
+    '1-1',
+    '2-0',
+    '0-2',
+    '2-2',
+  ] as const
+
   return allGroups.some((group) => result[group] && result[group].length > 0)
 }
 
@@ -651,7 +665,10 @@ export function getActiveStages(event: MajorEvent): Array<{
     .map((s) => ({
       id: s.stageId,
       name: s.stageName,
-      status: s.status === 'not_started' ? ('waiting' as const) : (s.status as 'completed' | 'in_progress'),
+      status:
+        s.status === 'not_started'
+          ? ('waiting' as const)
+          : (s.status as 'completed' | 'in_progress'),
       hasResults: s.hasResults,
       hasPredictions: hasPredictionsForStage(s.stageId),
     }))

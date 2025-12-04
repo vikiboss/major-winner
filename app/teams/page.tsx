@@ -15,16 +15,19 @@ export default function TeamsPage() {
     // 检查瑞士轮阶段
     for (const stageKey of ['stage-1', 'stage-2', 'stage-3'] as const) {
       const stage = event[stageKey]
+
       if (!stage) continue
 
-      const stageName =
-        stageKey === 'stage-1' ? '挑战者' : stageKey === 'stage-2' ? '传奇' : '冠军组'
+      const stageName = {
+        'stage-1': '挑战组',
+        'stage-2': '传奇组',
+        'stage-3': '冠军组',
+      }[stageKey]
+
       const { result } = stage
 
       // 检查该队伍是否在本阶段参赛
-      const isInStage =
-        stage.teams.includes(shortName) ||
-        ('advancedTeams' in stage && stage.advancedTeams?.includes(shortName))
+      const isInStage = stage.teams.includes(shortName) || stage.advancedTeams?.includes(shortName)
 
       if (!isInStage) continue
 
@@ -131,7 +134,7 @@ export default function TeamsPage() {
   // 2. 比赛中 > 待赛 > 晋级 > 已淘汰 (当前状态)
   // 3. stage-3 > stage-2 > stage-1 (所在阶段)
   // 4. 3-0 > 3-1 > 3-2 (晋级成绩)
-  const sortedTeams = [...teams].sort((a, b) => {
+  const sortedTeams = [...teams].toSorted((a, b) => {
     const aPerf = getTeamPerformance(a.shortName)
     const bPerf = getTeamPerformance(b.shortName)
     const lastA = aPerf[aPerf.length - 1]
@@ -249,7 +252,7 @@ export default function TeamsPage() {
                   <td className="px-4 py-2.5">
                     <span className="text-muted text-sm">
                       {team.stage === 'stage-1'
-                        ? '挑战者组'
+                        ? '挑战组'
                         : team.stage === 'stage-2'
                           ? '传奇组'
                           : '冠军组'}

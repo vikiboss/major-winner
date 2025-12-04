@@ -467,8 +467,8 @@ function PredictorPredictions({
                 <span className="font-medium text-white">{p.predictor}</span>
                 {p.platform && <span className="text-muted text-xs">{p.platform}</span>}
               </Link>
-              {/* 只在有结果时显示通过/未通过 */}
-              {stageStatus !== 'waiting' && stageResult && (
+              {/* 只在结束时显示通过/未通过 */}
+              {stageStatus === 'completed' && stageResult && (
                 <span
                   className={`rounded px-2 py-0.5 text-xs ${
                     stageResult.passed ? 'bg-win/10 text-win' : 'bg-lose/10 text-lose'

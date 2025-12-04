@@ -62,6 +62,19 @@ export default function LeaderboardPage() {
   )
 }
 
+// 提取一个函数来处理决赛阶段的子阶段数据
+function getFinalsSubStages(eventProgress: ReturnType<typeof getEventProgress>) {
+  const finalsStage = eventProgress.stagesProgress.find(
+    (s: { stageId: string }) => s.stageId === 'finals',
+  )
+  return ['8-to-4', '4-to-2', '2-to-1'].map((id) => ({
+    id: id as '8-to-4' | '4-to-2' | '2-to-1',
+    hasResults: finalsStage?.hasResults || false,
+    isResultsComplete: finalsStage?.isResultsComplete || false,
+    status: finalsStage?.status || 'not_started',
+  }))
+}
+
 function LeaderboardTable({
   stats,
   eventProgress,
@@ -76,24 +89,10 @@ function LeaderboardTable({
       .map((s) => ({
         id: s.stageId,
         hasResults: s.hasResults,
+        isResultsComplete: s.isResultsComplete,
         status: s.status,
       })),
-    // 将 finals 拆分成三个子阶段
-    {
-      id: '8-to-4' as const,
-      hasResults: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.hasResults || false,
-      status: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.status || 'not_started',
-    },
-    {
-      id: '4-to-2' as const,
-      hasResults: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.hasResults || false,
-      status: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.status || 'not_started',
-    },
-    {
-      id: '2-to-1' as const,
-      hasResults: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.hasResults || false,
-      status: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.status || 'not_started',
-    },
+    ...getFinalsSubStages(eventProgress),
   ]
 
   return (
@@ -152,7 +151,7 @@ function LeaderboardTable({
                     : 'hidden lg:table-cell'
                 return (
                   <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
-                    {stage.hasResults ? (
+                    {stage.hasResults && stage.isResultsComplete ? (
                       result ? (
                         <span className={result.passed ? 'text-win' : 'text-lose'}>
                           {result.passed ? '✓' : '✗'}

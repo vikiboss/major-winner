@@ -5,7 +5,7 @@
     "teams": [
       { "name": "Legacy", "shortName": "Legacy", "stage": "stage-1" },
       { "name": "FlyQuest", "shortName": "FlyQuest", "stage": "stage-1" },
-      { "name": "FaZe Clan", "shortName": "Faze", "stage": "stage-1" },
+      { "name": "FaZe Clan", "shortName": "FaZe", "stage": "stage-1" },
       { "name": "Lynn Vision Gaming", "shortName": "LVG", "stage": "stage-1" },
       { "name": "B8", "shortName": "B8", "stage": "stage-1" },
       { "name": "M80", "shortName": "M80", "stage": "stage-1" },
@@ -43,7 +43,7 @@
       "teams": [
         "Legacy",
         "FlyQuest",
-        "Faze",
+        "FaZe",
         "LVG",
         "B8",
         "M80",
@@ -99,8 +99,8 @@
       "teams": ["FURIA", "Vitality", "Falcons", "MongolZ", "MOUZ", "Spirit", "G2", "paiN"],
       "advancedTeams": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
       "result": {
-        "1-0": [],
-        "0-1": [],
+        "1-0": ["Imperial", "MOUZ", "G2", "Spirit", "paiN", "FaZe", "B8", "FURIA"],
+        "0-1": ["MongolZ", "PV", "PUA", "Liquid", "3DMAX", "Vitality", "Falcons", "NAVI"],
         "1-1": [],
         "2-1": [],
         "1-2": [],

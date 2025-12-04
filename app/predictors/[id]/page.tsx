@@ -159,70 +159,88 @@ export default async function PredictorDetailPage({ params }: Props) {
                 <div>
                   <p className="text-muted mb-2 text-xs">3-0 竞猜</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {stagePred!['3-0'].map((team) => (
-                      <span
-                        key={team}
-                        className={`rounded px-2 py-1 text-xs ${
-                          showResults
-                            ? actualAdvancing.includes(team)
-                              ? 'bg-win/10 text-win'
-                              : 'bg-lose/10 text-lose'
-                            : 'bg-surface-2 text-zinc-300'
-                        }`}
-                      >
-                        {team}
-                      </span>
-                    ))}
+                    {stagePred!['3-0'].map((team) => {
+                      const isCorrect = showResults && stageResult?.result['3-0']?.includes(team)
+                      const isWrong = showResults && !actualAdvancing.includes(team)
+                      return (
+                        <span
+                          key={team}
+                          className={`rounded px-2 py-1 text-xs ${
+                            !showResults
+                              ? 'bg-surface-2 text-zinc-300'
+                              : isCorrect
+                                ? 'bg-win/10 text-win font-medium'
+                                : isWrong
+                                  ? 'bg-lose/10 text-lose'
+                                  : 'bg-surface-2 text-zinc-400'
+                          }`}
+                        >
+                          {team}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
                 {/* 3-1/3-2 */}
                 <div>
                   <p className="text-muted mb-2 text-xs">3-1/3-2 竞猜</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {stagePred!['3-1-or-3-2'].map((team) => (
-                      <span
-                        key={team}
-                        className={`rounded px-2 py-1 text-xs ${
-                          showResults
-                            ? actualAdvancing.includes(team)
-                              ? 'bg-win/10 text-win'
-                              : 'bg-lose/10 text-lose'
-                            : 'bg-surface-2 text-zinc-300'
-                        }`}
-                      >
-                        {team}
-                      </span>
-                    ))}
+                    {stagePred!['3-1-or-3-2'].map((team) => {
+                      const isCorrect = showResults && (stageResult?.result['3-1']?.includes(team) || stageResult?.result['3-2']?.includes(team))
+                      const isWrong = showResults && !actualAdvancing.includes(team)
+                      return (
+                        <span
+                          key={team}
+                          className={`rounded px-2 py-1 text-xs ${
+                            !showResults
+                              ? 'bg-surface-2 text-zinc-300'
+                              : isCorrect
+                                ? 'bg-win/10 text-win font-medium'
+                                : isWrong
+                                  ? 'bg-lose/10 text-lose'
+                                  : 'bg-surface-2 text-zinc-400'
+                          }`}
+                        >
+                          {team}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
                 {/* 0-3 */}
                 <div>
                   <p className="text-muted mb-2 text-xs">0-3 竞猜</p>
                   <div className="flex flex-wrap gap-1.5">
-                    {stagePred!['0-3'].map((team) => (
-                      <span
-                        key={team}
-                        className={`rounded px-2 py-1 text-xs ${
-                          showResults
-                            ? actualEliminated.includes(team)
-                              ? 'bg-win/10 text-win'
-                              : 'bg-lose/10 text-lose'
-                            : 'bg-surface-2 text-zinc-300'
-                        }`}
-                      >
-                        {team}
-                      </span>
-                    ))}
+                    {stagePred!['0-3'].map((team) => {
+                      const isCorrect = showResults && stageResult?.result['0-3']?.includes(team)
+                      const isWrong = showResults && !actualEliminated.includes(team)
+                      return (
+                        <span
+                          key={team}
+                          className={`rounded px-2 py-1 text-xs ${
+                            !showResults
+                              ? 'bg-surface-2 text-zinc-300'
+                              : isCorrect
+                                ? 'bg-win/10 text-win font-medium'
+                                : isWrong
+                                  ? 'bg-lose/10 text-lose'
+                                  : 'bg-surface-2 text-zinc-400'
+                          }`}
+                        >
+                          {team}
+                        </span>
+                      )
+                    })}
                   </div>
                 </div>
                 {/* Actual - 只在有结果时显示 */}
                 {showResults && (actualAdvancing.length > 0 || actualEliminated.length > 0) && (
                   <div className="border-border text-muted border-t pt-3 text-xs">
                     <p>
-                      <span className="text-win">晋级:</span> {actualAdvancing.join(', ') || '无'}
+                      实际晋级: {actualAdvancing.join(', ') || '无'}
                     </p>
                     <p>
-                      <span className="text-lose">淘汰:</span> {actualEliminated.join(', ') || '无'}
+                      实际淘汰: {actualEliminated.join(', ') || '无'}
                     </p>
                   </div>
                 )}

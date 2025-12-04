@@ -12,8 +12,8 @@ import type {
   EventStatus,
   StageProgress,
   EventProgress,
-} from '@/types'
-import { EventStatus as EventStatusEnum } from '@/types'
+} from '../types'
+import { EventStatus as EventStatusEnum } from '../types'
 
 export const events = eventsData as unknown as MajorEvent[]
 export const predictions = predictionsData as EventPredictions[]
@@ -23,7 +23,7 @@ export function getEvent(eventId: string): MajorEvent | undefined {
   return events.find((e) => e.id === eventId)
 }
 
-// 获取指定赛事的预测数据
+// 获取指定赛事的竞猜数据
 export function getEventPredictions(eventId: string): EventPredictions | undefined {
   return predictions.find((p) => p.id === eventId)
 }
@@ -35,11 +35,11 @@ export function getTeamFullName(event: MajorEvent, shortName: string): string {
 }
 
 /**
- * 检查预测是否仍有可能成真（基于当前进度）
+ * 检查竞猜是否仍有可能成真（基于当前进度）
  * @param teamName 队伍名称
- * @param predictionBucket 预测类型：3-0 / 3-1-or-3-2 / 0-3
+ * @param predictionBucket 竞猜类型：3-0 / 3-1-or-3-2 / 0-3
  * @param result 瑞士轮结果（包含进行中的战绩和最终结果）
- * @returns true 表示预测仍有可能，false 表示已不可能
+ * @returns true 表示竞猜仍有可能，false 表示已不可能
  */
 export function isPredictionPossible(
   teamName: string,
@@ -65,7 +65,7 @@ export function isPredictionPossible(
   // 先检查队伍是否已经有最终结果
   for (const record of finalRecords) {
     if (result[record]?.includes(teamName)) {
-      // 已经确定最终结果，检查是否匹配预测
+      // 已经确定最终结果，检查是否匹配竞猜
       if (predictionBucket === '3-0') {
         return record === '3-0'
       }
@@ -83,19 +83,19 @@ export function isPredictionPossible(
     if (result[record]?.includes(teamName)) {
       const [wins, losses] = record.split('-').map(Number)
 
-      // 检查 3-0 预测
+      // 检查 3-0 竞猜
       if (predictionBucket === '3-0') {
         // 有任何失败就不可能 3-0
         return losses === 0
       }
 
-      // 检查 0-3 预测
+      // 检查 0-3 竞猜
       if (predictionBucket === '0-3') {
         // 有任何胜利就不可能 0-3
         return wins === 0
       }
 
-      // 3-1-or-3-2 预测：只要还在比赛中，都有可能
+      // 3-1-or-3-2 竞猜：只要还在比赛中，都有可能
       return true
     }
   }
@@ -106,10 +106,10 @@ export function isPredictionPossible(
 
 /**
  * 计算瑞士轮阶段是否通过
- * 规则：预测的 10 支队伍中，有 5 支符合实际结果即通过
- * - 3-0 预测的队伍实际必须 3-0 晋级，算正确
- * - 3-1-or-3-2 预测的队伍实际必须 3-1 或 3-2 晋级，算正确
- * - 0-3 预测的队伍实际必须 0-3 淘汰，算正确
+ * 规则：竞猜的 10 支队伍中，有 5 支符合实际结果即通过
+ * - 3-0 竞猜的队伍实际必须 3-0 晋级，算正确
+ * - 3-1-or-3-2 竞猜的队伍实际必须 3-1 或 3-2 晋级，算正确
+ * - 0-3 竞猜的队伍实际必须 0-3 淘汰，算正确
  */
 function checkSwissStagePass(
   stageId: string,
@@ -124,7 +124,7 @@ function checkSwissStagePass(
       passed: false,
       correctCount: 0,
       requiredCount,
-      details: '无预测数据',
+      details: '无竞猜数据',
     }
   }
 
@@ -132,7 +132,7 @@ function checkSwissStagePass(
   let impossibleCount = 0
   const correctTeams: string[] = []
 
-  // 检查 3-0 预测（必须实际 3-0 才算对）
+  // 检查 3-0 竞猜（必须实际 3-0 才算对）
   for (const team of prediction['3-0']) {
     if (actual['3-0'].includes(team)) {
       correctCount++
@@ -142,7 +142,7 @@ function checkSwissStagePass(
     }
   }
 
-  // 检查 3-1-or-3-2 预测（必须实际 3-1 或 3-2 才算对）
+  // 检查 3-1-or-3-2 竞猜（必须实际 3-1 或 3-2 才算对）
   for (const team of prediction['3-1-or-3-2']) {
     if (actual['3-1'].includes(team) || actual['3-2'].includes(team)) {
       correctCount++
@@ -152,7 +152,7 @@ function checkSwissStagePass(
     }
   }
 
-  // 检查 0-3 预测（必须实际 0-3 才算对）
+  // 检查 0-3 竞猜（必须实际 0-3 才算对）
   for (const team of prediction['0-3']) {
     if (actual['0-3'].includes(team)) {
       correctCount++
@@ -191,7 +191,7 @@ function checkSwissStagePass(
 
 /**
  * 计算 8 进 4 是否通过
- * 规则：预测的 4 支四强队伍中，有 2 支进入四强即通过
+ * 规则：竞猜的 4 支四强队伍中，有 2 支进入四强即通过
  */
 function check8to4Pass(
   prediction: string[] | undefined,
@@ -206,7 +206,7 @@ function check8to4Pass(
       passed: false,
       correctCount: 0,
       requiredCount,
-      details: '无预测数据',
+      details: '无竞猜数据',
     }
   }
 
@@ -228,7 +228,7 @@ function check8to4Pass(
 
 /**
  * 计算 4 进 2 是否通过
- * 规则：预测的 2 支队伍中，有 1 支进入决赛即通过
+ * 规则：竞猜的 2 支队伍中，有 1 支进入决赛即通过
  */
 function check4to2Pass(
   prediction: string[] | undefined,
@@ -243,7 +243,7 @@ function check4to2Pass(
       passed: false,
       correctCount: 0,
       requiredCount,
-      details: '无预测数据',
+      details: '无竞猜数据',
     }
   }
 
@@ -264,7 +264,7 @@ function check4to2Pass(
 }
 
 /**
- * 计算冠军预测是否通过
+ * 计算冠军竞猜是否通过
  * 规则：猜对冠军即通过
  */
 function check2to1Pass(
@@ -280,7 +280,7 @@ function check2to1Pass(
       passed: false,
       correctCount: 0,
       requiredCount,
-      details: '无预测数据',
+      details: '无竞猜数据',
     }
   }
 
@@ -295,7 +295,7 @@ function check2to1Pass(
   }
 }
 
-// 计算预测者统计数据
+// 计算竞猜者统计数据
 export function calculatePredictorStats(
   eventId: string,
   predictorName: string,
@@ -326,7 +326,7 @@ export function calculatePredictorStats(
       stageResults.push(result)
       totalStages++
       totalCorrect += result.correctCount
-      totalPredictions += 10 // 每个瑞士轮阶段预测 10 支队伍
+      totalPredictions += 10 // 每个瑞士轮阶段竞猜 10 支队伍
       if (result.passed) totalPassed++
     }
   }
@@ -340,7 +340,7 @@ export function calculatePredictorStats(
     stageResults.push(result84)
     totalStages++
     totalCorrect += result84.correctCount
-    totalPredictions += 4 // 预测 4 支四强
+    totalPredictions += 4 // 竞猜 4 支四强
     if (result84.passed) totalPassed++
 
     // 4 进 2
@@ -348,7 +348,7 @@ export function calculatePredictorStats(
     stageResults.push(result42)
     totalStages++
     totalCorrect += result42.correctCount
-    totalPredictions += 2 // 预测 2 支决赛队伍
+    totalPredictions += 2 // 竞猜 2 支决赛队伍
     if (result42.passed) totalPassed++
 
     // 冠军
@@ -356,7 +356,7 @@ export function calculatePredictorStats(
     stageResults.push(result21)
     totalStages++
     totalCorrect += result21.correctCount
-    totalPredictions += 1 // 预测 1 个冠军
+    totalPredictions += 1 // 竞猜 1 个冠军
     if (result21.passed) totalPassed++
   }
 
@@ -374,7 +374,7 @@ export function calculatePredictorStats(
   }
 }
 
-// 获取所有预测者的统计数据并排序
+// 获取所有竞猜者的统计数据并排序
 export function getAllPredictorStats(eventId: string): PredictorStats[] {
   const eventPreds = getEventPredictions(eventId)
   if (!eventPreds) return []
@@ -414,7 +414,7 @@ export function getStageName(stageId: string): string {
   return names[stageId] || stageId
 }
 
-// 获取预测者的具体预测数据
+// 获取竞猜者的具体竞猜数据
 export function getPredictorPrediction(
   eventId: string,
   predictorName: string,
@@ -622,22 +622,38 @@ export function getEventProgress(event: MajorEvent): EventProgress {
 }
 
 /**
- * 获取当前活跃的阶段列表（已完成 + 进行中的阶段）
+ * 获取当前活跃的阶段列表（已完成 + 进行中 + 已竞猜但等待结果的阶段）
  */
 export function getActiveStages(event: MajorEvent): Array<{
   id: string
   name: string
-  status: 'completed' | 'in_progress'
+  status: 'completed' | 'in_progress' | 'waiting'
   hasResults: boolean
+  hasPredictions: boolean
 }> {
   const progress = getEventProgress(event)
+  const eventPreds = getEventPredictions(event.id)
+
+  // 检查某阶段是否有竞猜
+  const hasPredictionsForStage = (stageId: string): boolean => {
+    if (!eventPreds) return false
+    return eventPreds.predictions.some((p) => {
+      if (stageId === 'finals') return p.finals !== null
+      return p[stageId as 'stage-1' | 'stage-2' | 'stage-3'] !== null
+    })
+  }
+
   return progress.stagesProgress
-    .filter((s) => s.status !== 'not_started')
+    .filter((s) => {
+      // 显示: 有结果的阶段 或 有竞猜的阶段
+      return s.hasResults || hasPredictionsForStage(s.stageId)
+    })
     .map((s) => ({
       id: s.stageId,
       name: s.stageName,
-      status: s.status as 'completed' | 'in_progress',
+      status: s.status === 'not_started' ? ('waiting' as const) : (s.status as 'completed' | 'in_progress'),
       hasResults: s.hasResults,
+      hasPredictions: hasPredictionsForStage(s.stageId),
     }))
 }
 
@@ -679,7 +695,7 @@ export function getEventStatusText(eventStatus: EventStatus): string {
 }
 
 /**
- * 判断预测者是否有某个阶段的预测数据
+ * 判断竞猜者是否有某个阶段的竞猜数据
  */
 export function hasPredictionForStage(prediction: PredictorPrediction, stageId: string): boolean {
   if (stageId === 'finals') {
@@ -691,15 +707,15 @@ export function hasPredictionForStage(prediction: PredictorPrediction, stageId: 
 }
 
 /**
- * 判断某个阶段是否应该在预测者详情页显示
- * 规则：只要有预测数据就显示,不管是否有比赛结果
+ * 判断某个阶段是否应该在竞猜者详情页显示
+ * 规则：只要有竞猜数据就显示,不管是否有比赛结果
  */
 export function shouldShowStageInPredictorDetail(
   prediction: PredictorPrediction,
   event: MajorEvent,
   stageId: string,
 ): boolean {
-  // 检查是否有预测数据
+  // 检查是否有竞猜数据
   const hasPrediction = hasPredictionForStage(prediction, stageId)
   if (!hasPrediction) return false
 

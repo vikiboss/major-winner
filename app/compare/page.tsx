@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { events, getEventPredictions, calculatePredictorStats, getStageName } from '@/lib/data'
+import { events, getEventPredictions, calculatePredictorStats, getStageName } from '../../lib/data'
 
 export default function ComparePage() {
   const event = events[0]
@@ -34,8 +34,8 @@ export default function ComparePage() {
     <div className="mx-auto max-w-6xl px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-white">对比预测</h1>
-        <p className="text-muted mt-1 text-sm">选择 2-4 位预测者</p>
+        <h1 className="text-2xl font-semibold text-white">竞猜对比</h1>
+        <p className="text-muted mt-1 text-sm">选择 2-4 位竞猜者</p>
       </div>
 
       {/* Selection */}
@@ -129,17 +129,6 @@ export default function ComparePage() {
         const stageResult = event[stageKey]
         if (!stageResult) return null
 
-        const actualAdvancing = [
-          ...stageResult.result['3-0'],
-          ...stageResult.result['3-1'],
-          ...stageResult.result['3-2'],
-        ]
-        const actualEliminated = [
-          ...stageResult.result['0-3'],
-          ...stageResult.result['1-3'],
-          ...stageResult.result['2-3'],
-        ]
-
         return (
           <div
             key={stageKey}
@@ -151,7 +140,7 @@ export default function ComparePage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-border text-muted border-b text-xs">
-                  <th className="px-4 py-2 text-left">预测项</th>
+                  <th className="px-4 py-2 text-left">竞猜项</th>
                   {selectedStats.map(({ prediction }) => (
                     <th key={prediction.predictor} className="px-4 py-2 text-center">
                       {prediction.predictor}
@@ -168,18 +157,20 @@ export default function ComparePage() {
                     return (
                       <td key={prediction.predictor} className="px-4 py-2 text-center">
                         <div className="flex flex-wrap justify-center gap-1">
-                          {stagePred?.['3-0'].map((team) => (
-                            <span
-                              key={team}
-                              className={`rounded px-1.5 py-0.5 text-xs ${
-                                actualAdvancing.includes(team)
-                                  ? 'bg-win/10 text-win'
-                                  : 'bg-lose/10 text-lose'
-                              }`}
-                            >
-                              {team}
-                            </span>
-                          ))}
+                          {stagePred?.['3-0'].map((team) => {
+                            // 精确匹配:竞猜 3-0 必须实际也是 3-0
+                            const isCorrect = stageResult.result['3-0'].includes(team)
+                            return (
+                              <span
+                                key={team}
+                                className={`rounded px-1.5 py-0.5 text-xs ${
+                                  isCorrect ? 'bg-win/10 text-win' : 'bg-lose/10 text-lose'
+                                }`}
+                              >
+                                {team}
+                              </span>
+                            )
+                          })}
                         </div>
                       </td>
                     )
@@ -195,18 +186,22 @@ export default function ComparePage() {
                     return (
                       <td key={prediction.predictor} className="px-4 py-2 text-center">
                         <div className="flex flex-wrap justify-center gap-1">
-                          {stagePred?.['3-1-or-3-2'].map((team) => (
-                            <span
-                              key={team}
-                              className={`rounded px-1.5 py-0.5 text-xs ${
-                                actualAdvancing.includes(team)
-                                  ? 'bg-win/10 text-win'
-                                  : 'bg-lose/10 text-lose'
-                              }`}
-                            >
-                              {team}
-                            </span>
-                          ))}
+                          {stagePred?.['3-1-or-3-2'].map((team) => {
+                            // 精确匹配:竞猜 3-1/3-2 必须实际也是 3-1 或 3-2
+                            const isCorrect =
+                              stageResult.result['3-1'].includes(team) ||
+                              stageResult.result['3-2'].includes(team)
+                            return (
+                              <span
+                                key={team}
+                                className={`rounded px-1.5 py-0.5 text-xs ${
+                                  isCorrect ? 'bg-win/10 text-win' : 'bg-lose/10 text-lose'
+                                }`}
+                              >
+                                {team}
+                              </span>
+                            )
+                          })}
                         </div>
                       </td>
                     )
@@ -222,18 +217,20 @@ export default function ComparePage() {
                     return (
                       <td key={prediction.predictor} className="px-4 py-2 text-center">
                         <div className="flex flex-wrap justify-center gap-1">
-                          {stagePred?.['0-3'].map((team) => (
-                            <span
-                              key={team}
-                              className={`rounded px-1.5 py-0.5 text-xs ${
-                                actualEliminated.includes(team)
-                                  ? 'bg-win/10 text-win'
-                                  : 'bg-lose/10 text-lose'
-                              }`}
-                            >
-                              {team}
-                            </span>
-                          ))}
+                          {stagePred?.['0-3'].map((team) => {
+                            // 精确匹配:竞猜 0-3 必须实际也是 0-3
+                            const isCorrect = stageResult.result['0-3'].includes(team)
+                            return (
+                              <span
+                                key={team}
+                                className={`rounded px-1.5 py-0.5 text-xs ${
+                                  isCorrect ? 'bg-win/10 text-win' : 'bg-lose/10 text-lose'
+                                }`}
+                              >
+                                {team}
+                              </span>
+                            )
+                          })}
                         </div>
                       </td>
                     )

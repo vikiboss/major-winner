@@ -79,21 +79,21 @@ export interface MajorEvent {
   finals: FinalsStage | null
 }
 
-// 预测数据 - 瑞士轮阶段(预测者只预测 3-0 / 3-1-or-3-2 / 0-3)
+// 竞猜数据 - 瑞士轮阶段(竞猜者只竞猜 3-0 / 3-1-or-3-2 / 0-3)
 export interface StagePrediction {
   '3-0': string[] // 2 支队伍
   '3-1-or-3-2': string[] // 6 支队伍
   '0-3': string[] // 2 支队伍
 }
 
-// 预测数据 - 决赛阶段
+// 竞猜数据 - 决赛阶段
 export interface FinalsPrediction {
   '8-to-4': string[] // 4 支队伍(四强)
   '4-to-2': string[] // 2 支队伍(决赛)
   '2-to-1': string | null // 1 支队伍(冠军)或 null
 }
 
-// 单个预测者数据
+// 单个竞猜者数据
 export interface PredictorPrediction {
   predictor: string
   platform?: string
@@ -105,7 +105,7 @@ export interface PredictorPrediction {
   finals: FinalsPrediction | null
 }
 
-// 赛事预测数据
+// 赛事竞猜数据
 export interface EventPredictions {
   id: string
   predictions: PredictorPrediction[]
@@ -133,7 +133,7 @@ export interface PredictorStats {
   totalStages: number // 总阶段数
   passRate: number // 通过率 (0-100)
   totalCorrect: number // 总正确数
-  totalPredictions: number // 总预测数
+  totalPredictions: number // 总竞猜数
   stageResults: StagePassStatus[]
 }
 

@@ -9,7 +9,7 @@ import {
   getEventProgress,
   shouldShowStageInPredictorDetail,
   hasStageResults,
-} from '@/lib/data'
+} from '../../../lib/data'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -46,7 +46,7 @@ export default async function PredictorDetailPage({ params }: Props) {
         </Link>
         <span>/</span>
         <Link href="/predictors" className="transition-colors hover:text-white">
-          预测者
+          竞猜者
         </Link>
         <span>/</span>
         <span className="text-white">{predictorName}</span>
@@ -67,7 +67,7 @@ export default async function PredictorDetailPage({ params }: Props) {
               rel="noopener noreferrer"
               className="text-primary-400 mt-2 inline-block text-sm hover:underline"
             >
-              查看预测链接 →
+              查看竞猜链接 →
             </a>
           )}
         </div>
@@ -97,7 +97,7 @@ export default async function PredictorDetailPage({ params }: Props) {
           const stageResult = event[stageKey]
           const passStatus = stats.stageResults.find((s) => s.stageId === stageKey)
 
-          // 只显示有预测数据的阶段
+          // 只显示有竞猜数据的阶段
           if (!shouldShowStageInPredictorDetail(prediction, event, stageKey)) return null
 
           // 判断是否有比赛结果可以对比
@@ -157,7 +157,7 @@ export default async function PredictorDetailPage({ params }: Props) {
               <div className="space-y-4 p-4">
                 {/* 3-0 */}
                 <div>
-                  <p className="text-muted mb-2 text-xs">3-0 预测</p>
+                  <p className="text-muted mb-2 text-xs">3-0 竞猜</p>
                   <div className="flex flex-wrap gap-1.5">
                     {stagePred!['3-0'].map((team) => (
                       <span
@@ -177,7 +177,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                 </div>
                 {/* 3-1/3-2 */}
                 <div>
-                  <p className="text-muted mb-2 text-xs">3-1/3-2 预测</p>
+                  <p className="text-muted mb-2 text-xs">3-1/3-2 竞猜</p>
                   <div className="flex flex-wrap gap-1.5">
                     {stagePred!['3-1-or-3-2'].map((team) => (
                       <span
@@ -197,7 +197,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                 </div>
                 {/* 0-3 */}
                 <div>
-                  <p className="text-muted mb-2 text-xs">0-3 预测</p>
+                  <p className="text-muted mb-2 text-xs">0-3 竞猜</p>
                   <div className="flex flex-wrap gap-1.5">
                     {stagePred!['0-3'].map((team) => (
                       <span
@@ -304,7 +304,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                       </div>
                     )
                   })}
-                  {/* 2-to-1 冠军预测 */}
+                  {/* 2-to-1 冠军竞猜 */}
                   {prediction.finals?.['2-to-1'] && (
                     <div>
                       <div className="mb-2 flex items-center justify-between">

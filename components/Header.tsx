@@ -6,8 +6,7 @@ import { ThemeToggle } from './ThemeToggle'
 
 const navItems = [
   { href: '/', label: '首页' },
-  { href: '/leaderboard', label: '排行榜' },
-  { href: '/predictors', label: '预测者' },
+  { href: '/leaderboard', label: '竞猜' },
   { href: '/teams', label: '战队' },
   { href: '/compare', label: '对比' },
 ]

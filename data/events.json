@@ -99,9 +99,9 @@
       "teams": ["FURIA", "Vitality", "Falcons", "MongolZ", "MOUZ", "Spirit", "G2", "paiN"],
       "advancedTeams": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
       "result": {
-        "1-0": ["Spirit", "Vitality"],
-        "0-1": ["G2", "MOUZ"],
-        "1-1": ["FURIA", "MongolZ"],
+        "1-0": [],
+        "0-1": [],
+        "1-1": [],
         "2-1": [],
         "1-2": [],
         "2-2": [],

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { events, getAllPredictorStats, getEventProgress, getEventStatusText } from '@/lib/data'
+import { events, getAllPredictorStats, getEventProgress, getEventStatusText } from '../../lib/data'
 
 export default function LeaderboardPage() {
   const event = events[0]
@@ -13,7 +13,7 @@ export default function LeaderboardPage() {
     <div className="mx-auto max-w-5xl px-4 py-8">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-white">排行榜</h1>
+        <h1 className="text-2xl font-semibold text-white">竞猜排行</h1>
         <div className="mt-1 flex items-center gap-3">
           <p className="text-muted text-sm">按猜对数排名</p>
           <span className="text-muted">·</span>
@@ -69,10 +69,32 @@ function LeaderboardTable({
   stats: ReturnType<typeof getAllPredictorStats>
   eventProgress: ReturnType<typeof getEventProgress>
 }) {
-  // 只显示有结果的阶段列
-  const visibleStages = eventProgress.stagesProgress
-    .filter((s) => s.hasResults)
-    .map((s) => s.stageId)
+  // 显示所有阶段,包括决赛的三个子阶段
+  const allStages = [
+    ...eventProgress.stagesProgress
+      .filter((s) => s.stageId !== 'finals')
+      .map((s) => ({
+        id: s.stageId,
+        hasResults: s.hasResults,
+        status: s.status,
+      })),
+    // 将 finals 拆分成三个子阶段
+    {
+      id: '8-to-4' as const,
+      hasResults: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.hasResults || false,
+      status: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.status || 'not_started',
+    },
+    {
+      id: '4-to-2' as const,
+      hasResults: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.hasResults || false,
+      status: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.status || 'not_started',
+    },
+    {
+      id: '2-to-1' as const,
+      hasResults: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.hasResults || false,
+      status: eventProgress.stagesProgress.find((s) => s.stageId === 'finals')?.status || 'not_started',
+    },
+  ]
 
   return (
     <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
@@ -80,21 +102,15 @@ function LeaderboardTable({
         <thead>
           <tr className="border-border text-muted border-b text-left text-xs">
             <th className="w-12 px-4 py-3">#</th>
-            <th className="px-4 py-3">预测者</th>
+            <th className="px-4 py-3">竞猜者</th>
             <th className="px-4 py-3 text-center">猜对</th>
             <th className="hidden px-4 py-3 text-center sm:table-cell">通过</th>
-            {visibleStages.includes('stage-1') && (
-              <th className="hidden px-4 py-3 text-center md:table-cell">S1</th>
-            )}
-            {visibleStages.includes('stage-2') && (
-              <th className="hidden px-4 py-3 text-center md:table-cell">S2</th>
-            )}
-            {visibleStages.includes('stage-3') && (
-              <th className="hidden px-4 py-3 text-center lg:table-cell">S3</th>
-            )}
-            {visibleStages.includes('finals') && (
-              <th className="hidden px-4 py-3 text-center lg:table-cell">F</th>
-            )}
+            <th className="hidden px-4 py-3 text-center md:table-cell">S1</th>
+            <th className="hidden px-4 py-3 text-center md:table-cell">S2</th>
+            <th className="hidden px-4 py-3 text-center md:table-cell">S3</th>
+            <th className="hidden px-4 py-3 text-center lg:table-cell">8强</th>
+            <th className="hidden px-4 py-3 text-center lg:table-cell">半决赛</th>
+            <th className="hidden px-4 py-3 text-center lg:table-cell">决赛</th>
           </tr>
         </thead>
         <tbody className="divide-border divide-y">
@@ -127,30 +143,25 @@ function LeaderboardTable({
               <td className="text-muted hidden px-4 py-3 text-center sm:table-cell">
                 {stat.totalPassed}/{stat.totalStages}
               </td>
-              {visibleStages.map((stageId) => {
-                // 对于 finals，检查所有三个子阶段
-                let result
-                if (stageId === 'finals') {
-                  // 简化：只看是否有任何决赛阶段通过
-                  result = stat.stageResults.find(
-                    (s) =>
-                      s.stageId === '8-to-4' || s.stageId === '4-to-2' || s.stageId === '2-to-1',
-                  )
-                } else {
-                  result = stat.stageResults.find((s) => s.stageId === stageId)
-                }
+              {allStages.map((stage) => {
+                const result = stat.stageResults.find((s) => s.stageId === stage.id)
+                // 瑞士轮在 md 显示,决赛阶段在 lg 显示
                 const hideClass =
-                  stageId === 'stage-1' || stageId === 'stage-2'
+                  stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
                     ? 'hidden md:table-cell'
                     : 'hidden lg:table-cell'
                 return (
-                  <td key={stageId} className={`px-4 py-3 text-center ${hideClass}`}>
-                    {result ? (
-                      <span className={result.passed ? 'text-win' : 'text-lose'}>
-                        {result.passed ? '✓' : '✗'}
-                      </span>
+                  <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
+                    {stage.hasResults ? (
+                      result ? (
+                        <span className={result.passed ? 'text-win' : 'text-lose'}>
+                          {result.passed ? '✓' : '✗'}
+                        </span>
+                      ) : (
+                        <span className="text-muted">-</span>
+                      )
                     ) : (
-                      <span className="text-muted">-</span>
+                      <span className="text-muted/50 text-xs">待定</span>
                     )}
                   </td>
                 )

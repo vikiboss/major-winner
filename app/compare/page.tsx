@@ -91,7 +91,7 @@ export default function ComparePage() {
               <div className="border-border border-b px-4 py-3">
                 <Link
                   href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
-                  className="hover:text-primary-400 font-medium text-white"
+                  className="hover:text-primary-400 font-medium text-zinc-900 dark:text-white"
                 >
                   {prediction.predictor}
                 </Link>
@@ -100,7 +100,7 @@ export default function ComparePage() {
                 <div className="flex justify-between py-2">
                   <span className="text-muted">猜对</span>
                   <span
-                    className={`font-semibold ${stats?.totalCorrect === best ? 'text-primary-400' : 'text-white'}`}
+                    className={`font-semibold ${stats?.totalCorrect === best ? 'text-primary-400' : 'text-zinc-900 dark:text-white'}`}
                   >
                     {stats?.totalCorrect}
                     <span className="text-muted font-normal">/{stats?.totalPredictions}</span>
@@ -108,7 +108,7 @@ export default function ComparePage() {
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-muted">通过</span>
-                  <span className="text-white">
+                  <span className="text-zinc-900 dark:text-white">
                     {stats?.totalPassed}/{stats?.totalStages}
                   </span>
                 </div>
@@ -149,7 +149,7 @@ export default function ComparePage() {
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="px-4 py-3">竞猜任务</th>
               {selectedStats.map(({ prediction }) => (
-                <th key={prediction.predictor} className="px-4 py-3 text-center text-white">
+                <th key={prediction.predictor} className="px-4 py-3 text-center text-zinc-900 dark:text-white">
                   <Link
                     href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
                     className="hover:text-primary-400"
@@ -169,7 +169,7 @@ export default function ComparePage() {
                   <td
                     key={prediction.predictor}
                     className={`px-4 py-3 text-center font-semibold ${
-                      stats?.totalCorrect === best ? 'text-primary-400' : 'text-white'
+                      stats?.totalCorrect === best ? 'text-primary-400' : 'text-zinc-900 dark:text-white'
                     }`}
                   >
                     {stats?.totalCorrect}
@@ -181,7 +181,7 @@ export default function ComparePage() {
             <tr>
               <td className="text-muted px-4 py-3">通过</td>
               {selectedStats.map(({ prediction, stats }) => (
-                <td key={prediction.predictor} className="px-4 py-3 text-center text-white">
+                <td key={prediction.predictor} className="px-4 py-3 text-center text-zinc-900 dark:text-white">
                   {stats?.totalPassed}/{stats?.totalStages}
                 </td>
               ))}
@@ -223,7 +223,7 @@ export default function ComparePage() {
         <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
           <div className="border-border border-b px-4 py-3">
             <div className="flex items-center gap-3">
-              <h3 className="font-medium text-white">决赛阶段</h3>
+              <h3 className="font-medium text-zinc-900 dark:text-white">决赛阶段</h3>
             </div>
           </div>
           <table className="w-full text-sm">
@@ -348,7 +348,7 @@ export default function ComparePage() {
           >
             <div className="border-border border-b px-4 py-3">
               <div className="flex items-center gap-3">
-                <h3 className="font-medium text-white">{getStageName(stageKey)}</h3>
+                <h3 className="font-medium text-zinc-900 dark:text-white">{getStageName(stageKey)}</h3>
                 {stageProgress && (
                   <span
                     className={`rounded px-2 py-0.5 text-xs font-medium ${

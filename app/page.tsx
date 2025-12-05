@@ -243,7 +243,7 @@ function StageSection({
         <div className="lg:col-span-4">
           <div className="bg-surface-1 border-border rounded-lg border">
             <div className="border-border border-b px-4 py-3">
-              <h3 className="text-sm font-medium text-zinc-300">比赛结果</h3>
+              <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-300">比赛结果</h3>
             </div>
             <div className="p-4">
               {stageStatus === 'waiting' ? (
@@ -369,7 +369,7 @@ function StageSection({
         <div className="lg:col-span-8">
           <div className="bg-surface-1 border-border rounded-lg border">
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
-              <h3 className="text-sm font-medium text-zinc-300">竞猜者竞猜</h3>
+              <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-300">竞猜者竞猜</h3>
               <Link
                 href="/predictors"
                 className="text-primary-400 hover:text-primary-300 text-xs transition-colors"

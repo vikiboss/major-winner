@@ -33,6 +33,10 @@ html {
   color-scheme: dark;
 }
 
+html.light {
+  color-scheme: light;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
@@ -56,8 +60,12 @@ body {
   background: var(--color-border-active);
 }
 
-::selection {
+.dark ::selection {
   background: rgb(249 115 22 / 0.25);
+}
+
+.light ::selection {
+  background: rgb(249 115 22 / 0.35);
 }
 
 .dark {
@@ -74,6 +82,7 @@ body {
   --color-surface-3: #d4d4d8;
   --color-border: #d4d4d8;
   --color-border-active: #a1a1aa;
+  --color-muted: #52525b;
 }
 
 /* Mobile optimizations - use safe area insets for notched devices */

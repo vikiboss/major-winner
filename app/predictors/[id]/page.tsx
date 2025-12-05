@@ -120,7 +120,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                       </span>
                     )}
                     {!showFinalsResults && (
-                      <span className="bg-surface-2 rounded px-2 py-0.5 text-xs font-medium text-zinc-400">
+                      <span className="bg-surface-2 text-muted rounded px-2 py-0.5 text-xs font-medium">
                         等待开赛
                       </span>
                     )}
@@ -262,7 +262,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                     </span>
                   )}
                   {!showResults && (
-                    <span className="bg-surface-2 rounded px-2 py-0.5 text-xs font-medium text-zinc-400">
+                    <span className="bg-surface-2 text-muted rounded px-2 py-0.5 text-xs font-medium">
                       等待开赛
                     </span>
                   )}

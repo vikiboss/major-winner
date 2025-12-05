@@ -534,7 +534,7 @@ function PredictorPredictions({
   // 计算每个预测者在当前阶段的错误数,并排序(错误最少的排前面)
   const predictorsWithStats = eventPreds.predictions
     .map((p) => {
-      const stats = calculatePredictorStats(event.id, p.name)
+      const stats = calculatePredictorStats(event.id, p.id)
       const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
 
       // 计算错误数: 总预测数 - 正确数 - 仍有可能的数
@@ -598,7 +598,7 @@ function PredictorPredictions({
   return (
     <>
       {displayPredictors.map(({ predictor: p }) => {
-        const stats = calculatePredictorStats(event.id, p.name)
+        const stats = calculatePredictorStats(event.id, p.id)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
         const prediction =
           stageType === 'finals-round' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
@@ -606,7 +606,7 @@ function PredictorPredictions({
         if (!prediction) return null
 
         return (
-          <div key={p.name} className="px-4 py-3">
+          <div key={p.id} className="px-4 py-3">
             <div className="mb-2 flex items-center justify-between">
               <Link
                 href={`/predictors/${encodeURIComponent(p.id)}`}

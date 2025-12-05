@@ -556,7 +556,6 @@ function PredictorPredictions({
         const prediction =
           stageType === 'finals-round' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
 
-        // 如果没有竞猜数据,显示"等待上一阶段"
         if (!prediction) return null
 
         return (

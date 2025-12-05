@@ -525,7 +525,7 @@ function PredictorPredictions({
             </div>
 
             {prediction && stageType === 'swiss' && (
-              <div className="flex items-start gap-x-2 text-[10px]">
+              <div className="flex items-start gap-x-2">
                 {/* 左列: 3-0 */}
                 <div className="flex items-center gap-x-1">
                   <span className="text-muted font-medium">3-0</span>

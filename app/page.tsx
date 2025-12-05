@@ -251,22 +251,122 @@ function StageSection({
                   <p className="text-sm">比赛尚未开始</p>
                   <p className="text-muted mt-1 text-xs">竞猜已提交,等待比赛结果</p>
                 </div>
-              ) : (
-                isSwiss &&
-                swissData && (
-                  <div className="space-y-4">
-                    {/* 晋级 */}
-                    <div>
-                      <p className="text-win mb-2 text-xs font-medium">晋级</p>
-                      <div className="space-y-1">
-                        {(['3-0', '3-1', '3-2'] as const).map((record) => {
-                          const teams = swissData.result[record]
-                          if (!teams.length) return null
-                          return (
-                            <div key={record} className="flex items-center gap-2">
-                              <span className="text-muted w-8 font-mono text-xs">{record}</span>
+              ) : isSwiss && swissData ? (
+                // 检查是否有最终结果
+                (() => {
+                  const hasAdvancedTeams =
+                    swissData.result['3-0'].length > 0 ||
+                    swissData.result['3-1'].length > 0 ||
+                    swissData.result['3-2'].length > 0
+                  const hasEliminatedTeams =
+                    swissData.result['2-3'].length > 0 ||
+                    swissData.result['1-3'].length > 0 ||
+                    swissData.result['0-3'].length > 0
+
+                  // 如果没有任何最终结果，显示进行中提示
+                  if (!hasAdvancedTeams && !hasEliminatedTeams) {
+                    return (
+                      <div className="text-muted py-8 text-center">
+                        <div className="mb-2 text-2xl">⚔️</div>
+                        <p className="text-sm">比赛进行中</p>
+                        <p className="text-muted mt-1 text-xs">结果尚未出炉</p>
+                      </div>
+                    )
+                  }
+
+                  // 有结果，显示结果内容
+                  return (
+                    <div className="space-y-4">
+                      {/* 晋级 */}
+                      <div>
+                        <p className="text-win mb-2 text-xs font-medium">晋级</p>
+                        <div className="space-y-1">
+                          {(['3-0', '3-1', '3-2'] as const).map((record) => {
+                            const teams = swissData.result[record]
+                            if (!teams.length) return null
+                            return (
+                              <div key={record} className="flex items-center gap-2">
+                                <span className="text-muted w-8 font-mono text-xs">{record}</span>
+                                <div className="flex flex-wrap gap-1">
+                                  {teams.map((t) => (
+                                    <span
+                                      key={t}
+                                      className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                    >
+                                      <TeamLogo shortName={t} size="xs" />
+                                      {t}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                      {/* 淘汰 */}
+                      <div>
+                        <p className="text-lose mb-2 text-xs font-medium">淘汰</p>
+                        <div className="space-y-1">
+                          {(['2-3', '1-3', '0-3'] as const).map((record) => {
+                            const teams = swissData.result[record]
+                            if (!teams.length) return null
+                            return (
+                              <div key={record} className="flex items-center gap-2">
+                                <span className="text-muted w-8 font-mono text-xs">{record}</span>
+                                <div className="flex flex-wrap gap-1">
+                                  {teams.map((t) => (
+                                    <span
+                                      key={t}
+                                      className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                    >
+                                      <TeamLogo shortName={t} size="xs" />
+                                      {t}
+                                    </span>
+                                  ))}
+                                </div>
+                              </div>
+                            )
+                          })}
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })()
+              ) : null}
+
+              {!isSwiss &&
+                finalsData &&
+                round &&
+                (() => {
+                  // 检查当前轮次是否有结果
+                  const hasResults =
+                    round === '2-to-1'
+                      ? finalsData.result['2-to-1'].winner !== null
+                      : finalsData.result[round].winners.length > 0 ||
+                        finalsData.result[round].losers.length > 0
+
+                  // 如果没有结果，显示进行中提示
+                  if (!hasResults) {
+                    return (
+                      <div className="text-muted py-8 text-center">
+                        <div className="mb-2 text-2xl">⚔️</div>
+                        <p className="text-sm">比赛进行中</p>
+                        <p className="text-muted mt-1 text-xs">结果尚未出炉</p>
+                      </div>
+                    )
+                  }
+
+                  // 有结果，显示结果内容
+                  return (
+                    <div className="space-y-4">
+                      {/* 八进四 和 半决赛 */}
+                      {(round === '8-to-4' || round === '4-to-2') && (
+                        <div>
+                          <div className="flex gap-4">
+                            <div className="flex-1">
+                              <p className="text-win mb-1 text-xs font-medium">晋级</p>
                               <div className="flex flex-wrap gap-1">
-                                {teams.map((t) => (
+                                {finalsData.result[round].winners.map((t) => (
                                   <span
                                     key={t}
                                     className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
@@ -277,22 +377,10 @@ function StageSection({
                                 ))}
                               </div>
                             </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                    {/* 淘汰 */}
-                    <div>
-                      <p className="text-lose mb-2 text-xs font-medium">淘汰</p>
-                      <div className="space-y-1">
-                        {(['2-3', '1-3', '0-3'] as const).map((record) => {
-                          const teams = swissData.result[record]
-                          if (!teams.length) return null
-                          return (
-                            <div key={record} className="flex items-center gap-2">
-                              <span className="text-muted w-8 font-mono text-xs">{record}</span>
+                            <div className="flex-1">
+                              <p className="text-lose mb-1 text-xs font-medium">淘汰</p>
                               <div className="flex flex-wrap gap-1">
-                                {teams.map((t) => (
+                                {finalsData.result[round].losers.map((t) => (
                                   <span
                                     key={t}
                                     className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
@@ -303,71 +391,30 @@ function StageSection({
                                 ))}
                               </div>
                             </div>
-                          )
-                        })}
-                      </div>
-                    </div>
-                  </div>
-                )
-              )}
-
-              {!isSwiss && finalsData && round && (
-                <div className="space-y-4">
-                  {/* 八进四 和 半决赛 */}
-                  {(round === '8-to-4' || round === '4-to-2') && (
-                    <div>
-                      <div className="flex gap-4">
-                        <div className="flex-1">
-                          <p className="text-win mb-1 text-xs font-medium">晋级</p>
-                          <div className="flex flex-wrap gap-1">
-                            {finalsData.result[round].winners.map((t) => (
-                              <span
-                                key={t}
-                                className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
-                              >
-                                <TeamLogo shortName={t} size="xs" />
-                                {t}
-                              </span>
-                            ))}
                           </div>
                         </div>
-                        <div className="flex-1">
-                          <p className="text-lose mb-1 text-xs font-medium">淘汰</p>
-                          <div className="flex flex-wrap gap-1">
-                            {finalsData.result[round].losers.map((t) => (
-                              <span
-                                key={t}
-                                className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
-                              >
-                                <TeamLogo shortName={t} size="xs" />
-                                {t}
-                              </span>
-                            ))}
+                      )}
+                      {/* 决赛 - 冠军 */}
+                      {round === '2-to-1' && finalsData.result['2-to-1'].winner && (
+                        <div>
+                          <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
+                          <div className="flex items-center gap-2">
+                            <TeamLogo shortName={finalsData.result['2-to-1'].winner} size="lg" />
+                            <p className="text-primary text-lg font-semibold">
+                              {finalsData.result['2-to-1'].winner}
+                            </p>
                           </div>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  {/* 决赛 - 冠军 */}
-                  {round === '2-to-1' && finalsData.result['2-to-1'].winner && (
-                    <div>
-                      <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
-                      <div className="flex items-center gap-2">
-                        <TeamLogo shortName={finalsData.result['2-to-1'].winner} size="lg" />
-                        <p className="text-primary text-lg font-semibold">
-                          {finalsData.result['2-to-1'].winner}
-                        </p>
-                      </div>
-                      {finalsData.result['2-to-1'].loser && (
-                        <div className="text-muted mt-2 flex items-center gap-2 text-sm">
-                          <TeamLogo shortName={finalsData.result['2-to-1'].loser} size="sm" />
-                          <span>亚军: {finalsData.result['2-to-1'].loser}</span>
+                          {finalsData.result['2-to-1'].loser && (
+                            <div className="text-muted mt-2 flex items-center gap-2 text-sm">
+                              <TeamLogo shortName={finalsData.result['2-to-1'].loser} size="sm" />
+                              <span>亚军: {finalsData.result['2-to-1'].loser}</span>
+                            </div>
+                          )}
                         </div>
                       )}
                     </div>
-                  )}
-                </div>
-              )}
+                  )
+                })()}
             </div>
           </div>
         </div>
@@ -478,106 +525,131 @@ function PredictorPredictions({
             </div>
 
             {prediction && stageType === 'swiss' && (
-              <div className="space-y-1">
-                {/* 3-0 区域 */}
-                <div className="flex items-start gap-2">
-                  <span className="text-muted w-10 shrink-0 text-xs font-medium sm:w-12">3-0:</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {(prediction as StagePrediction)['3-0'].map((team) => {
-                      const possible =
-                        stageStatus === 'waiting'
-                          ? true
-                          : isPredictionPossible(team, '3-0', actualResult)
-                      const isCorrect =
-                        stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
-                      return (
-                        <span
-                          key={team}
-                          className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
-                            stageStatus === 'waiting'
-                              ? 'bg-surface-2 text-tertiary'
-                              : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
-                                : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-tertiary'
-                          }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
-                      )
-                    })}
-                  </div>
+              <div className="grid grid-cols-[auto_1fr_auto_1fr] gap-x-3 gap-y-1.5">
+                {/* 第一行左: 3-0 */}
+                <span className="text-muted self-start text-xs font-medium">3-0</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {(prediction as StagePrediction)['3-0'].map((team) => {
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '3-0', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
+                    return (
+                      <span
+                        key={team}
+                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
+                          stageStatus === 'waiting'
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })}
                 </div>
 
-                {/* 3-1/2 区域 */}
-                <div className="flex items-start gap-2">
-                  <span className="text-muted w-10 shrink-0 text-xs font-medium sm:w-12">
-                    3-1/2:
-                  </span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {(prediction as StagePrediction)['3-1-or-3-2'].map((team) => {
-                      const possible =
-                        stageStatus === 'waiting'
-                          ? true
-                          : isPredictionPossible(team, '3-1-or-3-2', actualResult)
-                      const isCorrect =
-                        stageStatus === 'waiting'
-                          ? false
-                          : actualResult?.['3-1']?.includes(team) ||
-                            actualResult?.['3-2']?.includes(team)
-                      return (
-                        <span
-                          key={team}
-                          className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
-                            stageStatus === 'waiting'
-                              ? 'bg-surface-2 text-tertiary'
-                              : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
-                                : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-tertiary'
-                          }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
-                      )
-                    })}
-                  </div>
+                {/* 第一行右: 3-1/2 (前3个) */}
+                <span className="text-muted self-start text-xs font-medium">3-1/2</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {(prediction as StagePrediction)['3-1-or-3-2'].slice(0, 3).map((team) => {
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting'
+                        ? false
+                        : actualResult?.['3-1']?.includes(team) ||
+                          actualResult?.['3-2']?.includes(team)
+                    return (
+                      <span
+                        key={team}
+                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
+                          stageStatus === 'waiting'
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })}
                 </div>
 
-                {/* 0-3 区域 */}
-                <div className="flex items-start gap-2">
-                  <span className="text-muted w-10 shrink-0 text-xs font-medium sm:w-12">0-3:</span>
-                  <div className="flex flex-wrap gap-1.5">
-                    {(prediction as StagePrediction)['0-3'].map((team) => {
-                      const possible =
-                        stageStatus === 'waiting'
-                          ? true
-                          : isPredictionPossible(team, '0-3', actualResult)
-                      const isCorrect =
-                        stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
-                      return (
-                        <span
-                          key={team}
-                          className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
-                            stageStatus === 'waiting'
-                              ? 'bg-surface-2 text-tertiary'
-                              : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
-                                : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-tertiary'
-                          }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
-                      )
-                    })}
-                  </div>
+                {/* 第二行左: 0-3 */}
+                <span className="text-muted self-start text-xs font-medium">0-3</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {(prediction as StagePrediction)['0-3'].map((team) => {
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '0-3', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
+                    return (
+                      <span
+                        key={team}
+                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
+                          stageStatus === 'waiting'
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })}
+                </div>
+
+                {/* 第二行右: 3-1/2 (后3个) */}
+                <span className="invisible text-xs">-</span>
+                <div className="flex flex-wrap gap-1.5">
+                  {(prediction as StagePrediction)['3-1-or-3-2'].slice(3, 6).map((team) => {
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting'
+                        ? false
+                        : actualResult?.['3-1']?.includes(team) ||
+                          actualResult?.['3-2']?.includes(team)
+                    return (
+                      <span
+                        key={team}
+                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
+                          stageStatus === 'waiting'
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })}
                 </div>
               </div>
             )}

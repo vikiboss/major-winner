@@ -92,7 +92,7 @@ export default function Home() {
     <div className="min-h-screen">
       {/* 顶部标题栏 */}
       <div className="border-border bg-surface-1 border-b">
-        <div className="mx-auto max-w-7xl px-4 py-6">
+        <div className="mx-auto max-w-5xl px-4 py-6">
           <div className="min-w-0 flex-1">
             <h1 className="mb-6 overflow-hidden text-6xl font-semibold text-ellipsis whitespace-nowrap text-zinc-900 dark:text-white">
               {event.name}
@@ -115,7 +115,7 @@ export default function Home() {
 
       {/* 阶段导航条 */}
       <div className="bg-surface-0 border-border stage-nav sticky top-16 z-40 border-b">
-        <div className="mx-auto max-w-7xl px-4">
+        <div className="mx-auto max-w-5xl px-4">
           <nav className="stage-nav flex gap-1 overflow-x-auto py-2" role="navigation">
             {stages.map((stage) => (
               <a
@@ -131,7 +131,7 @@ export default function Home() {
       </div>
 
       {/* 内容区适配，表格/卡片横向滚动优化 */}
-      <div className="mx-auto max-w-7xl space-y-16 px-4 py-8">
+      <div className="mx-auto max-w-5xl space-y-16 px-4 py-8">
         {stages.length === 0 ? (
           <div className="flex min-h-[400px] items-center justify-center">
             <div className="text-center">

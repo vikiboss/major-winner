@@ -51,24 +51,26 @@ export default function ComparePage() {
   }
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-8">
+    <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 dark:text-white">竞猜对比</h1>
-        <p className="text-muted text-md mb-6 space-y-1">
-          选择 0-5 位竞猜者。<span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四
-          2/4，半决赛 1/2，决赛猜中冠军
-        </p>
+        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">竞猜对比</h1>
+        <div className="text-muted space-y-2 text-sm sm:text-base">
+          <p>选择 0-5 位竞猜者进行对比分析</p>
+          <p className="text-xs sm:text-sm">
+            <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军
+          </p>
+        </div>
       </div>
 
       {/* Selection */}
-      <div className="bg-surface-1 border-border mb-6 rounded-lg border p-4">
-        <div className="flex flex-wrap gap-2">
+      <div className="bg-surface-1 border-border mb-6 rounded-lg border p-3 sm:p-4">
+        <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {predictors.map((p) => (
             <button
               key={p.predictor}
               onClick={() => togglePredictor(p.predictor)}
-              className={`rounded px-3 py-1.5 text-sm transition-colors ${
+              className={`rounded px-2.5 py-1.5 text-xs transition-colors active:scale-95 sm:px-3 sm:text-sm ${
                 selected.includes(p.predictor)
                   ? 'bg-primary-500 text-zinc-900 dark:text-white'
                   : 'bg-surface-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
@@ -80,8 +82,68 @@ export default function ComparePage() {
         </div>
       </div>
 
-      {/* Comparison Table */}
-      <div className="bg-surface-1 border-border mb-6 overflow-x-auto rounded-lg border">
+      {/* Comparison Table - Mobile Card View */}
+      <div className="mb-6 space-y-4 md:hidden">
+        {selectedStats.map(({ prediction, stats }) => {
+          const best = Math.max(...selectedStats.map((s) => s.stats?.totalCorrect || 0))
+          return (
+            <div key={prediction.predictor} className="bg-surface-1 border-border rounded-lg border">
+              <div className="border-border border-b px-4 py-3">
+                <Link
+                  href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
+                  className="hover:text-primary-400 font-medium text-white"
+                >
+                  {prediction.predictor}
+                </Link>
+              </div>
+              <div className="divide-border divide-y p-4 text-sm">
+                <div className="flex justify-between py-2">
+                  <span className="text-muted">猜对</span>
+                  <span
+                    className={`font-semibold ${stats?.totalCorrect === best ? 'text-primary-400' : 'text-white'}`}
+                  >
+                    {stats?.totalCorrect}
+                    <span className="text-muted font-normal">/{stats?.totalPredictions}</span>
+                  </span>
+                </div>
+                <div className="flex justify-between py-2">
+                  <span className="text-muted">通过</span>
+                  <span className="text-white">
+                    {stats?.totalPassed}/{stats?.totalStages}
+                  </span>
+                </div>
+                {visibleStages.map((stageId) => {
+                  const completed = isStageCompleted(stageId)
+                  const result = stats?.stageResults.find((s) => s.stageId === stageId)
+                  return (
+                    <div key={stageId} className="flex justify-between py-2">
+                      <span className="text-muted">{getStageName(stageId)}</span>
+                      <span>
+                        {result ? (
+                          completed ? (
+                            <span className={result.passed ? 'text-win' : 'text-lose'}>
+                              {result.passed ? '✓' : '✗'}
+                            </span>
+                          ) : (
+                            <span className="text-muted text-xs">
+                              {result.correctCount}/{result.requiredCount}
+                            </span>
+                          )
+                        ) : (
+                          <span className="text-muted">-</span>
+                        )}
+                      </span>
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Comparison Table - Desktop Table View */}
+      <div className="bg-surface-1 border-border mb-6 hidden overflow-x-auto rounded-lg border md:block">
         <table className="w-full min-w-[600px]">
           <thead>
             <tr className="border-border text-muted border-b text-left text-xs">

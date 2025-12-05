@@ -10,13 +10,13 @@ export default function LeaderboardPage() {
   const hasEnoughData = eventProgress.canShowLeaderboard && stats.length > 0
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-8">
+    <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white">竞猜排行</h1>
-        <div className="mt-1 flex flex-wrap items-center gap-3">
-          <p className="text-muted text-sm">按猜对数排名</p>
-          <span className="text-muted">·</span>
+      <div className="mb-6 sm:mb-8">
+        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">竞猜排行</h1>
+        <div className="mt-2 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
+          <p className="text-muted">按猜对数排名 · {stats.length} 位竞猜者</p>
+          <span className="text-muted hidden sm:inline">·</span>
           <div className="flex items-center gap-2">
             <div
               className={`h-2 w-2 rounded-full ${
@@ -27,11 +27,14 @@ export default function LeaderboardPage() {
                     : 'bg-muted'
               }`}
             />
-            <span className="text-sm text-zinc-400">
+            <span className="text-zinc-400">
               {getEventStatusText(eventProgress.eventStatus)}
             </span>
           </div>
         </div>
+        <p className="text-muted mt-3 text-xs sm:text-sm">
+          <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军
+        </p>
       </div>
 
       {!hasEnoughData ? (
@@ -45,18 +48,7 @@ export default function LeaderboardPage() {
           </div>
         </div>
       ) : (
-        <>
-          {/* Leaderboard Table */}
-          <LeaderboardTable stats={stats} eventProgress={eventProgress} />
-
-          {/* Rules */}
-          <div className="text-muted mt-6 space-y-1 text-xs">
-            <p>
-              <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
-              1/2，决赛猜中冠军
-            </p>
-          </div>
-        </>
+        <LeaderboardTable stats={stats} eventProgress={eventProgress} />
       )}
     </div>
   )
@@ -96,65 +88,63 @@ function LeaderboardTable({
   ]
 
   return (
-    <div className="bg-surface-1 border-border overflow-x-auto rounded-lg border">
-      <table className="w-full min-w-[600px]">
-        <thead>
-          <tr className="border-border text-muted border-b text-left text-xs">
-            <th className="w-12 px-4 py-3">#</th>
-            <th className="px-4 py-3">竞猜者</th>
-            <th className="px-4 py-3 text-center">猜对个数</th>
-            <th className="hidden px-4 py-3 text-center sm:table-cell">任务通过</th>
-            <th className="hidden px-4 py-3 text-center md:table-cell">第一阶段</th>
-            <th className="hidden px-4 py-3 text-center md:table-cell">第二阶段</th>
-            <th className="hidden px-4 py-3 text-center md:table-cell">第三阶段</th>
-            <th className="hidden px-4 py-3 text-center lg:table-cell">八强</th>
-            <th className="hidden px-4 py-3 text-center lg:table-cell">半决赛</th>
-            <th className="hidden px-4 py-3 text-center lg:table-cell">决赛</th>
-          </tr>
-        </thead>
-        <tbody className="divide-border divide-y">
-          {stats.map((stat, index) => (
-            <tr key={stat.predictor} className="hover:bg-surface-2 transition-colors">
-              <td className="px-4 py-3">
+    <>
+      {/* Mobile Card Layout */}
+      <div className="space-y-3 md:hidden">
+        {stats.map((stat, index) => (
+          <div key={stat.predictor} className="bg-surface-1 border-border rounded-lg border p-4">
+            <div className="mb-3 flex items-start justify-between">
+              <div className="flex items-start gap-3">
                 <span
-                  className={`text-sm font-medium ${
+                  className={`text-lg font-bold ${
                     index === 0 ? 'text-primary-400' : index < 3 ? 'text-zinc-300' : 'text-muted'
                   }`}
                 >
-                  {index + 1}
+                  #{index + 1}
                 </span>
-              </td>
-              <td className="px-4 py-3">
-                <Link
-                  href={`/predictors/${encodeURIComponent(stat.predictor)}`}
-                  className="hover:text-primary-400 transition-colors"
-                >
-                  <span className="font-medium text-zinc-900 dark:text-white">
+                <div>
+                  <Link
+                    href={`/predictors/${encodeURIComponent(stat.predictor)}`}
+                    className="hover:text-primary-400 block font-medium text-zinc-900 transition-colors dark:text-white"
+                  >
                     {stat.predictor}
-                  </span>
+                  </Link>
                   {stat.platform && (
-                    <span className="text-muted ml-2 text-xs">{stat.platform}</span>
+                    <span className="text-muted mt-0.5 block text-xs">{stat.platform}</span>
                   )}
-                </Link>
-              </td>
-              <td className="px-4 py-3 text-center">
-                <span className="font-semibold text-zinc-900 dark:text-white">
+                </div>
+              </div>
+              <div className="text-right">
+                <div className="font-semibold text-zinc-900 dark:text-white">
                   {stat.totalCorrect}
-                </span>
-                <span className="text-muted text-xs">/{stat.totalPredictions}</span>
-              </td>
-              <td className="text-muted hidden px-4 py-3 text-center sm:table-cell">
-                {stat.totalPassed}/{stat.totalStages}
-              </td>
+                  <span className="text-muted text-xs">/{stat.totalPredictions}</span>
+                </div>
+                <div className="text-muted mt-0.5 text-xs">
+                  通过 {stat.totalPassed}/{stat.totalStages}
+                </div>
+              </div>
+            </div>
+            <div className="border-border flex flex-wrap gap-2 border-t pt-3">
               {allStages.map((stage) => {
                 const result = stat.stageResults.find((s) => s.stageId === stage.id)
-                // 瑞士轮在 md 显示,决赛阶段在 lg 显示
-                const hideClass =
-                  stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
-                    ? 'hidden md:table-cell'
-                    : 'hidden lg:table-cell'
+                const stageName =
+                  stage.id === 'stage-1'
+                    ? '第一'
+                    : stage.id === 'stage-2'
+                      ? '第二'
+                      : stage.id === 'stage-3'
+                        ? '第三'
+                        : stage.id === '8-to-4'
+                          ? '八强'
+                          : stage.id === '4-to-2'
+                            ? '半决'
+                            : '决赛'
                 return (
-                  <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
+                  <div
+                    key={stage.id}
+                    className="bg-surface-2 flex items-center gap-1.5 rounded px-2 py-1 text-xs"
+                  >
+                    <span className="text-muted">{stageName}</span>
                     {stage.hasResults ? (
                       stage.isResultsComplete ? (
                         result ? (
@@ -165,22 +155,110 @@ function LeaderboardTable({
                           <span className="text-muted">-</span>
                         )
                       ) : result ? (
-                        <span className="text-muted text-xs">
+                        <span className="text-muted">
                           {result.correctCount}/{result.requiredCount}
                         </span>
                       ) : (
                         <span className="text-muted">-</span>
                       )
                     ) : (
-                      <span className="text-muted/50 text-xs">待定</span>
+                      <span className="text-muted/50">待定</span>
                     )}
-                  </td>
+                  </div>
                 )
               })}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Desktop Table Layout */}
+      <div className="bg-surface-1 border-border hidden overflow-x-auto rounded-lg border md:block">
+        <table className="w-full min-w-[600px]">
+          <thead>
+            <tr className="border-border text-muted border-b text-left text-xs">
+              <th className="w-12 px-4 py-3">#</th>
+              <th className="px-4 py-3">竞猜者</th>
+              <th className="px-4 py-3 text-center">猜对个数</th>
+              <th className="px-4 py-3 text-center">任务通过</th>
+              <th className="hidden px-4 py-3 text-center md:table-cell">第一阶段</th>
+              <th className="hidden px-4 py-3 text-center md:table-cell">第二阶段</th>
+              <th className="hidden px-4 py-3 text-center md:table-cell">第三阶段</th>
+              <th className="hidden px-4 py-3 text-center lg:table-cell">八强</th>
+              <th className="hidden px-4 py-3 text-center lg:table-cell">半决赛</th>
+              <th className="hidden px-4 py-3 text-center lg:table-cell">决赛</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+          </thead>
+          <tbody className="divide-border divide-y">
+            {stats.map((stat, index) => (
+              <tr key={stat.predictor} className="hover:bg-surface-2 transition-colors">
+                <td className="px-4 py-3">
+                  <span
+                    className={`text-sm font-medium ${
+                      index === 0 ? 'text-primary-400' : index < 3 ? 'text-zinc-300' : 'text-muted'
+                    }`}
+                  >
+                    {index + 1}
+                  </span>
+                </td>
+                <td className="px-4 py-3">
+                  <Link
+                    href={`/predictors/${encodeURIComponent(stat.predictor)}`}
+                    className="hover:text-primary-400 transition-colors"
+                  >
+                    <span className="font-medium text-zinc-900 dark:text-white">
+                      {stat.predictor}
+                    </span>
+                    {stat.platform && (
+                      <span className="text-muted ml-2 text-xs">{stat.platform}</span>
+                    )}
+                  </Link>
+                </td>
+                <td className="px-4 py-3 text-center">
+                  <span className="font-semibold text-zinc-900 dark:text-white">
+                    {stat.totalCorrect}
+                  </span>
+                  <span className="text-muted text-xs">/{stat.totalPredictions}</span>
+                </td>
+                <td className="text-muted px-4 py-3 text-center">
+                  {stat.totalPassed}/{stat.totalStages}
+                </td>
+                {allStages.map((stage) => {
+                  const result = stat.stageResults.find((s) => s.stageId === stage.id)
+                  // 瑞士轮在 md 显示,决赛阶段在 lg 显示
+                  const hideClass =
+                    stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
+                      ? 'hidden md:table-cell'
+                      : 'hidden lg:table-cell'
+                  return (
+                    <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
+                      {stage.hasResults ? (
+                        stage.isResultsComplete ? (
+                          result ? (
+                            <span className={result.passed ? 'text-win' : 'text-lose'}>
+                              {result.passed ? '✓' : '✗'}
+                            </span>
+                          ) : (
+                            <span className="text-muted">-</span>
+                          )
+                        ) : result ? (
+                          <span className="text-muted text-xs">
+                            {result.correctCount}/{result.requiredCount}
+                          </span>
+                        ) : (
+                          <span className="text-muted">-</span>
+                        )
+                      ) : (
+                        <span className="text-muted/50 text-xs">待定</span>
+                      )}
+                    </td>
+                  )
+                })}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   )
 }

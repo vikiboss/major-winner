@@ -91,47 +91,68 @@ function MobileMenu({
 }) {
   useEffect(() => {
     if (!open) return
+
+    // Close on click outside
     const handler = (e: MouseEvent) => {
       if (!(e.target as HTMLElement).closest('.mobile-menu')) {
         onClose()
       }
     }
+
+    // Close on escape key
+    const keyHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose()
+      }
+    }
+
     document.addEventListener('click', handler)
-    return () => document.removeEventListener('click', handler)
+    document.addEventListener('keydown', keyHandler)
+    return () => {
+      document.removeEventListener('click', handler)
+      document.removeEventListener('keydown', keyHandler)
+    }
   }, [open, onClose])
 
   return (
     <div className="relative md:hidden">
       <button
-        className="p-2 text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
+        className="p-3 text-zinc-400 transition-colors active:scale-95 hover:text-zinc-900 dark:hover:text-white"
         onClick={onToggle}
         aria-label="菜单"
+        aria-expanded={open}
       >
-        <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg className="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
+            d={open ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'}
           />
         </svg>
       </button>
       {open && (
-        <div className="mobile-menu bg-surface-2 border-border absolute top-full right-0 z-50 mt-2 w-40 rounded-md border py-1 shadow-lg">
-          {navItems.map((item) => {
-            const isActive =
-              pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`block px-4 py-2 text-sm ${isActive ? 'text-primary-400' : 'text-zinc-400 hover:text-zinc-900 dark:hover:text-white'}`}
-                onClick={onClose}
-              >
-                {item.label}
-              </Link>
-            )
-          })}
+        <div className="mobile-menu bg-surface-2 border-border absolute right-0 top-full z-50 mt-2 max-h-[calc(100vh-5rem)] w-48 overflow-y-auto rounded-lg border shadow-xl">
+          <nav className="py-2" role="navigation">
+            {navItems.map((item) => {
+              const isActive =
+                pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`block px-4 py-3 text-sm font-medium transition-colors active:scale-[0.98] ${
+                    isActive
+                      ? 'bg-primary-500/10 text-primary-400'
+                      : 'text-zinc-400 hover:bg-surface-3 hover:text-zinc-900 dark:hover:text-white'
+                  }`}
+                  onClick={onClose}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+          </nav>
         </div>
       )}
     </div>

@@ -247,8 +247,65 @@ export default function TeamsPage() {
         </div>
       )}
 
-      {/* Teams Table */}
-      <div className="overflow-x-auto rounded-lg">
+      {/* Teams - Mobile Card View */}
+      <div className="space-y-3 md:hidden">
+        {sortedTeams.map((team) => {
+          const performance = getTeamPerformance(team.shortName)
+          const status = getTeamStatus(team.shortName)
+
+          return (
+            <div key={team.name} className="bg-surface-1 border-border rounded-lg border p-4">
+              <div className="mb-3 flex items-start justify-between">
+                <div>
+                  <h3 className="font-medium text-zinc-900 dark:text-white">{team.name}</h3>
+                  <p className="text-muted mt-1 text-xs">
+                    {team.stage === 'stage-1'
+                      ? '挑战组'
+                      : team.stage === 'stage-2'
+                        ? '传奇组'
+                        : '冠军组'}
+                  </p>
+                </div>
+                <span className={`text-xs ${status.className}`}>{status.text}</span>
+              </div>
+              {performance.length > 0 && (
+                <div className="flex flex-wrap gap-1.5">
+                  {performance.map((p, idx) => {
+                    const isLast = idx === performance.length - 1
+                    return (
+                      <span
+                        key={idx}
+                        className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          p.status === 'champion'
+                            ? 'bg-primary-500/20 text-primary-400'
+                            : p.status === 'advanced'
+                              ? 'bg-win/10 text-win'
+                              : p.status === 'eliminated'
+                                ? 'bg-lose/10 text-lose'
+                                : p.status === 'waiting'
+                                  ? 'bg-muted/10 text-muted'
+                                  : 'bg-yellow-500/10 text-yellow-400'
+                        }`}
+                      >
+                        <span className="opacity-70">{p.stageName}</span>
+                        <span className="font-semibold">{p.result}</span>
+                        {isLast && p.status === 'eliminated' && <span>✕</span>}
+                        {isLast &&
+                          (p.status === 'advanced' || p.status === 'in-progress') &&
+                          p.result !== '冠军' &&
+                          p.result !== '亚军' && <span>→</span>}
+                      </span>
+                    )
+                  })}
+                </div>
+              )}
+            </div>
+          )
+        })}
+      </div>
+
+      {/* Teams Table - Desktop */}
+      <div className="hidden overflow-x-auto rounded-lg md:block">
         <table className="w-full min-w-[500px]">
           <thead className="bg-surface-2 border-border border-b">
             <tr>

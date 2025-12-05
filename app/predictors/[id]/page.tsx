@@ -53,9 +53,11 @@ export default async function PredictorDetailPage({ params }: Props) {
       </nav>
 
       {/* Header */}
-      <div className="mb-8 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-        <div>
-          <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white">{predictorName}</h1>
+      <div className="mb-6 sm:mb-8">
+        <div className="mb-4">
+          <h1 className="text-xl font-semibold text-zinc-900 sm:text-2xl dark:text-white">
+            {predictorName}
+          </h1>
           {prediction.platform && (
             <p className="text-muted mt-1 text-sm">
               @{prediction.platform}
@@ -64,7 +66,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                   href={prediction.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary-400 mt-2 ml-2 inline-block text-sm hover:underline"
+                  className="text-primary-400 ml-2 inline-block text-sm hover:underline"
                 >
                   前往主页 →
                 </a>
@@ -75,20 +77,21 @@ export default async function PredictorDetailPage({ params }: Props) {
             <p className="text-muted mt-1 text-sm">{prediction.description}</p>
           )}
         </div>
-        <div className="flex items-center gap-6">
-          <div className="text-right">
-            <p className="text-2xl font-semibold text-zinc-900 dark:text-white">
+        <div className="bg-surface-1 border-border flex gap-4 rounded-lg border p-4 sm:inline-flex sm:gap-6">
+          <div className="flex-1 text-center sm:text-right">
+            <p className="text-xl font-semibold text-zinc-900 sm:text-2xl dark:text-white">
               {stats.totalCorrect}
-              <span className="text-muted text-base">/{stats.totalPredictions}</span>
+              <span className="text-muted text-sm sm:text-base">/{stats.totalPredictions}</span>
             </p>
-            <p className="text-muted text-xs">猜对</p>
+            <p className="text-muted mt-1 text-xs">猜对</p>
           </div>
-          <div className="text-right">
-            <p className="text-2xl font-semibold text-zinc-900 dark:text-white">
+          <div className="border-border hidden border-r sm:block"></div>
+          <div className="flex-1 text-center sm:text-right">
+            <p className="text-xl font-semibold text-zinc-900 sm:text-2xl dark:text-white">
               {stats.totalPassed}
-              <span className="text-muted text-base">/{stats.totalStages}</span>
+              <span className="text-muted text-sm sm:text-base">/{stats.totalStages}</span>
             </p>
-            <p className="text-muted text-xs">通过</p>
+            <p className="text-muted mt-1 text-xs">通过</p>
           </div>
         </div>
       </div>

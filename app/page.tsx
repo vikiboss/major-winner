@@ -92,14 +92,14 @@ export default function Home() {
     <div className="min-h-screen">
       {/* 顶部标题栏 */}
       <div className="border-border bg-surface-1 border-b">
-        <div className="mx-auto max-w-5xl px-4 py-6">
+        <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
           <div className="min-w-0 flex-1">
-            <h1 className="mb-6 overflow-hidden text-6xl font-semibold text-ellipsis whitespace-nowrap text-zinc-900 dark:text-white">
+            <h1 className="mb-3 text-2xl font-semibold text-zinc-900 sm:mb-4 sm:text-4xl lg:text-5xl dark:text-white">
               {event.name}
             </h1>
-            <div className="mt-1 flex flex-wrap items-center gap-3 text-xl">
+            <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:text-base">
               <p className="text-muted">竞猜追踪 · {stats.length} 位竞猜者</p>
-              <span className="text-muted">·</span>
+              <span className="text-muted hidden sm:inline">·</span>
               <div className="flex items-center gap-2">
                 <div
                   className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`}
@@ -115,13 +115,18 @@ export default function Home() {
 
       {/* 阶段导航条 */}
       <div className="bg-surface-0 border-border stage-nav sticky top-16 z-40 border-b">
-        <div className="mx-auto max-w-5xl px-4">
-          <nav className="stage-nav flex gap-1 overflow-x-auto py-2" role="navigation">
+        <div className="mx-auto max-w-5xl">
+          <nav
+            className="stage-nav flex gap-1 overflow-x-auto px-4 py-2 sm:px-4 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"
+            role="navigation"
+            style={{ scrollSnapType: 'x mandatory' }}
+          >
             {stages.map((stage) => (
               <a
                 key={stage.id}
                 href={`#${stage.id}`}
-                className="hover:bg-surface-2 min-w-20 shrink-0 rounded-md px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
+                className="hover:bg-surface-2 shrink-0 rounded-md px-3 py-2 text-xs font-medium text-zinc-400 transition-colors active:scale-95 hover:text-zinc-900 sm:min-w-20 sm:px-4 sm:text-sm dark:hover:text-white"
+                style={{ scrollSnapAlign: 'start' }}
               >
                 {getStageName(stage.id as string)}
               </a>
@@ -131,7 +136,7 @@ export default function Home() {
       </div>
 
       {/* 内容区适配，表格/卡片横向滚动优化 */}
-      <div className="mx-auto max-w-5xl space-y-16 px-4 py-8">
+      <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 sm:space-y-12 sm:py-8 lg:space-y-16">
         {stages.length === 0 ? (
           <div className="flex min-h-[400px] items-center justify-center">
             <div className="text-center">
@@ -466,7 +471,7 @@ function PredictorPredictions({
             </div>
 
             {prediction && stageType === 'swiss' && (
-              <div className="flex gap-6 text-xs">
+              <div className="flex flex-col gap-1.5 text-xs sm:flex-row sm:gap-6">
                 <div className="flex flex-wrap gap-1">
                   <span className="text-muted">3-0: </span>
                   {(prediction as StagePrediction)['3-0'].map((team, idx) => {

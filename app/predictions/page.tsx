@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, Suspense, useTransition } from 'react'
+import { Suspense, useTransition } from 'react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import {
   events,
@@ -12,7 +12,6 @@ import TeamLogo from '@/components/TeamLogo'
 import type { StagePrediction, FinalsPrediction } from '@/types'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
-type SortOrder = 'default' | 'correctAsc' | 'correctDesc'
 
 const VALID_STAGES: Stage[] = ['stage-1', 'stage-2', 'stage-3', 'finals']
 const DEFAULT_STAGE: Stage = 'stage-3'
@@ -28,8 +27,6 @@ function PredictionsContent() {
   // URL 作为单一数据源
   const tabParam = searchParams.get('tab') as Stage | null
   const activeStage: Stage = tabParam && VALID_STAGES.includes(tabParam) ? tabParam : DEFAULT_STAGE
-
-  const [sortOrder, setSortOrder] = useState<SortOrder>('default')
 
   // 更新 tab 参数的函数
   const updateTab = (newStage: Stage) => {
@@ -96,19 +93,12 @@ function PredictionsContent() {
 
       {/* 竞猜表格 */}
       {activeStage === 'finals' ? (
-        <FinalsTable
-          predictors={predictorsWithStage}
-          event={event}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
-        />
+        <FinalsTable predictors={predictorsWithStage} event={event} />
       ) : (
         <SwissTable
           predictors={predictorsWithStage}
           event={event}
           stageId={activeStage as 'stage-1' | 'stage-2' | 'stage-3'}
-          sortOrder={sortOrder}
-          setSortOrder={setSortOrder}
         />
       )}
     </div>
@@ -120,22 +110,16 @@ function SwissTable({
   predictors,
   event,
   stageId,
-  sortOrder,
-  setSortOrder,
 }: {
   predictors: any[]
   event: any
   stageId: 'stage-1' | 'stage-2' | 'stage-3'
-  sortOrder: SortOrder
-  setSortOrder: (order: SortOrder) => void
 }) {
   const stageData = event[stageId]
   const actualResult = stageData?.result
 
-  // 排序逻辑
+  // 按猜对数降序排序
   const sortedPredictors = [...predictors].sort((a, b) => {
-    if (sortOrder === 'default') return 0
-
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
     const resultA = statsA?.stageResults.find((s) => s.stageId === stageId)
@@ -144,22 +128,8 @@ function SwissTable({
     const correctA = resultA?.correctCount ?? -1
     const correctB = resultB?.correctCount ?? -1
 
-    if (sortOrder === 'correctAsc') {
-      return correctA - correctB
-    } else {
-      return correctB - correctA
-    }
+    return correctB - correctA
   })
-
-  const handleSortClick = () => {
-    if (sortOrder === 'default') {
-      setSortOrder('correctDesc')
-    } else if (sortOrder === 'correctDesc') {
-      setSortOrder('correctAsc')
-    } else {
-      setSortOrder('default')
-    }
-  }
 
   return (
     <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
@@ -175,16 +145,7 @@ function SwissTable({
                 3-1/3-2 预测
               </th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">0-3 预测</th>
-              <th className="text-secondary px-4 py-3 text-center text-sm font-medium">
-                <button
-                  onClick={handleSortClick}
-                  className="hover-text-primary inline-flex items-center gap-1 text-nowrap transition-colors"
-                >
-                  猜对数
-                  {sortOrder === 'correctDesc' && <span>↓</span>}
-                  {sortOrder === 'correctAsc' && <span>↑</span>}
-                </button>
-              </th>
+              <th className="text-secondary px-4 py-3 text-center text-sm font-medium">猜对数</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium">状态</th>
             </tr>
           </thead>
@@ -454,23 +415,11 @@ function SwissTable({
 }
 
 // 决赛阶段表格组件
-function FinalsTable({
-  predictors,
-  event,
-  sortOrder,
-  setSortOrder,
-}: {
-  predictors: any[]
-  event: any
-  sortOrder: SortOrder
-  setSortOrder: (order: SortOrder) => void
-}) {
+function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
   const finalsResult = event.finals?.result
 
-  // 排序逻辑 - 计算决赛阶段总猜对数
+  // 按猜对数降序排序
   const sortedPredictors = [...predictors].sort((a, b) => {
-    if (sortOrder === 'default') return 0
-
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
 
@@ -484,22 +433,8 @@ function FinalsTable({
     const correctA = finalsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
     const correctB = finalsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
 
-    if (sortOrder === 'correctAsc') {
-      return correctA - correctB
-    } else {
-      return correctB - correctA
-    }
+    return correctB - correctA
   })
-
-  const handleSortClick = () => {
-    if (sortOrder === 'default') {
-      setSortOrder('correctDesc')
-    } else if (sortOrder === 'correctDesc') {
-      setSortOrder('correctAsc')
-    } else {
-      setSortOrder('default')
-    }
-  }
 
   return (
     <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
@@ -513,16 +448,7 @@ function FinalsTable({
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">八强赛</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">半决赛</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">决赛</th>
-              <th className="text-secondary px-4 py-3 text-center text-sm font-medium">
-                <button
-                  onClick={handleSortClick}
-                  className="hover-text-primary inline-flex items-center gap-1 transition-colors"
-                >
-                  猜对数
-                  {sortOrder === 'correctDesc' && <span>↓</span>}
-                  {sortOrder === 'correctAsc' && <span>↑</span>}
-                </button>
-              </th>
+              <th className="text-secondary px-4 py-3 text-center text-sm font-medium">猜对数</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium">状态</th>
             </tr>
           </thead>

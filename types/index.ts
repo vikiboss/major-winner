@@ -25,6 +25,7 @@ export interface SwissResult {
   '2-1'?: string[]
   '1-2'?: string[]
   '2-2'?: string[]
+
   // 最终结果(比赛结束后填充这些字段)
   '3-0': string[]
   '3-1': string[]

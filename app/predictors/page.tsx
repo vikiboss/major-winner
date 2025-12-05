@@ -151,10 +151,18 @@ function LeaderboardTable({
                     : 'hidden lg:table-cell'
                 return (
                   <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
-                    {stage.hasResults && stage.isResultsComplete ? (
-                      result ? (
-                        <span className={result.passed ? 'text-win' : 'text-lose'}>
-                          {result.passed ? '✓' : '✗'}
+                    {stage.hasResults ? (
+                      stage.isResultsComplete ? (
+                        result ? (
+                          <span className={result.passed ? 'text-win' : 'text-lose'}>
+                            {result.passed ? '✓' : '✗'}
+                          </span>
+                        ) : (
+                          <span className="text-muted">-</span>
+                        )
+                      ) : result ? (
+                        <span className="text-muted text-xs">
+                          {result.correctCount}/{result.requiredCount}
                         </span>
                       ) : (
                         <span className="text-muted">-</span>

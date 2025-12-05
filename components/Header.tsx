@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 
 const navItems = [
   { href: '/', label: '首页' },
-  { href: '/leaderboard', label: '竞猜' },
+  { href: '/predictors', label: '竞猜' },
   { href: '/teams', label: '战队' },
   { href: '/compare', label: '对比' },
 ]
@@ -28,7 +28,7 @@ export function Header() {
   }, [pathname])
 
   return (
-    <header className="bg-surface-0 border-border sticky top-0 z-50 border-b header">
+    <header className="bg-surface-0 border-border header sticky top-0 z-50 border-b">
       <div className="mx-auto max-w-7xl px-4">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
@@ -36,7 +36,9 @@ export function Header() {
             <div className="bg-primary-500 flex h-8 w-8 items-center justify-center rounded text-sm font-bold text-zinc-900 dark:text-white">
               MW
             </div>
-            <span className="font-semibold text-zinc-900 dark:text-white text-base sm:text-lg hidden sm:block">Major Winner</span>
+            <span className="hidden text-base font-semibold text-zinc-900 sm:block sm:text-lg dark:text-white">
+              Major Winner
+            </span>
           </Link>
 
           {/* Navigation */}
@@ -63,7 +65,12 @@ export function Header() {
           {/* Right side */}
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <MobileMenu pathname={pathname} open={menuOpen} onToggle={toggleMenu} onClose={closeMenu} />
+            <MobileMenu
+              pathname={pathname}
+              open={menuOpen}
+              onToggle={toggleMenu}
+              onClose={closeMenu}
+            />
           </div>
         </div>
       </div>
@@ -71,7 +78,17 @@ export function Header() {
   )
 }
 
-function MobileMenu({ pathname, open, onToggle, onClose }: { pathname: string; open: boolean; onToggle: () => void; onClose: () => void }) {
+function MobileMenu({
+  pathname,
+  open,
+  onToggle,
+  onClose,
+}: {
+  pathname: string
+  open: boolean
+  onToggle: () => void
+  onClose: () => void
+}) {
   useEffect(() => {
     if (!open) return
     const handler = (e: MouseEvent) => {
@@ -85,15 +102,25 @@ function MobileMenu({ pathname, open, onToggle, onClose }: { pathname: string; o
 
   return (
     <div className="relative md:hidden">
-      <button className="p-2 text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white" onClick={onToggle} aria-label="菜单">
+      <button
+        className="p-2 text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
+        onClick={onToggle}
+        aria-label="菜单"
+      >
         <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
         </svg>
       </button>
       {open && (
-        <div className="mobile-menu bg-surface-2 border-border absolute top-full right-0 mt-2 w-40 rounded-md border py-1 shadow-lg z-50">
+        <div className="mobile-menu bg-surface-2 border-border absolute top-full right-0 z-50 mt-2 w-40 rounded-md border py-1 shadow-lg">
           {navItems.map((item) => {
-            const isActive = pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+            const isActive =
+              pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
             return (
               <Link
                 key={item.href}

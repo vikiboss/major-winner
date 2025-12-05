@@ -129,80 +129,107 @@ export default function TeamsPage() {
     return { text: '进行中', className: 'text-muted' }
   }
 
-  // 排序逻辑:
-  // 1. 冠军 > 亚军 > 四强 > 八强 (决赛成绩)
-  // 2. 比赛中 > 待赛 > 晋级 > 已淘汰 (当前状态)
-  // 3. stage-3 > stage-2 > stage-1 (所在阶段)
-  // 4. 3-0 > 3-1 > 3-2 (晋级成绩)
+  // 排序逻辑 - 实力越强越靠前:
+  // 1. 决赛成绩优先: 冠军 > 亚军 > 四强 > 八强 > 未进决赛
+  // 2. 瑞士轮晋级: 3-0 > 3-1 > 3-2 (更强的晋级成绩靠前)
+  // 3. 比赛状态: 晋级/比赛中 > 待赛 > 淘汰
+  // 4. 淘汰队伍: 2-3 > 1-3 > 0-3 (接近晋级的靠前)
+  // 5. 所在阶段: stage-3 > stage-2 > stage-1 (更高阶段靠前)
   const sortedTeams = [...teams].toSorted((a, b) => {
     const aPerf = getTeamPerformance(a.shortName)
     const bPerf = getTeamPerformance(b.shortName)
     const lastA = aPerf[aPerf.length - 1]
     const lastB = bPerf[bPerf.length - 1]
 
-    // 1. 决赛成绩优先 (冠军 > 亚军 > 四强 > 八强)
+    // 1. 决赛成绩 - 最强的证明
     const aFinals = aPerf.find((p) => p.stage === 'finals')
     const bFinals = bPerf.find((p) => p.stage === 'finals')
+
+    // 进决赛的队伍一定强于未进决赛的
     if (aFinals && !bFinals) return -1
     if (!aFinals && bFinals) return 1
+
+    // 决赛内部排序
     if (aFinals && bFinals) {
-      const finalsOrder = ['冠军', '亚军', '四强', '八强']
-      return finalsOrder.indexOf(aFinals.result) - finalsOrder.indexOf(bFinals.result)
+      const finalsRank = { 冠军: 1, 亚军: 2, 四强: 3, 八强: 4 }
+      const aRank = finalsRank[aFinals.result as keyof typeof finalsRank] || 999
+      const bRank = finalsRank[bFinals.result as keyof typeof finalsRank] || 999
+      if (aRank !== bRank) return aRank - bRank
     }
 
-    // 2. 按当前状态排序 (比赛中 > 待赛 > 晋级 > 已淘汰)
-    const statusOrder: Record<string, number> = {
-      'in-progress': 0,
-      waiting: 1,
-      advanced: 2,
-      eliminated: 3,
-      champion: 0,
+    // 2. 瑞士轮战绩 - 胜率和净胜场代表实力
+    const getSwissStrength = (perf: typeof lastA) => {
+      if (!perf) return 999
+      // 最终成绩: 3-0 最强,0-3 最弱
+      const finalScores = { '3-0': 1, '3-1': 2, '3-2': 3, '2-3': 4, '1-3': 5, '0-3': 6 }
+      // 进行中成绩: 按胜率排序 (2-0 > 2-1 > 1-0 > 2-2 > 1-1 > 0-1 > 1-2 > 0-2)
+      const inProgressScores = {
+        '2-0': 10,
+        '2-1': 11,
+        '1-0': 12,
+        '2-2': 13,
+        '1-1': 14,
+        '0-1': 15,
+        '1-2': 16,
+        '0-2': 17,
+      }
+
+      const result = perf.result as string
+      return (
+        finalScores[result as keyof typeof finalScores] ||
+        inProgressScores[result as keyof typeof inProgressScores] ||
+        999
+      )
     }
+
+    const aSwiss = getSwissStrength(lastA)
+    const bSwiss = getSwissStrength(lastB)
+
+    // 同为晋级、同为淘汰、或同为进行中时,按战绩排序
     const aStatus = lastA?.status || 'eliminated'
     const bStatus = lastB?.status || 'eliminated'
-    if (statusOrder[aStatus] !== statusOrder[bStatus]) {
-      return statusOrder[aStatus] - statusOrder[bStatus]
+
+    if (
+      (aStatus === 'advanced' && bStatus === 'advanced') ||
+      (aStatus === 'eliminated' && bStatus === 'eliminated') ||
+      (aStatus === 'in-progress' && bStatus === 'in-progress')
+    ) {
+      if (aSwiss !== bSwiss) return aSwiss - bSwiss
     }
 
-    // 3. 按所在阶段排序 (stage-3 > stage-2 > stage-1)
-    const stageOrder: Record<string, number> = {
-      'stage-3': 0,
-      'stage-2': 1,
-      'stage-1': 2,
-      finals: 0,
+    // 3. 竞技状态 - 晋级/进行中 > 待赛 > 淘汰
+    const statusStrength = {
+      champion: 1, // 冠军最强
+      advanced: 2, // 晋级中
+      'in-progress': 2, // 比赛中 (可能晋级)
+      waiting: 3, // 待赛
+      eliminated: 4, // 已淘汰
+    }
+    const aStatusRank = statusStrength[aStatus] || 999
+    const bStatusRank = statusStrength[bStatus] || 999
+    if (aStatusRank !== bStatusRank) return aStatusRank - bStatusRank
+
+    // 4. 所在阶段 - 更高阶段代表更强
+    const stageStrength = {
+      finals: 1,
+      'stage-3': 2,
+      'stage-2': 3,
+      'stage-1': 4,
     }
     const aStage = lastA?.stage || a.stage
     const bStage = lastB?.stage || b.stage
-    if (stageOrder[aStage] !== stageOrder[bStage]) {
-      return stageOrder[aStage] - stageOrder[bStage]
-    }
+    const aStageRank = stageStrength[aStage as keyof typeof stageStrength] || 999
+    const bStageRank = stageStrength[bStage as keyof typeof stageStrength] || 999
+    if (aStageRank !== bStageRank) return aStageRank - bStageRank
 
-    // 4. 晋级队伍按成绩排序 (3-0 > 3-1 > 3-2)
-    if (aStatus === 'advanced' && bStatus === 'advanced') {
-      const resultOrder: Record<string, number> = { '3-0': 0, '3-1': 1, '3-2': 2 }
-      const aResult = lastA?.result || ''
-      const bResult = lastB?.result || ''
-      if (resultOrder[aResult] !== undefined && resultOrder[bResult] !== undefined) {
-        return resultOrder[aResult] - resultOrder[bResult]
-      }
-    }
-
-    // 5. 已淘汰队伍按淘汰成绩排序 (2-3 > 1-3 > 0-3, 越接近晋级越靠前)
-    if (aStatus === 'eliminated' && bStatus === 'eliminated') {
-      const eliminatedOrder: Record<string, number> = { '2-3': 0, '1-3': 1, '0-3': 2 }
-      const aResult = lastA?.result || ''
-      const bResult = lastB?.result || ''
-      if (eliminatedOrder[aResult] !== undefined && eliminatedOrder[bResult] !== undefined) {
-        return eliminatedOrder[aResult] - eliminatedOrder[bResult]
-      }
-    }
-
-    // 6. 默认按起始阶段排序
-    return (stageOrder[a.stage] || 999) - (stageOrder[b.stage] || 999)
+    // 5. 默认按起始阶段排序 (高阶段起点 = 实力强)
+    const startStageRank = stageStrength[a.stage as keyof typeof stageStrength] || 999
+    const startStageRank2 = stageStrength[b.stage as keyof typeof stageStrength] || 999
+    return startStageRank - startStageRank2
   })
 
   return (
-    <div className="mx-auto max-w-7xl w-full px-4 py-6">
+    <div className="mx-auto w-full max-w-7xl px-4 py-6">
       {/* Header */}
       <div className="mb-6">
         <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">参赛战队</h1>
@@ -225,16 +252,16 @@ export default function TeamsPage() {
         <table className="w-full min-w-[500px]">
           <thead className="bg-surface-2 border-border border-b">
             <tr>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
                 战队
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
                 起始组别
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
                 当前状态
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 dark:text-white uppercase">
+              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
                 比赛战绩
               </th>
             </tr>

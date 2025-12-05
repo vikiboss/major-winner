@@ -86,47 +86,42 @@ export default function Home() {
       }
     })
     .filter((s): s is StageItem => s.data !== null)
+    .toReversed()
 
   return (
     <div className="min-h-screen">
       {/* 顶部标题栏 */}
       <div className="border-border bg-surface-1 border-b">
         <div className="mx-auto max-w-7xl px-4 py-6">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-            <div className="flex-1 min-w-0">
-              <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white whitespace-nowrap overflow-hidden text-ellipsis">{event.name}</h1>
-              <div className="mt-1 flex flex-wrap items-center gap-3">
-                <p className="text-muted text-sm">竞猜追踪 · {stats.length} 位竞猜者</p>
-                <span className="text-muted">·</span>
-                <div className="flex items-center gap-2">
-                  <div className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`} />
-                  <span className="text-sm text-zinc-400">{getEventStatusText(eventProgress.eventStatus)}</span>
-                </div>
+          <div className="min-w-0 flex-1">
+            <h1 className="mb-6 overflow-hidden text-6xl font-semibold text-ellipsis whitespace-nowrap text-zinc-900 dark:text-white">
+              {event.name}
+            </h1>
+            <div className="mt-1 flex flex-wrap items-center gap-3 text-xl">
+              <p className="text-muted">竞猜追踪 · {stats.length} 位竞猜者</p>
+              <span className="text-muted">·</span>
+              <div className="flex items-center gap-2">
+                <div
+                  className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`}
+                />
+                <span className="text-zinc-400">
+                  {getEventStatusText(eventProgress.eventStatus)}
+                </span>
               </div>
-            </div>
-            <div className="flex flex-wrap gap-2 w-full sm:w-auto">
-              {eventProgress.canShowLeaderboard && (
-                <Link href="/leaderboard" className="bg-surface-2 border-border hover:border-border-active rounded-md border px-4 py-2 text-sm font-medium text-zinc-900 dark:text-white transition-colors w-full sm:w-auto text-center">
-                  排行榜
-                </Link>
-              )}
-              <Link href="/compare" className="text-primary-400 bg-primary-500/10 border-primary-500/20 hover:bg-primary-500/15 rounded-md border px-4 py-2 text-sm font-medium transition-colors w-full sm:w-auto text-center">
-                竞猜对比
-              </Link>
             </div>
           </div>
         </div>
       </div>
 
       {/* 阶段导航条 */}
-      <div className="bg-surface-0 border-border sticky top-16 z-40 border-b stage-nav">
+      <div className="bg-surface-0 border-border stage-nav sticky top-16 z-40 border-b">
         <div className="mx-auto max-w-7xl px-4">
-          <nav className="flex gap-1 overflow-x-auto py-2 stage-nav" role="navigation">
+          <nav className="stage-nav flex gap-1 overflow-x-auto py-2" role="navigation">
             {stages.map((stage) => (
               <a
                 key={stage.id}
                 href={`#${stage.id}`}
-                className="hover:bg-surface-2 shrink-0 rounded-md px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white min-w-20"
+                className="hover:bg-surface-2 min-w-20 shrink-0 rounded-md px-4 py-2 text-sm font-medium text-zinc-400 transition-colors hover:text-zinc-900 dark:hover:text-white"
               >
                 {getStageName(stage.id as string)}
               </a>
@@ -143,7 +138,9 @@ export default function Home() {
               <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
                 <span className="text-muted text-2xl">📅</span>
               </div>
-              <h3 className="mb-2 text-lg font-medium text-zinc-900 dark:text-white">赛事尚未开始</h3>
+              <h3 className="mb-2 text-lg font-medium text-zinc-900 dark:text-white">
+                赛事尚未开始
+              </h3>
               <p className="text-muted text-sm">比赛结果将在赛事开始后实时更新</p>
             </div>
           </div>
@@ -156,7 +153,6 @@ export default function Home() {
               stageData={stage.data}
               stageType={stage.type}
               event={event}
-              stats={stats}
               stageStatus={stage.status}
               round={'round' in stage ? stage.round : undefined}
             />
@@ -173,7 +169,6 @@ function StageSection({
   stageData,
   stageType,
   event,
-  stats,
   stageStatus,
   round,
 }: {
@@ -182,7 +177,6 @@ function StageSection({
   stageData?: NonNullable<(typeof event)['stage-1']> | NonNullable<typeof event.finals>
   stageType: 'swiss' | 'finals-round'
   event: (typeof events)[0]
-  stats: ReturnType<typeof getAllPredictorStats>
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
   round?: '8-to-4' | '4-to-2' | '2-to-1'
 }) {
@@ -371,7 +365,12 @@ function StageSection({
           <div className="bg-surface-1 border-border rounded-lg border">
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-sm font-medium text-zinc-300">竞猜者竞猜</h3>
-              <span className="text-muted text-xs">{stats.length} 人</span>
+              <Link
+                href="/predictors"
+                className="text-primary-400 hover:text-primary-300 text-xs transition-colors"
+              >
+                查看全部 →
+              </Link>
             </div>
             <div className="divide-border divide-y">
               <PredictorPredictions
@@ -380,6 +379,7 @@ function StageSection({
                 event={event}
                 round={round}
                 stageStatus={stageStatus}
+                limit={5}
               />
             </div>
           </div>
@@ -398,12 +398,14 @@ function PredictorPredictions({
   event,
   round,
   stageStatus,
+  limit,
 }: {
   stageId: string
   stageType: 'swiss' | 'finals-round'
   event: (typeof events)[0]
   round?: '8-to-4' | '4-to-2' | '2-to-1'
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
+  limit?: number
 }) {
   const eventPreds = getEventPredictions(event.id)
   if (!eventPreds) return null
@@ -413,33 +415,33 @@ function PredictorPredictions({
     stageType === 'swiss' ? event[stageId as 'stage-1' | 'stage-2' | 'stage-3'] : null
   const actualResult = stageData?.result
 
+  // 计算每个预测者在当前阶段的正确数,并排序
+  const predictorsWithCorrectCount = eventPreds.predictions
+    .map((p) => {
+      const stats = calculatePredictorStats(event.id, p.predictor)
+      const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
+      return {
+        predictor: p,
+        correctCount: stageResult?.correctCount || 0,
+      }
+    })
+    .sort((a, b) => b.correctCount - a.correctCount)
+
+  // 如果有 limit,只显示前 N 个
+  const displayPredictors = limit
+    ? predictorsWithCorrectCount.slice(0, limit)
+    : predictorsWithCorrectCount
+
   return (
     <>
-      {eventPreds.predictions.map((p) => {
+      {displayPredictors.map(({ predictor: p }) => {
         const stats = calculatePredictorStats(event.id, p.predictor)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
         const prediction =
           stageType === 'finals-round' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
 
         // 如果没有竞猜数据,显示"等待上一阶段"
-        if (!prediction) {
-          return (
-            <div key={p.predictor} className="px-4 py-3">
-              <div className="mb-2 flex items-center justify-between">
-                <Link
-                  href={`/predictors/${encodeURIComponent(p.predictor)}`}
-                  className="hover:text-primary-400 flex items-center gap-2 transition-colors"
-                >
-                  <span className="font-medium text-zinc-900 dark:text-white">{p.predictor}</span>
-                  {p.platform && <span className="text-muted text-xs">{p.platform}</span>}
-                </Link>
-                <span className="text-muted bg-muted/5 rounded px-2 py-0.5 text-xs">
-                  等待上一阶段结束
-                </span>
-              </div>
-            </div>
-          )
-        }
+        if (!prediction) return null
 
         return (
           <div key={p.predictor} className="px-4 py-3">

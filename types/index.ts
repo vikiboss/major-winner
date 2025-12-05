@@ -127,7 +127,8 @@ export interface StagePassStatus {
 
 // 计算统计用类型
 export interface PredictorStats {
-  predictor: string
+  id: string
+  name: string
   platform: string
   description?: string
   link?: string

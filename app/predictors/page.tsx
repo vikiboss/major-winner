@@ -91,7 +91,7 @@ function LeaderboardTable({
       {/* Mobile Card Layout */}
       <div className="space-y-3 md:hidden">
         {stats.map((stat, index) => (
-          <div key={stat.predictor} className="bg-surface-1 border-border rounded-lg border p-4">
+          <div key={stat.name} className="bg-surface-1 border-border rounded-lg border p-4">
             <div className="mb-3 flex items-start justify-between">
               <div className="flex items-start gap-3">
                 <span
@@ -103,10 +103,10 @@ function LeaderboardTable({
                 </span>
                 <div>
                   <Link
-                    href={`/predictors/${encodeURIComponent(stat.predictor)}`}
+                    href={`/predictors/${encodeURIComponent(stat.name)}`}
                     className="hover:text-primary-400 text-primary block font-medium transition-colors"
                   >
-                    {stat.predictor}
+                    {stat.name}
                   </Link>
                   {stat.platform && (
                     <span className="text-muted mt-0.5 block text-xs">@{stat.platform}</span>
@@ -190,7 +190,7 @@ function LeaderboardTable({
           </thead>
           <tbody className="divide-border divide-y">
             {stats.map((stat, index) => (
-              <tr key={stat.predictor} className="hover:bg-surface-2 transition-colors">
+              <tr key={stat.name} className="hover:bg-surface-2 transition-colors">
                 <td className="px-4 py-3">
                   <span
                     className={`text-sm font-medium ${
@@ -202,10 +202,10 @@ function LeaderboardTable({
                 </td>
                 <td className="px-4 py-3">
                   <Link
-                    href={`/predictors/${encodeURIComponent(stat.predictor)}`}
+                    href={`/predictors/${encodeURIComponent(stat.name)}`}
                     className="hover:text-primary-400 transition-colors"
                   >
-                    <span className="text-primary font-medium">{stat.predictor}</span>
+                    <span className="text-primary font-medium">{stat.name}</span>
                     {stat.platform && (
                       <span className="text-muted ml-2 text-xs">@{stat.platform}</span>
                     )}

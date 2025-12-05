@@ -361,7 +361,8 @@ export function calculatePredictorStats(
   }
 
   return {
-    predictor: predictor.name,
+    id: predictor.id,
+    name: predictor.name,
     platform: predictor.platform || '',
     description: predictor.description,
     link: predictor.link,
@@ -382,7 +383,7 @@ export function getAllPredictorStats(eventId: string): PredictorStats[] {
   const stats: PredictorStats[] = []
 
   for (const p of eventPreds.predictions) {
-    const stat = calculatePredictorStats(eventId, p.name)
+    const stat = calculatePredictorStats(eventId, p.id)
     if (stat) {
       stats.push(stat)
     }

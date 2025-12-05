@@ -87,12 +87,83 @@ data/                 # Static JSON data files
 
 ### Styling System
 
-Custom Tailwind theme with CS2/gaming aesthetics:
+#### Tailwind CSS v4 Configuration
 
-- **Color Tokens**: `primary-*`, `surface-*`, `border-*`
-- **Semantic Colors**: `win` (green), `lose` (red), `muted` (gray)
-- **Background**: `bg-game-dark` base with layered surfaces
-- **Responsive**: Mobile-first with `lg:` breakpoints
+This project uses **Tailwind CSS v4** with custom theme configuration:
+
+- **Configuration Location**: `app/globals.css` (NOT `tailwind.config.ts`)
+- **Theme Definition**: CSS variables defined in `:root`, `.dark`, and `.light` selectors
+- **Import**: `@import 'tailwindcss';` at the top of `globals.css`
+
+#### Color System & Theme Support
+
+The app supports **light and dark modes** with automatic theme switching:
+
+**Theme Variables** (defined in `app/globals.css`):
+
+```css
+/* Primary text colors */
+--foreground: main text color
+--foreground-secondary: secondary text
+--foreground-muted: muted/tertiary text
+
+/* Surface colors */
+--color-surface-0/1/2/3: background layers
+--color-border: border color
+
+/* Brand colors */
+--color-primary-400/500/600: CS2 orange
+
+/* State colors */
+--color-win: green (success)
+--color-lose: red (failure)
+--color-muted: gray (neutral)
+```
+
+**Semantic Color Classes** (use these instead of hardcoded colors):
+
+- `text-primary`: Main text color (adapts to theme)
+- `text-secondary`: Secondary text color
+- `text-tertiary` / `text-muted`: Muted/gray text
+- `hover-text-primary`: Hover state with theme-adaptive color
+- `text-primary-400/500/600`: Brand orange (CS2 theme)
+- `text-win` / `text-lose`: State-based colors
+- `bg-surface-0/1/2/3`: Background layers
+- `border-border`: Border color
+
+**IMPORTANT Color Guidelines**:
+
+1. **Never use hardcoded colors**: Avoid `text-zinc-900`, `text-white`, `dark:text-white`
+2. **Always use semantic classes**: `text-primary`, `text-secondary`, `text-tertiary`
+3. **Theme-adaptive hover states**: Use `hover-text-primary` instead of `hover:text-zinc-900 dark:hover:text-white`
+4. **Custom utility classes**: See `app/globals.css` for `.text-primary`, `.hover-text-primary` definitions
+
+#### Mobile-First Responsive Design
+
+The app is **mobile-first** with careful attention to small screens:
+
+**Breakpoints**:
+
+- Default: Mobile (< 640px)
+- `sm:`: Small tablets (≥ 640px)
+- `md:`: Tablets (≥ 768px)
+- `lg:`: Desktop (≥ 1024px)
+
+**Mobile Optimizations** (in `app/globals.css`):
+
+- Safe area insets for notched devices (`env(safe-area-inset-*)`)
+- Touch-optimized scrollbars (thin scrollbar width)
+- Better text sizing and line-height for mobile
+- Horizontal scroll prevention
+- Touch-friendly button/link targets
+
+**Responsive Patterns**:
+
+- Navigation: Card view on mobile, table on desktop
+- Tables: Convert to cards with `md:hidden` / `hidden md:block`
+- Text sizing: Use `text-sm sm:text-base` for adaptive sizing
+- Padding: `px-4 sm:px-6` for responsive spacing
+- Gaps: `gap-2 sm:gap-3` for adaptive spacing
 
 Path alias: `@/*` maps to `./*`
 

@@ -95,7 +95,7 @@ export default function Home() {
       <div className="border-border bg-surface-1 border-b">
         <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
           <div className="min-w-0 flex-1">
-            <h1 className="mb-3 text-2xl font-semibold text-zinc-900 sm:mb-4 sm:text-4xl lg:text-5xl dark:text-white">
+            <h1 className="text-primary mb-3 text-2xl font-semibold sm:mb-4 sm:text-4xl lg:text-5xl">
               {event.name}
             </h1>
             <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:text-base">
@@ -105,7 +105,7 @@ export default function Home() {
                 <div
                   className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`}
                 />
-                <span className="text-zinc-400">
+                <span className="text-secondary">
                   {getEventStatusText(eventProgress.eventStatus)}
                 </span>
               </div>
@@ -126,7 +126,7 @@ export default function Home() {
               <a
                 key={stage.id}
                 href={`#${stage.id}`}
-                className="hover:bg-surface-2 shrink-0 rounded-md px-3 py-2 text-xs font-medium text-zinc-400 transition-colors hover:text-zinc-900 active:scale-95 sm:min-w-20 sm:px-4 sm:text-sm dark:hover:text-white"
+                className="hover:bg-surface-2 hover-text-primary text-secondary shrink-0 rounded-md px-3 py-2 text-xs font-medium transition-colors active:scale-95 sm:min-w-20 sm:px-4 sm:text-sm"
                 style={{ scrollSnapAlign: 'start' }}
               >
                 {getStageName(stage.id as string)}
@@ -144,9 +144,7 @@ export default function Home() {
               <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
                 <span className="text-muted text-2xl">📅</span>
               </div>
-              <h3 className="mb-2 text-lg font-medium text-zinc-900 dark:text-white">
-                赛事尚未开始
-              </h3>
+              <h3 className="text-primary mb-2 text-lg font-medium">赛事尚未开始</h3>
               <p className="text-muted text-sm">比赛结果将在赛事开始后实时更新</p>
             </div>
           </div>
@@ -208,7 +206,7 @@ function StageSection({
         </div>
         <div className="flex-1">
           <div className="flex items-center gap-3">
-            <h2 className="text-xl font-semibold text-zinc-900 dark:text-white">{stageName}</h2>
+            <h2 className="text-primary text-xl font-semibold">{stageName}</h2>
             {stageStatus && (
               <span
                 className={`rounded px-2 py-0.5 text-xs font-medium ${
@@ -244,7 +242,7 @@ function StageSection({
         <div className="lg:col-span-4">
           <div className="bg-surface-1 border-border rounded-lg border">
             <div className="border-border border-b px-4 py-3">
-              <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-300">比赛结果</h3>
+              <h3 className="text-secondary text-sm font-medium">比赛结果</h3>
             </div>
             <div className="p-4">
               {stageStatus === 'waiting' ? (
@@ -356,7 +354,7 @@ function StageSection({
                       <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
                       <div className="flex items-center gap-2">
                         <TeamLogo shortName={finalsData.result['2-to-1'].winner} size="lg" />
-                        <p className="text-lg font-semibold text-zinc-900 dark:text-white">
+                        <p className="text-primary text-lg font-semibold">
                           {finalsData.result['2-to-1'].winner}
                         </p>
                       </div>
@@ -378,7 +376,7 @@ function StageSection({
         <div className="lg:col-span-8">
           <div className="bg-surface-1 border-border rounded-lg border">
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
-              <h3 className="text-sm font-medium text-zinc-600 dark:text-zinc-300">竞猜者竞猜</h3>
+              <h3 className="text-secondary text-sm font-medium">竞猜者竞猜</h3>
               <Link
                 href="/predictors"
                 className="text-primary-400 hover:text-primary-300 text-xs transition-colors"
@@ -464,7 +462,7 @@ function PredictorPredictions({
                 href={`/predictors/${encodeURIComponent(p.predictor)}`}
                 className="hover:text-primary-400 flex items-center gap-2 transition-colors"
               >
-                <span className="font-medium text-zinc-900 dark:text-white">{p.predictor}</span>
+                <span className="text-primary font-medium">{p.predictor}</span>
                 {p.platform && <span className="text-muted text-xs">{p.platform}</span>}
               </Link>
               {/* 只在结束时显示通过/未通过 */}
@@ -498,12 +496,12 @@ function PredictorPredictions({
                           <span
                             className={`text-xs ${
                               stageStatus === 'waiting'
-                                ? 'text-zinc-400'
+                                ? 'text-tertiary'
                                 : isCorrect
                                   ? 'text-win font-medium'
                                   : !possible
-                                    ? 'text-lose line-through opacity-60'
-                                    : 'text-zinc-400'
+                                    ? 'text-lose line-through'
+                                    : 'text-tertiary'
                             }`}
                           >
                             {team}
@@ -534,12 +532,12 @@ function PredictorPredictions({
                           <span
                             className={`text-xs ${
                               stageStatus === 'waiting'
-                                ? 'text-zinc-400'
+                                ? 'text-tertiary'
                                 : isCorrect
                                   ? 'text-win font-medium'
                                   : !possible
-                                    ? 'text-lose line-through opacity-60'
-                                    : 'text-zinc-400'
+                                    ? 'text-lose line-through'
+                                    : 'text-tertiary'
                             }`}
                           >
                             {team}
@@ -567,12 +565,12 @@ function PredictorPredictions({
                           <span
                             className={`text-xs ${
                               stageStatus === 'waiting'
-                                ? 'text-zinc-400'
+                                ? 'text-tertiary'
                                 : isCorrect
                                   ? 'text-win font-medium'
                                   : !possible
-                                    ? 'text-lose line-through opacity-60'
-                                    : 'text-zinc-400'
+                                    ? 'text-lose line-through'
+                                    : 'text-tertiary'
                             }`}
                           >
                             {team}
@@ -602,12 +600,12 @@ function PredictorPredictions({
                             <span
                               className={
                                 stageStatus === 'waiting'
-                                  ? 'text-zinc-400'
+                                  ? 'text-tertiary'
                                   : isCorrect
                                     ? 'text-win font-medium'
                                     : hasResult
                                       ? 'text-lose'
-                                      : 'text-zinc-400'
+                                      : 'text-tertiary'
                               }
                             >
                               {team}
@@ -631,13 +629,13 @@ function PredictorPredictions({
                     <span
                       className={
                         stageStatus === 'waiting'
-                          ? 'text-zinc-400'
+                          ? 'text-tertiary'
                           : event.finals?.result['2-to-1'].winner
                             ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
                               event.finals.result['2-to-1'].winner
                               ? 'text-win font-medium'
                               : 'text-lose'
-                            : 'text-zinc-400'
+                            : 'text-tertiary'
                       }
                     >
                       {(prediction as { '2-to-1': string | null })['2-to-1'] || '未竞猜'}

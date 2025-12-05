@@ -45,18 +45,18 @@ export default async function PredictorDetailPage({ params }: Props) {
       <nav className="text-muted mb-6 flex items-center gap-2 text-sm">
         <Link
           href="/predictors"
-          className="transition-colors hover:text-zinc-900 dark:hover:text-white"
+          className="hover-text-primary transition-colors"
         >
           竞猜排行
         </Link>
         <span>/</span>
-        <span className="text-zinc-900 dark:text-white">{predictorName}</span>
+        <span className="text-primary">{predictorName}</span>
       </nav>
 
       {/* Header */}
       <div className="mb-6 sm:mb-8">
         <div className="mb-4">
-          <h1 className="text-xl font-semibold text-zinc-900 sm:text-2xl dark:text-white">
+          <h1 className="text-primary text-xl font-semibold sm:text-2xl">
             {predictorName}
           </h1>
           {prediction.platform && (
@@ -80,7 +80,7 @@ export default async function PredictorDetailPage({ params }: Props) {
         </div>
         <div className="bg-surface-1 border-border flex gap-4 rounded-lg border p-4 sm:inline-flex sm:gap-6">
           <div className="flex-1 text-center sm:text-right">
-            <p className="text-xl font-semibold text-zinc-900 sm:text-2xl dark:text-white">
+            <p className="text-primary text-xl font-semibold sm:text-2xl">
               {stats.totalCorrect}
               <span className="text-muted text-sm sm:text-base">/{stats.totalPredictions}</span>
             </p>
@@ -88,7 +88,7 @@ export default async function PredictorDetailPage({ params }: Props) {
           </div>
           <div className="border-border hidden border-r sm:block"></div>
           <div className="flex-1 text-center sm:text-right">
-            <p className="text-xl font-semibold text-zinc-900 sm:text-2xl dark:text-white">
+            <p className="text-primary text-xl font-semibold sm:text-2xl">
               {stats.totalPassed}
               <span className="text-muted text-sm sm:text-base">/{stats.totalStages}</span>
             </p>
@@ -108,7 +108,7 @@ export default async function PredictorDetailPage({ params }: Props) {
               <div key="finals" className="bg-surface-1 border-border rounded-lg border">
                 <div className="border-border border-b px-4 py-3">
                   <div className="flex items-center gap-2">
-                    <h2 className="font-medium text-zinc-900 dark:text-white">决赛阶段</h2>
+                    <h2 className="text-primary font-medium">决赛阶段</h2>
                     {finalsProgress && finalsProgress.status !== 'not_started' && (
                       <span
                         className={`rounded px-2 py-0.5 text-xs font-medium ${
@@ -157,7 +157,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                                   ? roundResult.winners.includes(team)
                                     ? 'bg-win/10 text-win'
                                     : 'bg-lose/10 text-lose'
-                                  : 'bg-surface-2 text-zinc-300'
+                                  : 'bg-surface-2 text-secondary'
                               }`}
                             >
                               <TeamLogo shortName={team} size="xs" />
@@ -293,12 +293,12 @@ export default async function PredictorDetailPage({ params }: Props) {
                           key={team}
                           className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             !showResults
-                              ? 'bg-surface-2 text-zinc-300'
+                              ? 'bg-surface-2 text-secondary'
                               : isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : isImpossible
                                   ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-zinc-400'
+                                  : 'bg-surface-2 text-tertiary'
                           }`}
                         >
                           <TeamLogo shortName={team} size="xs" />
@@ -325,12 +325,12 @@ export default async function PredictorDetailPage({ params }: Props) {
                           key={team}
                           className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             !showResults
-                              ? 'bg-surface-2 text-zinc-300'
+                              ? 'bg-surface-2 text-secondary'
                               : isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : isImpossible
                                   ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-zinc-400'
+                                  : 'bg-surface-2 text-tertiary'
                           }`}
                         >
                           <TeamLogo shortName={team} size="xs" />
@@ -354,12 +354,12 @@ export default async function PredictorDetailPage({ params }: Props) {
                           key={team}
                           className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             !showResults
-                              ? 'bg-surface-2 text-zinc-300'
+                              ? 'bg-surface-2 text-secondary'
                               : isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : isImpossible
                                   ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-zinc-400'
+                                  : 'bg-surface-2 text-tertiary'
                           }`}
                         >
                           <TeamLogo shortName={team} size="xs" />

@@ -233,7 +233,7 @@ export default function TeamsPage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-white">参赛战队</h1>
+        <h1 className="text-primary text-2xl font-bold">参赛战队</h1>
         <p className="text-muted mt-1 text-sm">
           {event.name} • 共 {teams.length} 支队伍
         </p>
@@ -260,7 +260,7 @@ export default function TeamsPage() {
                 <div className="flex items-start gap-3">
                   <TeamLogo shortName={team.shortName} size="lg" className="mt-0.5" />
                   <div>
-                    <h3 className="font-medium text-zinc-900 dark:text-white">{team.name}</h3>
+                    <h3 className="text-primary font-medium">{team.name}</h3>
                     <p className="text-muted mt-1 text-xs">
                       {team.stage === 'stage-1'
                         ? '挑战组'
@@ -313,16 +313,16 @@ export default function TeamsPage() {
         <table className="w-full min-w-[500px]">
           <thead className="bg-surface-2 border-border border-b">
             <tr>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
                 战队
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
                 起始组别
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
                 当前状态
               </th>
-              <th className="px-4 py-2 text-left text-xs font-medium tracking-wide text-zinc-900 uppercase dark:text-white">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
                 比赛战绩
               </th>
             </tr>
@@ -337,7 +337,7 @@ export default function TeamsPage() {
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <TeamLogo shortName={team.shortName} size="md" />
-                      <span className="font-medium text-zinc-900 dark:text-white">{team.name}</span>
+                      <span className="text-primary font-medium">{team.name}</span>
                     </div>
                   </td>
                   <td className="px-4 py-2.5">

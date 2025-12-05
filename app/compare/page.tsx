@@ -55,13 +55,13 @@ export default function ComparePage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">
+        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">
           竞猜对比
         </h1>
         <div className="text-muted space-y-2 text-sm sm:text-base">
           <p>选择 0-5 位竞猜者进行对比分析</p>
           <p className="text-xs sm:text-sm">
-            <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
+            <span className="text-tertiary">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
             1/2，决赛猜中冠军
           </p>
         </div>
@@ -76,8 +76,8 @@ export default function ComparePage() {
               onClick={() => togglePredictor(p.predictor)}
               className={`rounded px-2.5 py-1.5 text-xs transition-colors active:scale-95 sm:px-3 sm:text-sm ${
                 selected.includes(p.predictor)
-                  ? 'bg-primary-500 text-zinc-900 dark:text-white'
-                  : 'bg-surface-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                  ? 'bg-primary-500 text-primary'
+                  : 'bg-surface-2 text-tertiary hover-text-primary'
               }`}
             >
               {p.predictor}
@@ -98,7 +98,7 @@ export default function ComparePage() {
               <div className="border-border border-b px-4 py-3">
                 <Link
                   href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
-                  className="hover:text-primary-400 font-medium text-zinc-900 dark:text-white"
+                  className="hover:text-primary-400 text-primary font-medium"
                 >
                   {prediction.predictor}
                 </Link>
@@ -158,7 +158,7 @@ export default function ComparePage() {
               {selectedStats.map(({ prediction }) => (
                 <th
                   key={prediction.predictor}
-                  className="px-4 py-3 text-center text-zinc-900 dark:text-white"
+                  className="text-primary px-4 py-3 text-center"
                 >
                   <Link
                     href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
@@ -181,7 +181,7 @@ export default function ComparePage() {
                     className={`px-4 py-3 text-center font-semibold ${
                       stats?.totalCorrect === best
                         ? 'text-primary-400'
-                        : 'text-zinc-900 dark:text-white'
+                        : 'text-primary'
                     }`}
                   >
                     {stats?.totalCorrect}
@@ -195,7 +195,7 @@ export default function ComparePage() {
               {selectedStats.map(({ prediction, stats }) => (
                 <td
                   key={prediction.predictor}
-                  className="px-4 py-3 text-center text-zinc-900 dark:text-white"
+                  className="text-primary px-4 py-3 text-center"
                 >
                   {stats?.totalPassed}/{stats?.totalStages}
                 </td>
@@ -238,7 +238,7 @@ export default function ComparePage() {
         <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
           <div className="border-border border-b px-4 py-3">
             <div className="flex items-center gap-3">
-              <h3 className="font-medium text-zinc-900 dark:text-white">决赛阶段</h3>
+              <h3 className="text-primary font-medium">决赛阶段</h3>
             </div>
           </div>
           <table className="w-full text-sm">
@@ -284,7 +284,7 @@ export default function ComparePage() {
                                           ? 'bg-win/10 text-win'
                                           : hasResult
                                             ? 'bg-lose/10 text-lose'
-                                            : 'bg-surface-2 text-zinc-400'
+                                            : 'bg-surface-2 text-tertiary'
                                     }`}
                                   >
                                     <TeamLogo shortName={team} size="xs" />
@@ -342,7 +342,7 @@ export default function ComparePage() {
                                         ? 'bg-win/10 text-win'
                                         : hasResult
                                           ? 'bg-lose/10 text-lose'
-                                          : 'bg-surface-2 text-zinc-400'
+                                          : 'bg-surface-2 text-tertiary'
                                   }`}
                                 >
                                   <TeamLogo shortName={championPred} size="xs" />
@@ -388,7 +388,7 @@ export default function ComparePage() {
           >
             <div className="border-border border-b px-4 py-3">
               <div className="flex items-center gap-3">
-                <h3 className="font-medium text-zinc-900 dark:text-white">
+                <h3 className="text-primary font-medium">
                   {getStageName(stageKey)}
                 </h3>
                 {stageProgress && (
@@ -498,8 +498,8 @@ export default function ComparePage() {
                                     : isCorrect
                                       ? 'bg-win/10 text-win'
                                       : !isPossible
-                                        ? 'bg-lose/10 text-lose line-through opacity-60'
-                                        : 'bg-surface-2 text-zinc-400'
+                                        ? 'bg-lose/10 text-lose line-through'
+                                        : 'bg-surface-2 text-tertiary'
                                 }`}
                               >
                                 <TeamLogo shortName={team} size="xs" />
@@ -629,8 +629,8 @@ export default function ComparePage() {
                                     : isCorrect
                                       ? 'bg-win/10 text-win'
                                       : !isPossible
-                                        ? 'bg-lose/10 text-lose line-through opacity-60'
-                                        : 'bg-surface-2 text-zinc-400'
+                                        ? 'bg-lose/10 text-lose line-through'
+                                        : 'bg-surface-2 text-tertiary'
                                 }`}
                               >
                                 <TeamLogo shortName={team} size="xs" />
@@ -718,8 +718,8 @@ export default function ComparePage() {
                                     : isCorrect
                                       ? 'bg-win/10 text-win'
                                       : !isPossible
-                                        ? 'bg-lose/10 text-lose line-through opacity-60'
-                                        : 'bg-surface-2 text-zinc-400'
+                                        ? 'bg-lose/10 text-lose line-through'
+                                        : 'bg-surface-2 text-tertiary'
                                 }`}
                               >
                                 <TeamLogo shortName={team} size="xs" />

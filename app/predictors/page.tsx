@@ -13,7 +13,7 @@ export default function LeaderboardPage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">
+        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">
           竞猜排行
         </h1>
         <div className="mt-2 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
@@ -29,11 +29,11 @@ export default function LeaderboardPage() {
                     : 'bg-muted'
               }`}
             />
-            <span className="text-zinc-400">{getEventStatusText(eventProgress.eventStatus)}</span>
+            <span className="text-secondary">{getEventStatusText(eventProgress.eventStatus)}</span>
           </div>
         </div>
         <p className="text-muted mt-3 text-xs sm:text-sm">
-          <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
+          <span className="text-tertiary">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
           1/2，决赛猜中冠军
         </p>
       </div>
@@ -44,7 +44,7 @@ export default function LeaderboardPage() {
             <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
               <span className="text-muted text-2xl">📊</span>
             </div>
-            <h3 className="mb-2 text-lg font-medium text-zinc-900 dark:text-white">暂无排行数据</h3>
+            <h3 className="text-primary mb-2 text-lg font-medium">暂无排行数据</h3>
             <p className="text-muted text-sm">至少需要完成一个阶段才能显示排行榜</p>
           </div>
         </div>
@@ -98,7 +98,7 @@ function LeaderboardTable({
               <div className="flex items-start gap-3">
                 <span
                   className={`text-lg font-bold ${
-                    index === 0 ? 'text-primary-400' : index < 3 ? 'text-zinc-300' : 'text-muted'
+                    index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
                   }`}
                 >
                   #{index + 1}
@@ -106,7 +106,7 @@ function LeaderboardTable({
                 <div>
                   <Link
                     href={`/predictors/${encodeURIComponent(stat.predictor)}`}
-                    className="hover:text-primary-400 block font-medium text-zinc-900 transition-colors dark:text-white"
+                    className="hover:text-primary-400 text-primary block font-medium transition-colors"
                   >
                     {stat.predictor}
                   </Link>
@@ -116,7 +116,7 @@ function LeaderboardTable({
                 </div>
               </div>
               <div className="text-right">
-                <div className="font-semibold text-zinc-900 dark:text-white">
+                <div className="text-primary font-semibold">
                   {stat.totalCorrect}
                   <span className="text-muted text-xs">/{stat.totalPredictions}</span>
                 </div>
@@ -196,7 +196,7 @@ function LeaderboardTable({
                 <td className="px-4 py-3">
                   <span
                     className={`text-sm font-medium ${
-                      index === 0 ? 'text-primary-400' : index < 3 ? 'text-zinc-300' : 'text-muted'
+                      index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
                     }`}
                   >
                     {index + 1}
@@ -207,7 +207,7 @@ function LeaderboardTable({
                     href={`/predictors/${encodeURIComponent(stat.predictor)}`}
                     className="hover:text-primary-400 transition-colors"
                   >
-                    <span className="font-medium text-zinc-900 dark:text-white">
+                    <span className="text-primary font-medium">
                       {stat.predictor}
                     </span>
                     {stat.platform && (
@@ -216,7 +216,7 @@ function LeaderboardTable({
                   </Link>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <span className="font-semibold text-zinc-900 dark:text-white">
+                  <span className="text-primary font-semibold">
                     {stat.totalCorrect}
                   </span>
                   <span className="text-muted text-xs">/{stat.totalPredictions}</span>

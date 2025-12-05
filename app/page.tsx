@@ -632,15 +632,12 @@ function PredictorPredictions({
         return (
           <div key={p.id} className="px-4 py-3">
             <div className="mb-2 flex items-center justify-between">
-              <Link
-                href={`/predictors/${encodeURIComponent(p.id)}`}
-                className="hover:text-primary-400 flex items-center gap-2 transition-colors"
-              >
+              <span className="flex items-center gap-2">
                 <span className="text-primary font-medium text-nowrap">{p.name}</span>
                 {p.platform && (
                   <span className="text-muted text-xs text-nowrap">@{p.platform}</span>
                 )}
-              </Link>
+              </span>
               {/* 只在结束时显示通过/未通过 */}
               {stageResult && (
                 <span

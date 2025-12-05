@@ -136,10 +136,10 @@ function SwissTable({
               const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
 
               return (
-                <tr key={predictor.id} className="hover:bg-surface-2 transition-colors">
+                <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="hover:text-primary-400 text-sm text-nowrap transition-colors">
+                      <span className="text-sm text-nowrap">
                         {predictor.name}
                       </span>
                       {predictor.platform && (
@@ -275,7 +275,7 @@ function SwissTable({
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <span className="hover:text-primary-400 text-primary font-medium transition-colors">
+                  <span className="text-primary font-medium">
                     {predictor.name}
                   </span>
                   {predictor.platform && (
@@ -283,7 +283,7 @@ function SwissTable({
                   )}
                 </div>
                 {stageResult && (
-                  <div className="flex flex-col items-end gap-1">
+                  <div className="flex flex-row items-center sm:flex-col sm:items-end sm:gap-1 gap-2">
                     <span className="text-primary text-lg font-bold">
                       {stageResult.correctCount}
                     </span>
@@ -470,10 +470,10 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 finalsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
 
               return (
-                <tr key={predictor.id} className="hover:bg-surface-2 transition-colors">
+                <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="hover:text-primary-400 text-primary font-medium text-nowrap transition-colors">
+                      <span className="text-primary font-medium text-nowrap">
                         {predictor.name}
                       </span>
                       {predictor.platform && (
@@ -613,7 +613,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <span className="hover:text-primary-400 text-primary font-medium transition-colors">
+                  <span className="text-primary font-medium">
                     {predictor.name}
                   </span>
                   {predictor.platform && (

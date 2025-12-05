@@ -20,16 +20,22 @@ export function Header() {
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo and Event Selector */}
-          <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <Link
-              href="/"
-              className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
-            >
-              <Image src="/icon.png" alt="Major Winner Logo" width={48} height={48} />
-              <span className="text-primary text-sm font-semibold sm:text-lg">Major Winner</span>
-            </Link>
-            <EventSelector />
-          </div>
+          <Link
+            href="/"
+            className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
+          >
+            <Image
+              src="/icon.png"
+              alt="Major Winner Logo"
+              className="size-6 sm:size-12"
+              width={48}
+              height={48}
+            />
+            <div className="flex shrink-0 flex-col sm:flex-row items-start sm:items-center sm:gap-3">
+              <span className="sm:ml-0 ml-1 text-primary text-xs font-semibold sm:text-lg">Major Winner</span>
+              <EventSelector />
+            </div>
+          </Link>
 
           {/* Navigation */}
           <nav className="flex flex-1 items-center justify-end gap-1" role="navigation">

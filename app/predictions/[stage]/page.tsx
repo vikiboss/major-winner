@@ -122,7 +122,11 @@ function SwissTable({
                       <span className="hover:text-primary-400 text-sm text-nowrap transition-colors">
                         {predictor.name}
                       </span>
-                      <span className="text-muted text-xs text-nowrap">@{predictor.platform}</span>
+                      {predictor.platform && (
+                        <span className="text-muted text-xs text-nowrap">
+                          @{predictor.platform}
+                        </span>
+                      )}
                     </div>
                   </td>
                   <td className="px-4 py-3">
@@ -254,7 +258,9 @@ function SwissTable({
                   <span className="hover:text-primary-400 text-primary font-medium transition-colors">
                     {predictor.name}
                   </span>
-                  <p className="text-muted text-xs">@{predictor.platform}</p>
+                  {predictor.platform && (
+                    <p className="text-muted text-xs">@{predictor.platform}</p>
+                  )}
                 </div>
                 {stageResult && (
                   <div className="flex flex-col items-end gap-1">
@@ -430,7 +436,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                       <span className="hover:text-primary-400 text-primary font-medium text-nowrap transition-colors">
                         {predictor.name}
                       </span>
-                      <span className="text-muted text-xs">@{predictor.platform}</span>
+                      {predictor.platform && (
+                        <span className="text-muted text-xs">@{predictor.platform}</span>
+                      )}
                     </div>
                   </td>
 
@@ -568,7 +576,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                   <span className="hover:text-primary-400 text-primary font-medium transition-colors">
                     {predictor.name}
                   </span>
-                  <p className="text-muted text-xs">@{predictor.platform}</p>
+                  {predictor.platform && (
+                    <p className="text-muted text-xs">@{predictor.platform}</p>
+                  )}
                 </div>
                 {finalsStats && finalsStats.length > 0 && (
                   <div className="flex flex-col items-end">

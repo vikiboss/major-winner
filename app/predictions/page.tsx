@@ -1,7 +1,7 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
-import { useSearchParams, useRouter } from 'next/navigation'
+import { useState, Suspense, useTransition } from 'react'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import {
   events,
   getEventPredictions,
@@ -14,28 +14,31 @@ import type { StagePrediction, FinalsPrediction } from '@/types'
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 type SortOrder = 'default' | 'correctAsc' | 'correctDesc'
 
+const VALID_STAGES: Stage[] = ['stage-1', 'stage-2', 'stage-3', 'finals']
+const DEFAULT_STAGE: Stage = 'stage-3'
+
 function PredictionsContent() {
   const event = events[0]
   const eventPreds = getEventPredictions(event.id)
   const searchParams = useSearchParams()
+  const pathname = usePathname()
   const router = useRouter()
+  const [isPending, startTransition] = useTransition()
 
-  // 从 URL query 读取 tab 参数,如果没有则默认为 'stage-3'
+  // URL 作为单一数据源
   const tabParam = searchParams.get('tab') as Stage | null
-  const defaultStage: Stage =
-    tabParam && ['stage-1', 'stage-2', 'stage-3', 'finals'].includes(tabParam)
-      ? tabParam
-      : 'stage-3'
+  const activeStage: Stage = tabParam && VALID_STAGES.includes(tabParam) ? tabParam : DEFAULT_STAGE
 
-  const [activeStage, setActiveStage] = useState<Stage>(defaultStage)
   const [sortOrder, setSortOrder] = useState<SortOrder>('default')
 
-  // 当 activeStage 改变时更新 URL
-  useEffect(() => {
+  // 更新 tab 参数的函数
+  const updateTab = (newStage: Stage) => {
     const params = new URLSearchParams(searchParams.toString())
-    params.set('tab', activeStage)
-    router.replace(`/predictions?${params.toString()}`, { scroll: false })
-  }, [activeStage, router, searchParams])
+    params.set('tab', newStage)
+    startTransition(() => {
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+    })
+  }
 
   if (!eventPreds) {
     return (
@@ -77,8 +80,9 @@ function PredictionsContent() {
           {stages.map((stage) => (
             <button
               key={stage.id}
-              onClick={() => setActiveStage(stage.id)}
-              className={`rounded px-3 py-2 text-sm font-medium transition-colors sm:px-4 ${
+              onClick={() => updateTab(stage.id)}
+              disabled={isPending}
+              className={`rounded px-3 py-2 text-sm font-medium transition-colors disabled:opacity-50 sm:px-4 ${
                 activeStage === stage.id
                   ? 'bg-primary-500/10 text-primary-400'
                   : 'text-secondary hover:bg-surface-2 hover-text-primary'

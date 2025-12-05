@@ -250,7 +250,7 @@ export default async function PredictorDetailPage({ params }: Props) {
             <div key={stageKey} className="bg-surface-1 border-border rounded-lg border">
               <div className="border-border flex items-center justify-between border-b px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <h2 className="font-medium text-zinc-900 dark:text-white">
+                  <h2 className="text-primary font-medium">
                     {getStageName(stageKey)}
                   </h2>
                   {stageProgress && stageProgress.status !== 'not_started' && (

@@ -1,9 +1,29 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   /* 字体 */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', monospace;
+
+  /* 颜色主题 */
+  --color-primary-300: #fda074;
+  --color-primary-400: var(--color-primary-400);
+  --color-primary-500: var(--color-primary-500);
+  --color-primary-600: var(--color-primary-600);
+
+  --color-win: var(--color-win);
+  --color-lose: var(--color-lose);
+  --color-muted: var(--color-muted);
+
+  --color-surface-0: var(--color-surface-0);
+  --color-surface-1: var(--color-surface-1);
+  --color-surface-2: var(--color-surface-2);
+  --color-surface-3: var(--color-surface-3);
+
+  --color-border: var(--color-border);
+  --color-border-active: var(--color-border-active);
 }
 
 /* 默认暗色主题变量 */
@@ -121,24 +141,6 @@ body {
   background: rgb(249 115 22 / 0.35);
 }
 
-/* 文本颜色工具类 - 自动适配主题 */
-.text-primary {
-  color: var(--foreground);
-}
-
-.text-secondary {
-  color: var(--foreground-secondary);
-}
-
-.text-tertiary {
-  color: var(--foreground-muted);
-}
-
-/* Hover 状态 */
-.hover-text-primary:hover {
-  color: var(--foreground);
-}
-
 /* Mobile optimizations - use safe area insets for notched devices */
 @media (max-width: 640px) {
   body {
@@ -146,13 +148,15 @@ body {
   }
 
   /* Safe area insets for notched devices */
-  header, .header {
+  header,
+  .header {
     padding-left: env(safe-area-inset-left, 0px);
     padding-right: env(safe-area-inset-right, 0px);
     padding-top: env(safe-area-inset-top, 0px);
   }
 
-  footer, .footer {
+  footer,
+  .footer {
     padding-left: env(safe-area-inset-left, 0px);
     padding-right: env(safe-area-inset-right, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -170,7 +174,8 @@ body {
   }
 
   /* Better touch targets on mobile */
-  button, a {
+  button,
+  a {
     display: inline-flex;
     align-items: center;
     justify-content: center;

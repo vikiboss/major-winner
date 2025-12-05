@@ -119,7 +119,7 @@ export default function TeamsPage() {
     if (!lastPerf) return { text: '未开赛', className: 'text-muted' }
     if (lastPerf.status === 'champion')
       return { text: '🏆 冠军', className: 'text-primary-400 font-semibold' }
-    if (lastPerf.status === 'in-progress') return { text: '比赛中', className: 'text-yellow-400' }
+    if (lastPerf.status === 'in-progress') return { text: '比赛中', className: 'text-primary-400' }
     if (lastPerf.status === 'waiting') return { text: '等待比赛', className: 'text-muted' }
     if (lastPerf.status === 'advanced' && lastPerf.result === '亚军')
       return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
@@ -288,7 +288,7 @@ export default function TeamsPage() {
                                 ? 'bg-lose/10 text-lose'
                                 : p.status === 'waiting'
                                   ? 'bg-muted/10 text-muted'
-                                  : 'bg-yellow-500/10 text-yellow-400'
+                                  : 'bg-primary-500/10 text-primary-400'
                         }`}
                       >
                         <span className="opacity-70">{p.stageName}</span>
@@ -369,7 +369,7 @@ export default function TeamsPage() {
                                       ? 'bg-lose/10 text-lose'
                                       : p.status === 'waiting'
                                         ? 'bg-muted/10 text-muted'
-                                        : 'bg-yellow-500/10 text-yellow-400'
+                                        : 'bg-primary-500/10 text-primary-400'
                               }`}
                             >
                               <span className="opacity-70">{p.stageName}</span>

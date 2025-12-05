@@ -20,10 +20,10 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
           <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <div className="bg-primary-500 flex h-8 w-8 items-center justify-center rounded text-sm font-bold text-zinc-900 dark:text-white">
+            <div className="bg-primary-500 flex h-8 w-8 items-center justify-center rounded text-sm font-bold text-white">
               MW
             </div>
-            <span className="text-sm font-semibold text-zinc-900 sm:text-lg dark:text-white">
+            <span className="text-primary text-sm font-semibold sm:text-lg">
               Major Winner
             </span>
           </Link>
@@ -40,7 +40,7 @@ export function Header() {
                   className={`rounded px-1 py-0.5 text-xs font-medium transition-colors sm:px-3 sm:py-1 sm:text-sm ${
                     isActive
                       ? 'bg-primary-500/10 text-primary-400'
-                      : 'hover:bg-surface-2 text-zinc-400 hover:text-zinc-900 dark:hover:text-white'
+                      : 'text-secondary hover:bg-surface-2 hover-text-primary'
                   }`}
                 >
                   {item.label}

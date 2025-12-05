@@ -55,9 +55,7 @@ export default function ComparePage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">
-          竞猜对比
-        </h1>
+        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜对比</h1>
         <div className="text-muted space-y-2 text-sm sm:text-base">
           <p>选择 0-5 位竞猜者进行对比分析</p>
           <p className="text-xs sm:text-sm">
@@ -76,8 +74,8 @@ export default function ComparePage() {
               onClick={() => togglePredictor(p.predictor)}
               className={`rounded px-2.5 py-1.5 text-xs transition-colors active:scale-95 sm:px-3 sm:text-sm ${
                 selected.includes(p.predictor)
-                  ? 'bg-primary-500 text-primary'
-                  : 'bg-surface-2 text-tertiary hover-text-primary'
+                  ? 'bg-primary-400 dark:bg-primary-500 dark:text-primary text-white'
+                  : 'bg-surface-2 text-muted hover-text-primary'
               }`}
             >
               {p.predictor}
@@ -107,7 +105,7 @@ export default function ComparePage() {
                 <div className="flex justify-between py-2">
                   <span className="text-muted">猜对</span>
                   <span
-                    className={`font-semibold ${stats?.totalCorrect === best ? 'text-primary-400' : 'text-zinc-900 dark:text-white'}`}
+                    className={`font-semibold ${stats?.totalCorrect === best ? 'text-primary-400' : 'text-primary'}`}
                   >
                     {stats?.totalCorrect}
                     <span className="text-muted font-normal">/{stats?.totalPredictions}</span>
@@ -115,7 +113,7 @@ export default function ComparePage() {
                 </div>
                 <div className="flex justify-between py-2">
                   <span className="text-muted">通过</span>
-                  <span className="text-zinc-900 dark:text-white">
+                  <span className="text-primary">
                     {stats?.totalPassed}/{stats?.totalStages}
                   </span>
                 </div>
@@ -156,10 +154,7 @@ export default function ComparePage() {
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="px-4 py-3">竞猜任务</th>
               {selectedStats.map(({ prediction }) => (
-                <th
-                  key={prediction.predictor}
-                  className="text-primary px-4 py-3 text-center"
-                >
+                <th key={prediction.predictor} className="text-primary px-4 py-3 text-center">
                   <Link
                     href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
                     className="hover:text-primary-400"
@@ -179,9 +174,7 @@ export default function ComparePage() {
                   <td
                     key={prediction.predictor}
                     className={`px-4 py-3 text-center font-semibold ${
-                      stats?.totalCorrect === best
-                        ? 'text-primary-400'
-                        : 'text-primary'
+                      stats?.totalCorrect === best ? 'text-primary-400' : 'text-primary'
                     }`}
                   >
                     {stats?.totalCorrect}
@@ -193,10 +186,7 @@ export default function ComparePage() {
             <tr>
               <td className="text-muted px-4 py-3">通过</td>
               {selectedStats.map(({ prediction, stats }) => (
-                <td
-                  key={prediction.predictor}
-                  className="text-primary px-4 py-3 text-center"
-                >
+                <td key={prediction.predictor} className="text-primary px-4 py-3 text-center">
                   {stats?.totalPassed}/{stats?.totalStages}
                 </td>
               ))}
@@ -388,9 +378,7 @@ export default function ComparePage() {
           >
             <div className="border-border border-b px-4 py-3">
               <div className="flex items-center gap-3">
-                <h3 className="text-primary font-medium">
-                  {getStageName(stageKey)}
-                </h3>
+                <h3 className="text-primary font-medium">{getStageName(stageKey)}</h3>
                 {stageProgress && (
                   <span
                     className={`rounded px-2 py-0.5 text-xs font-medium ${

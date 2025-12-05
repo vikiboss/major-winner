@@ -1,4 +1,4 @@
-import { events } from '../../lib/data'
+import { events } from '@/lib/data'
 import TeamLogo from '../../components/TeamLogo'
 
 export default function TeamsPage() {

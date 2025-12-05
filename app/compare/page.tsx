@@ -10,8 +10,8 @@ import {
   shouldShowStage,
   isPredictionPossible,
   getEventProgress,
-} from '../../lib/data'
-import TeamLogo from '../../components/TeamLogo'
+} from '@/lib/data'
+import TeamLogo from '@/components/TeamLogo'
 
 export default function ComparePage() {
   const event = events[0]

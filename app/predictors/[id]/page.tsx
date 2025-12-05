@@ -10,8 +10,8 @@ import {
   shouldShowStageInPredictorDetail,
   hasStageResults,
   isPredictionPossible,
-} from '../../../lib/data'
-import TeamLogo from '../../../components/TeamLogo'
+} from '@/lib/data'
+import TeamLogo from '@/components/TeamLogo'
 
 interface Props {
   params: Promise<{ id: string }>

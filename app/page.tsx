@@ -9,8 +9,8 @@ import {
   isPredictionPossible,
   hasSwissInProgressResults,
   hasSwissFinalResults,
-} from '../lib/data'
-import TeamLogo from '../components/TeamLogo'
+} from '@/lib/data'
+import TeamLogo from '@/components/TeamLogo'
 
 export default function Home() {
   const event = events[0]
@@ -505,8 +505,8 @@ function StageSection({
   )
 }
 
-import { getEventPredictions, calculatePredictorStats } from '../lib/data'
-import type { StagePrediction } from '../types'
+import { getEventPredictions, calculatePredictorStats } from '@/lib/data'
+import type { StagePrediction } from '@/types'
 
 function PredictorPredictions({
   stageId,

@@ -531,22 +531,69 @@ function PredictorPredictions({
     stageType === 'swiss' ? event[stageId as 'stage-1' | 'stage-2' | 'stage-3'] : null
   const actualResult = stageData?.result
 
-  // 计算每个预测者在当前阶段的正确数,并排序
-  const predictorsWithCorrectCount = eventPreds.predictions
+  // 计算每个预测者在当前阶段的错误数,并排序(错误最少的排前面)
+  const predictorsWithStats = eventPreds.predictions
     .map((p) => {
       const stats = calculatePredictorStats(event.id, p.name)
       const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
+
+      // 计算错误数: 总预测数 - 正确数 - 仍有可能的数
+      let totalPredictions = 0
+      let correctCount = stageResult?.correctCount || 0
+      let incorrectCount = 0
+
+      if (stageType === 'swiss') {
+        const prediction = p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+        if (prediction && actualResult) {
+          totalPredictions = 10 // 瑞士轮固定10个预测
+
+          // 统计已经确认错误的预测(不可能成真的)
+          for (const team of prediction['3-0']) {
+            if (
+              !isPredictionPossible(team, '3-0', actualResult) &&
+              !actualResult['3-0']?.includes(team)
+            ) {
+              incorrectCount++
+            }
+          }
+          for (const team of prediction['3-1-or-3-2']) {
+            if (
+              !isPredictionPossible(team, '3-1-or-3-2', actualResult) &&
+              !actualResult['3-1']?.includes(team) &&
+              !actualResult['3-2']?.includes(team)
+            ) {
+              incorrectCount++
+            }
+          }
+          for (const team of prediction['0-3']) {
+            if (
+              !isPredictionPossible(team, '0-3', actualResult) &&
+              !actualResult['0-3']?.includes(team)
+            ) {
+              incorrectCount++
+            }
+          }
+        }
+      }
+
       return {
         predictor: p,
-        correctCount: stageResult?.correctCount || 0,
+        correctCount,
+        incorrectCount,
+        totalPredictions,
       }
     })
-    .sort((a, b) => b.correctCount - a.correctCount)
+    .sort((a, b) => {
+      // 先按错误数升序(错误少的在前)
+      if (a.incorrectCount !== b.incorrectCount) {
+        return a.incorrectCount - b.incorrectCount
+      }
+      // 错误数相同,按正确数降序(正确多的在前)
+      return b.correctCount - a.correctCount
+    })
 
   // 如果有 limit,只显示前 N 个
-  const displayPredictors = limit
-    ? predictorsWithCorrectCount.slice(0, limit)
-    : predictorsWithCorrectCount
+  const displayPredictors = limit ? predictorsWithStats.slice(0, limit) : predictorsWithStats
 
   return (
     <>

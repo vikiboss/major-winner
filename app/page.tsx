@@ -492,11 +492,11 @@ function StageSection({
           </div>
         </div>
 
-        {/* 右侧：竞猜者竞猜 */}
+        {/* 右侧：竞猜情况 */}
         <div className="lg:col-span-8">
           <div className="bg-surface-1 border-border rounded-lg border">
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
-              <h3 className="text-secondary text-sm font-medium">竞猜者竞猜</h3>
+              <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
               <Link
                 href={`/predictions/${stageType === 'finals-round' ? 'finals' : stageId}`}
                 className="text-primary-400 hover:text-primary-300 text-xs transition-colors"
@@ -511,7 +511,7 @@ function StageSection({
                 event={event}
                 round={round}
                 stageStatus={stageStatus}
-                limit={5}
+                limit={3}
               />
             </div>
           </div>
@@ -599,7 +599,7 @@ function PredictorPredictions({
         totalPredictions,
       }
     })
-    .sort((a, b) => {
+    .toSorted((a, b) => {
       // 先按错误数升序(错误少的在前)
       if (a.incorrectCount !== b.incorrectCount) {
         return a.incorrectCount - b.incorrectCount
@@ -609,7 +609,17 @@ function PredictorPredictions({
     })
 
   // 如果有 limit,只显示前 N 个
-  const displayPredictors = limit ? predictorsWithStats.slice(0, limit) : predictorsWithStats
+  const displayPredictors = limit
+    ? predictorsWithStats
+        .filter(({ predictor: p }) => {
+          const prediction =
+            stageType === 'finals-round'
+              ? p.finals
+              : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+          return prediction
+        })
+        .slice(0, limit)
+    : predictorsWithStats
 
   return (
     <>
@@ -619,8 +629,6 @@ function PredictorPredictions({
         const prediction =
           stageType === 'finals-round' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
 
-        if (!prediction) return null
-
         return (
           <div key={p.id} className="px-4 py-3">
             <div className="mb-2 flex items-center justify-between">
@@ -628,8 +636,10 @@ function PredictorPredictions({
                 href={`/predictors/${encodeURIComponent(p.id)}`}
                 className="hover:text-primary-400 flex items-center gap-2 transition-colors"
               >
-                <span className="text-primary font-medium">{p.name}</span>
-                {p.platform && <span className="text-muted text-xs">@{p.platform}</span>}
+                <span className="text-primary font-medium text-nowrap">{p.name}</span>
+                {p.platform && (
+                  <span className="text-muted text-xs text-nowrap">@{p.platform}</span>
+                )}
               </Link>
               {/* 只在结束时显示通过/未通过 */}
               {stageResult && (

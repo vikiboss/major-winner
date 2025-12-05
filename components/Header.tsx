@@ -7,7 +7,7 @@ import { ThemeToggle } from './ThemeToggle'
 import { EventSelector } from './EventSelector'
 
 const navItems = [
-  { href: '/predictions', label: '竞猜' },
+  { href: '/predictions/stage-3', label: '竞猜' },
   { href: '/predictors', label: '排行' },
   { href: '/teams', label: '战队' },
 ]
@@ -21,7 +21,10 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo and Event Selector */}
           <div className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <Link href="/" className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3">
+            <Link
+              href="/"
+              className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
+            >
               <Image src="/icon.png" alt="Major Winner Logo" width={48} height={48} />
               <span className="text-primary text-sm font-semibold sm:text-lg">Major Winner</span>
             </Link>

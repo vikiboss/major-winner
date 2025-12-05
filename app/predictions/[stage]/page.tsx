@@ -1,7 +1,4 @@
-'use client'
-
-import { Suspense, useTransition } from 'react'
-import { useSearchParams, useRouter, usePathname } from 'next/navigation'
+import { notFound } from 'next/navigation'
 import {
   events,
   getEventPredictions,
@@ -14,46 +11,36 @@ import type { StagePrediction, FinalsPrediction } from '@/types'
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 
 const VALID_STAGES: Stage[] = ['stage-1', 'stage-2', 'stage-3', 'finals']
-const DEFAULT_STAGE: Stage = 'stage-3'
 
-function PredictionsContent() {
+interface PageProps {
+  params: Promise<{ stage: string }>
+}
+
+export async function generateStaticParams() {
+  return VALID_STAGES.map((stage) => ({
+    stage,
+  }))
+}
+
+export default async function PredictionsPage({ params }: PageProps) {
+  const { stage: stageParam } = await params
+  const activeStage = stageParam as Stage
+
+  // 验证 stage 参数
+  if (!VALID_STAGES.includes(activeStage)) {
+    notFound()
+  }
+
   const event = events[0]
   const eventPreds = getEventPredictions(event.id)
-  const searchParams = useSearchParams()
-  const pathname = usePathname()
-  const router = useRouter()
-  const [isPending, startTransition] = useTransition()
-
-  // URL 作为单一数据源
-  const tabParam = searchParams.get('tab') as Stage | null
-  const activeStage: Stage = tabParam && VALID_STAGES.includes(tabParam) ? tabParam : DEFAULT_STAGE
-
-  // 更新 tab 参数的函数
-  const updateTab = (newStage: Stage) => {
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('tab', newStage)
-    startTransition(() => {
-      router.replace(`${pathname}?${params.toString()}`, { scroll: false })
-    })
-  }
 
   if (!eventPreds) {
     return (
-      <div className="mx-auto max-w-7xl px-4 py-8">
-        <div className="text-center">
-          <h1 className="text-primary mb-4 text-2xl font-semibold">各主播、玩家竞猜情况</h1>
-          <p className="text-muted">暂无竞猜数据</p>
-        </div>
+      <div className="text-center">
+        <p className="text-muted">暂无竞猜数据</p>
       </div>
     )
   }
-
-  const stages: Array<{ id: Stage; label: string }> = [
-    { id: 'stage-1', label: '第一阶段' },
-    { id: 'stage-2', label: '第二阶段' },
-    { id: 'stage-3', label: '第三阶段' },
-    { id: 'finals', label: '决赛阶段' },
-  ]
 
   // 过滤出有当前阶段预测的竞猜者
   const predictorsWithStage = eventPreds.predictions.filter((p) => {
@@ -63,45 +50,15 @@ function PredictionsContent() {
     return p[activeStage]
   })
 
-  return (
-    <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
-      {/* 页面标题 */}
-      <div className="mb-6">
-        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜情况</h1>
-        <p className="text-secondary text-sm sm:text-base">查看所有主播在各阶段的竞猜情况</p>
-      </div>
-
-      {/* 阶段切换标签 */}
-      <div className="bg-surface-1 border-border mb-6 rounded-lg border p-1">
-        <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
-          {stages.map((stage) => (
-            <button
-              key={stage.id}
-              onClick={() => updateTab(stage.id)}
-              disabled={isPending}
-              className={`rounded px-3 py-2 text-sm font-medium transition-colors disabled:opacity-50 sm:px-4 ${
-                activeStage === stage.id
-                  ? 'bg-primary-500/10 text-primary-400'
-                  : 'text-secondary hover:bg-surface-2 hover-text-primary'
-              }`}
-            >
-              {stage.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* 竞猜表格 */}
-      {activeStage === 'finals' ? (
-        <FinalsTable predictors={predictorsWithStage} event={event} />
-      ) : (
-        <SwissTable
-          predictors={predictorsWithStage}
-          event={event}
-          stageId={activeStage as 'stage-1' | 'stage-2' | 'stage-3'}
-        />
-      )}
-    </div>
+  // 竞猜表格
+  return activeStage === 'finals' ? (
+    <FinalsTable predictors={predictorsWithStage} event={event} />
+  ) : (
+    <SwissTable
+      predictors={predictorsWithStage}
+      event={event}
+      stageId={activeStage as 'stage-1' | 'stage-2' | 'stage-3'}
+    />
   )
 }
 
@@ -139,13 +96,14 @@ function SwissTable({
           <thead className="bg-surface-2 border-border border-b">
             <tr>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">平台</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">3-0 预测</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">
                 3-1/3-2 预测
               </th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">0-3 预测</th>
-              <th className="text-secondary px-4 py-3 text-center text-sm font-medium">猜对数</th>
+              <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
+                猜对数
+              </th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium">状态</th>
             </tr>
           </thead>
@@ -160,12 +118,12 @@ function SwissTable({
               return (
                 <tr key={predictor.id} className="hover:bg-surface-2 transition-colors">
                   <td className="px-4 py-3">
-                    <span className="hover:text-primary-400 transition-colors">
-                      {predictor.name}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3">
-                    <span className="text-muted text-sm">{predictor.platform}</span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="hover:text-primary-400 text-sm text-nowrap transition-colors">
+                        {predictor.name}
+                      </span>
+                      <span className="text-muted text-xs text-nowrap">@{predictor.platform}</span>
+                    </div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
@@ -444,11 +402,12 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
           <thead className="bg-surface-2 border-border border-b">
             <tr>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">平台</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">八强赛</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">半决赛</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">决赛</th>
-              <th className="text-secondary px-4 py-3 text-center text-sm font-medium">猜对数</th>
+              <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
+                猜对数
+              </th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium">状态</th>
             </tr>
           </thead>
@@ -467,12 +426,12 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
               return (
                 <tr key={predictor.id} className="hover:bg-surface-2 transition-colors">
                   <td className="px-4 py-3">
-                    <span className="hover:text-primary-400 text-primary font-medium text-nowrap transition-colors">
-                      {predictor.name}
-                    </span>
-                  </td>
-                  <td className="px-4 py-3 text-nowrap">
-                    <span className="text-muted text-sm">{predictor.platform}</span>
+                    <div className="flex flex-col gap-0.5">
+                      <span className="hover:text-primary-400 text-primary font-medium text-nowrap transition-colors">
+                        {predictor.name}
+                      </span>
+                      <span className="text-muted text-xs">@{predictor.platform}</span>
+                    </div>
                   </td>
 
                   {/* 八强赛 */}
@@ -614,7 +573,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 {finalsStats && finalsStats.length > 0 && (
                   <div className="flex flex-col items-end">
                     <span className="text-primary text-lg font-bold">{totalCorrect}</span>
-                    <span className="text-muted text-xs">猜对数</span>
+                    <span className="text-muted text-xs text-nowrap">猜对数</span>
                   </div>
                 )}
               </div>
@@ -757,13 +716,5 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
         })}
       </div>
     </div>
-  )
-}
-
-export default function PredictionsPage() {
-  return (
-    <Suspense fallback={<div className="mx-auto max-w-5xl px-4 py-6">加载中...</div>}>
-      <PredictionsContent />
-    </Suspense>
   )
 }

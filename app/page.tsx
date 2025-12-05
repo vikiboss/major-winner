@@ -1,6 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import {
-  events,
+  getEvent,
   getAllPredictorStats,
   getStageName,
   getEventProgress,
@@ -11,9 +13,23 @@ import {
   hasSwissFinalResults,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
+import { useEvent } from '@/components/EventContext'
+import type { MajorEvent } from '@/types'
 
 export default function Home() {
-  const event = events[0]
+  const { currentEventId } = useEvent()
+  const event = getEvent(currentEventId)
+
+  if (!event) {
+    return (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-primary mb-2 text-xl font-semibold">未找到赛事</h2>
+          <p className="text-muted">请选择一个有效的赛事</p>
+        </div>
+      </div>
+    )
+  }
   const stats = getAllPredictorStats(event.id)
   const eventProgress = getEventProgress(event)
   const activeStages = getActiveStages(event)
@@ -180,16 +196,16 @@ function StageSection({
 }: {
   stageId: string
   stageName: string
-  stageData?: NonNullable<(typeof event)['stage-1']> | NonNullable<typeof event.finals>
+  stageData?: NonNullable<MajorEvent['stage-1']> | NonNullable<MajorEvent['finals']>
   stageType: 'swiss' | 'finals-round'
-  event: (typeof events)[0]
+  event: MajorEvent
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
   round?: '8-to-4' | '4-to-2' | '2-to-1'
 }) {
   const isSwiss = stageType === 'swiss'
-  const swissData = isSwiss ? (stageData as NonNullable<(typeof event)['stage-1']>) : null
+  const swissData = isSwiss ? (stageData as NonNullable<MajorEvent['stage-1']>) : null
   const finalsData =
-    stageType === 'finals-round' ? (stageData as NonNullable<typeof event.finals>) : null
+    stageType === 'finals-round' ? (stageData as NonNullable<MajorEvent['finals']>) : null
 
   return (
     <section id={stageId} className="scroll-mt-32">
@@ -482,7 +498,7 @@ function StageSection({
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">竞猜者竞猜</h3>
               <Link
-                href={`/predictions?tab=${stageType === 'finals-round' ? 'finals' : stageId}`}
+                href={`/predictions/${stageType === 'finals-round' ? 'finals' : stageId}`}
                 className="text-primary-400 hover:text-primary-300 text-xs transition-colors"
               >
                 查看全部 →
@@ -518,7 +534,7 @@ function PredictorPredictions({
 }: {
   stageId: string
   stageType: 'swiss' | 'finals-round'
-  event: (typeof events)[0]
+  event: MajorEvent
   round?: '8-to-4' | '4-to-2' | '2-to-1'
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
   limit?: number

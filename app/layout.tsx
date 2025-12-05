@@ -1,5 +1,6 @@
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
+import { EventProvider } from '@/components/EventContext'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 
@@ -39,9 +40,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="zh-CN" suppressHydrationWarning>
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
         <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
+          <EventProvider>
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </EventProvider>
         </ThemeProvider>
       </body>
     </html>

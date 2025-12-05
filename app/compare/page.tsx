@@ -11,6 +11,7 @@ import {
   isPredictionPossible,
   getEventProgress,
 } from '../../lib/data'
+import TeamLogo from '../../components/TeamLogo'
 
 export default function ComparePage() {
   const event = events[0]
@@ -260,7 +261,7 @@ export default function ComparePage() {
                                 return (
                                   <span
                                     key={team}
-                                    className={`rounded px-1.5 py-0.5 text-xs ${
+                                    className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
                                       roundCompleted
                                         ? isCorrect
                                           ? 'bg-win/10 text-win'
@@ -272,6 +273,7 @@ export default function ComparePage() {
                                             : 'bg-surface-2 text-zinc-400'
                                     }`}
                                   >
+                                    <TeamLogo shortName={team} size="xs" />
                                     {team}
                                   </span>
                                 )
@@ -303,7 +305,7 @@ export default function ComparePage() {
                             <div className="flex flex-wrap justify-center gap-1">
                               {championPred && (
                                 <span
-                                  className={`rounded px-1.5 py-0.5 text-xs ${
+                                  className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
                                     roundCompleted
                                       ? championPred === actualWinner
                                         ? 'bg-win/10 text-win'
@@ -315,6 +317,7 @@ export default function ComparePage() {
                                           : 'bg-surface-2 text-zinc-400'
                                   }`}
                                 >
+                                  <TeamLogo shortName={championPred} size="xs" />
                                   {championPred}
                                 </span>
                               )}
@@ -417,7 +420,7 @@ export default function ComparePage() {
                             return (
                               <span
                                 key={team}
-                                className={`rounded px-1.5 py-0.5 text-xs ${
+                                className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
                                   completed
                                     ? isCorrect
                                       ? 'bg-win/10 text-win'
@@ -429,6 +432,7 @@ export default function ComparePage() {
                                         : 'bg-surface-2 text-zinc-400'
                                 }`}
                               >
+                                <TeamLogo shortName={team} size="xs" />
                                 {team}
                               </span>
                             )
@@ -497,7 +501,7 @@ export default function ComparePage() {
                             return (
                               <span
                                 key={team}
-                                className={`rounded px-1.5 py-0.5 text-xs ${
+                                className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
                                   completed
                                     ? isCorrect
                                       ? 'bg-win/10 text-win'
@@ -509,6 +513,7 @@ export default function ComparePage() {
                                         : 'bg-surface-2 text-zinc-400'
                                 }`}
                               >
+                                <TeamLogo shortName={team} size="xs" />
                                 {team}
                               </span>
                             )
@@ -554,7 +559,7 @@ export default function ComparePage() {
                             return (
                               <span
                                 key={team}
-                                className={`rounded px-1.5 py-0.5 text-xs ${
+                                className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
                                   completed
                                     ? isCorrect
                                       ? 'bg-win/10 text-win'
@@ -566,6 +571,7 @@ export default function ComparePage() {
                                         : 'bg-surface-2 text-zinc-400'
                                 }`}
                               >
+                                <TeamLogo shortName={team} size="xs" />
                                 {team}
                               </span>
                             )

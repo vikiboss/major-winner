@@ -35,17 +35,17 @@ pnpm format           # Format code with Prettier
 
 The app uses a **static data-driven architecture** with no backend:
 
-1. **Data Sources** (`src/data/`)
+1. **Data Sources** (`data/`)
    - `events.json`: Tournament events, teams, and actual match results
    - `predictions.json`: Predictor forecasts for each tournament stage
 
-2. **Data Layer** (`src/lib/data.ts`)
+2. **Data Layer** (`lib/data.ts`)
    - Core business logic for calculating prediction accuracy
    - Stage pass/fail determination (Swiss rounds, finals)
    - Predictor statistics and rankings
    - Event progress tracking
 
-3. **Type System** (`src/types/index.ts`)
+3. **Type System** (`types/index.ts`)
    - Comprehensive TypeScript types for all data structures
    - Stage types: Swiss rounds (stage-1/2/3) and Finals (8-to-4, 4-to-2, 2-to-1)
    - Result types: SwissResult, FinalsResult, StagePassStatus
@@ -67,23 +67,22 @@ The app uses a **static data-driven architecture** with no backend:
 ### Component Structure
 
 ```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── page.tsx           # Home: stage results + predictions
-│   ├── leaderboard/       # Overall predictor rankings
-│   ├── predictors/[id]/   # Individual predictor detail
-│   ├── compare/           # Side-by-side prediction comparison
-│   └── teams/             # Team listings
-├── components/            # Shared UI components
-│   ├── Header.tsx        # Navigation with theme toggle
-│   ├── Footer.tsx
-│   ├── ThemeProvider.tsx # Dark/light theme context
-│   └── ThemeToggle.tsx
-├── lib/
-│   └── data.ts           # All data access and business logic
-├── types/
-│   └── index.ts          # TypeScript type definitions
-└── data/                 # Static JSON data files
+app/                    # Next.js App Router pages
+├── page.tsx           # Home: stage results + predictions
+├── leaderboard/       # Overall predictor rankings
+├── predictors/[id]/   # Individual predictor detail
+├── compare/           # Side-by-side prediction comparison
+└── teams/             # Team listings
+components/            # Shared UI components
+├── Header.tsx        # Navigation with theme toggle
+├── Footer.tsx
+├── ThemeProvider.tsx # Dark/light theme context
+└── ThemeToggle.tsx
+lib/
+└── data.ts           # All data access and business logic
+types/
+└── index.ts          # TypeScript type definitions
+data/                 # Static JSON data files
 ```
 
 ### Styling System
@@ -95,7 +94,7 @@ Custom Tailwind theme with CS2/gaming aesthetics:
 - **Background**: `bg-game-dark` base with layered surfaces
 - **Responsive**: Mobile-first with `lg:` breakpoints
 
-Path alias: `@/*` maps to `./src/*`
+Path alias: `@/*` maps to `./*`
 
 ## Key Development Patterns
 

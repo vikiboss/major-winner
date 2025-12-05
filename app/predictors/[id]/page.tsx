@@ -11,6 +11,7 @@ import {
   hasStageResults,
   isPredictionPossible,
 } from '../../../lib/data'
+import TeamLogo from '../../../components/TeamLogo'
 
 interface Props {
   params: Promise<{ id: string }>
@@ -151,7 +152,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                           {roundPred.map((team) => (
                             <span
                               key={team}
-                              className={`rounded px-2 py-1 text-xs ${
+                              className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                                 showFinalsResults && roundResult
                                   ? roundResult.winners.includes(team)
                                     ? 'bg-win/10 text-win'
@@ -159,6 +160,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                                   : 'bg-surface-2 text-zinc-300'
                               }`}
                             >
+                              <TeamLogo shortName={team} size="xs" />
                               {team}
                             </span>
                           ))}
@@ -187,7 +189,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                       </div>
                       <div className="mb-1 flex flex-wrap gap-1.5">
                         <span
-                          className={`rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             showFinalsResults && event.finals?.result['2-to-1'].winner
                               ? prediction.finals['2-to-1'] === event.finals.result['2-to-1'].winner
                                 ? 'bg-win/10 text-win'
@@ -195,6 +197,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                               : 'bg-surface-2 text-zinc-300'
                           }`}
                         >
+                          <TeamLogo shortName={prediction.finals['2-to-1']} size="xs" />
                           {prediction.finals['2-to-1']}
                         </span>
                       </div>
@@ -288,7 +291,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                       return (
                         <span
                           key={team}
-                          className={`rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             !showResults
                               ? 'bg-surface-2 text-zinc-300'
                               : isCorrect
@@ -298,6 +301,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                                   : 'bg-surface-2 text-zinc-400'
                           }`}
                         >
+                          <TeamLogo shortName={team} size="xs" />
                           {team}
                         </span>
                       )
@@ -319,7 +323,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                       return (
                         <span
                           key={team}
-                          className={`rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             !showResults
                               ? 'bg-surface-2 text-zinc-300'
                               : isCorrect
@@ -329,6 +333,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                                   : 'bg-surface-2 text-zinc-400'
                           }`}
                         >
+                          <TeamLogo shortName={team} size="xs" />
                           {team}
                         </span>
                       )
@@ -347,7 +352,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                       return (
                         <span
                           key={team}
-                          className={`rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
                             !showResults
                               ? 'bg-surface-2 text-zinc-300'
                               : isCorrect
@@ -357,6 +362,7 @@ export default async function PredictorDetailPage({ params }: Props) {
                                   : 'bg-surface-2 text-zinc-400'
                           }`}
                         >
+                          <TeamLogo shortName={team} size="xs" />
                           {team}
                         </span>
                       )

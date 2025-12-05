@@ -1,4 +1,5 @@
 import { events } from '../../lib/data'
+import TeamLogo from '../../components/TeamLogo'
 
 export default function TeamsPage() {
   const event = events[0]
@@ -256,15 +257,18 @@ export default function TeamsPage() {
           return (
             <div key={team.name} className="bg-surface-1 border-border rounded-lg border p-4">
               <div className="mb-3 flex items-start justify-between">
-                <div>
-                  <h3 className="font-medium text-zinc-900 dark:text-white">{team.name}</h3>
-                  <p className="text-muted mt-1 text-xs">
-                    {team.stage === 'stage-1'
-                      ? '挑战组'
-                      : team.stage === 'stage-2'
-                        ? '传奇组'
-                        : '冠军组'}
-                  </p>
+                <div className="flex items-start gap-3">
+                  <TeamLogo shortName={team.shortName} size="lg" className="mt-0.5" />
+                  <div>
+                    <h3 className="font-medium text-zinc-900 dark:text-white">{team.name}</h3>
+                    <p className="text-muted mt-1 text-xs">
+                      {team.stage === 'stage-1'
+                        ? '挑战组'
+                        : team.stage === 'stage-2'
+                          ? '传奇组'
+                          : '冠军组'}
+                    </p>
+                  </div>
                 </div>
                 <span className={`text-xs ${status.className}`}>{status.text}</span>
               </div>
@@ -331,7 +335,10 @@ export default function TeamsPage() {
               return (
                 <tr key={team.name} className="hover:bg-surface-2/50 transition-colors">
                   <td className="px-4 py-2.5">
-                    <span className="font-medium text-zinc-900 dark:text-white">{team.name}</span>
+                    <div className="flex items-center gap-2">
+                      <TeamLogo shortName={team.shortName} size="md" />
+                      <span className="font-medium text-zinc-900 dark:text-white">{team.name}</span>
+                    </div>
                   </td>
                   <td className="px-4 py-2.5">
                     <span className="text-muted text-sm">

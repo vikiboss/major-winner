@@ -96,7 +96,8 @@ export interface FinalsPrediction {
 
 // 单个竞猜者数据
 export interface PredictorPrediction {
-  predictor: string
+  id: string
+  name: string
   platform?: string
   description?: string
   link?: string

@@ -13,9 +13,7 @@ export default function LeaderboardPage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">
-          竞猜排行
-        </h1>
+        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜排行</h1>
         <div className="mt-2 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
           <p className="text-muted">按猜对数排名 · {stats.length} 位竞猜者</p>
           <span className="text-muted hidden sm:inline">·</span>
@@ -111,7 +109,7 @@ function LeaderboardTable({
                     {stat.predictor}
                   </Link>
                   {stat.platform && (
-                    <span className="text-muted mt-0.5 block text-xs">{stat.platform}</span>
+                    <span className="text-muted mt-0.5 block text-xs">@{stat.platform}</span>
                   )}
                 </div>
               </div>
@@ -207,18 +205,14 @@ function LeaderboardTable({
                     href={`/predictors/${encodeURIComponent(stat.predictor)}`}
                     className="hover:text-primary-400 transition-colors"
                   >
-                    <span className="text-primary font-medium">
-                      {stat.predictor}
-                    </span>
+                    <span className="text-primary font-medium">{stat.predictor}</span>
                     {stat.platform && (
-                      <span className="text-muted ml-2 text-xs">{stat.platform}</span>
+                      <span className="text-muted ml-2 text-xs">@{stat.platform}</span>
                     )}
                   </Link>
                 </td>
                 <td className="px-4 py-3 text-center">
-                  <span className="text-primary font-semibold">
-                    {stat.totalCorrect}
-                  </span>
+                  <span className="text-primary font-semibold">{stat.totalCorrect}</span>
                   <span className="text-muted text-xs">/{stat.totalPredictions}</span>
                 </td>
                 <td className="text-muted px-4 py-3 text-center">

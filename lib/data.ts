@@ -298,14 +298,14 @@ function check2to1Pass(
 // 计算竞猜者统计数据
 export function calculatePredictorStats(
   eventId: string,
-  predictorName: string,
+  predictorId: string,
 ): PredictorStats | null {
   const event = getEvent(eventId)
   const eventPreds = getEventPredictions(eventId)
 
   if (!event || !eventPreds) return null
 
-  const predictor = eventPreds.predictions.find((p) => p.predictor === predictorName)
+  const predictor = eventPreds.predictions.find((p) => p.id === predictorId)
 
   if (!predictor) return null
 
@@ -361,7 +361,7 @@ export function calculatePredictorStats(
   }
 
   return {
-    predictor: predictor.predictor,
+    predictor: predictor.name,
     platform: predictor.platform || '',
     description: predictor.description,
     link: predictor.link,
@@ -382,7 +382,7 @@ export function getAllPredictorStats(eventId: string): PredictorStats[] {
   const stats: PredictorStats[] = []
 
   for (const p of eventPreds.predictions) {
-    const stat = calculatePredictorStats(eventId, p.predictor)
+    const stat = calculatePredictorStats(eventId, p.name)
     if (stat) {
       stats.push(stat)
     }
@@ -417,12 +417,12 @@ export function getStageName(stageId: string): string {
 // 获取竞猜者的具体竞猜数据
 export function getPredictorPrediction(
   eventId: string,
-  predictorName: string,
+  predictorId: string,
 ): PredictorPrediction | null {
   const eventPreds = getEventPredictions(eventId)
   if (!eventPreds) return null
 
-  return eventPreds.predictions.find((p) => p.predictor === predictorName) || null
+  return eventPreds.predictions.find((p) => p.id === predictorId) || null
 }
 
 /**
@@ -757,16 +757,7 @@ export function hasStageResults(event: MajorEvent, stageId: string): boolean {
 export function hasSwissInProgressResults(result: SwissResult | undefined): boolean {
   if (!result) return false
 
-  const inProgressRecords = [
-    '1-0',
-    '0-1',
-    '1-1',
-    '2-0',
-    '0-2',
-    '2-1',
-    '1-2',
-    '2-2',
-  ] as const
+  const inProgressRecords = ['1-0', '0-1', '1-1', '2-0', '0-2', '2-1', '1-2', '2-2'] as const
 
   return inProgressRecords.some((record) => result[record] && result[record]!.length > 0)
 }

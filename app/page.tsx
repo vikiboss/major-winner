@@ -534,7 +534,7 @@ function PredictorPredictions({
   // 计算每个预测者在当前阶段的正确数,并排序
   const predictorsWithCorrectCount = eventPreds.predictions
     .map((p) => {
-      const stats = calculatePredictorStats(event.id, p.predictor)
+      const stats = calculatePredictorStats(event.id, p.name)
       const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
       return {
         predictor: p,
@@ -551,7 +551,7 @@ function PredictorPredictions({
   return (
     <>
       {displayPredictors.map(({ predictor: p }) => {
-        const stats = calculatePredictorStats(event.id, p.predictor)
+        const stats = calculatePredictorStats(event.id, p.name)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
         const prediction =
           stageType === 'finals-round' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
@@ -560,14 +560,14 @@ function PredictorPredictions({
         if (!prediction) return null
 
         return (
-          <div key={p.predictor} className="px-4 py-3">
+          <div key={p.name} className="px-4 py-3">
             <div className="mb-2 flex items-center justify-between">
               <Link
-                href={`/predictors/${encodeURIComponent(p.predictor)}`}
+                href={`/predictors/${encodeURIComponent(p.name)}`}
                 className="hover:text-primary-400 flex items-center gap-2 transition-colors"
               >
-                <span className="text-primary font-medium">{p.predictor}</span>
-                {p.platform && <span className="text-muted text-xs">{p.platform}</span>}
+                <span className="text-primary font-medium">{p.name}</span>
+                {p.platform && <span className="text-muted text-xs">@{p.platform}</span>}
               </Link>
               {/* 只在结束时显示通过/未通过 */}
               {stageResult && (

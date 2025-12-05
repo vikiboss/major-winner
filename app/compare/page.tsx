@@ -18,7 +18,7 @@ export default function ComparePage() {
   const eventPreds = getEventPredictions(event.id)
   const predictors = eventPreds?.predictions || []
 
-  const [selected, setSelected] = useState<string[]>(predictors.slice(0, 2).map((p) => p.predictor))
+  const [selected, setSelected] = useState<string[]>(predictors.slice(0, 2).map((p) => p.name))
 
   const togglePredictor = (name: string) => {
     if (selected.includes(name)) {
@@ -30,11 +30,11 @@ export default function ComparePage() {
     }
   }
 
-  const selectedPredictions = predictors.filter((p) => selected.includes(p.predictor))
+  const selectedPredictions = predictors.filter((p) => selected.includes(p.name))
 
   const selectedStats = selectedPredictions.map((p) => ({
     prediction: p,
-    stats: calculatePredictorStats(event.id, p.predictor),
+    stats: calculatePredictorStats(event.id, p.name),
   }))
 
   // 获取应该显示的阶段列表（从决赛到瑞士轮的顺序）
@@ -70,15 +70,15 @@ export default function ComparePage() {
         <div className="flex flex-wrap gap-1.5 sm:gap-2">
           {predictors.map((p) => (
             <button
-              key={p.predictor}
-              onClick={() => togglePredictor(p.predictor)}
+              key={p.name}
+              onClick={() => togglePredictor(p.name)}
               className={`rounded px-2.5 py-1.5 text-xs transition-colors active:scale-95 sm:px-3 sm:text-sm ${
-                selected.includes(p.predictor)
+                selected.includes(p.name)
                   ? 'bg-primary-400 dark:bg-primary-500 dark:text-primary text-white'
                   : 'bg-surface-2 text-muted hover-text-primary'
               }`}
             >
-              {p.predictor}
+              {p.name}
             </button>
           ))}
         </div>
@@ -90,15 +90,15 @@ export default function ComparePage() {
           const best = Math.max(...selectedStats.map((s) => s.stats?.totalCorrect || 0))
           return (
             <div
-              key={prediction.predictor}
+              key={prediction.name}
               className="bg-surface-1 border-border rounded-lg border"
             >
               <div className="border-border border-b px-4 py-3">
                 <Link
-                  href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
+                  href={`/predictors/${encodeURIComponent(prediction.name)}`}
                   className="hover:text-primary-400 text-primary font-medium"
                 >
-                  {prediction.predictor}
+                  {prediction.name}
                 </Link>
               </div>
               <div className="divide-border divide-y p-4 text-sm">
@@ -154,12 +154,12 @@ export default function ComparePage() {
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="px-4 py-3">竞猜任务</th>
               {selectedStats.map(({ prediction }) => (
-                <th key={prediction.predictor} className="text-primary px-4 py-3 text-center">
+                <th key={prediction.name} className="text-primary px-4 py-3 text-center">
                   <Link
-                    href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
+                    href={`/predictors/${encodeURIComponent(prediction.name)}`}
                     className="hover:text-primary-400"
                   >
-                    {prediction.predictor}
+                    {prediction.name}
                   </Link>
                 </th>
               ))}
@@ -172,7 +172,7 @@ export default function ComparePage() {
                 const best = Math.max(...selectedStats.map((s) => s.stats?.totalCorrect || 0))
                 return (
                   <td
-                    key={prediction.predictor}
+                    key={prediction.name}
                     className={`px-4 py-3 text-center font-semibold ${
                       stats?.totalCorrect === best ? 'text-primary-400' : 'text-primary'
                     }`}
@@ -186,7 +186,7 @@ export default function ComparePage() {
             <tr>
               <td className="text-muted px-4 py-3">通过</td>
               {selectedStats.map(({ prediction, stats }) => (
-                <td key={prediction.predictor} className="text-primary px-4 py-3 text-center">
+                <td key={prediction.name} className="text-primary px-4 py-3 text-center">
                   {stats?.totalPassed}/{stats?.totalStages}
                 </td>
               ))}
@@ -199,7 +199,7 @@ export default function ComparePage() {
                   {selectedStats.map(({ prediction, stats }) => {
                     const result = stats?.stageResults.find((s) => s.stageId === stageId)
                     return (
-                      <td key={prediction.predictor} className="px-4 py-3 text-center">
+                      <td key={prediction.name} className="px-4 py-3 text-center">
                         {result ? (
                           completed ? (
                             <span className={result.passed ? 'text-win' : 'text-lose'}>
@@ -236,8 +236,8 @@ export default function ComparePage() {
               <tr className="border-border text-muted border-b text-xs">
                 <th className="px-4 py-2 text-left">轮次</th>
                 {selectedStats.map(({ prediction }) => (
-                  <th key={prediction.predictor} className="px-4 py-2 text-center">
-                    {prediction.predictor}
+                  <th key={prediction.name} className="px-4 py-2 text-center">
+                    {prediction.name}
                   </th>
                 ))}
                 <th className="px-4 py-2 text-center">实际</th>
@@ -258,7 +258,7 @@ export default function ComparePage() {
                       {selectedStats.map(({ prediction }) => {
                         const roundPred = prediction.finals?.[round]
                         return (
-                          <td key={prediction.predictor} className="px-4 py-2 text-center">
+                          <td key={prediction.name} className="px-4 py-2 text-center">
                             <div className="flex flex-wrap justify-center gap-1">
                               {roundPred?.map((team) => {
                                 const isCorrect = actualWinners.includes(team)
@@ -319,7 +319,7 @@ export default function ComparePage() {
                       {selectedStats.map(({ prediction }) => {
                         const championPred = prediction.finals?.['2-to-1']
                         return (
-                          <td key={prediction.predictor} className="px-4 py-2 text-center">
+                          <td key={prediction.name} className="px-4 py-2 text-center">
                             <div className="flex flex-wrap justify-center gap-1">
                               {championPred && (
                                 <span
@@ -404,8 +404,8 @@ export default function ComparePage() {
                   <th className="px-4 py-2 text-left text-nowrap">竞猜项</th>
                   <th className="px-4 py-2 text-center">实际</th>
                   {selectedStats.map(({ prediction }) => (
-                    <th key={prediction.predictor} className="px-4 py-2 text-center text-nowrap">
-                      {prediction.predictor}
+                    <th key={prediction.name} className="px-4 py-2 text-center text-nowrap">
+                      {prediction.name}
                     </th>
                   ))}
                 </tr>
@@ -470,7 +470,7 @@ export default function ComparePage() {
                   {selectedStats.map(({ prediction }) => {
                     const stagePred = prediction[stageKey]
                     return (
-                      <td key={prediction.predictor} className="px-4 py-2 text-center">
+                      <td key={prediction.name} className="px-4 py-2 text-center">
                         <div className="flex flex-wrap justify-center gap-1">
                           {stagePred?.['3-0'].map((team) => {
                             const isCorrect = stageResult.result['3-0'].includes(team)
@@ -595,7 +595,7 @@ export default function ComparePage() {
                   {selectedStats.map(({ prediction }) => {
                     const stagePred = prediction[stageKey]
                     return (
-                      <td key={prediction.predictor} className="px-4 py-2 text-center">
+                      <td key={prediction.name} className="px-4 py-2 text-center">
                         <div className="flex flex-wrap justify-center gap-1">
                           {stagePred?.['3-1-or-3-2'].map((team) => {
                             const isCorrect =
@@ -690,7 +690,7 @@ export default function ComparePage() {
                   {selectedStats.map(({ prediction }) => {
                     const stagePred = prediction[stageKey]
                     return (
-                      <td key={prediction.predictor} className="px-4 py-2 text-center">
+                      <td key={prediction.name} className="px-4 py-2 text-center">
                         <div className="flex flex-wrap justify-center gap-1">
                           {stagePred?.['0-3'].map((team) => {
                             const isCorrect = stageResult.result['0-3'].includes(team)

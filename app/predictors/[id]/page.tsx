@@ -22,17 +22,17 @@ export async function generateStaticParams() {
   const eventPreds = getEventPredictions(event.id)
   if (!eventPreds) return []
   return eventPreds.predictions.map((p) => ({
-    id: encodeURIComponent(p.predictor),
+    id: encodeURIComponent(p.id),
   }))
 }
 
 export default async function PredictorDetailPage({ params }: Props) {
   const { id } = await params
-  const predictorName = decodeURIComponent(id)
+  const predictorId = decodeURIComponent(id)
 
   const event = events[0]
-  const prediction = getPredictorPrediction(event.id, predictorName)
-  const stats = calculatePredictorStats(event.id, predictorName)
+  const prediction = getPredictorPrediction(event.id, predictorId)
+  const stats = calculatePredictorStats(event.id, predictorId)
   const eventProgress = getEventProgress(event)
 
   if (!prediction || !stats) {
@@ -43,22 +43,17 @@ export default async function PredictorDetailPage({ params }: Props) {
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
       {/* Breadcrumb */}
       <nav className="text-muted mb-6 flex items-center gap-2 text-sm">
-        <Link
-          href="/predictors"
-          className="hover-text-primary transition-colors"
-        >
+        <Link href="/predictors" className="hover-text-primary transition-colors">
           竞猜排行
         </Link>
         <span>/</span>
-        <span className="text-primary">{predictorName}</span>
+        <span className="text-primary">{prediction.name}</span>
       </nav>
 
       {/* Header */}
       <div className="mb-6 sm:mb-8">
         <div className="mb-4">
-          <h1 className="text-primary text-xl font-semibold sm:text-2xl">
-            {predictorName}
-          </h1>
+          <h1 className="text-primary text-xl font-semibold sm:text-2xl">{prediction.name}</h1>
           {prediction.platform && (
             <p className="text-muted mt-1 text-sm">
               @{prediction.platform}
@@ -250,9 +245,7 @@ export default async function PredictorDetailPage({ params }: Props) {
             <div key={stageKey} className="bg-surface-1 border-border rounded-lg border">
               <div className="border-border flex items-center justify-between border-b px-4 py-3">
                 <div className="flex items-center gap-2">
-                  <h2 className="text-primary font-medium">
-                    {getStageName(stageKey)}
-                  </h2>
+                  <h2 className="text-primary font-medium">{getStageName(stageKey)}</h2>
                   {stageProgress && stageProgress.status !== 'not_started' && (
                     <span
                       className={`rounded px-2 py-0.5 text-xs font-medium ${

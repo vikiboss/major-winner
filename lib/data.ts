@@ -126,6 +126,7 @@ function checkSwissStagePass(
       requiredCount,
       details: '无竞猜数据',
       isResultComplete: false,
+      impossibleCount: 0,
     }
   }
 
@@ -191,6 +192,7 @@ function checkSwissStagePass(
     requiredCount,
     details,
     isResultComplete,
+    impossibleCount,
   }
 }
 
@@ -201,6 +203,7 @@ function checkSwissStagePass(
 function check8to4Pass(
   prediction: string[] | undefined,
   actual: string[] | undefined,
+  losers: string[] | undefined,
 ): StagePassStatus {
   const requiredCount = 2
   const stageId = '8-to-4'
@@ -213,6 +216,7 @@ function check8to4Pass(
       requiredCount,
       details: '无竞猜数据',
       isResultComplete: false,
+      impossibleCount: 0,
     }
   }
 
@@ -220,9 +224,13 @@ function check8to4Pass(
   const isResultComplete = actual.length === 4
 
   let correctCount = 0
+  let impossibleCount = 0
   for (const team of prediction) {
     if (actual.includes(team)) {
       correctCount++
+    } else if (losers && losers.includes(team)) {
+      // 已被淘汰的队伍，预测错误
+      impossibleCount++
     }
   }
 
@@ -233,6 +241,7 @@ function check8to4Pass(
     requiredCount,
     details: `${correctCount}/4 正确 (需${requiredCount}个)`,
     isResultComplete,
+    impossibleCount,
   }
 }
 
@@ -243,6 +252,7 @@ function check8to4Pass(
 function check4to2Pass(
   prediction: string[] | undefined,
   actual: string[] | undefined,
+  allEliminatedTeams: string[],
 ): StagePassStatus {
   const requiredCount = 1
   const stageId = '4-to-2'
@@ -255,6 +265,7 @@ function check4to2Pass(
       requiredCount,
       details: '无竞猜数据',
       isResultComplete: false,
+      impossibleCount: 0,
     }
   }
 
@@ -262,9 +273,13 @@ function check4to2Pass(
   const isResultComplete = actual.length === 2
 
   let correctCount = 0
+  let impossibleCount = 0
   for (const team of prediction) {
     if (actual.includes(team)) {
       correctCount++
+    } else if (allEliminatedTeams.includes(team)) {
+      // 已被淘汰的队伍（包括8进4和4进2阶段），预测错误
+      impossibleCount++
     }
   }
 
@@ -275,6 +290,7 @@ function check4to2Pass(
     requiredCount,
     details: `${correctCount}/2 正确 (需${requiredCount}个)`,
     isResultComplete,
+    impossibleCount,
   }
 }
 
@@ -285,6 +301,8 @@ function check4to2Pass(
 function check2to1Pass(
   prediction: string | null | undefined,
   actual: string | null | undefined,
+  loser: string | null | undefined,
+  allEliminatedTeams: string[],
 ): StagePassStatus {
   const requiredCount = 1
   const stageId = '2-to-1'
@@ -297,6 +315,7 @@ function check2to1Pass(
       requiredCount,
       details: '无竞猜数据',
       isResultComplete: !!actual, // 有冠军结果就是完整的
+      impossibleCount: 0,
     }
   }
 
@@ -305,6 +324,12 @@ function check2to1Pass(
 
   const correctCount = prediction === actual ? 1 : 0
 
+  // 如果预测的队伍是决赛输家或之前被淘汰，则算错误
+  let impossibleCount = 0
+  if (prediction === loser || allEliminatedTeams.includes(prediction)) {
+    impossibleCount = 1
+  }
+
   return {
     stageId,
     passed: correctCount >= requiredCount,
@@ -312,6 +337,7 @@ function check2to1Pass(
     requiredCount,
     details: correctCount >= requiredCount ? '猜中冠军' : '未猜中',
     isResultComplete,
+    impossibleCount,
   }
 }
 
@@ -356,23 +382,41 @@ export function calculatePredictorStats(
     const finals = event.finals.result
 
     // 8 进 4
-    const result84 = check8to4Pass(predictor.finals['8-to-4'], finals['8-to-4'].winners)
+    const result84 = check8to4Pass(
+      predictor.finals['8-to-4'],
+      finals['8-to-4'].winners,
+      finals['8-to-4'].losers,
+    )
     stageResults.push(result84)
     totalStages++
     totalCorrect += result84.correctCount
     totalPredictions += predictor.finals['8-to-4'].length
     if (result84.passed) totalPassed++
 
-    // 4 进 2
-    const result42 = check4to2Pass(predictor.finals['4-to-2'], finals['4-to-2'].winners)
+    // 4 进 2（需要传入所有已淘汰队伍：8进4的losers + 4进2的losers）
+    const allEliminatedBefore4to2 = [...finals['8-to-4'].losers, ...finals['4-to-2'].losers]
+    const result42 = check4to2Pass(
+      predictor.finals['4-to-2'],
+      finals['4-to-2'].winners,
+      allEliminatedBefore4to2,
+    )
     stageResults.push(result42)
     totalStages++
     totalCorrect += result42.correctCount
     totalPredictions += predictor.finals['4-to-2'].length
     if (result42.passed) totalPassed++
 
-    // 冠军
-    const result21 = check2to1Pass(predictor.finals['2-to-1'], finals['2-to-1'].winner)
+    // 冠军（需要传入所有已淘汰队伍：8进4 + 4进2 + 决赛loser）
+    const allEliminatedBeforeChampion = [
+      ...finals['8-to-4'].losers,
+      ...finals['4-to-2'].losers,
+    ]
+    const result21 = check2to1Pass(
+      predictor.finals['2-to-1'],
+      finals['2-to-1'].winner,
+      finals['2-to-1'].loser,
+      allEliminatedBeforeChampion,
+    )
     stageResults.push(result21)
     totalStages++
     totalCorrect += result21.correctCount

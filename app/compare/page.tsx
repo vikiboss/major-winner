@@ -55,11 +55,14 @@ export default function ComparePage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">竞猜对比</h1>
+        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">
+          竞猜对比
+        </h1>
         <div className="text-muted space-y-2 text-sm sm:text-base">
           <p>选择 0-5 位竞猜者进行对比分析</p>
           <p className="text-xs sm:text-sm">
-            <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军
+            <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
+            1/2，决赛猜中冠军
           </p>
         </div>
       </div>
@@ -88,7 +91,10 @@ export default function ComparePage() {
         {selectedStats.map(({ prediction, stats }) => {
           const best = Math.max(...selectedStats.map((s) => s.stats?.totalCorrect || 0))
           return (
-            <div key={prediction.predictor} className="bg-surface-1 border-border rounded-lg border">
+            <div
+              key={prediction.predictor}
+              className="bg-surface-1 border-border rounded-lg border"
+            >
               <div className="border-border border-b px-4 py-3">
                 <Link
                   href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
@@ -150,7 +156,10 @@ export default function ComparePage() {
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="px-4 py-3">竞猜任务</th>
               {selectedStats.map(({ prediction }) => (
-                <th key={prediction.predictor} className="px-4 py-3 text-center text-zinc-900 dark:text-white">
+                <th
+                  key={prediction.predictor}
+                  className="px-4 py-3 text-center text-zinc-900 dark:text-white"
+                >
                   <Link
                     href={`/predictors/${encodeURIComponent(prediction.predictor)}`}
                     className="hover:text-primary-400"
@@ -170,7 +179,9 @@ export default function ComparePage() {
                   <td
                     key={prediction.predictor}
                     className={`px-4 py-3 text-center font-semibold ${
-                      stats?.totalCorrect === best ? 'text-primary-400' : 'text-zinc-900 dark:text-white'
+                      stats?.totalCorrect === best
+                        ? 'text-primary-400'
+                        : 'text-zinc-900 dark:text-white'
                     }`}
                   >
                     {stats?.totalCorrect}
@@ -182,7 +193,10 @@ export default function ComparePage() {
             <tr>
               <td className="text-muted px-4 py-3">通过</td>
               {selectedStats.map(({ prediction, stats }) => (
-                <td key={prediction.predictor} className="px-4 py-3 text-center text-zinc-900 dark:text-white">
+                <td
+                  key={prediction.predictor}
+                  className="px-4 py-3 text-center text-zinc-900 dark:text-white"
+                >
                   {stats?.totalPassed}/{stats?.totalStages}
                 </td>
               ))}
@@ -282,8 +296,22 @@ export default function ComparePage() {
                           </td>
                         )
                       })}
-                      <td className="text-muted px-4 py-2 text-center text-xs">
-                        {actualWinners.join(', ') || '-'}
+                      <td className="px-4 py-2 text-center">
+                        <div className="flex flex-wrap justify-center gap-1">
+                          {actualWinners.length > 0 ? (
+                            actualWinners.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))
+                          ) : (
+                            <span className="text-muted">-</span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   )
@@ -325,8 +353,17 @@ export default function ComparePage() {
                           </td>
                         )
                       })}
-                      <td className="text-muted px-4 py-2 text-center text-xs">
-                        {actualWinner || '-'}
+                      <td className="px-4 py-2 text-center">
+                        <div className="flex flex-wrap justify-center gap-1">
+                          {actualWinner ? (
+                            <span className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-xs">
+                              <TeamLogo shortName={actualWinner} size="xs" />
+                              {actualWinner}
+                            </span>
+                          ) : (
+                            <span className="text-muted">-</span>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   )
@@ -351,7 +388,9 @@ export default function ComparePage() {
           >
             <div className="border-border border-b px-4 py-3">
               <div className="flex items-center gap-3">
-                <h3 className="font-medium text-zinc-900 dark:text-white">{getStageName(stageKey)}</h3>
+                <h3 className="font-medium text-zinc-900 dark:text-white">
+                  {getStageName(stageKey)}
+                </h3>
                 {stageProgress && (
                   <span
                     className={`rounded px-2 py-0.5 text-xs font-medium ${
@@ -386,26 +425,57 @@ export default function ComparePage() {
               <tbody className="divide-border divide-y">
                 <tr>
                   <td className="text-win px-4 py-2">3-0</td>
-                  <td className="text-muted px-4 py-2 text-center text-xs">
+                  <td className="px-4 py-2 text-center">
                     {completed ? (
-                      stageResult.result['3-0']?.join(', ') || '-'
+                      <div className="flex flex-wrap justify-center gap-1">
+                        {(stageResult.result['3-0']?.length ?? 0) > 0 ? (
+                          stageResult.result['3-0']?.map((team) => (
+                            <span
+                              key={team}
+                              className="bg-win/10 text-win flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
+                            >
+                              <TeamLogo shortName={team} size="xs" />
+                              {team}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="text-muted text-xs">-</span>
+                        )}
+                      </div>
                     ) : (
-                      <div className="space-y-1">
+                      <div className="space-y-1 text-xs">
                         {(stageResult.result['2-0']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">2-0:</span>{' '}
-                            {stageResult.result['2-0']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">2-0:</span>
+                            {stageResult.result['2-0']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['1-0']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">1-0:</span>{' '}
-                            {stageResult.result['1-0']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">1-0:</span>
+                            {stageResult.result['1-0']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['2-0']?.length ?? 0) === 0 &&
-                          (stageResult.result['1-0']?.length ?? 0) === 0 &&
-                          '-'}
+                          (stageResult.result['1-0']?.length ?? 0) === 0 && (
+                            <span className="text-muted">-</span>
+                          )}
                       </div>
                     )}
                   </td>
@@ -444,43 +514,93 @@ export default function ComparePage() {
                 </tr>
                 <tr>
                   <td className="text-primary-400 px-4 py-2 text-nowrap">3-1/2</td>
-                  <td className="text-muted px-4 py-2 text-center text-xs">
+                  <td className="px-4 py-2 text-center">
                     {completed ? (
-                      [
-                        ...(stageResult.result['3-1'] || []),
-                        ...(stageResult.result['3-2'] || []),
-                      ].join(', ') || '-'
+                      <div className="flex flex-wrap justify-center gap-1">
+                        {[
+                          ...(stageResult.result['3-1'] || []),
+                          ...(stageResult.result['3-2'] || []),
+                        ].length > 0 ? (
+                          [
+                            ...(stageResult.result['3-1'] || []),
+                            ...(stageResult.result['3-2'] || []),
+                          ].map((team) => (
+                            <span
+                              key={team}
+                              className="bg-win/10 text-win flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
+                            >
+                              <TeamLogo shortName={team} size="xs" />
+                              {team}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="text-muted text-xs">-</span>
+                        )}
+                      </div>
                     ) : (
-                      <div className="space-y-1">
+                      <div className="space-y-1 text-xs">
                         {(stageResult.result['2-1']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">2-1:</span>{' '}
-                            {stageResult.result['2-1']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">2-1:</span>
+                            {stageResult.result['2-1']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['2-2']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">2-2:</span>{' '}
-                            {stageResult.result['2-2']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">2-2:</span>
+                            {stageResult.result['2-2']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['1-1']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">1-1:</span>{' '}
-                            {stageResult.result['1-1']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">1-1:</span>
+                            {stageResult.result['1-1']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['1-2']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">1-2:</span>{' '}
-                            {stageResult.result['1-2']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">1-2:</span>
+                            {stageResult.result['1-2']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['2-1']?.length ?? 0) === 0 &&
                           (stageResult.result['2-2']?.length ?? 0) === 0 &&
                           (stageResult.result['1-1']?.length ?? 0) === 0 &&
-                          (stageResult.result['1-2']?.length ?? 0) === 0 &&
-                          '-'}
+                          (stageResult.result['1-2']?.length ?? 0) === 0 && (
+                            <span className="text-muted">-</span>
+                          )}
                       </div>
                     )}
                   </td>
@@ -525,26 +645,57 @@ export default function ComparePage() {
                 </tr>
                 <tr>
                   <td className="text-lose px-4 py-2">0-3</td>
-                  <td className="text-muted px-4 py-2 text-center text-xs">
+                  <td className="px-4 py-2 text-center">
                     {completed ? (
-                      stageResult.result['0-3']?.join(', ') || '-'
+                      <div className="flex flex-wrap justify-center gap-1">
+                        {(stageResult.result['0-3']?.length ?? 0) > 0 ? (
+                          stageResult.result['0-3']?.map((team) => (
+                            <span
+                              key={team}
+                              className="bg-lose/10 text-lose flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
+                            >
+                              <TeamLogo shortName={team} size="xs" />
+                              {team}
+                            </span>
+                          ))
+                        ) : (
+                          <span className="text-muted text-xs">-</span>
+                        )}
+                      </div>
                     ) : (
-                      <div className="space-y-1">
+                      <div className="space-y-1 text-xs">
                         {(stageResult.result['0-2']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">0-2:</span>{' '}
-                            {stageResult.result['0-2']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">0-2:</span>
+                            {stageResult.result['0-2']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['0-1']?.length ?? 0) > 0 && (
-                          <div>
-                            <span className="text-primary-400 font-medium">0-1:</span>{' '}
-                            {stageResult.result['0-1']?.join(', ')}
+                          <div className="flex flex-wrap items-center justify-center gap-1">
+                            <span className="text-primary-400 font-medium">0-1:</span>
+                            {stageResult.result['0-1']?.map((team) => (
+                              <span
+                                key={team}
+                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                              >
+                                <TeamLogo shortName={team} size="xs" />
+                                {team}
+                              </span>
+                            ))}
                           </div>
                         )}
                         {(stageResult.result['0-2']?.length ?? 0) === 0 &&
-                          (stageResult.result['0-1']?.length ?? 0) === 0 &&
-                          '-'}
+                          (stageResult.result['0-1']?.length ?? 0) === 0 && (
+                            <span className="text-muted">-</span>
+                          )}
                       </div>
                     )}
                   </td>

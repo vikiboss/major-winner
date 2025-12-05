@@ -1,6 +1,18 @@
 @import 'tailwindcss';
 
 @theme {
+  /* 字体 */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', monospace;
+}
+
+/* 默认暗色主题变量 */
+:root {
+  --foreground: #e4e4e7;
+  --foreground-secondary: #a1a1aa;
+  --foreground-muted: #71717a;
+  --background: #0c0c10;
+
   /* CS2 橙色 */
   --color-primary-400: #fb923c;
   --color-primary-500: #f97316;
@@ -19,22 +31,7 @@
   --color-lose: #ef4444;
   --color-muted: #71717a;
 
-  /* 字体 */
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: ui-monospace, 'SF Mono', monospace;
-}
-
-:root {
-  --foreground: #e4e4e7;
-  --background: #0c0c10;
-}
-
-html {
   color-scheme: dark;
-}
-
-html.light {
-  color-scheme: light;
 }
 
 body {
@@ -60,29 +57,86 @@ body {
   background: var(--color-border-active);
 }
 
+/* 暗色主题 */
+.dark {
+  --foreground: #e4e4e7;
+  --foreground-secondary: #a1a1aa;
+  --foreground-muted: #71717a;
+  --background: #0c0c10;
+
+  /* CS2 橙色 */
+  --color-primary-400: #fb923c;
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
+
+  /* 扁平深色系 */
+  --color-surface-0: #0c0c10;
+  --color-surface-1: #111116;
+  --color-surface-2: #18181e;
+  --color-surface-3: #1f1f27;
+  --color-border: #2a2a35;
+  --color-border-active: #3d3d4a;
+
+  /* 状态色 */
+  --color-win: #22c55e;
+  --color-lose: #ef4444;
+  --color-muted: #71717a;
+
+  color-scheme: dark;
+}
+
 .dark ::selection {
   background: rgb(249 115 22 / 0.25);
 }
 
-.light ::selection {
-  background: rgb(249 115 22 / 0.35);
-}
-
-.dark {
-  --foreground: #e4e4e7;
-  --background: #0c0c10;
-}
-
+/* 亮色主题 */
 .light {
   --foreground: #18181b;
+  --foreground-secondary: #52525b;
+  --foreground-muted: #71717a;
   --background: #fafafa;
+
+  /* CS2 橙色 - 亮色模式下调整 */
+  --color-primary-400: #f97316;
+  --color-primary-500: #ea580c;
+  --color-primary-600: #c2410c;
+
+  /* 亮色系 */
   --color-surface-0: #ffffff;
   --color-surface-1: #f4f4f5;
   --color-surface-2: #e4e4e7;
   --color-surface-3: #d4d4d8;
   --color-border: #d4d4d8;
   --color-border-active: #a1a1aa;
-  --color-muted: #52525b;
+
+  /* 状态色 - 亮色模式下调整对比度 */
+  --color-win: #16a34a;
+  --color-lose: #dc2626;
+  --color-muted: #71717a;
+
+  color-scheme: light;
+}
+
+.light ::selection {
+  background: rgb(249 115 22 / 0.35);
+}
+
+/* 文本颜色工具类 - 自动适配主题 */
+.text-primary {
+  color: var(--foreground);
+}
+
+.text-secondary {
+  color: var(--foreground-secondary);
+}
+
+.text-tertiary {
+  color: var(--foreground-muted);
+}
+
+/* Hover 状态 */
+.hover-text-primary:hover {
+  color: var(--foreground);
 }
 
 /* Mobile optimizations - use safe area insets for notched devices */

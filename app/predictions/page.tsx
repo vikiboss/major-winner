@@ -67,7 +67,7 @@ function PredictionsContent() {
     <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
       {/* 页面标题 */}
       <div className="mb-6">
-        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜表格</h1>
+        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜情况</h1>
         <p className="text-secondary text-sm sm:text-base">查看所有主播在各阶段的竞猜情况</p>
       </div>
 

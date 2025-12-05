@@ -36,8 +36,8 @@ export default function ComparePage() {
     stats: calculatePredictorStats(event.id, p.predictor),
   }))
 
-  // 获取应该显示的阶段列表
-  const visibleStages = ['stage-1', 'stage-2', 'stage-3', '8-to-4', '4-to-2', '2-to-1'].filter(
+  // 获取应该显示的阶段列表（从决赛到瑞士轮的顺序）
+  const visibleStages = ['2-to-1', '4-to-2', '8-to-4', 'stage-3', 'stage-2', 'stage-1'].filter(
     (stageId) => shouldShowStage(event, stageId),
   )
 
@@ -54,8 +54,11 @@ export default function ComparePage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-semibold text-zinc-900 dark:text-white">竞猜对比</h1>
-        <p className="text-muted mt-1 text-sm">选择 0-5 位竞猜者</p>
+        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 dark:text-white">竞猜对比</h1>
+        <p className="text-muted text-md mb-6 space-y-1">
+          选择 0-5 位竞猜者。<span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四
+          2/4，半决赛 1/2，决赛猜中冠军
+        </p>
       </div>
 
       {/* Selection */}
@@ -306,7 +309,7 @@ export default function ComparePage() {
             <table className="w-full text-sm">
               <thead>
                 <tr className="border-border text-muted border-b text-xs">
-                  <th className="px-4 py-2 text-left">竞猜项</th>
+                  <th className="px-4 py-2 text-left text-nowrap">竞猜项</th>
                   <th className="px-4 py-2 text-center">实际</th>
                   {selectedStats.map(({ prediction }) => (
                     <th key={prediction.predictor} className="px-4 py-2 text-center text-nowrap">

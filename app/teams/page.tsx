@@ -258,7 +258,11 @@ export default function TeamsPage() {
             <div key={team.name} className="bg-surface-1 border-border rounded-lg border p-4">
               <div className="mb-3 flex items-start justify-between">
                 <div className="flex items-start gap-3">
-                  <TeamLogo shortName={team.shortName} size="lg" className="mt-0.5" />
+                  <TeamLogo
+                    shortName={team.shortName}
+                    size="lg"
+                    className="bg-surface-2 mt-0.5 rounded-sm"
+                  />
                   <div>
                     <h3 className="text-primary font-medium">{team.name}</h3>
                     <p className="text-muted mt-1 text-xs">
@@ -313,16 +317,16 @@ export default function TeamsPage() {
         <table className="w-full min-w-[500px]">
           <thead className="bg-surface-2 border-border border-b">
             <tr>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
                 战队
               </th>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
                 起始组别
               </th>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
                 当前状态
               </th>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium uppercase tracking-wide">
+              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
                 比赛战绩
               </th>
             </tr>
@@ -333,10 +337,17 @@ export default function TeamsPage() {
               const status = getTeamStatus(team.shortName)
 
               return (
-                <tr key={team.name} className="hover:bg-surface-2/50 transition-colors">
+                <tr
+                  key={team.name}
+                  className="bg-surface-1 hover:bg-surface-2/50 transition-colors"
+                >
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
-                      <TeamLogo shortName={team.shortName} size="md" />
+                      <TeamLogo
+                        shortName={team.shortName}
+                        size="md"
+                        className="bg-surface-2 rounded-sm"
+                      />
                       <span className="text-primary font-medium">{team.name}</span>
                     </div>
                   </td>

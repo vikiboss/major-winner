@@ -6,11 +6,9 @@ import { usePathname } from 'next/navigation'
 import { ThemeToggle } from './ThemeToggle'
 
 const navItems = [
-  { href: '/', label: '首页' },
-  { href: '/predictors', label: '竞猜' },
-  { href: '/predictions', label: '表格' },
+  { href: '/predictors', label: '排行' },
+  { href: '/predictions', label: '竞猜' },
   { href: '/teams', label: '战队' },
-  { href: '/compare', label: '对比' },
 ]
 
 export function Header() {
@@ -21,7 +19,10 @@ export function Header() {
       <div className="mx-auto max-w-5xl px-4">
         <div className="flex h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
-          <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <Link
+            href="/"
+            className="flex shrink-0 cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
+          >
             <Image src="/icon.png" alt="Major Winner Logo" width={48} height={48} />
             <span className="text-primary text-sm font-semibold sm:text-lg">Major Winner</span>
           </Link>

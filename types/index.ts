@@ -123,6 +123,7 @@ export interface StagePassStatus {
   correctCount: number
   requiredCount: number
   details: string
+  isResultComplete: boolean // 阶段结果是否完整(完整才能判断通过/未通过)
 }
 
 // 计算统计用类型

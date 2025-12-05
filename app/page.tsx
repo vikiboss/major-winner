@@ -482,7 +482,7 @@ function StageSection({
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">竞猜者竞猜</h3>
               <Link
-                href="/predictors"
+                href={`/predictions?tab=${stageType === 'finals-round' ? 'finals' : stageId}`}
                 className="text-primary-400 hover:text-primary-300 text-xs transition-colors"
               >
                 查看全部 →

@@ -1,7 +1,7 @@
 'use client'
 
-import { useState } from 'react'
-import Link from 'next/link'
+import { useState, useEffect, Suspense } from 'react'
+import { useSearchParams, useRouter } from 'next/navigation'
 import {
   events,
   getEventPredictions,
@@ -14,11 +14,28 @@ import type { StagePrediction, FinalsPrediction } from '@/types'
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 type SortOrder = 'default' | 'correctAsc' | 'correctDesc'
 
-export default function PredictionsPage() {
+function PredictionsContent() {
   const event = events[0]
   const eventPreds = getEventPredictions(event.id)
-  const [activeStage, setActiveStage] = useState<Stage>('stage-3')
+  const searchParams = useSearchParams()
+  const router = useRouter()
+
+  // 从 URL query 读取 tab 参数,如果没有则默认为 'stage-3'
+  const tabParam = searchParams.get('tab') as Stage | null
+  const defaultStage: Stage =
+    tabParam && ['stage-1', 'stage-2', 'stage-3', 'finals'].includes(tabParam)
+      ? tabParam
+      : 'stage-3'
+
+  const [activeStage, setActiveStage] = useState<Stage>(defaultStage)
   const [sortOrder, setSortOrder] = useState<SortOrder>('default')
+
+  // 当 activeStage 改变时更新 URL
+  useEffect(() => {
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('tab', activeStage)
+    router.replace(`/predictions?${params.toString()}`, { scroll: false })
+  }, [activeStage, router, searchParams])
 
   if (!eventPreds) {
     return (
@@ -32,9 +49,9 @@ export default function PredictionsPage() {
   }
 
   const stages: Array<{ id: Stage; label: string }> = [
-    { id: 'stage-1', label: '瑞士轮 1' },
-    { id: 'stage-2', label: '瑞士轮 2' },
-    { id: 'stage-3', label: '瑞士轮 3' },
+    { id: 'stage-1', label: '第一阶段' },
+    { id: 'stage-2', label: '第二阶段' },
+    { id: 'stage-3', label: '第三阶段' },
     { id: 'finals', label: '决赛阶段' },
   ]
 
@@ -47,7 +64,7 @@ export default function PredictionsPage() {
   })
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-6 sm:py-8">
+    <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8">
       {/* 页面标题 */}
       <div className="mb-6">
         <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜表格</h1>
@@ -178,12 +195,9 @@ function SwissTable({
               return (
                 <tr key={predictor.id} className="hover:bg-surface-2 transition-colors">
                   <td className="px-4 py-3">
-                    <Link
-                      href={`/predictors/${encodeURIComponent(predictor.id)}`}
-                      className="hover:text-primary-400 text-primary font-medium transition-colors"
-                    >
+                    <span className="hover:text-primary-400 transition-colors">
                       {predictor.name}
-                    </Link>
+                    </span>
                   </td>
                   <td className="px-4 py-3">
                     <span className="text-muted text-sm">{predictor.platform}</span>
@@ -273,10 +287,18 @@ function SwissTable({
                       <div className="flex flex-col items-center gap-1">
                         <span
                           className={`inline-block rounded px-2 py-1 text-xs font-medium text-nowrap ${
-                            stageResult.passed ? 'bg-win/10 text-win' : 'bg-lose/10 text-lose'
+                            !stageResult.isResultComplete
+                              ? 'bg-primary-500/10 text-primary-500'
+                              : stageResult.passed
+                                ? 'bg-win/10 text-win'
+                                : 'bg-lose/10 text-lose'
                           }`}
                         >
-                          {stageResult.passed ? '✓ 通过' : '✗ 未通过'}
+                          {!stageResult.isResultComplete
+                            ? '⋯ 进行中'
+                            : stageResult.passed
+                              ? '✓ 通过'
+                              : '✗ 未通过'}
                         </span>
                         <span className="text-muted text-xs">
                           {stageResult.correctCount}/{stageResult.requiredCount}
@@ -306,12 +328,9 @@ function SwissTable({
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <Link
-                    href={`/predictors/${encodeURIComponent(predictor.id)}`}
-                    className="hover:text-primary-400 text-primary font-medium transition-colors"
-                  >
+                  <span className="hover:text-primary-400 text-primary font-medium transition-colors">
                     {predictor.name}
-                  </Link>
+                  </span>
                   <p className="text-muted text-xs">@{predictor.platform}</p>
                 </div>
                 {stageResult && (
@@ -321,10 +340,18 @@ function SwissTable({
                     </span>
                     <span
                       className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
-                        stageResult.passed ? 'bg-win/10 text-win' : 'bg-lose/10 text-lose'
+                        !stageResult.isResultComplete
+                          ? 'bg-primary-500/10 text-primary-500'
+                          : stageResult.passed
+                            ? 'bg-win/10 text-win'
+                            : 'bg-lose/10 text-lose'
                       }`}
                     >
-                      {stageResult.passed ? '✓ 通过' : '✗ 未通过'}
+                      {!stageResult.isResultComplete
+                        ? '⋯ 进行中'
+                        : stageResult.passed
+                          ? '✓ 通过'
+                          : '✗ 未通过'}
                     </span>
                     <span className="text-muted text-xs">
                       {stageResult.correctCount}/{stageResult.requiredCount}
@@ -510,12 +537,9 @@ function FinalsTable({
               return (
                 <tr key={predictor.id} className="hover:bg-surface-2 transition-colors">
                   <td className="px-4 py-3">
-                    <Link
-                      href={`/predictors/${encodeURIComponent(predictor.id)}`}
-                      className="hover:text-primary-400 text-primary font-medium text-nowrap transition-colors"
-                    >
+                    <span className="hover:text-primary-400 text-primary font-medium text-nowrap transition-colors">
                       {predictor.name}
-                    </Link>
+                    </span>
                   </td>
                   <td className="px-4 py-3 text-nowrap">
                     <span className="text-muted text-sm">{predictor.platform}</span>
@@ -611,9 +635,15 @@ function FinalsTable({
                             <div key={s.stageId} className="flex items-center gap-1">
                               <span className="text-muted text-xs">{stageName}:</span>
                               <span
-                                className={`text-xs font-medium ${s.passed ? 'text-win' : 'text-lose'}`}
+                                className={`text-xs font-medium ${
+                                  !s.isResultComplete
+                                    ? 'text-primary-500'
+                                    : s.passed
+                                      ? 'text-win'
+                                      : 'text-lose'
+                                }`}
                               >
-                                {s.passed ? '✓' : '✗'}
+                                {!s.isResultComplete ? '⋯' : s.passed ? '✓' : '✗'}
                               </span>
                             </div>
                           )
@@ -646,12 +676,9 @@ function FinalsTable({
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <Link
-                    href={`/predictors/${encodeURIComponent(predictor.id)}`}
-                    className="hover:text-primary-400 text-primary font-medium transition-colors"
-                  >
+                  <span className="hover:text-primary-400 text-primary font-medium transition-colors">
                     {predictor.name}
-                  </Link>
+                  </span>
                   <p className="text-muted text-xs">@{predictor.platform}</p>
                 </div>
                 {finalsStats && finalsStats.length > 0 && (
@@ -670,12 +697,18 @@ function FinalsTable({
                     {finalsStats?.find((s) => s.stageId === '8-to-4') && (
                       <span
                         className={`text-xs font-medium ${
-                          finalsStats.find((s) => s.stageId === '8-to-4')?.passed
-                            ? 'text-win'
-                            : 'text-lose'
+                          !finalsStats.find((s) => s.stageId === '8-to-4')?.isResultComplete
+                            ? 'text-primary-500'
+                            : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
+                              ? 'text-win'
+                              : 'text-lose'
                         }`}
                       >
-                        {finalsStats.find((s) => s.stageId === '8-to-4')?.passed ? '✓' : '✗'}
+                        {!finalsStats.find((s) => s.stageId === '8-to-4')?.isResultComplete
+                          ? '⋯'
+                          : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
+                            ? '✓'
+                            : '✗'}
                       </span>
                     )}
                   </div>
@@ -709,12 +742,18 @@ function FinalsTable({
                     {finalsStats?.find((s) => s.stageId === '4-to-2') && (
                       <span
                         className={`text-xs font-medium ${
-                          finalsStats.find((s) => s.stageId === '4-to-2')?.passed
-                            ? 'text-win'
-                            : 'text-lose'
+                          !finalsStats.find((s) => s.stageId === '4-to-2')?.isResultComplete
+                            ? 'text-primary-500'
+                            : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
+                              ? 'text-win'
+                              : 'text-lose'
                         }`}
                       >
-                        {finalsStats.find((s) => s.stageId === '4-to-2')?.passed ? '✓' : '✗'}
+                        {!finalsStats.find((s) => s.stageId === '4-to-2')?.isResultComplete
+                          ? '⋯'
+                          : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
+                            ? '✓'
+                            : '✗'}
                       </span>
                     )}
                   </div>
@@ -748,12 +787,18 @@ function FinalsTable({
                     {finalsStats?.find((s) => s.stageId === '2-to-1') && (
                       <span
                         className={`text-xs font-medium ${
-                          finalsStats.find((s) => s.stageId === '2-to-1')?.passed
-                            ? 'text-win'
-                            : 'text-lose'
+                          !finalsStats.find((s) => s.stageId === '2-to-1')?.isResultComplete
+                            ? 'text-primary-500'
+                            : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
+                              ? 'text-win'
+                              : 'text-lose'
                         }`}
                       >
-                        {finalsStats.find((s) => s.stageId === '2-to-1')?.passed ? '✓' : '✗'}
+                        {!finalsStats.find((s) => s.stageId === '2-to-1')?.isResultComplete
+                          ? '⋯'
+                          : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
+                            ? '✓'
+                            : '✗'}
                       </span>
                     )}
                   </div>
@@ -782,5 +827,13 @@ function FinalsTable({
         })}
       </div>
     </div>
+  )
+}
+
+export default function PredictionsPage() {
+  return (
+    <Suspense fallback={<div className="mx-auto max-w-5xl px-4 py-6">加载中...</div>}>
+      <PredictionsContent />
+    </Suspense>
   )
 }

@@ -125,8 +125,12 @@ function checkSwissStagePass(
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
+      isResultComplete: false,
     }
   }
+
+  // 检查阶段结果是否完整
+  const isResultComplete = isSwissResultComplete(actual)
 
   let correctCount = 0
   let impossibleCount = 0
@@ -186,6 +190,7 @@ function checkSwissStagePass(
     correctCount,
     requiredCount,
     details,
+    isResultComplete,
   }
 }
 
@@ -207,8 +212,12 @@ function check8to4Pass(
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
+      isResultComplete: false,
     }
   }
+
+  // 8进4完整结果应该有4个winners
+  const isResultComplete = actual.length === 4
 
   let correctCount = 0
   for (const team of prediction) {
@@ -223,6 +232,7 @@ function check8to4Pass(
     correctCount,
     requiredCount,
     details: `${correctCount}/4 正确 (需${requiredCount}个)`,
+    isResultComplete,
   }
 }
 
@@ -244,8 +254,12 @@ function check4to2Pass(
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
+      isResultComplete: false,
     }
   }
+
+  // 4进2完整结果应该有2个winners
+  const isResultComplete = actual.length === 2
 
   let correctCount = 0
   for (const team of prediction) {
@@ -260,6 +274,7 @@ function check4to2Pass(
     correctCount,
     requiredCount,
     details: `${correctCount}/2 正确 (需${requiredCount}个)`,
+    isResultComplete,
   }
 }
 
@@ -281,8 +296,12 @@ function check2to1Pass(
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
+      isResultComplete: !!actual, // 有冠军结果就是完整的
     }
   }
+
+  // 有冠军就是完整结果
+  const isResultComplete = true
 
   const correctCount = prediction === actual ? 1 : 0
 
@@ -292,6 +311,7 @@ function check2to1Pass(
     correctCount,
     requiredCount,
     details: correctCount >= requiredCount ? '猜中冠军' : '未猜中',
+    isResultComplete,
   }
 }
 

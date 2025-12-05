@@ -292,7 +292,7 @@ export default function ComparePage() {
                             actualWinners.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5 text-xs"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -438,7 +438,7 @@ export default function ComparePage() {
                             {stageResult.result['2-0']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -452,7 +452,7 @@ export default function ComparePage() {
                             {stageResult.result['1-0']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -533,7 +533,7 @@ export default function ComparePage() {
                             {stageResult.result['2-1']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -547,7 +547,7 @@ export default function ComparePage() {
                             {stageResult.result['2-2']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -561,7 +561,7 @@ export default function ComparePage() {
                             {stageResult.result['1-1']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -575,7 +575,7 @@ export default function ComparePage() {
                             {stageResult.result['1-2']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -658,7 +658,7 @@ export default function ComparePage() {
                             {stageResult.result['0-2']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}
@@ -672,7 +672,7 @@ export default function ComparePage() {
                             {stageResult.result['0-1']?.map((team) => (
                               <span
                                 key={team}
-                                className="bg-surface-2 text-muted flex items-center gap-1 rounded px-1.5 py-0.5"
+                                className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-1.5 py-0.5"
                               >
                                 <TeamLogo shortName={team} size="xs" />
                                 {team}

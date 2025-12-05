@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { ThemeToggle } from './ThemeToggle'
 
@@ -20,12 +21,8 @@ export function Header() {
         <div className="flex h-16 items-center justify-between gap-2 sm:gap-4">
           {/* Logo */}
           <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3">
-            <div className="bg-primary-500 flex h-8 w-8 items-center justify-center rounded text-sm font-bold text-white">
-              MW
-            </div>
-            <span className="text-primary text-sm font-semibold sm:text-lg">
-              Major Winner
-            </span>
+            <Image src="/icon.png" alt="Major Winner Logo" width={48} height={48} />
+            <span className="text-primary text-sm font-semibold sm:text-lg">Major Winner</span>
           </Link>
 
           {/* Navigation */}

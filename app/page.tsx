@@ -525,18 +525,50 @@ function PredictorPredictions({
             </div>
 
             {prediction && stageType === 'swiss' && (
-              <div className="flex items-start gap-x-2 text-xs">
-                {/* 左列: 3-0 */}
-                <div className="flex items-center gap-x-1">
+              <div className="grid grid-cols-[3fr_6fr_4fr] gap-x-2 gap-y-1 text-xs">
+                {/* 第一行 */}
+                <div className="flex items-center gap-x-4">
                   <span className="text-muted font-medium">3-0</span>
+                  {(() => {
+                    const team = (prediction as StagePrediction)['3-0'][0]
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '3-0', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
+                    return (
+                      <span
+                        className={`flex items-center gap-0.5 rounded px-1 py-0.5 ${
+                          stageStatus === 'waiting'
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })()}
+                </div>
+
+                <div className="flex items-center gap-x-4">
+                  <span className="text-muted font-medium">3-1/2</span>
                   <div className="flex gap-1">
-                    {(prediction as StagePrediction)['3-0'].map((team) => {
+                    {(prediction as StagePrediction)['3-1-or-3-2'].slice(0, 3).map((team) => {
                       const possible =
                         stageStatus === 'waiting'
                           ? true
-                          : isPredictionPossible(team, '3-0', actualResult)
+                          : isPredictionPossible(team, '3-1-or-3-2', actualResult)
                       const isCorrect =
-                        stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
+                        stageStatus === 'waiting'
+                          ? false
+                          : actualResult?.['3-1']?.includes(team) ||
+                            actualResult?.['3-2']?.includes(team)
                       return (
                         <span
                           key={team}
@@ -558,41 +590,67 @@ function PredictorPredictions({
                   </div>
                 </div>
 
-                {/* 中列: 3-1/2 (两行) */}
-                <div className="flex flex-col gap-y-1">
-                  <div className="flex items-center gap-x-1">
-                    <span className="text-muted font-medium">3-1/2</span>
-                    <div className="flex gap-1">
-                      {(prediction as StagePrediction)['3-1-or-3-2'].slice(0, 3).map((team) => {
-                        const possible =
+                <div className="flex items-center gap-x-4">
+                  <span className="text-muted font-medium">0-3</span>
+                  {(() => {
+                    const team = (prediction as StagePrediction)['0-3'][0]
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '0-3', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
+                    return (
+                      <span
+                        className={`flex items-center gap-0.5 rounded px-1 py-0.5 ${
                           stageStatus === 'waiting'
-                            ? true
-                            : isPredictionPossible(team, '3-1-or-3-2', actualResult)
-                        const isCorrect =
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })()}
+                </div>
+
+                {/* 第二行 */}
+                <div className="flex items-center gap-x-4">
+                  <span className="text-muted invisible font-medium">3-0</span>
+                  {(() => {
+                    const team = (prediction as StagePrediction)['3-0'][1]
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '3-0', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
+                    return (
+                      <span
+                        className={`flex items-center gap-0.5 rounded px-1 py-0.5 ${
                           stageStatus === 'waiting'
-                            ? false
-                            : actualResult?.['3-1']?.includes(team) ||
-                              actualResult?.['3-2']?.includes(team)
-                        return (
-                          <span
-                            key={team}
-                            className={`flex items-center gap-0.5 rounded px-1 py-0.5 ${
-                              stageStatus === 'waiting'
-                                ? 'bg-surface-2 text-tertiary'
-                                : isCorrect
-                                  ? 'bg-win/10 text-win font-medium'
-                                  : !possible
-                                    ? 'bg-lose/10 text-lose line-through'
-                                    : 'bg-surface-2 text-tertiary'
-                            }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
-                        )
-                      })}
-                    </div>
-                  </div>
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })()}
+                </div>
+
+                <div className="flex items-center gap-x-4">
+                  <span className="text-muted invisible font-medium">3-1/2</span>
                   <div className="flex gap-1">
                     {(prediction as StagePrediction)['3-1-or-3-2'].slice(3, 6).map((team) => {
                       const possible =
@@ -625,36 +683,33 @@ function PredictorPredictions({
                   </div>
                 </div>
 
-                {/* 右列: 0-3 */}
-                <div className="flex items-center gap-x-1">
-                  <span className="text-muted font-medium">0-3</span>
-                  <div className="flex gap-1">
-                    {(prediction as StagePrediction)['0-3'].map((team) => {
-                      const possible =
-                        stageStatus === 'waiting'
-                          ? true
-                          : isPredictionPossible(team, '0-3', actualResult)
-                      const isCorrect =
-                        stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
-                      return (
-                        <span
-                          key={team}
-                          className={`flex items-center gap-0.5 rounded px-1 py-0.5 ${
-                            stageStatus === 'waiting'
-                              ? 'bg-surface-2 text-tertiary'
-                              : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
-                                : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
-                                  : 'bg-surface-2 text-tertiary'
-                          }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
-                      )
-                    })}
-                  </div>
+                <div className="flex items-center gap-x-4">
+                  <span className="text-muted invisible font-medium">0-3</span>
+                  {(() => {
+                    const team = (prediction as StagePrediction)['0-3'][1]
+                    const possible =
+                      stageStatus === 'waiting'
+                        ? true
+                        : isPredictionPossible(team, '0-3', actualResult)
+                    const isCorrect =
+                      stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
+                    return (
+                      <span
+                        className={`flex items-center gap-0.5 rounded px-1 py-0.5 ${
+                          stageStatus === 'waiting'
+                            ? 'bg-surface-2 text-tertiary'
+                            : isCorrect
+                              ? 'bg-win/10 text-win font-medium'
+                              : !possible
+                                ? 'bg-lose/10 text-lose line-through'
+                                : 'bg-surface-2 text-tertiary'
+                        }`}
+                      >
+                        <TeamLogo shortName={team} size="xs" />
+                        {team}
+                      </span>
+                    )
+                  })()}
                 </div>
               </div>
             )}

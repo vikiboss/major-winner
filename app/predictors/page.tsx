@@ -103,7 +103,7 @@ function LeaderboardTable({
                 </span>
                 <div>
                   <Link
-                    href={`/predictors/${encodeURIComponent(stat.name)}`}
+                    href={`/predictors/${encodeURIComponent(stat.id)}`}
                     className="hover:text-primary-400 text-primary block font-medium transition-colors"
                   >
                     {stat.name}
@@ -202,7 +202,7 @@ function LeaderboardTable({
                 </td>
                 <td className="px-4 py-3">
                   <Link
-                    href={`/predictors/${encodeURIComponent(stat.name)}`}
+                    href={`/predictors/${encodeURIComponent(stat.id)}`}
                     className="hover:text-primary-400 transition-colors"
                   >
                     <span className="text-primary font-medium">{stat.name}</span>

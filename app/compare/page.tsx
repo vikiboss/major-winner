@@ -89,13 +89,10 @@ export default function ComparePage() {
         {selectedStats.map(({ prediction, stats }) => {
           const best = Math.max(...selectedStats.map((s) => s.stats?.totalCorrect || 0))
           return (
-            <div
-              key={prediction.name}
-              className="bg-surface-1 border-border rounded-lg border"
-            >
+            <div key={prediction.name} className="bg-surface-1 border-border rounded-lg border">
               <div className="border-border border-b px-4 py-3">
                 <Link
-                  href={`/predictors/${encodeURIComponent(prediction.name)}`}
+                  href={`/predictors/${encodeURIComponent(prediction.id)}`}
                   className="hover:text-primary-400 text-primary font-medium"
                 >
                   {prediction.name}
@@ -156,7 +153,7 @@ export default function ComparePage() {
               {selectedStats.map(({ prediction }) => (
                 <th key={prediction.name} className="text-primary px-4 py-3 text-center">
                   <Link
-                    href={`/predictors/${encodeURIComponent(prediction.name)}`}
+                    href={`/predictors/${encodeURIComponent(prediction.id)}`}
                     className="hover:text-primary-400"
                   >
                     {prediction.name}

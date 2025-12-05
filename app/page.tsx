@@ -563,7 +563,7 @@ function PredictorPredictions({
           <div key={p.name} className="px-4 py-3">
             <div className="mb-2 flex items-center justify-between">
               <Link
-                href={`/predictors/${encodeURIComponent(p.name)}`}
+                href={`/predictors/${encodeURIComponent(p.id)}`}
                 className="hover:text-primary-400 flex items-center gap-2 transition-colors"
               >
                 <span className="text-primary font-medium">{p.name}</span>

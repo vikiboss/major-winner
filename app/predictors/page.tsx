@@ -35,7 +35,9 @@ export default function LeaderboardPage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜排行</h1>
+        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">
+          各主播、玩家竞猜总排行
+        </h1>
         <div className="mt-2 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
           <p className="text-muted">按猜对数排名 · {stats.length} 位竞猜者</p>
           <span className="text-muted hidden sm:inline">·</span>

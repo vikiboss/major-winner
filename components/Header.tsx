@@ -6,8 +6,8 @@ import { usePathname } from 'next/navigation'
 import { ThemeToggle } from './ThemeToggle'
 
 const navItems = [
-  { href: '/predictors', label: '排行' },
   { href: '/predictions', label: '竞猜' },
+  { href: '/predictors', label: '排行' },
   { href: '/teams', label: '战队' },
 ]
 

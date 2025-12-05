@@ -750,3 +750,34 @@ export function shouldShowStageInPredictorDetail(
 export function hasStageResults(event: MajorEvent, stageId: string): boolean {
   return shouldShowStage(event, stageId)
 }
+
+/**
+ * 检查瑞士轮是否有进行中的战绩(非最终结果)
+ */
+export function hasSwissInProgressResults(result: SwissResult | undefined): boolean {
+  if (!result) return false
+
+  const inProgressRecords = [
+    '1-0',
+    '0-1',
+    '1-1',
+    '2-0',
+    '0-2',
+    '2-1',
+    '1-2',
+    '2-2',
+  ] as const
+
+  return inProgressRecords.some((record) => result[record] && result[record]!.length > 0)
+}
+
+/**
+ * 检查瑞士轮是否有最终结果(晋级/淘汰)
+ */
+export function hasSwissFinalResults(result: SwissResult | undefined): boolean {
+  if (!result) return false
+
+  const finalRecords = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'] as const
+
+  return finalRecords.some((record) => result[record] && result[record].length > 0)
+}

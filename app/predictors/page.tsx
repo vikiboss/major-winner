@@ -13,7 +13,9 @@ export default function LeaderboardPage() {
     <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6 sm:mb-8">
-        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">竞猜排行</h1>
+        <h1 className="mb-2 text-2xl font-semibold text-zinc-900 sm:text-3xl dark:text-white">
+          竞猜排行
+        </h1>
         <div className="mt-2 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
           <p className="text-muted">按猜对数排名 · {stats.length} 位竞猜者</p>
           <span className="text-muted hidden sm:inline">·</span>
@@ -27,13 +29,12 @@ export default function LeaderboardPage() {
                     : 'bg-muted'
               }`}
             />
-            <span className="text-zinc-400">
-              {getEventStatusText(eventProgress.eventStatus)}
-            </span>
+            <span className="text-zinc-400">{getEventStatusText(eventProgress.eventStatus)}</span>
           </div>
         </div>
         <p className="text-muted mt-3 text-xs sm:text-sm">
-          <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军
+          <span className="text-zinc-400">通过规则：</span>瑞士轮 5/10，八进四 2/4，半决赛
+          1/2，决赛猜中冠军
         </p>
       </div>
 
@@ -129,15 +130,15 @@ function LeaderboardTable({
                 const result = stat.stageResults.find((s) => s.stageId === stage.id)
                 const stageName =
                   stage.id === 'stage-1'
-                    ? '第一'
+                    ? '第一阶段'
                     : stage.id === 'stage-2'
-                      ? '第二'
+                      ? '第二阶段'
                       : stage.id === 'stage-3'
-                        ? '第三'
+                        ? '第三阶段'
                         : stage.id === '8-to-4'
                           ? '八强'
                           : stage.id === '4-to-2'
-                            ? '半决'
+                            ? '半决赛'
                             : '决赛'
                 return (
                   <div

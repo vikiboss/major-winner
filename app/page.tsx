@@ -118,7 +118,7 @@ export default function Home() {
       <div className="bg-surface-0 border-border stage-nav sticky top-16 z-40 border-b">
         <div className="mx-auto max-w-5xl">
           <nav
-            className="stage-nav flex gap-1 overflow-x-auto px-4 py-2 sm:px-4 [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"
+            className="stage-nav flex gap-1 overflow-x-auto px-4 py-2 [scrollbar-width:thin] sm:px-4 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"
             role="navigation"
             style={{ scrollSnapType: 'x mandatory' }}
           >
@@ -126,7 +126,7 @@ export default function Home() {
               <a
                 key={stage.id}
                 href={`#${stage.id}`}
-                className="hover:bg-surface-2 shrink-0 rounded-md px-3 py-2 text-xs font-medium text-zinc-400 transition-colors active:scale-95 hover:text-zinc-900 sm:min-w-20 sm:px-4 sm:text-sm dark:hover:text-white"
+                className="hover:bg-surface-2 shrink-0 rounded-md px-3 py-2 text-xs font-medium text-zinc-400 transition-colors hover:text-zinc-900 active:scale-95 sm:min-w-20 sm:px-4 sm:text-sm dark:hover:text-white"
                 style={{ scrollSnapAlign: 'start' }}
               >
                 {getStageName(stage.id as string)}
@@ -480,105 +480,107 @@ function PredictorPredictions({
             </div>
 
             {prediction && stageType === 'swiss' && (
-              <div className="flex flex-col gap-1.5 text-xs sm:flex-row sm:gap-6">
-                <div className="flex flex-wrap gap-1">
-                  <span className="text-muted">3-0: </span>
-                  {(prediction as StagePrediction)['3-0'].map((team, idx) => {
-                    const possible =
-                      stageStatus === 'waiting'
-                        ? true
-                        : isPredictionPossible(team, '3-0', actualResult)
-                    const isCorrect =
-                      stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
-                    return (
-                      <span key={team} className="inline-flex items-center gap-1">
-                        <TeamLogo shortName={team} size="xs" />
-                        <span
-                          className={
-                            stageStatus === 'waiting'
-                              ? 'text-zinc-400'
-                              : isCorrect
-                                ? 'text-win font-medium'
-                                : !possible
-                                  ? 'text-lose line-through opacity-60'
-                                  : 'text-zinc-400'
-                          }
-                        >
-                          {team}
-                        </span>
-                        {idx < (prediction as StagePrediction)['3-0'].length - 1 && (
-                          <span className="text-muted">,</span>
-                        )}
-                      </span>
-                    )
-                  })}
+              <div className="space-y-2.5">
+                {/* 3-0 区域 */}
+                <div className="flex items-start gap-2">
+                  <span className="text-muted shrink-0 text-xs font-medium">3-0:</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(prediction as StagePrediction)['3-0'].map((team) => {
+                      const possible =
+                        stageStatus === 'waiting'
+                          ? true
+                          : isPredictionPossible(team, '3-0', actualResult)
+                      const isCorrect =
+                        stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
+                      return (
+                        <div key={team} className="flex items-center gap-1">
+                          <TeamLogo shortName={team} size="xs" />
+                          <span
+                            className={`text-xs ${
+                              stageStatus === 'waiting'
+                                ? 'text-zinc-400'
+                                : isCorrect
+                                  ? 'text-win font-medium'
+                                  : !possible
+                                    ? 'text-lose line-through opacity-60'
+                                    : 'text-zinc-400'
+                            }`}
+                          >
+                            {team}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-1">
-                  <span className="text-muted">3-1/2: </span>
-                  {(prediction as StagePrediction)['3-1-or-3-2'].map((team, idx) => {
-                    const possible =
-                      stageStatus === 'waiting'
-                        ? true
-                        : isPredictionPossible(team, '3-1-or-3-2', actualResult)
-                    const isCorrect =
-                      stageStatus === 'waiting'
-                        ? false
-                        : actualResult?.['3-1']?.includes(team) ||
-                          actualResult?.['3-2']?.includes(team)
-                    return (
-                      <span key={team} className="inline-flex items-center gap-1">
-                        <TeamLogo shortName={team} size="xs" />
-                        <span
-                          className={
-                            stageStatus === 'waiting'
-                              ? 'text-zinc-400'
-                              : isCorrect
-                                ? 'text-win font-medium'
-                                : !possible
-                                  ? 'text-lose line-through opacity-60'
-                                  : 'text-zinc-400'
-                          }
-                        >
-                          {team}
-                        </span>
-                        {idx < (prediction as StagePrediction)['3-1-or-3-2'].length - 1 && (
-                          <span className="text-muted">,</span>
-                        )}
-                      </span>
-                    )
-                  })}
+
+                {/* 3-1/2 区域 */}
+                <div className="flex items-start gap-2">
+                  <span className="text-muted shrink-0 text-xs font-medium">3-1/2:</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(prediction as StagePrediction)['3-1-or-3-2'].map((team) => {
+                      const possible =
+                        stageStatus === 'waiting'
+                          ? true
+                          : isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                      const isCorrect =
+                        stageStatus === 'waiting'
+                          ? false
+                          : actualResult?.['3-1']?.includes(team) ||
+                            actualResult?.['3-2']?.includes(team)
+                      return (
+                        <div key={team} className="flex items-center gap-1">
+                          <TeamLogo shortName={team} size="xs" />
+                          <span
+                            className={`text-xs ${
+                              stageStatus === 'waiting'
+                                ? 'text-zinc-400'
+                                : isCorrect
+                                  ? 'text-win font-medium'
+                                  : !possible
+                                    ? 'text-lose line-through opacity-60'
+                                    : 'text-zinc-400'
+                            }`}
+                          >
+                            {team}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
-                <div className="flex flex-wrap gap-1">
-                  <span className="text-muted">0-3: </span>
-                  {(prediction as StagePrediction)['0-3'].map((team, idx) => {
-                    const possible =
-                      stageStatus === 'waiting'
-                        ? true
-                        : isPredictionPossible(team, '0-3', actualResult)
-                    const isCorrect =
-                      stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
-                    return (
-                      <span key={team} className="inline-flex items-center gap-1">
-                        <TeamLogo shortName={team} size="xs" />
-                        <span
-                          className={
-                            stageStatus === 'waiting'
-                              ? 'text-zinc-400'
-                              : isCorrect
-                                ? 'text-win font-medium'
-                                : !possible
-                                  ? 'text-lose line-through opacity-60'
-                                  : 'text-zinc-400'
-                          }
-                        >
-                          {team}
-                        </span>
-                        {idx < (prediction as StagePrediction)['0-3'].length - 1 && (
-                          <span className="text-muted">,</span>
-                        )}
-                      </span>
-                    )
-                  })}
+
+                {/* 0-3 区域 */}
+                <div className="flex items-start gap-2">
+                  <span className="text-muted shrink-0 text-xs font-medium">0-3:</span>
+                  <div className="flex flex-wrap gap-1.5">
+                    {(prediction as StagePrediction)['0-3'].map((team) => {
+                      const possible =
+                        stageStatus === 'waiting'
+                          ? true
+                          : isPredictionPossible(team, '0-3', actualResult)
+                      const isCorrect =
+                        stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
+                      return (
+                        <div key={team} className="flex items-center gap-1">
+                          <TeamLogo shortName={team} size="xs" />
+                          <span
+                            className={`text-xs ${
+                              stageStatus === 'waiting'
+                                ? 'text-zinc-400'
+                                : isCorrect
+                                  ? 'text-win font-medium'
+                                  : !possible
+                                    ? 'text-lose line-through opacity-60'
+                                    : 'text-zinc-400'
+                            }`}
+                          >
+                            {team}
+                          </span>
+                        </div>
+                      )
+                    })}
+                  </div>
                 </div>
               </div>
             )}

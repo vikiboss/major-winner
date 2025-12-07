@@ -3,6 +3,7 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 import { EventProvider } from '@/components/EventContext'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 import './globals.css'
 
@@ -39,6 +40,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
+        <GoogleAnalytics gaId="G-NRG0R1D14W" />
+
         <ThemeProvider>
           <EventProvider>
             <Header />

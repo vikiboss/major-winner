@@ -1,6 +1,6 @@
 import { events, getAllPredictorStats, getEventProgress, getEventStatusText } from '@/lib/data'
 
-export default function LeaderboardPage() {
+export default function PredictorsPage() {
   const event = events[0]
   const stats = getAllPredictorStats(event.id)
   const eventProgress = getEventProgress(event)
@@ -117,7 +117,15 @@ export default function LeaderboardPage() {
                         )
                       ) : result ? (
                         <span className="text-muted">
-                          {result.correctCount}/{result.requiredCount}
+                          {result.correctCount}/{result.requiredCount}（
+                          {result.correctCount >= result.requiredCount
+                            ? '✅ 通过'
+                            : result.impossibleCount >= result.totalCount - result.requiredCount
+                              ? `❌ 已炸，已挂 ${result.impossibleCount} 个`
+                              : `祈祷中，还剩 ${
+                                  result.totalCount - result.correctCount - result.impossibleCount
+                                } 个`}
+                          ）
                         </span>
                       ) : (
                         <span className="text-muted">-</span>
@@ -197,7 +205,15 @@ export default function LeaderboardPage() {
                           )
                         ) : result ? (
                           <span className="text-muted text-xs">
-                            {result.correctCount}/{result.requiredCount}
+                            {result.correctCount}/{result.requiredCount}（
+                            {result.correctCount >= result.requiredCount
+                              ? '✅ 通过'
+                              : result.impossibleCount >= result.totalCount - result.requiredCount
+                                ? `❌ 已炸，已挂 ${result.impossibleCount} 个`
+                                : `祈祷中，还剩 ${
+                                    result.totalCount - result.correctCount - result.impossibleCount
+                                  } 个`}
+                            ）
                           </span>
                         ) : (
                           <span className="text-muted">-</span>

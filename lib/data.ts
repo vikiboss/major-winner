@@ -129,6 +129,7 @@ function checkSwissStagePass(
     return {
       stageId,
       passed: null,
+      totalCount,
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
@@ -194,6 +195,7 @@ function checkSwissStagePass(
 
   return {
     stageId,
+    totalCount,
     passed:
       correctCount >= requiredCount
         ? true
@@ -225,6 +227,7 @@ function check8to4Pass(
     return {
       stageId,
       passed: null,
+      totalCount,
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
@@ -255,6 +258,7 @@ function check8to4Pass(
         : impossibleCount > totalCount - requiredCount
           ? false
           : null,
+    totalCount,
     correctCount,
     requiredCount,
     details: `${correctCount}/4 正确 (需 ${requiredCount} 个)`,
@@ -280,6 +284,7 @@ function check4to2Pass(
     return {
       stageId,
       passed: null,
+      totalCount,
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
@@ -310,6 +315,7 @@ function check4to2Pass(
         : impossibleCount > totalCount - requiredCount
           ? false
           : null,
+    totalCount,
     correctCount,
     requiredCount,
     details: `${correctCount}/2 正确 (需 ${requiredCount} 个)`,
@@ -328,6 +334,7 @@ function check2to1Pass(
   loser: string | null | undefined,
   allEliminatedTeams: string[],
 ): StagePassStatus {
+  const totalCount = 1
   const requiredCount = 1
   const stageId = '2-to-1'
 
@@ -335,6 +342,7 @@ function check2to1Pass(
     return {
       stageId,
       passed: null,
+      totalCount,
       correctCount: 0,
       requiredCount,
       details: '无竞猜数据',
@@ -357,6 +365,7 @@ function check2to1Pass(
   return {
     stageId,
     passed: correctCount >= requiredCount,
+    totalCount,
     correctCount,
     requiredCount,
     details: correctCount >= requiredCount ? '猜中冠军' : '未猜中',

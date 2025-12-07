@@ -235,8 +235,8 @@ function SwissTable({
                           {isInProgress
                             ? '祈祷中'
                             : stageResult.passed
-                              ? '✅ 作业通过'
-                              : '❌ 作业已炸'}
+                              ? '✅ 通过'
+                              : '❌ 已炸'}
                         </span>
                         <span className="text-muted text-xs">
                           {stageResult.correctCount}/{stageResult.requiredCount}
@@ -293,7 +293,7 @@ function SwissTable({
                             : 'bg-lose/10 text-lose'
                       }`}
                     >
-                      {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 作业通过' : '❌ 作业已炸'}
+                      {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 通过' : '❌ 已炸'}
                     </span>
                     <span className="text-muted text-xs">
                       {stageResult.correctCount}/{stageResult.requiredCount}

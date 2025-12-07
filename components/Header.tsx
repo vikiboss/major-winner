@@ -7,6 +7,7 @@ import { ThemeToggle } from './ThemeToggle'
 import { EventSelector } from './EventSelector'
 
 const navItems = [
+  { href: '/', label: '首页' },
   { href: '/predictions', label: '竞猜' },
   { href: '/predictors', label: '排行' },
   { href: '/teams', label: '战队' },
@@ -27,7 +28,7 @@ export function Header() {
             <Image
               src="/icon.png"
               alt="Major Winner Logo"
-              className="size-6 sm:size-12"
+              className="size-6 sm:size-8"
               width={48}
               height={48}
             />

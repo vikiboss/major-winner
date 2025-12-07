@@ -122,6 +122,7 @@ export interface EventPredictions {
 export interface StagePassStatus {
   stageId: TaskStageType
   passed: boolean | null // 是否通过该阶段
+  totalCount: number // 总竞猜数
   correctCount: number // 正确预测数
   requiredCount: number // 通过所需的正确预测数
   impossibleCount: number // 已经确定错误的预测数（进行中时有用）

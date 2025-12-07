@@ -41,62 +41,75 @@ export default function Home() {
         id: '8-to-4' | '4-to-2' | '2-to-1'
         data: NonNullable<typeof event.finals>
         type: 'finals-round'
-        status: 'completed' | 'in_progress' | 'waiting' | undefined
+        status: 'completed' | 'in_progress' | 'waiting'
         round: '8-to-4' | '4-to-2' | '2-to-1'
       }
     | {
         id: string
         data: NonNullable<(typeof event)['stage-1']>
         type: 'swiss'
-        status: 'completed' | 'in_progress' | 'waiting' | undefined
+        status: 'completed' | 'in_progress' | 'waiting'
       }
 
   const stages: StageItem[] = activeStages
     .flatMap((stage): StageItem | StageItem[] => {
       // 如果是 finals,拆分成三个子阶段,但只显示有结果或进行中的子阶段
+      const hasPredictions = stage.hasPredictions
+
       if (stage.id === 'finals' && event.finals) {
-        const finalsResults = event.finals.result
-        const rounds: Array<{
+        const results = event.finals.result
+
+        const rounds: {
           id: '8-to-4' | '4-to-2' | '2-to-1'
-          hasResult: boolean
-        }> = [
+          hasPredictions: boolean
+          status: 'not_started' | 'waiting' | 'completed'
+        }[] = [
           {
             id: '8-to-4',
-            hasResult:
-              finalsResults['8-to-4'].winners.length > 0 ||
-              finalsResults['8-to-4'].losers.length > 0,
+            hasPredictions,
+            status: hasPredictions
+              ? results['8-to-4'].winners.length > 0
+                ? 'completed'
+                : 'waiting'
+              : 'not_started',
           },
           {
             id: '4-to-2',
-            hasResult:
-              finalsResults['4-to-2'].winners.length > 0 ||
-              finalsResults['4-to-2'].losers.length > 0,
+            hasPredictions,
+            status:
+              hasPredictions && results['8-to-4'].winners.length > 0
+                ? results['4-to-2'].winners.length > 0
+                  ? 'completed'
+                  : 'waiting'
+                : 'not_started',
           },
           {
             id: '2-to-1',
-            hasResult: finalsResults['2-to-1'].winner !== null,
+            hasPredictions,
+            status:
+              hasPredictions &&
+              results['8-to-4'].winners.length > 0 &&
+              results['4-to-2'].winners.length > 0
+                ? results['2-to-1'].winner
+                  ? 'completed'
+                  : 'waiting'
+                : 'not_started',
           },
         ]
 
-        // 找出第一个有结果的轮次，以及之后的所有轮次
-        const firstResultIndex = rounds.findIndex((r) => r.hasResult)
-
-        // 如果没有任何结果，不显示任何决赛阶段
-        if (firstResultIndex === -1) {
-          return []
-        }
-
-        // 只显示第一个有结果的轮次及之后的轮次
-        return rounds.slice(firstResultIndex).map((round) => ({
-          id: round.id,
-          data: event.finals!,
-          type: 'finals-round' as const,
-          status: round.hasResult ? ('in_progress' as const) : ('waiting' as const),
-          round: round.id,
-        }))
+        return rounds
+          .filter((e) => e.status !== 'not_started')
+          .map((round) => ({
+            id: round.id,
+            data: event.finals!,
+            type: 'finals-round' as const,
+            status: round.status as 'completed' | 'in_progress' | 'waiting',
+            round: round.id,
+          }))
       }
       // 瑞士轮阶段
       const stageData = event[stage.id as 'stage-1' | 'stage-2' | 'stage-3']
+
       return {
         id: stage.id,
         data: stageData!,
@@ -263,151 +276,154 @@ function StageSection({
               <h3 className="text-secondary text-sm font-medium">比赛结果</h3>
             </div>
             <div className="p-4">
-              {stageStatus === 'waiting' ? (
+              {stageStatus === 'waiting' && (
                 <div className="text-muted py-8 text-center">
                   <div className="mb-2 text-2xl">⏳</div>
                   <p className="text-sm">比赛尚未开始</p>
-                  <p className="text-muted mt-1 text-xs">竞猜已提交,等待比赛结果</p>
+                  <p className="text-muted mt-1 text-xs">竞猜已提交，等待比赛结果</p>
                 </div>
-              ) : isSwiss && swissData ? (
-                // 检查是否有最终结果或进行中的战绩
-                (() => {
-                  const hasFinalResults = hasSwissFinalResults(swissData.result)
-                  const hasInProgress = hasSwissInProgressResults(swissData.result)
+              )}
 
-                  // 如果既没有最终结果,也没有进行中的结果,显示占位符
-                  if (!hasFinalResults && !hasInProgress) {
+              {stageStatus !== 'waiting' && isSwiss && swissData
+                ? // 检查是否有最终结果或进行中的战绩
+                  (() => {
+                    const hasFinalResults = hasSwissFinalResults(swissData.result)
+                    const hasInProgress = hasSwissInProgressResults(swissData.result)
+
+                    // 如果既没有最终结果,也没有进行中的结果,显示占位符
+                    if (!hasFinalResults && !hasInProgress) {
+                      return (
+                        <div className="text-muted py-8 text-center">
+                          <div className="mb-2 text-2xl">⚔️</div>
+                          <p className="text-sm">比赛进行中</p>
+                          <p className="text-muted mt-1 text-xs">结果尚未出炉</p>
+                        </div>
+                      )
+                    }
+
+                    // 进行中的战绩记录(按胜场数从高到低排序)
+                    const inProgressRecords = [
+                      '2-2', // 2胜
+                      '2-1', // 2胜
+                      '2-0', // 2胜
+                      '1-2', // 1胜
+                      '1-1', // 1胜
+                      '1-0', // 1胜
+                      '0-2', // 0胜
+                      '0-1', // 0胜
+                    ] as const
+
+                    // 有结果,显示结果内容
                     return (
-                      <div className="text-muted py-8 text-center">
-                        <div className="mb-2 text-2xl">⚔️</div>
-                        <p className="text-sm">比赛进行中</p>
-                        <p className="text-muted mt-1 text-xs">结果尚未出炉</p>
+                      <div className="space-y-4">
+                        {/* 进行中的战绩(仅在有进行中战绩时显示) */}
+                        {hasInProgress && (
+                          <div>
+                            <p className="text-secondary mb-2 text-xs font-medium">当前战绩</p>
+                            <div className="space-y-2">
+                              {inProgressRecords.map((record) => {
+                                const teams = swissData.result[record]
+                                if (!teams || !teams.length) return null
+                                return (
+                                  <div key={record} className="flex items-start gap-2">
+                                    <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
+                                      {record}
+                                    </span>
+                                    <div className="flex flex-wrap gap-1">
+                                      {teams.map((t) => (
+                                        <span
+                                          key={t}
+                                          className="bg-surface-2 text-secondary flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                        >
+                                          <TeamLogo shortName={t} size="xs" />
+                                          {t}
+                                        </span>
+                                      ))}
+                                    </div>
+                                  </div>
+                                )
+                              })}
+                            </div>
+                          </div>
+                        )}
+
+                        {/* 晋级(仅在有最终结果时显示) */}
+                        {hasFinalResults && (
+                          <>
+                            {/* 晋级队伍 */}
+                            {(swissData.result['3-0'].length > 0 ||
+                              swissData.result['3-1'].length > 0 ||
+                              swissData.result['3-2'].length > 0) && (
+                              <div>
+                                <p className="text-win mb-2 text-xs font-medium">晋级</p>
+                                <div className="space-y-2">
+                                  {(['3-0', '3-1', '3-2'] as const).map((record) => {
+                                    const teams = swissData.result[record]
+                                    if (!teams.length) return null
+                                    return (
+                                      <div key={record} className="flex items-start gap-2">
+                                        <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
+                                          {record}
+                                        </span>
+                                        <div className="flex flex-wrap gap-1">
+                                          {teams.map((t) => (
+                                            <span
+                                              key={t}
+                                              className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                            >
+                                              <TeamLogo shortName={t} size="xs" />
+                                              {t}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                              </div>
+                            )}
+
+                            {/* 淘汰队伍 */}
+                            {(swissData.result['2-3'].length > 0 ||
+                              swissData.result['1-3'].length > 0 ||
+                              swissData.result['0-3'].length > 0) && (
+                              <div>
+                                <p className="text-lose mb-2 text-xs font-medium">淘汰</p>
+                                <div className="space-y-2">
+                                  {(['2-3', '1-3', '0-3'] as const).map((record) => {
+                                    const teams = swissData.result[record]
+                                    if (!teams.length) return null
+                                    return (
+                                      <div key={record} className="flex items-start gap-2">
+                                        <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
+                                          {record}
+                                        </span>
+                                        <div className="flex flex-wrap gap-1">
+                                          {teams.map((t) => (
+                                            <span
+                                              key={t}
+                                              className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                            >
+                                              <TeamLogo shortName={t} size="xs" />
+                                              {t}
+                                            </span>
+                                          ))}
+                                        </div>
+                                      </div>
+                                    )
+                                  })}
+                                </div>
+                              </div>
+                            )}
+                          </>
+                        )}
                       </div>
                     )
-                  }
+                  })()
+                : null}
 
-                  // 进行中的战绩记录(按胜场数从高到低排序)
-                  const inProgressRecords = [
-                    '2-2', // 2胜
-                    '2-1', // 2胜
-                    '2-0', // 2胜
-                    '1-2', // 1胜
-                    '1-1', // 1胜
-                    '1-0', // 1胜
-                    '0-2', // 0胜
-                    '0-1', // 0胜
-                  ] as const
-
-                  // 有结果,显示结果内容
-                  return (
-                    <div className="space-y-4">
-                      {/* 进行中的战绩(仅在有进行中战绩时显示) */}
-                      {hasInProgress && (
-                        <div>
-                          <p className="text-secondary mb-2 text-xs font-medium">当前战绩</p>
-                          <div className="space-y-2">
-                            {inProgressRecords.map((record) => {
-                              const teams = swissData.result[record]
-                              if (!teams || !teams.length) return null
-                              return (
-                                <div key={record} className="flex items-start gap-2">
-                                  <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
-                                    {record}
-                                  </span>
-                                  <div className="flex flex-wrap gap-1">
-                                    {teams.map((t) => (
-                                      <span
-                                        key={t}
-                                        className="bg-surface-2 text-secondary flex items-center gap-1 rounded px-2 py-0.5 text-xs"
-                                      >
-                                        <TeamLogo shortName={t} size="xs" />
-                                        {t}
-                                      </span>
-                                    ))}
-                                  </div>
-                                </div>
-                              )
-                            })}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* 晋级(仅在有最终结果时显示) */}
-                      {hasFinalResults && (
-                        <>
-                          {/* 晋级队伍 */}
-                          {(swissData.result['3-0'].length > 0 ||
-                            swissData.result['3-1'].length > 0 ||
-                            swissData.result['3-2'].length > 0) && (
-                            <div>
-                              <p className="text-win mb-2 text-xs font-medium">晋级</p>
-                              <div className="space-y-2">
-                                {(['3-0', '3-1', '3-2'] as const).map((record) => {
-                                  const teams = swissData.result[record]
-                                  if (!teams.length) return null
-                                  return (
-                                    <div key={record} className="flex items-start gap-2">
-                                      <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
-                                        {record}
-                                      </span>
-                                      <div className="flex flex-wrap gap-1">
-                                        {teams.map((t) => (
-                                          <span
-                                            key={t}
-                                            className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
-                                          >
-                                            <TeamLogo shortName={t} size="xs" />
-                                            {t}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )
-                                })}
-                              </div>
-                            </div>
-                          )}
-
-                          {/* 淘汰队伍 */}
-                          {(swissData.result['2-3'].length > 0 ||
-                            swissData.result['1-3'].length > 0 ||
-                            swissData.result['0-3'].length > 0) && (
-                            <div>
-                              <p className="text-lose mb-2 text-xs font-medium">淘汰</p>
-                              <div className="space-y-2">
-                                {(['2-3', '1-3', '0-3'] as const).map((record) => {
-                                  const teams = swissData.result[record]
-                                  if (!teams.length) return null
-                                  return (
-                                    <div key={record} className="flex items-start gap-2">
-                                      <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
-                                        {record}
-                                      </span>
-                                      <div className="flex flex-wrap gap-1">
-                                        {teams.map((t) => (
-                                          <span
-                                            key={t}
-                                            className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
-                                          >
-                                            <TeamLogo shortName={t} size="xs" />
-                                            {t}
-                                          </span>
-                                        ))}
-                                      </div>
-                                    </div>
-                                  )
-                                })}
-                              </div>
-                            </div>
-                          )}
-                        </>
-                      )}
-                    </div>
-                  )
-                })()
-              ) : null}
-
-              {!isSwiss &&
+              {stageStatus !== 'waiting' &&
+                !isSwiss &&
                 finalsData &&
                 round &&
                 (() => {

@@ -1,17 +1,22 @@
-// 队员信息
-export interface TeamMember {
-  nickname: string
-  role: string
-}
-
 // 阶段 ID 类型
-export type StageId = 'stage-1' | 'stage-2' | 'stage-3'
+export type SwissStageType = 'stage-1' | 'stage-2' | 'stage-3'
+
+// Major 竞猜类型
+export type MajorStageType = SwissStageType | 'finals'
+
+// 决赛轮次类型
+export type FinalStageType = '8-to-4' | '4-to-2' | '2-to-1'
+
+// 任务阶段类型
+export type TaskStageType = Exclude<MajorStageType, 'finals'> | FinalStageType
+
+export type StageType = 'swiss' | 'finals'
 
 // 战队信息(包含所属阶段)
 export interface Team {
   name: string
   shortName: string
-  stage: StageId
+  stage: SwissStageType
 }
 
 // 瑞士轮结果(包含最终结果和进行中的战绩)
@@ -113,12 +118,9 @@ export interface EventPredictions {
   predictions: PredictorPrediction[]
 }
 
-// 决赛轮次类型
-export type FinalsRound = '8-to-4' | '4-to-2' | '2-to-1'
-
 // 阶段通过状态
 export interface StagePassStatus {
-  stageId: string
+  stageId: TaskStageType
   passed: boolean | null // 是否通过该阶段
   correctCount: number // 正确预测数
   requiredCount: number // 通过所需的正确预测数
@@ -136,7 +138,6 @@ export interface PredictorStats {
   link?: string
   totalPassed: number // 通过的阶段数
   totalStages: number // 总阶段数
-  passRate: number // 通过率 (0-100)
   totalCorrect: number // 总正确数
   totalPredictions: number // 总竞猜数
   stageResults: StagePassStatus[]
@@ -159,7 +160,7 @@ export enum EventStatus {
 
 // 阶段进度信息
 export interface StageProgress {
-  stageId: string
+  stageId: MajorStageType
   stageName: string
   status: 'not_started' | 'in_progress' | 'completed'
   hasResults: boolean
@@ -172,6 +173,4 @@ export interface EventProgress {
   currentStage: string | null
   completedStages: string[]
   stagesProgress: StageProgress[]
-  canShowResults: boolean // 是否可以显示结果
-  canShowLeaderboard: boolean // 是否可以显示排行榜
 }

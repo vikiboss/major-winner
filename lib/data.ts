@@ -6,17 +6,23 @@ import type {
   PredictorStats,
   SwissResult,
   StagePrediction,
-  StageId,
+  SwissStageType,
   StagePassStatus,
   PredictorPrediction,
   EventStatus,
   StageProgress,
   EventProgress,
+  StageType,
+  MajorStageType,
+  FinalStageType,
+  TaskStageType,
 } from '../types'
 import { EventStatus as EventStatusEnum } from '../types'
 
 export const events = eventsData as unknown as MajorEvent[]
 export const predictions = predictionsData as EventPredictions[]
+
+export const FINAL_STAGES: FinalStageType[] = ['8-to-4', '4-to-2', '2-to-1']
 
 // 获取指定赛事
 export function getEvent(eventId: string): MajorEvent | undefined {
@@ -112,7 +118,7 @@ export function isPredictionPossible(
  * - 0-3 竞猜的队伍实际必须 0-3 淘汰，算正确
  */
 function checkSwissStagePass(
-  stageId: string,
+  stageId: TaskStageType,
   prediction: StagePrediction | undefined,
   actual: SwissResult | undefined,
 ): StagePassStatus {
@@ -380,7 +386,7 @@ export function calculatePredictorStats(
   let totalPredictions = 0
 
   // 计算瑞士轮阶段 (stage-1, stage-2, stage-3)
-  const stages: StageId[] = ['stage-1', 'stage-2', 'stage-3']
+  const stages: SwissStageType[] = ['stage-1', 'stage-2', 'stage-3']
   for (const stageId of stages) {
     const stage = event[stageId]
     const pred = predictor[stageId]
@@ -447,7 +453,6 @@ export function calculatePredictorStats(
     link: predictor.link,
     totalPassed,
     totalStages,
-    passRate: totalStages > 0 ? (totalPassed / totalStages) * 100 : 0,
     totalCorrect,
     totalPredictions,
     stageResults,
@@ -469,14 +474,14 @@ export function getAllPredictorStats(eventId: string): PredictorStats[] {
   }
 
   // 按总正确数排序，相同则按通过阶段数排序
-  return stats.sort((a, b) => {
+  return stats.toSorted((a, b) => {
     if (b.totalCorrect !== a.totalCorrect) {
       return b.totalCorrect - a.totalCorrect
     }
     if (b.totalPassed !== a.totalPassed) {
       return b.totalPassed - a.totalPassed
     }
-    return b.passRate - a.passRate
+    return 0
   })
 }
 
@@ -555,10 +560,10 @@ function isFinalsRoundComplete(
  * 获取单个阶段的进度信息
  */
 function getStageProgressInfo(
-  stageId: string,
+  stageId: MajorStageType,
   stageName: string,
   stageData: MajorEvent['stage-1'] | MajorEvent['finals'] | null,
-  stageType: 'swiss' | 'finals',
+  stageType: StageType,
 ): StageProgress {
   if (!stageData) {
     return {
@@ -618,10 +623,10 @@ function getStageProgressInfo(
  */
 export function getEventProgress(event: MajorEvent): EventProgress {
   const stagesConfig = [
-    { id: 'stage-1', name: '第一阶段', data: event['stage-1'], type: 'swiss' as const },
-    { id: 'stage-2', name: '第二阶段', data: event['stage-2'], type: 'swiss' as const },
-    { id: 'stage-3', name: '第三阶段', data: event['stage-3'], type: 'swiss' as const },
-    { id: 'finals', name: '决赛阶段', data: event.finals, type: 'finals' as const },
+    { id: 'stage-1' as const, name: '第一阶段', data: event['stage-1'], type: 'swiss' as const },
+    { id: 'stage-2' as const, name: '第二阶段', data: event['stage-2'], type: 'swiss' as const },
+    { id: 'stage-3' as const, name: '第三阶段', data: event['stage-3'], type: 'swiss' as const },
+    { id: 'finals' as const, name: '决赛阶段', data: event.finals, type: 'finals' as const },
   ]
 
   const stagesProgress: StageProgress[] = stagesConfig.map((stage) =>
@@ -632,99 +637,105 @@ export function getEventProgress(event: MajorEvent): EventProgress {
   const completedStages = stagesProgress
     .filter((s) => s.status === 'completed')
     .map((s) => s.stageId)
+  const notStartedStages = stagesProgress
+    .filter((s) => s.status === 'not_started')
+    .map((s) => s.stageId)
   const inProgressStage = stagesProgress.find((s) => s.status === 'in_progress')
   const hasAnyResults = stagesProgress.some((s) => s.hasResults)
 
-  // 确定当前阶段
+  // 抽离关键布尔变量
+  const hasInProgressStage = !!inProgressStage
+  const hasNotStartedStages = notStartedStages.length > 0
+  const allStagesCompleted = completedStages.length === 4
+  const noResults = !hasAnyResults
+
+  // 赛阶段的状态判断抽离为独立函数
+  const getFinalsStatus = (finalsStage: any): EventStatus => {
+    if (!finalsStage) return EventStatusEnum.FINALS_2_TO_1
+
+    const is8to4Complete = isFinalsRoundComplete(
+      finalsStage.result['8-to-4'].winners,
+      finalsStage.result['8-to-4'].losers,
+      4,
+    )
+    const has4to2 = finalsStage.result['4-to-2'].winners.length > 0
+    const is4to2Complete = isFinalsRoundComplete(
+      finalsStage.result['4-to-2'].winners,
+      finalsStage.result['4-to-2'].losers,
+      2,
+    )
+
+    if (!is8to4Complete) return EventStatusEnum.FINALS_8_TO_4
+    if (has4to2 && !is4to2Complete) return EventStatusEnum.FINALS_4_TO_2
+    return EventStatusEnum.FINALS_2_TO_1
+  }
+
+  // 阶段 ID 到状态的映射
+  const stageStatusMap: Record<string, EventStatus> = {
+    'stage-1': EventStatusEnum.STAGE_1,
+    'stage-2': EventStatusEnum.STAGE_2,
+    'stage-3': EventStatusEnum.STAGE_3,
+    finals: EventStatusEnum.FINALS_2_TO_1, // 基础状态，决赛会特殊处理
+  }
+
+  const completedStageStatusMap: Record<string, EventStatus> = {
+    'stage-1': EventStatusEnum.STAGE_1_COMPLETED,
+    'stage-2': EventStatusEnum.STAGE_2_COMPLETED,
+    'stage-3': EventStatusEnum.STAGE_3_COMPLETED,
+    finals: EventStatusEnum.COMPLETED,
+  }
+
+  // 主逻辑
   let currentStage: string | null = null
   let eventStatus: EventStatus = EventStatusEnum.NOT_STARTED
 
-  if (!hasAnyResults) {
+  if (noResults) {
     eventStatus = EventStatusEnum.NOT_STARTED
     currentStage = null
-  } else if (inProgressStage) {
-    currentStage = inProgressStage.stageId
+  } else if (hasInProgressStage) {
+    currentStage = inProgressStage!.stageId
 
-    // 根据当前进行中的阶段确定状态
-    if (inProgressStage.stageId === 'stage-1') {
-      eventStatus = EventStatusEnum.STAGE_1
-    } else if (inProgressStage.stageId === 'stage-2') {
-      eventStatus = EventStatusEnum.STAGE_2
-    } else if (inProgressStage.stageId === 'stage-3') {
-      eventStatus = EventStatusEnum.STAGE_3
-    } else if (inProgressStage.stageId === 'finals') {
-      // 决赛阶段需要更细粒度判断
-      const finalsStage = event.finals
-      if (finalsStage) {
-        const is8to4Complete = isFinalsRoundComplete(
-          finalsStage.result['8-to-4'].winners,
-          finalsStage.result['8-to-4'].losers,
-          4,
-        )
-        const has4to2 = finalsStage.result['4-to-2'].winners.length > 0
-        const is4to2Complete = isFinalsRoundComplete(
-          finalsStage.result['4-to-2'].winners,
-          finalsStage.result['4-to-2'].losers,
-          2,
-        )
-
-        if (!is8to4Complete) {
-          eventStatus = EventStatusEnum.FINALS_8_TO_4
-        } else if (has4to2 && !is4to2Complete) {
-          eventStatus = EventStatusEnum.FINALS_4_TO_2
-        } else {
-          eventStatus = EventStatusEnum.FINALS_2_TO_1
-        }
-      }
+    if (currentStage === 'finals') {
+      eventStatus = getFinalsStatus(event.finals)
+    } else {
+      eventStatus = stageStatusMap[currentStage] || EventStatusEnum.NOT_STARTED
     }
   } else {
-    // 所有阶段都已完成
-    const allCompleted = stagesProgress.every(
-      (s) => s.status === 'completed' || s.status === 'not_started',
-    )
-    if (allCompleted && completedStages.length === 4) {
+    // 没有进行中阶段的情况
+    if (allStagesCompleted) {
       eventStatus = EventStatusEnum.COMPLETED
       currentStage = null
+    } else if (hasNotStartedStages) {
+      // 取最后一个未开始的阶段
+      const lastNotStarted = notStartedStages[notStartedStages.length - 1]
+      currentStage = lastNotStarted || null
+      eventStatus = completedStageStatusMap[lastNotStarted] || EventStatusEnum.COMPLETED
     } else {
-      // 找到最后一个已完成的阶段
-      const lastCompleted = [...completedStages].pop()
-      if (lastCompleted === 'stage-1') {
-        eventStatus = EventStatusEnum.STAGE_1_COMPLETED
-      } else if (lastCompleted === 'stage-2') {
-        eventStatus = EventStatusEnum.STAGE_2_COMPLETED
-      } else if (lastCompleted === 'stage-3') {
-        eventStatus = EventStatusEnum.STAGE_3_COMPLETED
-      } else if (lastCompleted === 'finals') {
-        eventStatus = EventStatusEnum.COMPLETED
-      }
+      // 取最后一个已完成的阶段
+      const lastCompleted = completedStages[completedStages.length - 1]
       currentStage = lastCompleted || null
+      eventStatus = completedStageStatusMap[lastCompleted] || EventStatusEnum.COMPLETED
     }
   }
-
-  // 判断是否可以显示结果和排行榜
-  const canShowResults = hasAnyResults
-  const canShowLeaderboard = completedStages.length > 0
 
   return {
     eventStatus,
     currentStage,
     completedStages,
     stagesProgress,
-    canShowResults,
-    canShowLeaderboard,
   }
 }
 
 /**
  * 获取当前活跃的阶段列表（已完成 + 进行中 + 已竞猜但等待结果的阶段）
  */
-export function getActiveStages(event: MajorEvent): Array<{
+export function getActiveStages(event: MajorEvent): {
   id: string
   name: string
   status: 'completed' | 'in_progress' | 'waiting'
   hasResults: boolean
   hasPredictions: boolean
-}> {
+}[] {
   const progress = getEventProgress(event)
   const eventPreds = getEventPredictions(event.id)
 
@@ -761,14 +772,6 @@ export function shouldShowStage(event: MajorEvent, stageId: string): boolean {
   const progress = getEventProgress(event)
   const stageProgress = progress.stagesProgress.find((s) => s.stageId === stageId)
   return stageProgress ? stageProgress.hasResults : false
-}
-
-/**
- * 判断是否应该显示排行榜
- */
-export function shouldShowLeaderboard(event: MajorEvent): boolean {
-  const progress = getEventProgress(event)
-  return progress.canShowLeaderboard
 }
 
 /**

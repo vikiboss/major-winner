@@ -4,9 +4,10 @@ import {
   getEventPredictions,
   calculatePredictorStats,
   isPredictionPossible,
+  FINAL_STAGES,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
-import type { StagePrediction, FinalsPrediction } from '@/types'
+import type { StagePrediction, FinalsPrediction, FinalStageType } from '@/types'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 
@@ -407,10 +408,11 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
     const statsB = calculatePredictorStats(event.id, b.id)
 
     const finalsStatsA = statsA?.stageResults.filter((s) =>
-      ['8-to-4', '4-to-2', '2-to-1'].includes(s.stageId),
+      FINAL_STAGES.some((e) => e === s.stageId),
     )
+
     const finalsStatsB = statsB?.stageResults.filter((s) =>
-      ['8-to-4', '4-to-2', '2-to-1'].includes(s.stageId),
+      FINAL_STAGES.some((e) => e === s.stageId),
     )
 
     const correctA = finalsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
@@ -452,7 +454,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
 
               const stats = calculatePredictorStats(event.id, predictor.id)
               const finalsStats = stats?.stageResults.filter((s) =>
-                ['8-to-4', '4-to-2', '2-to-1'].includes(s.stageId),
+                FINAL_STAGES.some((e) => e === s.stageId),
               )
               const totalCorrect =
                 finalsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
@@ -598,7 +600,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
 
           const stats = calculatePredictorStats(event.id, predictor.id)
           const finalsStats = stats?.stageResults.filter((s) =>
-            ['8-to-4', '4-to-2', '2-to-1'].includes(s.stageId),
+            FINAL_STAGES.some((e) => e === s.stageId),
           )
           const totalCorrect = finalsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
 

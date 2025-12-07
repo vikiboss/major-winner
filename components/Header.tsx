@@ -7,7 +7,7 @@ import { ThemeToggle } from './ThemeToggle'
 import { EventSelector } from './EventSelector'
 
 const navItems = [
-  { href: '/predictions/stage-3', label: '竞猜' },
+  { href: '/predictions', label: '竞猜' },
   { href: '/predictors', label: '排行' },
   { href: '/teams', label: '战队' },
 ]
@@ -31,8 +31,10 @@ export function Header() {
               width={48}
               height={48}
             />
-            <div className="flex shrink-0 flex-col sm:flex-row items-start sm:items-center sm:gap-3">
-              <span className="sm:ml-0 ml-1 text-primary text-xs font-semibold sm:text-lg">Major Winner</span>
+            <div className="flex shrink-0 flex-col items-start sm:flex-row sm:items-center sm:gap-3">
+              <span className="text-primary ml-1 text-xs font-semibold sm:ml-0 sm:text-lg">
+                Major Winner
+              </span>
               <EventSelector />
             </div>
           </Link>

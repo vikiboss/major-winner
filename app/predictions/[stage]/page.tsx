@@ -139,9 +139,7 @@ function SwissTable({
                 <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-sm text-nowrap">
-                        {predictor.name}
-                      </span>
+                      <span className="text-sm text-nowrap">{predictor.name}</span>
                       {predictor.platform && (
                         <span className="text-muted text-xs text-nowrap">
                           @{predictor.platform}
@@ -258,6 +256,13 @@ function SwissTable({
                 </tr>
               )
             })}
+            {predictors.length === 0 && (
+              <tr>
+                <td colSpan={6} className="px-4 py-3 text-center">
+                  <span className="text-muted text-sm">暂无竞猜数据</span>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -275,15 +280,13 @@ function SwissTable({
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <span className="text-primary font-medium">
-                    {predictor.name}
-                  </span>
+                  <span className="text-primary font-medium">{predictor.name}</span>
                   {predictor.platform && (
                     <p className="text-muted text-xs">@{predictor.platform}</p>
                   )}
                 </div>
                 {stageResult && (
-                  <div className="flex flex-row items-center sm:flex-col sm:items-end sm:gap-1 gap-2">
+                  <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-end sm:gap-1">
                     <span className="text-primary text-lg font-bold">
                       {stageResult.correctCount}
                     </span>
@@ -393,6 +396,11 @@ function SwissTable({
             </div>
           )
         })}
+        {predictors.length === 0 && (
+          <div className="w-full px-4 py-3 text-center">
+            <span className="text-muted text-sm">暂无竞猜数据</span>
+          </div>
+        )}
       </div>
     </div>
   )
@@ -473,9 +481,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-primary font-medium text-nowrap">
-                        {predictor.name}
-                      </span>
+                      <span className="text-primary font-medium text-nowrap">{predictor.name}</span>
                       {predictor.platform && (
                         <span className="text-muted text-xs">@{predictor.platform}</span>
                       )}
@@ -593,6 +599,13 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 </tr>
               )
             })}
+            {sortedPredictors.length === 0 && (
+              <tr>
+                <td colSpan={6} className="px-4 py-3 text-center">
+                  <span className="text-muted text-sm">暂无竞猜数据</span>
+                </td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>
@@ -613,9 +626,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <span className="text-primary font-medium">
-                    {predictor.name}
-                  </span>
+                  <span className="text-primary font-medium">{predictor.name}</span>
                   {predictor.platform && (
                     <p className="text-muted text-xs">@{predictor.platform}</p>
                   )}
@@ -764,6 +775,12 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
             </div>
           )
         })}
+
+        {sortedPredictors.length === 0 && (
+          <div className="w-full px-4 py-3 text-center">
+            <span className="text-muted text-sm">暂无竞猜数据</span>
+          </div>
+        )}
       </div>
     </div>
   )

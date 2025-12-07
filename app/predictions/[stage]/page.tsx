@@ -76,9 +76,9 @@ function SwissTable({
   const actualResult = stageData?.result
 
   // 排序逻辑：
-  // - 已结束的阶段：按猜对数降序
-  // - 进行中的阶段：按已知错误数升序（错误少的排前面）
-  const sortedPredictors = [...predictors].sort((a, b) => {
+  // - 有猜对数：按猜对数降序
+  // - 无猜对数：按已知错误数升序（错误少的排前面）
+  const sortedPredictors = predictors.toSorted((a, b) => {
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
     const resultA = statsA?.stageResults.find((s) => s.stageId === stageId)
@@ -87,17 +87,8 @@ function SwissTable({
     const correctA = resultA?.correctCount ?? -1
     const correctB = resultB?.correctCount ?? -1
 
-    // 判断是否已完成
-    const isCompleteA = resultA?.isResultComplete ?? false
-    const isCompleteB = resultB?.isResultComplete ?? false
-
-    // 如果完成状态不同，已完成的优先
-    if (isCompleteA !== isCompleteB) {
-      return isCompleteB ? 1 : -1
-    }
-
-    // 如果都已完成，按猜对数降序
-    if (isCompleteA && isCompleteB) {
+    // 如果有猜对数，优先按猜对数排序
+    if (correctB || correctA) {
       return correctB - correctA
     }
 
@@ -411,8 +402,8 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
   const finalsResult = event.finals?.result
 
   // 排序逻辑：
-  // - 已结束的阶段：按猜对数降序
-  // - 进行中的阶段：按已知错误数升序（错误少的排前面）
+  // - 有猜对数：按猜对数降序
+  // - 无猜对数：按已知错误数升序（错误少的排前面）
   const sortedPredictors = [...predictors].sort((a, b) => {
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
@@ -427,17 +418,8 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
     const correctA = finalsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
     const correctB = finalsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
 
-    // 检查是否所有决赛阶段都已完成
-    const allCompleteA = finalsStatsA?.every((s) => s.isResultComplete) ?? false
-    const allCompleteB = finalsStatsB?.every((s) => s.isResultComplete) ?? false
-
-    // 如果完成状态不同，已完成的优先
-    if (allCompleteA !== allCompleteB) {
-      return allCompleteB ? 1 : -1
-    }
-
     // 如果都已完成，按猜对数降序
-    if (allCompleteA && allCompleteB) {
+    if (correctB || correctA) {
       return correctB - correctA
     }
 

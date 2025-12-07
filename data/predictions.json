@@ -46,6 +46,15 @@
         }
       },
       {
+        "id": "logic",
+        "name": "罗辑",
+        "stage-3": {
+          "3-0": ["Falcons", "Vitality"],
+          "3-1-or-3-2": ["MOUZ", "Spirit", "FURIA", "NAVI", "G2", "MongolZ"],
+          "0-3": ["PUA", "Imperial"]
+        }
+      },
+      {
         "id": "cs-advent",
         "platform": "哔哩哔哩",
         "name": "CS-advent",

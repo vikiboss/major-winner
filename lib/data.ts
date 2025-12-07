@@ -521,13 +521,15 @@ export function getPredictorPrediction(
 
 /**
  * 检查瑞士轮阶段结果是否完整
- * 完整标准：所有结果组别都有队伍（3-0, 3-1, 3-2, 2-3, 1-3, 0-3 至少各有一支队伍）
+ * 完整标准：所有结果组别都有队伍，且符合数量要求（3-0 2, 3-1 3, 3-2 3, 2-3, 3 1-3 3, 0-3 2）
  */
 function isSwissResultComplete(result: SwissResult | undefined): boolean {
   if (!result) return false
 
-  const allGroups = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'] as const
-  return allGroups.every((group) => result[group] && result[group].length > 0)
+  const isTwoMatch = (['3-0', '0-3'] as const).every((e) => result[e].length === 2)
+  const isThreeMatch = (['3-1', '3-2', '2-3', '1-3'] as const).every((e) => result[e].length === 3)
+
+  return isTwoMatch && isThreeMatch
 }
 
 /**

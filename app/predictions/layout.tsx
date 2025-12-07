@@ -17,7 +17,7 @@ export default function PredictionsLayout({ children }: { children: React.ReactN
   }
 
   return (
-    <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8 h-screen">
+    <div className="mx-auto max-w-5xl px-4 py-6 sm:py-8 min-h-screen">
       {/* 页面标题 */}
       <div className="mb-6">
         <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜情况</h1>

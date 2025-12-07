@@ -1,16 +1,25 @@
-# Major Winner
+# 🏆 Major Winner
 
-CS2 Major 锦标赛预测追踪应用，对比多位内容创作者的预测与实际赛果。
+🏆 Counter Strike 2 布达佩斯 Major 竞猜结果 & 排行一览
 
-## 截图
+## 在线查看
 
-![home](./docs/image/home.png)
+- https://major.viki.moe
 
-![predictors](./docs/image/predictors.png)
+## 功能截图
 
-![predictions](./docs/image/predictions.png)
+  <div style="display: flex; gap: 4px;">
+    <img src="./docs/image/home.png" alt="home" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
+    <img src="./docs/image/predictions.png" alt="predictions" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
+    <img src="./docs/image/predictors.png" alt="predictors" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
+    <img src="./docs/image/teams.png" alt="teams" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
+  </div>
 
-![teams](./docs/image/teams.png)
+## 交流群
+
+- QQ 群：902511365 （Major Winner）
+
+![group-qrcode](./docs/image/group-qrcode.png)
 
 ## 技术栈
 

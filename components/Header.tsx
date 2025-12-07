@@ -19,7 +19,7 @@ export function Header() {
   return (
     <header className="bg-surface-0 border-border sticky top-0 z-50 border-b">
       <div className="mx-auto max-w-5xl px-2 sm:px-4">
-        <div className="flex h-12 items-center justify-between sm:h-16">
+        <div className="flex h-12 items-center justify-between gap-0 sm:h-16 sm:gap-3">
           {/* Logo and Event Selector */}
           <Link
             href="/"

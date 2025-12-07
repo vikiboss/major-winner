@@ -19,7 +19,7 @@
 
 - QQ 群：[902511365](https://qm.qq.com/q/oiHxyHNfl6) （Major Winner）
 
-<img src="./docs/image/group-qrcode.jpg" alt="group-qrcode" style="width: 24%; border-radius: 3px;" />
+<img src="./docs/image/group-qrcode.jpg" alt="group-qrcode" style="width: 36%; border-radius: 3px;" />
 
 ## 技术栈
 

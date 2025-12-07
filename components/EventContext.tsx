@@ -5,7 +5,7 @@ import { events } from '@/lib/data'
 
 import type { MajorEvent } from '@/types'
 
-type StateType = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
+export type StateType = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 
 interface EventContextType {
   currentEvent: MajorEvent

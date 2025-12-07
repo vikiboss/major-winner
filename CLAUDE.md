@@ -103,21 +103,11 @@ The app supports **light and dark modes** with automatic theme switching:
 
 ```css
 /* Primary text colors */
---foreground: main text color
---foreground-secondary: secondary text
---foreground-muted: muted/tertiary text
-
-/* Surface colors */
---color-surface-0/1/2/3: background layers
---color-border: border color
-
-/* Brand colors */
---color-primary-400/500/600: CS2 orange
-
-/* State colors */
---color-win: green (success)
---color-lose: red (failure)
---color-muted: gray (neutral)
+--foreground: main text color --foreground-secondary: secondary text
+  --foreground-muted: muted/tertiary text /* Surface colors */ --color-surface-0/1/2/3: background
+  layers --color-border: border color /* Brand colors */ --color-primary-400/500/600: CS2 orange
+  /* State colors */ --color-win: green (success) --color-lose: red (failure) --color-muted: gray
+  (neutral);
 ```
 
 **Semantic Color Classes** (use these instead of hardcoded colors):

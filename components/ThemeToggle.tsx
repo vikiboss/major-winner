@@ -15,7 +15,12 @@ export function ThemeToggle() {
   const getIcon = () => {
     if (theme === 'system') {
       return (
-        <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="h-5 w-5 sm:h-6 sm:w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -27,7 +32,12 @@ export function ThemeToggle() {
     }
     if (resolvedTheme === 'dark') {
       return (
-        <svg className="h-5 w-5 sm:h-6 sm:w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg
+          className="h-5 w-5 sm:h-6 sm:w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
           <path
             strokeLinecap="round"
             strokeLinejoin="round"
@@ -63,7 +73,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={cycleTheme}
-      className="p-3 text-zinc-400 transition-colors active:scale-95 hover:text-zinc-900 dark:hover:text-white"
+      className="p-3 text-zinc-400 transition-colors hover:text-zinc-900 active:scale-95 dark:hover:text-white"
       title={`当前: ${getLabel()}`}
       aria-label={`切换主题 (当前: ${getLabel()})`}
     >

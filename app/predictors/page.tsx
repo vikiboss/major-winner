@@ -129,7 +129,7 @@ export default function LeaderboardPage() {
                           stage.isResultsComplete ? (
                             result ? (
                               <span className={result.passed ? 'text-win' : 'text-lose'}>
-                                {result.passed ? '✓' : '✗'}
+                                {result.passed ? '✅' : '❌'}
                               </span>
                             ) : (
                               <span className="text-muted">-</span>
@@ -213,7 +213,7 @@ export default function LeaderboardPage() {
                             stage.isResultsComplete ? (
                               result ? (
                                 <span className={result.passed ? 'text-win' : 'text-lose'}>
-                                  {result.passed ? '✓' : '✗'}
+                                  {result.passed ? '✅' : '❌'}
                                 </span>
                               ) : (
                                 <span className="text-muted">-</span>

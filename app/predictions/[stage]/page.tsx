@@ -231,7 +231,11 @@ function SwissTable({
                                 : 'bg-lose/10 text-lose'
                           }`}
                         >
-                          {isInProgress ? '祈祷中' : stageResult.passed ? '✓ 作业通过' : '✗ 作业已炸'}
+                          {isInProgress
+                            ? '祈祷中'
+                            : stageResult.passed
+                              ? '✅ 作业通过'
+                              : '❌ 作业已炸'}
                         </span>
                         <span className="text-muted text-xs">
                           {stageResult.correctCount}/{stageResult.requiredCount}
@@ -288,7 +292,7 @@ function SwissTable({
                             : 'bg-lose/10 text-lose'
                       }`}
                     >
-                      {isInProgress ? '祈祷中' : stageResult.passed ? '✓ 作业通过' : '✗ 作业已炸'}
+                      {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 作业通过' : '❌ 作业已炸'}
                     </span>
                     <span className="text-muted text-xs">
                       {stageResult.correctCount}/{stageResult.requiredCount}
@@ -562,7 +566,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                                       : 'text-lose'
                                 }`}
                               >
-                                {!s.isActualResultComplete ? '⋯' : s.passed ? '✓' : '✗'}
+                                {!s.isActualResultComplete ? '⋯' : s.passed ? '✅' : '❌'}
                               </span>
                             </div>
                           )
@@ -633,8 +637,8 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         {!finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
                           ? '⋯'
                           : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
-                            ? '✓'
-                            : '✗'}
+                            ? '✅'
+                            : '❌'}
                       </span>
                     )}
                   </div>
@@ -678,8 +682,8 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         {!finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
                           ? '⋯'
                           : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
-                            ? '✓'
-                            : '✗'}
+                            ? '✅'
+                            : '❌'}
                       </span>
                     )}
                   </div>
@@ -723,8 +727,8 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         {!finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
                           ? '⋯'
                           : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
-                            ? '✓'
-                            : '✗'}
+                            ? '✅'
+                            : '❌'}
                       </span>
                     )}
                   </div>

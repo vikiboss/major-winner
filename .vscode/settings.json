@@ -8,7 +8,5 @@
   },
   "css.lint.unknownAtRules": "ignore",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": [
-    "Preds"
-  ]
+  "cSpell.words": ["Preds"]
 }

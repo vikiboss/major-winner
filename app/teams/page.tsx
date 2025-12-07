@@ -1,6 +1,12 @@
 import { events } from '@/lib/data'
 import TeamLogo from '../../components/TeamLogo'
 
+const STAGE_NAME_MAP = {
+  'stage-1': '🧗‍♂️ 挑战组',
+  'stage-2': '🌟 传奇组',
+  'stage-3': '👑 冠军组',
+}
+
 export default function TeamsPage() {
   const event = events[0]
   const teams = event.teams
@@ -19,11 +25,7 @@ export default function TeamsPage() {
 
       if (!stage) continue
 
-      const stageName = {
-        'stage-1': '挑战组',
-        'stage-2': '传奇组',
-        'stage-3': '冠军组',
-      }[stageKey]
+      const stageName = STAGE_NAME_MAP[stageKey]
 
       const { result } = stage
 
@@ -32,7 +34,7 @@ export default function TeamsPage() {
 
       if (!isInStage) continue
 
-      // 检查进行中的战绩
+      // 检查赛程中的战绩
       let foundInProgress = false
       for (const record of ['1-0', '0-1', '1-1', '2-0', '0-2', '2-1', '1-2', '2-2'] as const) {
         if (result[record]?.includes(shortName)) {
@@ -119,24 +121,25 @@ export default function TeamsPage() {
     if (!lastPerf) return { text: '未开赛', className: 'text-muted' }
     if (lastPerf.status === 'champion')
       return { text: '🏆 冠军', className: 'text-primary-400 font-semibold' }
-    if (lastPerf.status === 'in-progress') return { text: '比赛中', className: 'text-primary-400' }
-    if (lastPerf.status === 'waiting') return { text: '等待比赛', className: 'text-muted' }
+    if (lastPerf.status === 'in-progress')
+      return { text: '⏳ 赛程中', className: 'text-primary-400' }
+    if (lastPerf.status === 'waiting') return { text: '🕘 等待比赛', className: 'text-muted' }
     if (lastPerf.status === 'advanced' && lastPerf.result === '亚军')
       return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
     if (lastPerf.status === 'eliminated')
-      return { text: `已淘汰 (${lastPerf.stageName})`, className: 'text-lose' }
-    if (lastPerf.status === 'advanced') return { text: '晋级中', className: 'text-win' }
+      return { text: `❌ 已淘汰 (${lastPerf.stageName})`, className: 'text-lose' }
+    if (lastPerf.status === 'advanced') return { text: '✅ 已晋级', className: 'text-win' }
 
-    return { text: '进行中', className: 'text-muted' }
+    return { text: '⏳ 赛程中', className: 'text-muted' }
   }
 
   // 排序逻辑 - 实力越强越靠前:
   // 1. 决赛成绩优先: 冠军 > 亚军 > 四强 > 八强 > 未进决赛
   // 2. 瑞士轮晋级: 3-0 > 3-1 > 3-2 (更强的晋级成绩靠前)
-  // 3. 比赛状态: 晋级/比赛中 > 待赛 > 淘汰
+  // 3. 比赛状态: 晋级/赛程中 > 待赛 > 淘汰
   // 4. 淘汰队伍: 2-3 > 1-3 > 0-3 (接近晋级的靠前)
   // 5. 所在阶段: stage-3 > stage-2 > stage-1 (更高阶段靠前)
-  const sortedTeams = [...teams].toSorted((a, b) => {
+  const sortedTeams = teams.toSorted((a, b) => {
     const aPerf = getTeamPerformance(a.shortName)
     const bPerf = getTeamPerformance(b.shortName)
     const lastA = aPerf[aPerf.length - 1]
@@ -163,7 +166,7 @@ export default function TeamsPage() {
       if (!perf) return 999
       // 最终成绩: 3-0 最强,0-3 最弱
       const finalScores = { '3-0': 1, '3-1': 2, '3-2': 3, '2-3': 4, '1-3': 5, '0-3': 6 }
-      // 进行中成绩: 按胜率排序 (2-0 > 2-1 > 1-0 > 2-2 > 1-1 > 0-1 > 1-2 > 0-2)
+      // 赛程中成绩: 按胜率排序 (2-0 > 2-1 > 1-0 > 2-2 > 1-1 > 0-1 > 1-2 > 0-2)
       const inProgressScores = {
         '2-0': 10,
         '2-1': 11,
@@ -176,6 +179,7 @@ export default function TeamsPage() {
       }
 
       const result = perf.result as string
+
       return (
         finalScores[result as keyof typeof finalScores] ||
         inProgressScores[result as keyof typeof inProgressScores] ||
@@ -186,7 +190,7 @@ export default function TeamsPage() {
     const aSwiss = getSwissStrength(lastA)
     const bSwiss = getSwissStrength(lastB)
 
-    // 同为晋级、同为淘汰、或同为进行中时,按战绩排序
+    // 同为晋级、同为淘汰、或同为赛程中时,按战绩排序
     const aStatus = lastA?.status || 'eliminated'
     const bStatus = lastB?.status || 'eliminated'
 
@@ -198,13 +202,13 @@ export default function TeamsPage() {
       if (aSwiss !== bSwiss) return aSwiss - bSwiss
     }
 
-    // 3. 竞技状态 - 晋级/进行中 > 待赛 > 淘汰
+    // 3. 竞技状态 - 晋级/赛程中 > 待赛 > 淘汰
     const statusStrength = {
       champion: 1, // 冠军最强
-      advanced: 2, // 晋级中
-      'in-progress': 2, // 比赛中 (可能晋级)
-      waiting: 3, // 待赛
-      eliminated: 4, // 已淘汰
+      advanced: 2, // 已晋级
+      'in-progress': 3, // 赛程中 (可能晋级)
+      waiting: 4, // 待赛
+      eliminated: 5, // 已淘汰
     }
     const aStatusRank = statusStrength[aStatus] || 999
     const bStatusRank = statusStrength[bStatus] || 999
@@ -221,11 +225,13 @@ export default function TeamsPage() {
     const bStage = lastB?.stage || b.stage
     const aStageRank = stageStrength[aStage as keyof typeof stageStrength] || 999
     const bStageRank = stageStrength[bStage as keyof typeof stageStrength] || 999
+
     if (aStageRank !== bStageRank) return aStageRank - bStageRank
 
     // 5. 默认按起始阶段排序 (高阶段起点 = 实力强)
     const startStageRank = stageStrength[a.stage as keyof typeof stageStrength] || 999
     const startStageRank2 = stageStrength[b.stage as keyof typeof stageStrength] || 999
+
     return startStageRank - startStageRank2
   })
 
@@ -265,13 +271,7 @@ export default function TeamsPage() {
                   />
                   <div>
                     <h3 className="text-primary font-medium">{team.name}</h3>
-                    <p className="text-muted mt-1 text-xs">
-                      {team.stage === 'stage-1'
-                        ? '挑战组'
-                        : team.stage === 'stage-2'
-                          ? '传奇组'
-                          : '冠军组'}
-                    </p>
+                    <p className="text-muted mt-1 text-xs">{STAGE_NAME_MAP[team.stage]}</p>
                   </div>
                 </div>
                 <span className={`text-xs ${status.className}`}>{status.text}</span>
@@ -352,13 +352,7 @@ export default function TeamsPage() {
                     </div>
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className="text-muted text-sm">
-                      {team.stage === 'stage-1'
-                        ? '挑战组'
-                        : team.stage === 'stage-2'
-                          ? '传奇组'
-                          : '冠军组'}
-                    </span>
+                    <span className="text-muted text-sm">{STAGE_NAME_MAP[team.stage]}</span>
                   </td>
                   <td className="px-4 py-2.5">
                     <span className={`text-sm ${status.className}`}>{status.text}</span>

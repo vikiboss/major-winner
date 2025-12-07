@@ -125,6 +125,7 @@ function SwissTable({
 
               const stats = calculatePredictorStats(event.id, predictor.id)
               const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
+              const isInProgress = !stageResult || stageResult.passed === null
 
               return (
                 <tr key={predictor.id} className="hover:bg-surface-2">
@@ -223,18 +224,14 @@ function SwissTable({
                       <div className="flex flex-col items-center gap-1">
                         <span
                           className={`inline-block rounded px-2 py-1 text-xs font-medium text-nowrap ${
-                            !stageResult.isResultComplete
+                            isInProgress
                               ? 'bg-primary-500/10 text-primary-500'
                               : stageResult.passed
                                 ? 'bg-win/10 text-win'
                                 : 'bg-lose/10 text-lose'
                           }`}
                         >
-                          {!stageResult.isResultComplete
-                            ? '⋯ 进行中'
-                            : stageResult.passed
-                              ? '✓ 通过'
-                              : '✗ 未通过'}
+                          {isInProgress ? '祈祷中' : stageResult.passed ? '✓ 作业通过' : '✗ 作业已炸'}
                         </span>
                         <span className="text-muted text-xs">
                           {stageResult.correctCount}/{stageResult.requiredCount}
@@ -266,6 +263,7 @@ function SwissTable({
 
           const stats = calculatePredictorStats(event.id, predictor.id)
           const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
+          const isInProgress = !stageResult || stageResult.passed === null
 
           return (
             <div key={predictor.id} className="p-4">
@@ -283,18 +281,14 @@ function SwissTable({
                     </span>
                     <span
                       className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
-                        !stageResult.isResultComplete
+                        isInProgress
                           ? 'bg-primary-500/10 text-primary-500'
                           : stageResult.passed
                             ? 'bg-win/10 text-win'
                             : 'bg-lose/10 text-lose'
                       }`}
                     >
-                      {!stageResult.isResultComplete
-                        ? '⋯ 进行中'
-                        : stageResult.passed
-                          ? '✓ 通过'
-                          : '✗ 未通过'}
+                      {isInProgress ? '祈祷中' : stageResult.passed ? '✓ 作业通过' : '✗ 作业已炸'}
                     </span>
                     <span className="text-muted text-xs">
                       {stageResult.correctCount}/{stageResult.requiredCount}
@@ -561,14 +555,14 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                               <span className="text-muted text-xs">{stageName}:</span>
                               <span
                                 className={`text-xs font-medium ${
-                                  !s.isResultComplete
+                                  !s.isActualResultComplete
                                     ? 'text-primary-500'
                                     : s.passed
                                       ? 'text-win'
                                       : 'text-lose'
                                 }`}
                               >
-                                {!s.isResultComplete ? '⋯' : s.passed ? '✓' : '✗'}
+                                {!s.isActualResultComplete ? '⋯' : s.passed ? '✓' : '✗'}
                               </span>
                             </div>
                           )
@@ -629,14 +623,14 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                     {finalsStats?.find((s) => s.stageId === '8-to-4') && (
                       <span
                         className={`text-xs font-medium ${
-                          !finalsStats.find((s) => s.stageId === '8-to-4')?.isResultComplete
+                          !finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
                             ? 'text-primary-500'
                             : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
                               ? 'text-win'
                               : 'text-lose'
                         }`}
                       >
-                        {!finalsStats.find((s) => s.stageId === '8-to-4')?.isResultComplete
+                        {!finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
                           ? '⋯'
                           : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
                             ? '✓'
@@ -674,14 +668,14 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                     {finalsStats?.find((s) => s.stageId === '4-to-2') && (
                       <span
                         className={`text-xs font-medium ${
-                          !finalsStats.find((s) => s.stageId === '4-to-2')?.isResultComplete
+                          !finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
                             ? 'text-primary-500'
                             : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
                               ? 'text-win'
                               : 'text-lose'
                         }`}
                       >
-                        {!finalsStats.find((s) => s.stageId === '4-to-2')?.isResultComplete
+                        {!finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
                           ? '⋯'
                           : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
                             ? '✓'
@@ -719,14 +713,14 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                     {finalsStats?.find((s) => s.stageId === '2-to-1') && (
                       <span
                         className={`text-xs font-medium ${
-                          !finalsStats.find((s) => s.stageId === '2-to-1')?.isResultComplete
+                          !finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
                             ? 'text-primary-500'
                             : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
                               ? 'text-win'
                               : 'text-lose'
                         }`}
                       >
-                        {!finalsStats.find((s) => s.stageId === '2-to-1')?.isResultComplete
+                        {!finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
                           ? '⋯'
                           : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
                             ? '✓'

@@ -20,7 +20,7 @@ export function StageNav() {
 
   return (
     <div className="bg-surface-1 border-border mb-6 rounded-lg border p-1">
-      <div className="grid grid-cols-2 gap-1 sm:grid-cols-4">
+      <div className="grid gap-1 grid-cols-4">
         {STAGES.map((stage) => {
           const isActive = currentStage === stage.id
 

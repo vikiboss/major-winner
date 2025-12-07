@@ -119,12 +119,12 @@ export type FinalsRound = '8-to-4' | '4-to-2' | '2-to-1'
 // 阶段通过状态
 export interface StagePassStatus {
   stageId: string
-  passed: boolean
-  correctCount: number
-  requiredCount: number
-  details: string
-  isResultComplete: boolean // 阶段结果是否完整(完整才能判断通过/未通过)
+  passed: boolean | null // 是否通过该阶段
+  correctCount: number // 正确预测数
+  requiredCount: number // 通过所需的正确预测数
   impossibleCount: number // 已经确定错误的预测数（进行中时有用）
+  details: string
+  isActualResultComplete: boolean // 阶段结果是否完整(完整才能判断通过/未通过)
 }
 
 // 计算统计用类型

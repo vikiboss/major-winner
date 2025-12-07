@@ -8,7 +8,7 @@
 
 ## 功能截图
 
-  <div style="display: flex; gap: 4px;">
+  <div style="display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: wrap;">
     <img src="./docs/image/home.png" alt="home" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
     <img src="./docs/image/predictions.png" alt="predictions" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
     <img src="./docs/image/predictors.png" alt="predictors" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
@@ -19,7 +19,7 @@
 
 - QQ 群：902511365 （Major Winner）
 
-![group-qrcode](./docs/image/group-qrcode.png)
+![group-qrcode](./docs/image/group-qrcode.jpg)
 
 ## 技术栈
 

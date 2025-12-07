@@ -23,7 +23,7 @@ export function Header() {
           {/* Logo and Event Selector */}
           <Link
             href="/"
-            className="flex cursor-pointer items-center gap-2 hover:opacity-60 sm:gap-3"
+            className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
           >
             <Image
               src="/icon.png"
@@ -49,10 +49,10 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded px-1 py-0.5 text-xs font-medium transition-all sm:px-3 sm:py-1 sm:text-sm ${
+                  className={`active:scale-95 rounded px-1 py-0.5 text-xs font-medium transition-all sm:px-3 sm:py-1 sm:text-sm ${
                     isActive
                       ? 'bg-primary-500/10 text-primary-400'
-                      : 'text-secondary hover:opacity-60'
+                      : 'text-secondary hover:opacity-80 hover:bg-surface-1'
                   }`}
                 >
                   {item.label}
@@ -67,7 +67,7 @@ export function Header() {
               <ThemeToggle />
             </div>
             <div className="shrink-0">
-              <div className="inline-flex shrink-0 items-center p-1 transition-all hover:opacity-60">
+              <div className="inline-flex shrink-0 items-center p-1 transition-all hover:opacity-80">
                 <a
                   href="https://github.com/vikiboss/major-winner"
                   target="_blank"

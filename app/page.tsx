@@ -53,20 +53,20 @@ export default function Home() {
 
   const stages: StageItem[] = activeStages
     .flatMap((stage): StageItem | StageItem[] => {
-      // 如果是 finals,拆分成三个子阶段,但只显示有结果或进行中的子阶段
+      // 如果是 finals, 拆分成三个子阶段,但只显示有结果或进行中的子阶段
       const hasPredictions = stage.hasPredictions
 
       if (stage.id === 'finals' && event.finals) {
         const results = event.finals.result
 
+        console.log('hasPredictions', hasPredictions)
+
         const rounds: {
           id: '8-to-4' | '4-to-2' | '2-to-1'
-          hasPredictions: boolean
           status: 'not_started' | 'waiting' | 'completed'
         }[] = [
           {
             id: '8-to-4',
-            hasPredictions,
             status: hasPredictions
               ? results['8-to-4'].winners.length > 0
                 ? 'completed'
@@ -75,7 +75,6 @@ export default function Home() {
           },
           {
             id: '4-to-2',
-            hasPredictions,
             status:
               hasPredictions && results['8-to-4'].winners.length > 0
                 ? results['4-to-2'].winners.length > 0
@@ -85,7 +84,6 @@ export default function Home() {
           },
           {
             id: '2-to-1',
-            hasPredictions,
             status:
               hasPredictions &&
               results['8-to-4'].winners.length > 0 &&
@@ -225,14 +223,14 @@ function StageSection({
       {/* 阶段标题 */}
       <div className="mb-6 flex items-center gap-4">
         <div className="bg-primary-500/10 border-primary-500/20 flex h-10 w-10 items-center justify-center rounded-md border">
-          <span className="text-primary-400 text-sm font-bold">
+          <span className={`text-primary-400 font-bold`}>
             {isSwiss
-              ? stageId.replace('stage-', '')
+              ? stageId.replace('stage-', 'S')
               : round === '8-to-4'
-                ? '8强'
+                ? 'F1'
                 : round === '4-to-2'
-                  ? '半'
-                  : '冠'}
+                  ? 'F2'
+                  : 'F3'}
           </span>
         </div>
         <div className="flex-1">

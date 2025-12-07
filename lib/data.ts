@@ -743,8 +743,9 @@ export function getActiveStages(event: MajorEvent): {
   const hasPredictionsForStage = (stageId: string): boolean => {
     if (!eventPreds) return false
     return eventPreds.predictions.some((p) => {
-      if (stageId === 'finals') return p.finals !== null
-      return p[stageId as 'stage-1' | 'stage-2' | 'stage-3'] !== null
+      if (stageId === 'finals') return p.finals && p.finals['2-to-1']
+      const stage = p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+      return stage && stage['3-0'].length && stage['3-1-or-3-2'].length && stage['0-3'].length
     })
   }
 

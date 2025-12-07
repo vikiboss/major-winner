@@ -2,6 +2,16 @@
 
 CS2 Major 锦标赛预测追踪应用，对比多位内容创作者的预测与实际赛果。
 
+## 截图
+
+![home](./docs/image/home.png)
+
+![predictors](./docs/image/predictors.png)
+
+![predictions](./docs/image/predictions.png)
+
+![teams](./docs/image/teams.png)
+
 ## 技术栈
 
 - **Next.js 16** - App Router + React Server Components

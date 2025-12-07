@@ -9,17 +9,17 @@
 ## 功能截图
 
   <div style="display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: wrap;">
-    <img src="./docs/image/home.png" alt="home" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
-    <img src="./docs/image/predictions.png" alt="predictions" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
-    <img src="./docs/image/predictors.png" alt="predictors" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
-    <img src="./docs/image/teams.png" alt="teams" style="width: 24%; border: 1px solid #ccc; border-radius: 4px;" />
+    <img src="./docs/image/home.png" alt="home" style="width: 24%; border-radius: 3px;" />
+    <img src="./docs/image/predictions.png" alt="predictions" style="width: 24%; border-radius: 3px;" />
+    <img src="./docs/image/predictors.png" alt="predictors" style="width: 24%; border-radius: 3px;" />
+    <img src="./docs/image/teams.png" alt="teams" style="width: 24%; border-radius: 3px;" />
   </div>
 
 ## 交流群
 
-- QQ 群：902511365 （Major Winner）
+- QQ 群：[902511365](https://qm.qq.com/q/oiHxyHNfl6) （Major Winner）
 
-![group-qrcode](./docs/image/group-qrcode.jpg)
+<img src="./docs/image/group-qrcode.jpg" alt="group-qrcode" style="width: 24%; border-radius: 3px;" />
 
 ## 技术栈
 

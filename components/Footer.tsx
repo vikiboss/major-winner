@@ -28,7 +28,7 @@ export function Footer() {
             <div className="text-sm font-semibold tracking-wider uppercase">加入社区</div>
             <div className="flex flex-row items-center gap-4 md:flex-row-reverse">
               {/* QR Code */}
-              <div className="bg-surface-0 shrink-0 rounded-lg p-1 shadow-sm">
+              <div className="bg-surface-0 shrink-0 rounded-lg shadow-sm">
                 <Image
                   src="/group-qrcode.png"
                   alt="QQ Group QR"
@@ -39,15 +39,15 @@ export function Footer() {
               </div>
 
               {/* Text Info */}
-              <div className="flex flex-col gap-1.5 md:items-end md:text-right">
+              <div className="flex flex-col items-start gap-1.5 text-left md:items-end md:text-right">
                 <p className="text-muted text-sm font-medium">与其他玩家讨论作业</p>
                 <a
                   href="https://qm.qq.com/q/oiHxyHNfl6"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-primary hover:text-primary-300 inline-flex items-center gap-1.5 text-sm transition-colors"
+                  className="text-primary hover:text-primary-300 text-left text-sm transition-colors"
                 >
-                  <span>点此一键加群</span>
+                  点此一键加群
                 </a>
                 <span className="text-muted text-xs select-all">群号: 902511365</span>
               </div>

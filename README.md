@@ -6,6 +6,10 @@
 
 - https://major.viki.moe
 
+## 数据来源
+
+竞猜数据来自 B 站的 [@原劫色](https://space.bilibili.com/472947493) 和 [@三米七七](https://space.bilibili.com/1428295) 等 UP 主汇总的公开数据，赛事结果数据则来自 [HLTV](https://www.hltv.org/)。非常感谢他们的辛勤付出！
+
 ## 功能截图
 
   <div style="display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: wrap;">

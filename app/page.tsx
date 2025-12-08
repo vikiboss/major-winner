@@ -686,11 +686,11 @@ function PredictorPredictions({
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 ${
+                          className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ${
                             stageStatus === 'waiting'
                               ? 'bg-surface-2 text-tertiary'
                               : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : !possible
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -721,11 +721,11 @@ function PredictorPredictions({
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 ${
+                          className={`font-mediumgap-0.5 flex items-center rounded px-1.5 py-0.5 ${
                             stageStatus === 'waiting'
                               ? 'bg-surface-2 text-tertiary'
                               : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : !possible
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -753,11 +753,11 @@ function PredictorPredictions({
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 ${
+                          className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ${
                             stageStatus === 'waiting'
                               ? 'bg-surface-2 text-tertiary'
                               : isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : !possible
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -787,11 +787,11 @@ function PredictorPredictions({
                         return (
                           <span
                             key={team}
-                            className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
+                            className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium ${
                               stageStatus === 'waiting'
                                 ? 'bg-surface-2 text-tertiary'
                                 : isCorrect
-                                  ? 'bg-win/10 text-win font-medium'
+                                  ? 'bg-win/10 text-win'
                                   : hasResult
                                     ? 'bg-lose/10 text-lose'
                                     : 'bg-surface-2 text-tertiary'
@@ -810,13 +810,13 @@ function PredictorPredictions({
                     <span className="text-muted">冠军竞猜: </span>
                     {(prediction as { '2-to-1': string | null })['2-to-1'] ? (
                       <span
-                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs ${
+                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium ${
                           stageStatus === 'waiting'
                             ? 'bg-surface-2 text-tertiary'
                             : event.finals?.result['2-to-1'].winner
                               ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
                                 event.finals.result['2-to-1'].winner
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : 'bg-lose/10 text-lose'
                               : 'bg-surface-2 text-tertiary'
                         }`}

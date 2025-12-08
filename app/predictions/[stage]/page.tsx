@@ -173,9 +173,9 @@ function SwissTable({
                         return (
                           <span
                             key={team}
-                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : !possible && actualResult
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -198,9 +198,9 @@ function SwissTable({
                         return (
                           <span
                             key={team}
-                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : !possible && actualResult
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -221,9 +221,9 @@ function SwissTable({
                         return (
                           <span
                             key={team}
-                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : !possible && actualResult
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -334,9 +334,9 @@ function SwissTable({
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win font-medium'
+                              ? 'bg-win/10 text-win'
                               : !possible && actualResult
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
@@ -362,9 +362,9 @@ function SwissTable({
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win font-medium'
+                              ? 'bg-win/10 text-win'
                               : !possible && actualResult
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
@@ -388,9 +388,9 @@ function SwissTable({
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win font-medium'
+                              ? 'bg-win/10 text-win'
                               : !possible && actualResult
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
@@ -500,9 +500,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         return (
                           <span
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : hasResult
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -525,9 +525,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         return (
                           <span
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win font-medium'
+                                ? 'bg-win/10 text-win'
                                 : hasResult
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
@@ -546,9 +546,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                     <div className="flex flex-wrap gap-1">
                       {prediction['2-to-1'] ? (
                         <span
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                             finalsResult?.['2-to-1'].winner === prediction['2-to-1']
-                              ? 'bg-win/10 text-win font-medium'
+                              ? 'bg-win/10 text-win'
                               : finalsResult?.['2-to-1'].winner
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
@@ -676,9 +676,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win font-medium'
+                              ? 'bg-win/10 text-win'
                               : hasResult
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
@@ -721,9 +721,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                       return (
                         <span
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win font-medium'
+                              ? 'bg-win/10 text-win'
                               : hasResult
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
@@ -762,9 +762,9 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                   <div className="flex flex-wrap gap-1">
                     {prediction['2-to-1'] ? (
                       <span
-                        className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                        className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
                           finalsResult?.['2-to-1'].winner === prediction['2-to-1']
-                            ? 'bg-win/10 text-win font-medium'
+                            ? 'bg-win/10 text-win'
                             : finalsResult?.['2-to-1'].winner
                               ? 'bg-lose/10 text-lose'
                               : 'bg-surface-2 text-tertiary'

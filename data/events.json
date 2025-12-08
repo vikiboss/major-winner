@@ -79,7 +79,7 @@
     "stage-2": {
       "name": "第二阶段",
       "teams": ["Aurora", "NAVI", "Liquid", "3DMAX", "Astralis", "TYLOO", "MIBR", "PUA"],
-      "advancedTeams": ["M80", "FlyQuest", "B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
+      "teamsFromAdvanced": ["M80", "FlyQuest", "B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
       "result": {
         "1-0": [],
         "0-1": [],
@@ -101,7 +101,7 @@
     "stage-3": {
       "name": "第三阶段",
       "teams": ["FURIA", "Vitality", "Falcons", "MongolZ", "MOUZ", "Spirit", "G2", "paiN"],
-      "advancedTeams": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
+      "teamsFromAdvanced": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
       "result": {
         "1-0": [],
         "0-1": [],

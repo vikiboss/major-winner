@@ -45,7 +45,7 @@ export interface SwissStage {
   name: string
   teams: string[]
   // 第二、三阶段有晋级队伍,第一阶段没有
-  advancedTeams: string[]
+  teamsFromAdvanced: string[]
   result: SwissResult
 }
 

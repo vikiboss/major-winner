@@ -30,7 +30,7 @@ export default function TeamsPage() {
       const { result } = stage
 
       // 检查该队伍是否在本阶段参赛
-      const isInStage = stage.teams.includes(shortName) || stage.advancedTeams?.includes(shortName)
+      const isInStage = stage.teams.includes(shortName) || stage.teamsFromAdvanced?.includes(shortName)
 
       if (!isInStage) continue
 

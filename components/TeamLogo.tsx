@@ -2,7 +2,7 @@ import Image from 'next/image'
 
 interface TeamLogoProps {
   shortName: string
-  size?: 'xs' | 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   className?: string
 }
 
@@ -11,6 +11,7 @@ const sizeMap = {
   sm: 20,
   md: 24,
   lg: 32,
+  xl: 48,
 }
 
 export default function TeamLogo({ shortName, size = 'sm', className = '' }: TeamLogoProps) {

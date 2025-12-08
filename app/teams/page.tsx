@@ -129,16 +129,15 @@ export default function TeamsPage() {
     if (!lastPerf) return { text: '未开赛', className: 'text-muted' }
     if (lastPerf.status === 'champion')
       return { text: '🏆 冠军', className: 'text-primary-400 font-semibold' }
-    if (lastPerf.status === 'in-progress')
-      return { text: '⏳ 赛程中', className: 'text-primary-400' }
-    if (lastPerf.status === 'waiting') return { text: '🕘 等待比赛', className: 'text-muted' }
+    if (lastPerf.status === 'in-progress') return { text: '赛程中', className: 'text-primary-400' }
+    if (lastPerf.status === 'waiting') return { text: '等待比赛', className: 'text-muted' }
     if (lastPerf.status === 'advanced' && lastPerf.result === '亚军')
       return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
     if (lastPerf.status === 'eliminated')
       return { text: `❌ 已淘汰 (${lastPerf.stageName})`, className: 'text-lose' }
     if (lastPerf.status === 'advanced') return { text: '✅ 已晋级', className: 'text-win' }
 
-    return { text: '⏳ 赛程中', className: 'text-muted' }
+    return { text: '赛程中', className: 'text-muted' }
   }
 
   // 排序逻辑 - 实力越强越靠前:
@@ -289,12 +288,12 @@ export default function TeamsPage() {
                 <div className="flex items-start gap-3">
                   <TeamLogo
                     shortName={team.shortName}
-                    size="lg"
-                    className="bg-surface-2 mt-0.5 rounded-sm"
+                    size="xl"
+                    className="bg-surface-2 rounded-sm"
                   />
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <h3 className="text-primary font-medium">{team.name}</h3>
-                    <p className="text-muted mt-1 text-xs">{STAGE_NAME_MAP[team.stage]}</p>
+                    <p className="text-muted text-sm">{STAGE_NAME_MAP[team.stage]}</p>
                   </div>
                 </div>
                 <span className={`text-xs ${status.className}`}>{status.text}</span>
@@ -368,7 +367,7 @@ export default function TeamsPage() {
                     <div className="flex items-center gap-2">
                       <TeamLogo
                         shortName={team.shortName}
-                        size="md"
+                        size="lg"
                         className="bg-surface-2 rounded-sm"
                       />
                       <span className="text-primary font-medium">{team.name}</span>

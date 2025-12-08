@@ -322,7 +322,7 @@ function StageSection({
                                 if (!teams || !teams.length) return null
                                 return (
                                   <div key={record} className="flex items-start gap-2">
-                                    <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
+                                    <span className="text-muted w-8 shrink-0 pt-0.5 text-xs text-nowrap">
                                       {record}
                                     </span>
                                     <div className="flex flex-wrap gap-1">
@@ -358,7 +358,7 @@ function StageSection({
                                     if (!teams.length) return null
                                     return (
                                       <div key={record} className="flex items-start gap-2">
-                                        <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
+                                        <span className="text-muted w-8 shrink-0 pt-0.5 text-xs text-nowrap">
                                           {record}
                                         </span>
                                         <div className="flex flex-wrap gap-1">
@@ -391,7 +391,7 @@ function StageSection({
                                     if (!teams.length) return null
                                     return (
                                       <div key={record} className="flex items-start gap-2">
-                                        <span className="text-muted w-8 shrink-0 pt-0.5 font-mono text-xs text-nowrap">
+                                        <span className="text-muted w-8 shrink-0 pt-0.5 text-xs text-nowrap">
                                           {record}
                                         </span>
                                         <div className="flex flex-wrap gap-1">

@@ -59,8 +59,6 @@ export default function Home() {
       if (stage.id === 'finals' && event.finals) {
         const results = event.finals.result
 
-        console.log('hasPredictions', hasPredictions)
-
         const rounds: {
           id: '8-to-4' | '4-to-2' | '2-to-1'
           status: 'not_started' | 'waiting' | 'completed'

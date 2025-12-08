@@ -644,8 +644,6 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     getStageProgressInfo(stage.id, stage.name, stage.data, stage.type),
   )
 
-  console.log('Stages Progress:', stagesProgress)
-
   // 找到所有已完成和进行中的阶段
   const completedStages = stagesProgress
     .filter((s) => s.status === 'completed')
@@ -723,7 +721,6 @@ export function getEventProgress(event: MajorEvent): EventProgress {
   } else if (hasNotStartedStages) {
     // 取最后一个未开始的阶段
     const lastNotStarted = notStartedStages[notStartedStages.length - 1]
-    console.log('Last Not Started Stage:', lastNotStarted)
     currentStage = lastNotStarted || null
     eventStatus = notStartedStageStatusMap[lastNotStarted] || EventStatusEnum.COMPLETED
   } else if (allStagesCompleted) {

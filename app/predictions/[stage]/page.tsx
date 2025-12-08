@@ -18,7 +18,7 @@ const STAGE_NAMES: Record<Stage, string> = {
   'stage-1': '第一阶段',
   'stage-2': '第二阶段',
   'stage-3': '第三阶段',
-  'finals': '决赛阶段',
+  finals: '决赛阶段',
 }
 
 interface PageProps {
@@ -28,7 +28,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { stage } = await params
   const stageName = STAGE_NAMES[stage as Stage] || stage
-  
+
   return {
     title: `${stageName}竞猜详情`,
     description: `查看 CS2 Major ${stageName}阶段的详细竞猜情况和结果。`,
@@ -70,14 +70,21 @@ export default async function PredictionsPage({ params }: PageProps) {
   })
 
   // 竞猜表格
-  return activeStage === 'finals' ? (
-    <FinalsTable predictors={predictorsWithStage} event={event} />
-  ) : (
-    <SwissTable
-      predictors={predictorsWithStage}
-      event={event}
-      stageId={activeStage as 'stage-1' | 'stage-2' | 'stage-3'}
-    />
+  return (
+    <>
+      {activeStage === 'finals' ? (
+        <FinalsTable predictors={predictorsWithStage} event={event} />
+      ) : (
+        <SwissTable
+          predictors={predictorsWithStage}
+          event={event}
+          stageId={activeStage as 'stage-1' | 'stage-2' | 'stage-3'}
+        />
+      )}
+      <div>
+        <p className="text-muted mt-4 text-center text-sm">更多数据正在持续整理中，敬请期待 ✨</p>
+      </div>
+    </>
   )
 }
 

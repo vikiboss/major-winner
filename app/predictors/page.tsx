@@ -235,6 +235,10 @@ export default function PredictorsPage() {
           </tbody>
         </table>
       </div>
+
+      <div>
+        <p className="text-muted mt-4 text-center text-sm">更多数据正在持续整理中，敬请期待 ✨</p>
+      </div>
     </div>
   )
 }

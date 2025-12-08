@@ -133,7 +133,7 @@ export default function PredictorsPage() {
       {/* Desktop Table Layout */}
       <div className="bg-surface-1 border-border hidden overflow-x-auto rounded-lg border md:block">
         <table className="w-full min-w-[600px]">
-          <thead>
+          <thead className="bg-surface-2 border-border border-b">
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="w-12 px-4 py-3">#</th>
               <th className="px-4 py-3">竞猜者</th>

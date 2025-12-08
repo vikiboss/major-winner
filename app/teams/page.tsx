@@ -335,26 +335,19 @@ export default function TeamsPage() {
       </div>
 
       {/* Teams Table - Desktop */}
-      <div className="hidden overflow-x-auto rounded-lg md:block">
+      <div className="bg-surface-1 border-border hidden overflow-x-auto rounded-lg border md:block">
         <table className="w-full min-w-[500px]">
           <thead className="bg-surface-2 border-border border-b">
-            <tr>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
-                战队
-              </th>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
-                起始组别
-              </th>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
-                当前状态
-              </th>
-              <th className="text-primary px-4 py-2 text-left text-xs font-medium tracking-wide uppercase">
-                比赛战绩
-              </th>
+            <tr className="border-border text-primary text-muted border-b text-left text-xs font-medium tracking-wide uppercase">
+              <th className="w-12 px-4 py-3">#</th>
+              <th className="px-4 py-3">战队</th>
+              <th className="px-4 py-3">起始组别</th>
+              <th className="px-4 py-3">当前状态</th>
+              <th className="px-4 py-3 text-center">比赛战绩</th>
             </tr>
           </thead>
           <tbody className="divide-border divide-y">
-            {sortedTeams.map((team) => {
+            {sortedTeams.map((team, index) => {
               const performance = getTeamPerformance(team.shortName)
               const status = getTeamStatus(team.shortName)
 
@@ -363,6 +356,19 @@ export default function TeamsPage() {
                   key={team.name}
                   className="bg-surface-1 hover:bg-surface-2/50 transition-colors"
                 >
+                  <td className="px-4 py-3">
+                    <span
+                      className={`text-sm font-medium ${
+                        index === 0
+                          ? 'text-primary-400'
+                          : index < 3
+                            ? 'text-secondary'
+                            : 'text-muted'
+                      }`}
+                    >
+                      {index + 1}
+                    </span>
+                  </td>
                   <td className="px-4 py-2.5">
                     <div className="flex items-center gap-2">
                       <TeamLogo

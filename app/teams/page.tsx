@@ -258,10 +258,10 @@ export default function TeamsPage() {
   })
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-6">
+    <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-primary text-2xl font-bold">参赛战队</h1>
+        <h1 className="text-primary text-2xl font-bold sm:text-3xl">参赛战队</h1>
         <p className="text-muted mt-1 text-sm">
           {event.name} • 共 {teams.length} 支队伍
         </p>

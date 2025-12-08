@@ -1,4 +1,4 @@
-import { events, getAllPredictorStats, getEventProgress, getEventStatusText } from '@/lib/data'
+import { events, getAllPredictorStats, getEventProgress } from '@/lib/data'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -35,29 +35,12 @@ export default function PredictorsPage() {
   ]
 
   return (
-    <div className="mx-auto w-full max-w-5xl px-4 py-6 sm:py-8">
+    <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-6 sm:py-8">
       {/* Header */}
-      <div className="mb-6 sm:mb-8">
-        <h1 className="text-primary mb-2 text-2xl font-semibold sm:text-3xl">竞猜排行</h1>
-        <div className="mt-2 flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
-          <p className="text-muted">按猜对数排名 · {stats.length} 位竞猜者</p>
-          <span className="text-muted hidden sm:inline">·</span>
-          <div className="flex items-center gap-2">
-            <div
-              className={`h-2 w-2 rounded-full ${
-                eventProgress.currentStage
-                  ? 'bg-primary-400 animate-pulse'
-                  : eventProgress.eventStatus === 'completed'
-                    ? 'bg-win'
-                    : 'bg-muted'
-              }`}
-            />
-            <span className="text-secondary">{getEventStatusText(eventProgress.eventStatus)}</span>
-          </div>
-        </div>
-        <p className="text-muted mt-3 text-xs sm:text-sm">
-          <span className="text-tertiary">通过规则:</span>瑞士轮 5/10,八进四 2/4,半决赛
-          1/2,决赛猜中冠军
+      <div className="mb-6">
+        <h1 className="text-primary text-2xl font-bold sm:text-3xl">竞猜排行</h1>
+        <p className="text-muted mt-1 text-sm">
+          {`按猜对数排名，共${stats.length} 位竞猜者。通过规则：瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军`}
         </p>
       </div>
 

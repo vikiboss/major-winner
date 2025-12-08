@@ -61,7 +61,7 @@ export function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-0 sm:gap-1">
+          <div className="flex items-center gap-0 sm:gap-2">
             {/* Theme toggle */}
             <div className="shrink-0">
               <ThemeToggle />

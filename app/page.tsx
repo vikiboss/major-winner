@@ -142,7 +142,7 @@ export default function Home() {
       </div>
 
       {/* 阶段导航条 */}
-      <div className="bg-surface-0 border-border stage-nav sticky top-16 z-40 border-b">
+      <div className="bg-surface-0 border-border stage-nav sticky top-12 z-40 border-b">
         <div className="mx-auto max-w-5xl">
           <nav
             className="stage-nav flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:thin] sm:px-4 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"

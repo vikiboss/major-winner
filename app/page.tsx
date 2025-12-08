@@ -351,7 +351,7 @@ function StageSection({
                               swissData.result['3-1'].length > 0 ||
                               swissData.result['3-2'].length > 0) && (
                               <div>
-                                <p className="text-win mb-2 text-xs font-medium">晋级</p>
+                                <p className="text-win mb-2 font-medium">晋级</p>
                                 <div className="space-y-2">
                                   {(['3-0', '3-1', '3-2'] as const).map((record) => {
                                     const teams = swissData.result[record]
@@ -384,7 +384,7 @@ function StageSection({
                               swissData.result['1-3'].length > 0 ||
                               swissData.result['0-3'].length > 0) && (
                               <div>
-                                <p className="text-lose mb-2 text-xs font-medium">淘汰</p>
+                                <p className="text-lose mb-2 font-medium">淘汰</p>
                                 <div className="space-y-2">
                                   {(['2-3', '1-3', '0-3'] as const).map((record) => {
                                     const teams = swissData.result[record]
@@ -449,7 +449,7 @@ function StageSection({
                         <div>
                           <div className="flex gap-4">
                             <div className="flex-1">
-                              <p className="text-win mb-1 text-xs font-medium">晋级</p>
+                              <p className="text-win mb-1 font-medium">晋级</p>
                               <div className="flex flex-wrap gap-1">
                                 {finalsData.result[round].winners.map((t) => (
                                   <span
@@ -463,7 +463,7 @@ function StageSection({
                               </div>
                             </div>
                             <div className="flex-1">
-                              <p className="text-lose mb-1 text-xs font-medium">淘汰</p>
+                              <p className="text-lose mb-1 font-medium">淘汰</p>
                               <div className="flex flex-wrap gap-1">
                                 {finalsData.result[round].losers.map((t) => (
                                   <span
@@ -721,7 +721,7 @@ function PredictorPredictions({
                       return (
                         <span
                           key={team}
-                          className={`font-medium gap-0.5 flex items-center rounded px-1.5 py-0.5 ${
+                          className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ${
                             stageStatus === 'waiting'
                               ? 'bg-surface-2 text-tertiary'
                               : isCorrect

@@ -692,7 +692,7 @@ function PredictorPredictions({
                               : isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
+                                  ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                           }`}
                         >
@@ -727,7 +727,7 @@ function PredictorPredictions({
                               : isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
+                                  ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                           }`}
                         >
@@ -759,7 +759,7 @@ function PredictorPredictions({
                               : isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : !possible
-                                  ? 'bg-lose/10 text-lose line-through'
+                                  ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                           }`}
                         >

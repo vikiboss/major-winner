@@ -141,18 +141,18 @@ function SwissTable({
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex items-start gap-1">
                       {prediction['3-0'].map((team) => {
                         const isCorrect = actualResult?.['3-0']?.includes(team)
                         const possible = isPredictionPossible(team, '3-0', actualResult)
                         return (
                           <span
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
                               isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : !possible && actualResult
-                                  ? 'bg-lose/10 text-lose line-through'
+                                  ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
                           >
@@ -173,11 +173,11 @@ function SwissTable({
                         return (
                           <span
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
                               isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : !possible && actualResult
-                                  ? 'bg-lose/10 text-lose line-through'
+                                  ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
                           >
@@ -189,18 +189,18 @@ function SwissTable({
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex items-start gap-1">
                       {prediction['0-3'].map((team) => {
                         const isCorrect = actualResult?.['0-3']?.includes(team)
                         const possible = isPredictionPossible(team, '0-3', actualResult)
                         return (
                           <span
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs ${
+                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
                               isCorrect
                                 ? 'bg-win/10 text-win font-medium'
                                 : !possible && actualResult
-                                  ? 'bg-lose/10 text-lose line-through'
+                                  ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
                           >
@@ -313,7 +313,7 @@ function SwissTable({
                             isCorrect
                               ? 'bg-win/10 text-win font-medium'
                               : !possible && actualResult
-                                ? 'bg-lose/10 text-lose line-through'
+                                ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
                         >
@@ -341,7 +341,7 @@ function SwissTable({
                             isCorrect
                               ? 'bg-win/10 text-win font-medium'
                               : !possible && actualResult
-                                ? 'bg-lose/10 text-lose line-through'
+                                ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
                         >
@@ -367,7 +367,7 @@ function SwissTable({
                             isCorrect
                               ? 'bg-win/10 text-win font-medium'
                               : !possible && actualResult
-                                ? 'bg-lose/10 text-lose line-through'
+                                ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
                         >

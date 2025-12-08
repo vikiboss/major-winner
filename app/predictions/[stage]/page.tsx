@@ -166,7 +166,7 @@ function SwissTable({
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-start gap-1">
+                    <div className="flex flex-wrap items-start gap-1">
                       {prediction['3-0'].map((team) => {
                         const isCorrect = actualResult?.['3-0']?.includes(team)
                         const possible = isPredictionPossible(team, '3-0', actualResult)
@@ -214,7 +214,7 @@ function SwissTable({
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex items-start gap-1">
+                    <div className="flex flex-wrap items-start gap-1">
                       {prediction['0-3'].map((team) => {
                         const isCorrect = actualResult?.['0-3']?.includes(team)
                         const possible = isPredictionPossible(team, '0-3', actualResult)

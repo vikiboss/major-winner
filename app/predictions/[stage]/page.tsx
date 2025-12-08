@@ -295,7 +295,7 @@ function SwissTable({
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <span className="text-primary font-medium">{predictor.name}</span>
+                  <span className="text-primary">{predictor.name}</span>
                   {predictor.platform && (
                     <p className="text-muted text-xs">@{predictor.platform}</p>
                   )}
@@ -484,7 +484,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-primary font-medium text-nowrap">{predictor.name}</span>
+                      <span className="text-primary text-nowrap">{predictor.name}</span>
                       {predictor.platform && (
                         <span className="text-muted text-xs">@{predictor.platform}</span>
                       )}
@@ -633,7 +633,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
                 <div>
-                  <span className="text-primary font-medium">{predictor.name}</span>
+                  <span className="text-primary">{predictor.name}</span>
                   {predictor.platform && (
                     <p className="text-muted text-xs">@{predictor.platform}</p>
                   )}

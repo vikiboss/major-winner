@@ -398,7 +398,7 @@ function StageSection({
                                           {teams.map((t) => (
                                             <span
                                               key={t}
-                                              className="medium bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                              className="font-medium bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
                                             >
                                               <TeamLogo shortName={t} size="xs" />
                                               {t}
@@ -674,7 +674,7 @@ function PredictorPredictions({
               <div className="space-y-2 text-xs">
                 {/* 3-0 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-12 shrink-0 font-medium">3-0</span>
+                  <span className="text-muted w-12 shrink-0">3-0</span>
                   <div className="flex flex-wrap gap-1">
                     {(prediction as StagePrediction)['3-0'].map((team) => {
                       const possible =
@@ -706,7 +706,7 @@ function PredictorPredictions({
 
                 {/* 3-1/2 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-12 shrink-0 font-medium">3-1/2</span>
+                  <span className="text-muted w-12 shrink-0">3-1/2</span>
                   <div className="flex flex-wrap gap-1">
                     {(prediction as StagePrediction)['3-1-or-3-2'].map((team) => {
                       const possible =
@@ -741,7 +741,7 @@ function PredictorPredictions({
 
                 {/* 0-3 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-12 shrink-0 font-medium">0-3</span>
+                  <span className="text-muted w-12 shrink-0">0-3</span>
                   <div className="flex flex-wrap gap-1">
                     {(prediction as StagePrediction)['0-3'].map((team) => {
                       const possible =

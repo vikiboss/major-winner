@@ -53,6 +53,11 @@
           "3-1-or-3-2": ["NIP", "Fnatic", "PV", "FlyQuest", "FaZe", "B8"],
           "0-3": ["RED", "Huns"]
         },
+        "stage-2": {
+          "3-0": ["Aurora", "NAVI"],
+          "3-1-or-3-2": ["M80", "MIBR", "Liquid", "3DMAX", "Astralis", "PUA"],
+          "0-3": ["Imperial", "Fnatic"]
+        },
         "stage-3": {
           "3-0": ["Falcons", "Vitality"],
           "3-1-or-3-2": ["MOUZ", "Spirit", "FURIA", "NAVI", "G2", "MongolZ"],

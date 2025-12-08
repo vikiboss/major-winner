@@ -27,7 +27,9 @@ pnpm format           # Format code with Prettier
 - **React**: v19 with React Server Components
 - **Styling**: Tailwind CSS v4 with custom design tokens
 - **TypeScript**: Strict mode enabled
-- **Package Manager**: pnpm (workspace)
+- **Package Manager**: pnpm
+- **Analytics**: Vercel Analytics
+- **Third-party Scripts**: Google Analytics via @next/third-parties
 
 ## Architecture
 
@@ -43,7 +45,7 @@ The app uses a **static data-driven architecture** with no backend:
    - Core business logic for calculating prediction accuracy
    - Stage pass/fail determination (Swiss rounds, finals)
    - Predictor statistics and rankings
-   - Event progress tracking
+   - Event progress tracking and state management
 
 3. **Type System** (`types/index.ts`)
    - Comprehensive TypeScript types for all data structures
@@ -67,22 +69,41 @@ The app uses a **static data-driven architecture** with no backend:
 ### Component Structure
 
 ```
-app/                    # Next.js App Router pages
-├── page.tsx           # Home: stage results + predictions
-├── leaderboard/       # Overall predictor rankings
-├── predictors/[id]/   # Individual predictor detail
-├── compare/           # Side-by-side prediction comparison
-└── teams/             # Team listings
-components/            # Shared UI components
-├── Header.tsx        # Navigation with theme toggle
-├── Footer.tsx
-├── ThemeProvider.tsx # Dark/light theme context
-└── ThemeToggle.tsx
+app/                       # Next.js App Router pages
+├── page.tsx              # Home: tournament overview with stage results
+├── predictions/          # Prediction-related pages
+│   ├── page.tsx         # All predictions overview
+│   ├── [stage]/         # Stage-specific predictions
+│   │   └── page.tsx     # Dynamic route for each stage
+│   ├── layout.tsx       # Shared layout for predictions
+│   └── StageNav.tsx     # Stage navigation component
+├── predictors/           # Predictor rankings
+│   └── page.tsx         # Leaderboard with statistics
+├── teams/                # Team listings
+│   └── page.tsx         # All participating teams
+├── layout.tsx           # Root layout with theme provider
+├── globals.css          # Global styles + Tailwind v4 config
+├── robots.ts            # SEO: robots.txt generation
+└── sitemap.ts           # SEO: sitemap.xml generation
+
+components/               # Shared UI components
+├── Header.tsx           # Navigation with links and theme toggle
+├── Footer.tsx           # Footer with copyright and links
+├── EventContext.tsx     # React Context for current event
+├── EventSelector.tsx    # Event dropdown selector
+├── TeamLogo.tsx         # Team logo with fallback
+├── ThemeProvider.tsx    # Dark/light theme context (client)
+└── ThemeToggle.tsx      # Theme toggle button (client)
+
 lib/
-└── data.ts           # All data access and business logic
+└── data.ts              # All data access and business logic
+
 types/
-└── index.ts          # TypeScript type definitions
-data/                 # Static JSON data files
+└── index.ts             # TypeScript type definitions
+
+data/                     # Static JSON data files
+├── events.json          # Tournament data
+└── predictions.json     # Predictor forecasts
 ```
 
 ### Styling System
@@ -94,6 +115,7 @@ This project uses **Tailwind CSS v4** with custom theme configuration:
 - **Configuration Location**: `app/globals.css` (NOT `tailwind.config.ts`)
 - **Theme Definition**: CSS variables defined in `:root`, `.dark`, and `.light` selectors
 - **Import**: `@import 'tailwindcss';` at the top of `globals.css`
+- **PostCSS**: Uses `@tailwindcss/postcss` plugin
 
 #### Color System & Theme Support
 
@@ -103,11 +125,21 @@ The app supports **light and dark modes** with automatic theme switching:
 
 ```css
 /* Primary text colors */
---foreground: main text color --foreground-secondary: secondary text
-  --foreground-muted: muted/tertiary text /* Surface colors */ --color-surface-0/1/2/3: background
-  layers --color-border: border color /* Brand colors */ --color-primary-400/500/600: CS2 orange
-  /* State colors */ --color-win: green (success) --color-lose: red (failure) --color-muted: gray
-  (neutral);
+--foreground: main text color
+--foreground-secondary: secondary text
+--foreground-muted: muted/tertiary text
+
+/* Surface colors */
+--color-surface-0/1/2/3: background layers (0=base, 3=elevated)
+--color-border: border color
+
+/* Brand colors */
+--color-primary-400/500/600: CS2 orange theme
+
+/* State colors */
+--color-win: green (success/correct prediction)
+--color-lose: red (failure/incorrect prediction)
+--color-muted: gray (neutral/inactive)
 ```
 
 **Semantic Color Classes** (use these instead of hardcoded colors):
@@ -155,7 +187,7 @@ The app is **mobile-first** with careful attention to small screens:
 - Padding: `px-4 sm:px-6` for responsive spacing
 - Gaps: `gap-2 sm:gap-3` for adaptive spacing
 
-Path alias: `@/*` maps to `./*`
+**Path alias**: `@/*` maps to `./*` (root directory)
 
 ## Key Development Patterns
 
@@ -169,31 +201,96 @@ The app intelligently determines tournament state by examining result data:
 
 **Important**: Never hardcode stage visibility. Always use these utility functions to respect the data-driven architecture.
 
+### Event Context Pattern
+
+The app uses React Context for event management:
+
+- `EventContext.tsx`: Provides current event to all components
+- `EventSelector.tsx`: Dropdown for switching between events
+- Usage: Wrap pages with `EventProvider` or access via `useEvent()` hook
+
 ### Image Configuration
 
 Remote image patterns are whitelisted in `next.config.ts`:
 
 - `avatars.githubusercontent.com` (predictor avatars)
-- `steamcdn-a.akamaihd.net` (team logos)
+- `steamcdn-a.akamaihd.net` (team logos from Steam CDN)
 
 ### Adding New Predictors
 
-1. Add entry to `src/data/predictions.json` under `predictions` array
-2. Include all fields: `predictor`, `platform`, `description`, `link`
-3. Provide stage predictions (null for unpredicted stages)
-4. No code changes needed—data layer handles everything
+1. Add entry to `data/predictions.json` under `predictions` array
+2. Include all fields:
+   - `predictor`: Name/nickname
+   - `platform`: Platform (e.g., "bilibili", "youtube")
+   - `description`: Brief description
+   - `link`: Profile URL
+   - `avatar`: Avatar URL (optional)
+3. Provide stage predictions (use `null` for unpredicted stages)
+4. No code changes needed—data layer handles everything automatically
 
 ### Data Update Workflow
 
 To update tournament results:
 
-1. Edit `src/data/events.json` → update `result` fields for stages
-2. The app automatically recalculates all scores and updates rankings
+1. Edit `data/events.json` → update `result` fields for completed stages
+2. The app automatically recalculates:
+   - All prediction scores
+   - Pass/fail status for each predictor
+   - Updated rankings and statistics
+   - Event progress state
 3. Stage visibility and leaderboard adapt based on completed data
+
+**Example**:
+```json
+{
+  "id": "stage-1",
+  "result": {
+    "3-0": ["team1", "team2"],
+    "3-1-or-3-2": ["team3", "team4", "team5", "team6", "team7", "team8"],
+    "0-3": ["team9", "team10"]
+  }
+}
+```
 
 ## Code Style
 
 - **Prettier Config**: 2-space indent, single quotes, no semicolons, 100 char width
-- **Imports**: Use `@/` alias for all `src/` imports
+- **Imports**: Use `@/` alias for all root imports (e.g., `@/lib/data`, `@/types`)
 - **React**: Prefer functional components with TypeScript
-- **Server Components**: Default to RSC; use `'use client'` only when needed (ThemeProvider, ThemeToggle)
+- **Server Components**: Default to RSC; use `'use client'` only when needed:
+  - `ThemeProvider.tsx` (uses `useEffect`, `useState`)
+  - `ThemeToggle.tsx` (uses `useTheme` hook)
+  - `EventContext.tsx` (uses `createContext`, `useState`)
+  - `EventSelector.tsx` (uses form interactions)
+  - `StageNav.tsx` (uses client-side navigation state)
+
+## Performance Optimizations
+
+- **Turbopack**: Fast development builds with `--turbopack` flag
+- **Static Generation**: All pages are statically generated at build time
+- **Image Optimization**: Next.js Image component with remote patterns
+- **React 19**: Latest React with automatic optimizations
+- **No Runtime Dependencies**: Pure static data, no API calls
+
+## SEO Configuration
+
+- **Metadata**: Configured in `app/layout.tsx`
+- **Robots**: Dynamic `robots.txt` via `app/robots.ts`
+- **Sitemap**: Dynamic `sitemap.xml` via `app/sitemap.ts`
+- **Open Graph**: Configured for social sharing
+
+## Common Gotchas
+
+1. **Data File Paths**: Files are in `data/`, not `src/data/`
+2. **Tailwind Config**: In `globals.css`, not `tailwind.config.ts`
+3. **Theme Variables**: Must be defined in `:root`, `.dark`, and `.light`
+4. **Stage IDs**: Must match format `stage-1`, `stage-2`, etc. or `8-to-4`, `4-to-2`, `2-to-1`
+5. **Prediction Keys**: Must exactly match stage IDs in `events.json`
+
+## Debugging Tips
+
+- Check browser console for data loading errors
+- Verify JSON syntax in `data/*.json` files
+- Use TypeScript errors to catch type mismatches
+- Check `getEventProgress()` output to understand current state
+- Inspect theme CSS variables in DevTools

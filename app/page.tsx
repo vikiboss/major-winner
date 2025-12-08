@@ -511,9 +511,9 @@ function StageSection({
               <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
               <Link
                 href={`/predictions/${stageType === 'finals-round' ? 'finals' : stageId}`}
-                className="text-primary-400 hover:text-primary-300 text-xs transition-colors"
+                className="text-secondary hover:text-primary-300 text-xs hover:underline"
               >
-                查看全部 →
+                查看全部 ➜
               </Link>
             </div>
             <div className="divide-border divide-y">

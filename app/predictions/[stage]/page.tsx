@@ -7,7 +7,7 @@ import {
   FINAL_STAGES,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
-import type { StagePrediction, FinalsPrediction, FinalStageType } from '@/types'
+import type { StagePrediction, FinalsPrediction } from '@/types'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 

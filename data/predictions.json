@@ -354,9 +354,9 @@
           "0-3": ["RA", "Huns"]
         },
         "finals": {
-          "8-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
-          "4-2": ["Vitality", "FURIA"],
-          "2-1": "FURIA"
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -377,9 +377,9 @@
           "0-3": ["RED", "Huns"]
         },
         "finals": {
-          "8-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
-          "4-2": ["Spirit", "FURIA"],
-          "2-1": "FURIA"
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Spirit", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {

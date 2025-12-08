@@ -232,11 +232,7 @@ function SwissTable({
                                 : 'bg-lose/10 text-lose'
                           }`}
                         >
-                          {isInProgress
-                            ? '祈祷中'
-                            : stageResult.passed
-                              ? '✅ 通过'
-                              : '❌ 已炸'}
+                          {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 通过' : '❌ 已炸'}
                         </span>
                         <span className="text-muted text-xs">
                           {stageResult.correctCount}/{stageResult.requiredCount}
@@ -555,7 +551,11 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                       <div className="flex flex-col items-center gap-1">
                         {finalsStats.map((s) => {
                           const stageName =
-                            s.stageId === '8-to-4' ? '8强' : s.stageId === '4-to-2' ? '半' : '决'
+                            s.stageId === '8-to-4'
+                              ? '八进四'
+                              : s.stageId === '4-to-2'
+                                ? '半决赛'
+                                : '决赛'
                           return (
                             <div key={s.stageId} className="flex items-center gap-1">
                               <span className="text-muted text-xs">{stageName}:</span>
@@ -568,7 +568,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                                       : 'text-lose'
                                 }`}
                               >
-                                {!s.isActualResultComplete ? '⋯' : s.passed ? '✅' : '❌'}
+                                {!s.isActualResultComplete ? '祈祷中' : s.passed ? '✅' : '❌'}
                               </span>
                             </div>
                           )
@@ -625,7 +625,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 {/* 八强赛 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">八强赛 (4进2)</p>
+                    <p className="text-muted text-xs">八进四</p>
                     {finalsStats?.find((s) => s.stageId === '8-to-4') && (
                       <span
                         className={`text-xs font-medium ${
@@ -637,7 +637,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         }`}
                       >
                         {!finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
-                          ? '⋯'
+                          ? '祈祷中'
                           : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
                             ? '✅'
                             : '❌'}
@@ -670,7 +670,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 {/* 半决赛 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">半决赛 (2进1)</p>
+                    <p className="text-muted text-xs">半决赛</p>
                     {finalsStats?.find((s) => s.stageId === '4-to-2') && (
                       <span
                         className={`text-xs font-medium ${
@@ -682,7 +682,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         }`}
                       >
                         {!finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
-                          ? '⋯'
+                          ? '祈祷中'
                           : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
                             ? '✅'
                             : '❌'}
@@ -715,7 +715,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 {/* 决赛 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">决赛 (冠军)</p>
+                    <p className="text-muted text-xs">决赛</p>
                     {finalsStats?.find((s) => s.stageId === '2-to-1') && (
                       <span
                         className={`text-xs font-medium ${
@@ -727,7 +727,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                         }`}
                       >
                         {!finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
-                          ? '⋯'
+                          ? '祈祷中'
                           : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
                             ? '✅'
                             : '❌'}

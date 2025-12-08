@@ -644,6 +644,8 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     getStageProgressInfo(stage.id, stage.name, stage.data, stage.type),
   )
 
+  console.log('Stages Progress:', stagesProgress)
+
   // 找到所有已完成和进行中的阶段
   const completedStages = stagesProgress
     .filter((s) => s.status === 'completed')
@@ -696,6 +698,13 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     finals: EventStatusEnum.COMPLETED,
   }
 
+  const notStartedStageStatusMap: Record<string, EventStatus> = {
+    'stage-1': EventStatusEnum.NOT_STARTED,
+    'stage-2': EventStatusEnum.STAGE_1_COMPLETED,
+    'stage-3': EventStatusEnum.STAGE_2_COMPLETED,
+    finals: EventStatusEnum.STAGE_3_COMPLETED,
+  }
+
   // 主逻辑
   let currentStage: string | null = null
   let eventStatus: EventStatus = EventStatusEnum.NOT_STARTED
@@ -711,22 +720,20 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     } else {
       eventStatus = stageStatusMap[currentStage] || EventStatusEnum.NOT_STARTED
     }
+  } else if (hasNotStartedStages) {
+    // 取最后一个未开始的阶段
+    const lastNotStarted = notStartedStages[notStartedStages.length - 1]
+    console.log('Last Not Started Stage:', lastNotStarted)
+    currentStage = lastNotStarted || null
+    eventStatus = notStartedStageStatusMap[lastNotStarted] || EventStatusEnum.COMPLETED
+  } else if (allStagesCompleted) {
+    eventStatus = EventStatusEnum.COMPLETED
+    currentStage = null
   } else {
-    // 没有进行中阶段的情况
-    if (allStagesCompleted) {
-      eventStatus = EventStatusEnum.COMPLETED
-      currentStage = null
-    } else if (hasNotStartedStages) {
-      // 取最后一个未开始的阶段
-      const lastNotStarted = notStartedStages[notStartedStages.length - 1]
-      currentStage = lastNotStarted || null
-      eventStatus = completedStageStatusMap[lastNotStarted] || EventStatusEnum.COMPLETED
-    } else {
-      // 取最后一个已完成的阶段
-      const lastCompleted = completedStages[completedStages.length - 1]
-      currentStage = lastCompleted || null
-      eventStatus = completedStageStatusMap[lastCompleted] || EventStatusEnum.COMPLETED
-    }
+    // 取最后一个已完成的阶段
+    const lastCompleted = completedStages[completedStages.length - 1]
+    currentStage = lastCompleted || null
+    eventStatus = completedStageStatusMap[lastCompleted] || EventStatusEnum.COMPLETED
   }
 
   return {

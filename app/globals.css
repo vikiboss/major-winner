@@ -27,11 +27,12 @@
 }
 
 /* 默认暗色主题变量 */
-:root {
+:root,
+.dark {
   --foreground: #e4e4e7;
   --foreground-secondary: #a1a1aa;
   --foreground-muted: #71717a;
-  --background: #0c0c10;
+  --background: #131318;
 
   /* CS2 橙色 */
   --color-primary-400: #fb923c;
@@ -39,12 +40,12 @@
   --color-primary-600: #ea580c;
 
   /* 扁平深色系 */
-  --color-surface-0: #0c0c10;
-  --color-surface-1: #111116;
-  --color-surface-2: #18181e;
-  --color-surface-3: #1f1f27;
-  --color-border: #2a2a35;
-  --color-border-active: #3d3d4a;
+  --color-surface-0: #131318;
+  --color-surface-1: #1a1a20;
+  --color-surface-2: #222228;
+  --color-surface-3: #2a2a32;
+  --color-border: #333340;
+  --color-border-active: #454555;
 
   /* 状态色 */
   --color-win: #22c55e;
@@ -52,6 +53,11 @@
   --color-muted: #71717a;
 
   color-scheme: dark;
+}
+
+:root ::selection,
+.dark ::selection {
+  background: rgb(249 115 22 / 0.25);
 }
 
 body {
@@ -75,38 +81,6 @@ body {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-border-active);
-}
-
-/* 暗色主题 */
-.dark {
-  --foreground: #e4e4e7;
-  --foreground-secondary: #a1a1aa;
-  --foreground-muted: #71717a;
-  --background: #0c0c10;
-
-  /* CS2 橙色 */
-  --color-primary-400: #fb923c;
-  --color-primary-500: #f97316;
-  --color-primary-600: #ea580c;
-
-  /* 扁平深色系 */
-  --color-surface-0: #0c0c10;
-  --color-surface-1: #111116;
-  --color-surface-2: #18181e;
-  --color-surface-3: #1f1f27;
-  --color-border: #2a2a35;
-  --color-border-active: #3d3d4a;
-
-  /* 状态色 */
-  --color-win: #22c55e;
-  --color-lose: #ef4444;
-  --color-muted: #71717a;
-
-  color-scheme: dark;
-}
-
-.dark ::selection {
-  background: rgb(249 115 22 / 0.25);
 }
 
 /* 亮色主题 */

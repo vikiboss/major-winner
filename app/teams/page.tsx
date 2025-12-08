@@ -30,7 +30,8 @@ export default function TeamsPage() {
       const { result } = stage
 
       // 检查该队伍是否在本阶段参赛
-      const isInStage = stage.teams.includes(shortName) || stage.teamsFromAdvanced?.includes(shortName)
+      const isInStage =
+        stage.teams.includes(shortName) || stage.teamsFromAdvanced?.includes(shortName)
 
       if (!isInStage) continue
 
@@ -76,6 +77,7 @@ export default function TeamsPage() {
     // 检查决赛阶段 - 只有真正在决赛名单中的队伍才显示决赛信息
     if (event.finals && event.finals.teams.length > 0 && event.finals.teams.includes(shortName)) {
       const finals = event.finals
+
       if (finals.result['2-to-1'].winner === shortName) {
         performance.push({ stage: 'finals', stageName: '决赛', result: '冠军', status: 'champion' })
       } else if (finals.result['2-to-1'].loser === shortName) {
@@ -194,6 +196,19 @@ export default function TeamsPage() {
     const aStatus = lastA?.status || 'eliminated'
     const bStatus = lastB?.status || 'eliminated'
 
+    // 都晋级、等待下一比赛时，按照上一次瑞士轮成绩排序
+    if (aStatus === 'waiting' && bStatus === 'waiting') {
+      const lastSwissA = aPerf[aPerf.length - 2]
+      const lastSwissB = bPerf[bPerf.length - 2]
+
+      if (lastSwissA && lastSwissB) {
+        const aSwiss = getSwissStrength(lastSwissA)
+        const bSwiss = getSwissStrength(lastSwissB)
+
+        if (aSwiss !== bSwiss) return aSwiss - bSwiss
+      }
+    }
+
     if (
       (aStatus === 'advanced' && bStatus === 'advanced') ||
       (aStatus === 'eliminated' && bStatus === 'eliminated') ||
@@ -210,8 +225,10 @@ export default function TeamsPage() {
       waiting: 4, // 待赛
       eliminated: 5, // 已淘汰
     }
+
     const aStatusRank = statusStrength[aStatus] || 999
     const bStatusRank = statusStrength[bStatus] || 999
+
     if (aStatusRank !== bStatusRank) return aStatusRank - bStatusRank
 
     // 4. 所在阶段 - 更高阶段代表更强

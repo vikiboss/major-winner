@@ -8,5 +8,19 @@
   },
   "css.lint.unknownAtRules": "ignore",
   "typescript.tsdk": "node_modules/typescript/lib",
-  "cSpell.words": ["Preds"]
+  "cSpell.words": [
+    "Astralis",
+    "Canids",
+    "DMAX",
+    "Fluxo",
+    "Fnatic",
+    "FURIA",
+    "MIBR",
+    "MOUZ",
+    "Natus",
+    "PARIVISION",
+    "Preds",
+    "TYLOO",
+    "Vincere"
+  ]
 }

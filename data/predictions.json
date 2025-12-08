@@ -802,6 +802,11 @@
           "3-0": ["FaZe", "Fnatic"],
           "3-1-or-3-2": ["Legacy", "RED", "Imperial", "FlyQuest", "Fluxo", "GL"],
           "0-3": ["RA", "Huns"]
+        },
+        "stage-2": {
+          "3-0": ["Aurora", "NAVI"],
+          "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "FlyQuest", "Fnatic"],
+          "0-3": ["Imperial", "PV"]
         }
       },
       {

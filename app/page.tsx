@@ -721,7 +721,7 @@ function PredictorPredictions({
                       return (
                         <span
                           key={team}
-                          className={`font-mediumgap-0.5 flex items-center rounded px-1.5 py-0.5 ${
+                          className={`font-medium gap-0.5 flex items-center rounded px-1.5 py-0.5 ${
                             stageStatus === 'waiting'
                               ? 'bg-surface-2 text-tertiary'
                               : isCorrect

@@ -68,7 +68,7 @@ export function Footer() {
                 >
                   点此拉起 QQ 一键加群
                 </a>
-                <span className="text-muted select-all">QQ 群: 902511365</span>
+                <span className="text-muted select-all">QQ 群: 902511365（Major Winner）</span>
               </div>
             </div>
           </div>

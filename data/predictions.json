@@ -171,6 +171,16 @@
         }
       },
       {
+        "id": "jbdmht",
+        "name": "珏宝的猫 海棠",
+        "platform": "哔哩哔哩",
+        "stage-3": {
+          "3-0": ["Liquid", "FaZe"],
+          "3-1-or-3-2": ["paiN", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
+          "0-3": ["PUA", "3DMAX"]
+        }
+      },
+      {
         "id": "bhsydjb",
         "name": "不会沙鹰的珏宝、",
         "platform": "哔哩哔哩",
@@ -327,6 +337,11 @@
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
           "0-3": ["RED", "Huns"]
+        },
+        "stage-3": {
+          "3-0": ["MOUZ", "FURIA"],
+          "3-1-or-3-2": ["Vitality", "paiN", "FaZe", "Falcons", "Spirit", "G2"],
+          "0-3": ["PUA", "3DMAX"]
         }
       },
       {

@@ -106,9 +106,9 @@ export interface PredictorPrediction {
   platform?: string
   description?: string
   link?: string
-  'stage-1': StagePrediction | null
-  'stage-2': StagePrediction | null
-  'stage-3': StagePrediction | null
+  'stage-1'?: StagePrediction | null
+  'stage-2'?: StagePrediction | null
+  'stage-3'?: StagePrediction | null
   finals: FinalsPrediction | null
 }
 

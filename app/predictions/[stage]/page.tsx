@@ -459,7 +459,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
           <thead className="bg-surface-2 border-border border-b">
             <tr>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">八强赛</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">八进四</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">半决赛</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">决赛</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
@@ -491,7 +491,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                     </div>
                   </td>
 
-                  {/* 八强赛 */}
+                  {/* 八进四 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['8-to-4']?.map((team) => {
@@ -647,7 +647,7 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
               </div>
 
               <div className="space-y-3">
-                {/* 八强赛 */}
+                {/* 八进四 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">八进四</p>

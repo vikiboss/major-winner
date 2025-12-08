@@ -292,7 +292,7 @@ export default function TeamsPage() {
                     className="bg-surface-2 rounded-sm"
                   />
                   <div className="flex flex-col gap-1">
-                    <h3 className="text-primary font-medium">{team.name}</h3>
+                    <h3 className="text-primary text-sm font-medium text-nowrap">{team.name}</h3>
                     <p className="text-muted text-sm">{STAGE_NAME_MAP[team.stage]}</p>
                   </div>
                 </div>
@@ -376,7 +376,9 @@ export default function TeamsPage() {
                         size="lg"
                         className="bg-surface-2 rounded-sm"
                       />
-                      <span className="text-primary font-medium">{team.name}</span>
+                      <span className="text-primary text-sm font-medium text-nowrap">
+                        {team.name}
+                      </span>
                     </div>
                   </td>
                   <td className="px-4 py-2.5">

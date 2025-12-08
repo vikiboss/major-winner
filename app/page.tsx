@@ -329,7 +329,7 @@ function StageSection({
                                       {teams.map((t) => (
                                         <span
                                           key={t}
-                                          className="bg-surface-2 text-secondary flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                          className="bg-surface-2 text-secondary flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
                                         >
                                           <TeamLogo shortName={t} size="xs" />
                                           {t}
@@ -365,7 +365,7 @@ function StageSection({
                                           {teams.map((t) => (
                                             <span
                                               key={t}
-                                              className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                              className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
                                             >
                                               <TeamLogo shortName={t} size="xs" />
                                               {t}
@@ -398,7 +398,7 @@ function StageSection({
                                           {teams.map((t) => (
                                             <span
                                               key={t}
-                                              className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                              className="medium bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
                                             >
                                               <TeamLogo shortName={t} size="xs" />
                                               {t}
@@ -454,7 +454,7 @@ function StageSection({
                                 {finalsData.result[round].winners.map((t) => (
                                   <span
                                     key={t}
-                                    className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                    className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
                                   >
                                     <TeamLogo shortName={t} size="xs" />
                                     {t}
@@ -468,7 +468,7 @@ function StageSection({
                                 {finalsData.result[round].losers.map((t) => (
                                   <span
                                     key={t}
-                                    className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                    className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
                                   >
                                     <TeamLogo shortName={t} size="xs" />
                                     {t}

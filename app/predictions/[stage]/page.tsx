@@ -8,13 +8,31 @@ import {
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 import type { StagePrediction, FinalsPrediction } from '@/types'
+import { Metadata } from 'next'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 
 const VALID_STAGES: Stage[] = ['stage-1', 'stage-2', 'stage-3', 'finals']
 
+const STAGE_NAMES: Record<Stage, string> = {
+  'stage-1': '第一阶段',
+  'stage-2': '第二阶段',
+  'stage-3': '第三阶段',
+  'finals': '决赛阶段',
+}
+
 interface PageProps {
   params: Promise<{ stage: string }>
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { stage } = await params
+  const stageName = STAGE_NAMES[stage as Stage] || stage
+  
+  return {
+    title: `${stageName}竞猜详情`,
+    description: `查看 CS2 Major ${stageName}阶段的详细竞猜情况和结果。`,
+  }
 }
 
 export async function generateStaticParams() {

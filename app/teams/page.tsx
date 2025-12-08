@@ -1,5 +1,11 @@
 import { events } from '@/lib/data'
 import TeamLogo from '../../components/TeamLogo'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '参赛队伍',
+  description: '查看所有 CS2 Major 参赛队伍的表现和晋级状态。',
+}
 
 const STAGE_NAME_MAP = {
   'stage-1': '🧗‍♂️ 挑战组',

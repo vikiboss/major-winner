@@ -1,4 +1,10 @@
 import { events, getAllPredictorStats, getEventProgress, getEventStatusText } from '@/lib/data'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: '竞猜排行',
+  description: '查看 CS2 Major 竞猜准确率排行榜，看看谁是真正的预言家。',
+}
 
 export default function PredictorsPage() {
   const event = events[0]

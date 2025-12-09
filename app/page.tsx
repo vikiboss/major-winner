@@ -609,15 +609,21 @@ function PredictorPredictions({
         correctCount,
         incorrectCount,
         totalPredictions,
+        totalCorrect: stats?.totalCorrect || 0,
+        totalPassed: stats?.totalPassed || 0,
       }
     })
     .toSorted((a, b) => {
       // 先按错误数升序(错误少的在前)
-      if (a.incorrectCount !== b.incorrectCount) {
-        return a.incorrectCount - b.incorrectCount
-      }
-      // 错误数相同,按正确数降序(正确多的在前)
-      return b.correctCount - a.correctCount
+      // 错误数相同，按正确数降序(正确多的在前)
+      // 正确数相同，按总通过阶段数降序
+      // 总通过阶段数相同，按总正确数降序
+      return (
+        a.incorrectCount - b.incorrectCount ||
+        b.correctCount - a.correctCount ||
+        b.totalPassed - a.totalPassed ||
+        b.totalCorrect - a.totalCorrect
+      )
     })
 
   // 如果有 limit,只显示前 N 个

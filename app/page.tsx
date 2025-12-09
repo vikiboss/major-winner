@@ -149,7 +149,7 @@ export default function Home() {
             role="navigation"
             style={{ scrollSnapType: 'x mandatory' }}
           >
-            {stages.map((stage) => (
+            {stages.toReversed().map((stage) => (
               <a
                 key={stage.id}
                 href={`#${stage.id}`}

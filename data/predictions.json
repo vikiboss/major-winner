@@ -6,6 +6,7 @@
         "id": "result",
         "name": "赛果",
         "platform": "CS2官方",
+        "link": "https://www.counter-strike.net",
         "stage-1": {
           "3-0": ["M80", "FlyQuest"],
           "3-1-or-3-2": ["B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
@@ -24,9 +25,8 @@
       },
       {
         "id": "viki",
-        "name": "Viki",
+        "name": "Viki / Major Winner 作者",
         "platform": "GitHub",
-        "description": "Major Winner 作者",
         "link": "https://github.com/vikiboss",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
@@ -73,6 +73,7 @@
       {
         "id": "logic",
         "name": "罗辑",
+        "platform": "群友",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["NIP", "Fnatic", "PV", "FlyQuest", "FaZe", "B8"],
@@ -97,7 +98,8 @@
       {
         "id": "cs-advent",
         "platform": "哔哩哔哩",
-        "name": "CS-advent",
+        "name": "CS-advent/259/老九",
+        "link": "https://space.bilibili.com/3546687211572101",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "M80", "B8", "GL"],
@@ -118,6 +120,7 @@
         "id": "xuduoyu",
         "name": "许多鱼x",
         "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/30491919",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "PV"],
@@ -136,8 +139,9 @@
       },
       {
         "id": "danking",
-        "platform": "虎牙",
         "name": "DANKING",
+        "platform": "虎牙",
+        "link": "https://m.huya.com/dank1ng",
         "stage-1": {
           "3-0": ["GL", "FaZe"],
           "3-1-or-3-2": ["Legacy", "NRG", "NIP", "PV", "B8", "RED"],
@@ -146,8 +150,9 @@
       },
       {
         "id": "wanjiqi",
-        "name": "玩机器",
+        "name": "玩机器丶Machine",
         "platform": "斗鱼",
+        "link": "https://www.douyu.com/6657",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -165,9 +170,10 @@
         }
       },
       {
-        "id": "maxixi",
+        "id": "csboy-maxixi",
         "name": "CSBOY-马西西",
         "platform": "虎牙",
+        "link": "https://www.huya.com/19307729",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -185,9 +191,10 @@
         }
       },
       {
-        "id": "mo",
+        "id": "csboy-mo",
         "name": "CSBOY-MO",
         "platform": "虎牙",
+        "link": "https://m.huya.com/captainmo",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -200,19 +207,10 @@
         }
       },
       {
-        "id": "jbdmht",
-        "name": "珏宝的猫 海棠",
-        "platform": "哔哩哔哩",
-        "stage-3": {
-          "3-0": ["Liquid", "FaZe"],
-          "3-1-or-3-2": ["paiN", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
-          "0-3": ["PUA", "3DMAX"]
-        }
-      },
-      {
         "id": "bhsydjb",
         "name": "不会沙鹰的珏宝、",
         "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/230240655",
         "stage-1": {
           "3-0": ["PV", "FaZe"],
           "3-1-or-3-2": ["Legacy", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -232,7 +230,8 @@
       {
         "id": "biliwang",
         "name": "比利王",
-        "platform": "哔哩哔哩",
+        "platform": "YouTube",
+        "link": "https://www.youtube.com/@Billykingshop",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "FlyQuest"],
@@ -251,8 +250,9 @@
       },
       {
         "id": "sunxiaochuan",
-        "name": "孙笑川258",
+        "name": "川臊258/孙笑川258",
         "platform": "Twitch",
+        "link": "https://www.twitch.tv/chuansao258",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "PV", "NRG", "GL"],
@@ -270,9 +270,10 @@
         }
       },
       {
-        "id": "csgo-ququ",
-        "name": "CSGO-QUQU",
-        "platform": "虎牙",
+        "id": "ququ",
+        "name": "QUQU 太不常规",
+        "platform": "斗鱼",
+        "link": "https://www.douyu.com/ququ",
         "stage-1": {
           "3-0": ["Legacy", "PV"],
           "3-1-or-3-2": ["FaZe", "LVG", "FlyQuest", "Fnatic", "B8", "Imperial"],
@@ -368,17 +369,10 @@
         }
       },
       {
-        "id": "qu-helper",
-        "name": "CSGO-QUQU 总助理布丁",
-        "stage-1": {
-          "3-0": ["Legacy", "FaZe"],
-          "3-1-or-3-2": ["PV", "LVG", "M80", "Imperial", "B8", "GL"],
-          "0-3": ["RED", "Huns"]
-        }
-      },
-      {
         "id": "dongguaqiang",
-        "name": "椰汁糕_冬瓜强",
+        "name": "椰汁糕冬瓜强",
+        "platform": "斗鱼",
+        "link": "https://www.douyu.com/63136",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["FaZe", "PV", "FlyQuest", "Fnatic", "B8", "Fluxo"],
@@ -388,6 +382,8 @@
       {
         "id": "k4mi",
         "name": "k4Mi",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/97480905",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -412,6 +408,8 @@
       {
         "id": "xiaotian",
         "name": "小天FreeZing",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/1979685",
         "stage-1": {
           "3-0": ["Legacy", "LVG"],
           "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "GL"],
@@ -431,6 +429,8 @@
       {
         "id": "laojiao",
         "name": "老蕉Banous",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/10999014",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -454,7 +454,9 @@
       },
       {
         "id": "ban-ga",
-        "name": "BanGa",
+        "name": "BanGa_cs2",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/8498990",
         "stage-2": {
           "3-0": ["Aurora", "Astralis"],
           "3-1-or-3-2": ["M80", "3DMAX", "Liquid", "NAVI", "B8", "FlyQuest"],
@@ -464,6 +466,8 @@
       {
         "id": "boshiyk",
         "name": "BOSHIYK",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/65822877",
         "stage-1": {
           "3-0": ["Legacy", "PV"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -483,6 +487,8 @@
       {
         "id": "xieshaonian",
         "name": "邪少年、",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/69185991",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -507,6 +513,8 @@
       {
         "id": "yinxing",
         "name": "银杏就是YINXING",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/283051605",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -526,6 +534,8 @@
       {
         "id": "cs2-dq",
         "name": "CS2-dq",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/25912175",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -545,6 +555,8 @@
       {
         "id": "fga",
         "name": "FGA字幕组",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/398592369",
         "stage-1": {
           "3-0": ["PV", "FaZe"],
           "3-1-or-3-2": ["Legacy", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -564,6 +576,8 @@
       {
         "id": "sam-cs2",
         "name": "Sam-CS2",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/2971435",
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
@@ -573,6 +587,8 @@
       {
         "id": "cs2-jjg",
         "name": "CS2将军鸽",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/496798834",
         "stage-1": {
           "3-0": ["Legacy", "M80"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "FlyQuest", "B8", "GL"],
@@ -597,6 +613,8 @@
       {
         "id": "ounijiang",
         "name": "瓜鱼欧尼酱",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/1448301",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "RA", "FlyQuest", "B8", "Huns"],
@@ -616,6 +634,8 @@
       {
         "id": "tatukunn",
         "name": "Tatukunn",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/272421703",
         "stage-2": {
           "3-0": ["Astralis", "NAVI"],
           "3-1-or-3-2": ["B8", "FaZe", "Liquid", "PV", "Fnatic", "Aurora"],
@@ -630,6 +650,8 @@
       {
         "id": "cs-laozhang",
         "name": "CS解说老张",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/3461579393731313",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "FlyQuest", "Imperial", "GL"],
@@ -649,6 +671,8 @@
       {
         "id": "winning",
         "name": "温宁winningOvO",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/40093819",
         "stage-2": {
           "3-0": ["Aurora", "NAVI"],
           "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "TYLOO", "FlyQuest", "M80"],
@@ -663,6 +687,8 @@
       {
         "id": "cs-rw",
         "name": "CS-RW",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/37012016",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "Imperial", "FlyQuest", "B8", "GL"],
@@ -677,6 +703,8 @@
       {
         "id": "xiaoliuyu",
         "name": "小刘鱼",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/5174692",
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "GL"],
@@ -686,6 +714,8 @@
       {
         "id": "yezi-c",
         "name": "椰子c",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/21994094",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["Fnatic", "LVG", "NIP", "FlyQuest", "B8", "GL"],
@@ -710,6 +740,8 @@
       {
         "id": "rose",
         "name": "-玫瑰予乐-",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/485759425",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "PV", "GL"],
@@ -729,6 +761,8 @@
       {
         "id": "elysia-cs2",
         "name": "ElysiaCS2",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/178467085",
         "stage-1": {
           "3-0": ["Legacy", "LVG"],
           "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "M80"],
@@ -753,6 +787,8 @@
       {
         "id": "lancerrr",
         "name": "幸运的LANCERRR",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/9038639",
         "stage-2": {
           "3-0": ["Aurora", "NAVI"],
           "3-1-or-3-2": ["3DMAX", "Astralis", "Liquid", "MIBR", "FlyQuest", "PUA"],
@@ -766,7 +802,9 @@
       },
       {
         "id": "cs2-lwz",
-        "name": "CS2 李文哲",
+        "name": "李文哲/哲易直胡说",
+        "platform": "虎牙",
+        "link": "https://www.huya.com/lwz6038",
         "stage-2": {
           "3-0": ["FlyQuest", "Aurora"],
           "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "M80", "Fnatic"],
@@ -776,6 +814,8 @@
       {
         "id": "david-tao",
         "name": "陶喆的音乐难产房",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/544173861",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["LVG", "PV", "M80", "Fnatic", "B8", "GL"],
@@ -790,6 +830,8 @@
       {
         "id": "vince",
         "name": "Vince",
+        "platform": "解说员",
+        "link": "https://liquipedia.net/counterstrike/Vince",
         "stage-1": {
           "3-0": ["Legacy", "PV"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -808,7 +850,9 @@
       },
       {
         "id": "mac-mate",
-        "name": "MacMate",
+        "name": "Mac",
+        "platform": "解说员",
+        "link": "https://liquipedia.net/counterstrike/Mac",
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
@@ -817,7 +861,9 @@
       },
       {
         "id": "voo",
-        "name": "Voo",
+        "name": "voo",
+        "platform": "直播分析师",
+        "link": "https://liquipedia.net/counterstrike/Voo",
         "stage-3": {
           "3-0": ["NAVI", "Falcons"],
           "3-1-or-3-2": ["Vitality", "MOUZ", "paiN", "FURIA", "Spirit", "Liquid"],
@@ -827,6 +873,8 @@
       {
         "id": "poloolpp",
         "name": "Poloolpp",
+        "platform": "X",
+        "link": "https://x.com/Poloolpp",
         "stage-1": {
           "3-0": ["Legacy", "NIP"],
           "3-1-or-3-2": ["FaZe", "LVG", "RA", "Fnatic", "Huns", "GL"],
@@ -846,6 +894,8 @@
       {
         "id": "ash",
         "name": "Ash",
+        "platform": "解说员",
+        "link": "https://liquipedia.net/counterstrike/Ash",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -854,7 +904,9 @@
       },
       {
         "id": "banks",
-        "name": "Banks",
+        "name": "BanKs",
+        "platform": "主持人、采访记者",
+        "link": "https://liquipedia.net/counterstrike/James_Banks",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "FlyQuest", "NIP", "Fnatic", "B8", "GL"],
@@ -874,6 +926,8 @@
       {
         "id": "styko",
         "name": "STYKO",
+        "platform": "前 MOUZ 战队选手",
+        "link": "https://www.hltv.org/player/6904/styko",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "FlyQuest", "NIP", "Fnatic", "NRG", "GL"],
@@ -896,17 +950,10 @@
         }
       },
       {
-        "id": "r1nkle",
-        "name": "r1nkle",
-        "stage-2": {
-          "3-0": ["B8", "NAVI"],
-          "3-1-or-3-2": ["TYLOO", "3DMAX", "PUA", "M80", "Fnatic", "Aurora"],
-          "0-3": ["Imperial", "NIP"]
-        }
-      },
-      {
         "id": "taco",
         "name": "TACO",
+        "platform": "前 Liquid/MIBR 战队选手",
+        "link": "https://www.hltv.org/player/9217/taco",
         "stage-3": {
           "3-0": ["MOUZ", "FURIA"],
           "3-1-or-3-2": ["NAVI", "paiN", "Falcons", "Vitality", "Spirit", "Imperial"],
@@ -915,7 +962,9 @@
       },
       {
         "id": "hawka",
-        "name": "hawka",
+        "name": "Hawka",
+        "platform": "解说员、直播分析师",
+        "link": "https://liquipedia.net/counterstrike/Hawka",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "FlyQuest"],
@@ -935,6 +984,8 @@
       {
         "id": "launders",
         "name": "launders",
+        "platform": "解说员",
+        "link": "https://liquipedia.net/counterstrike/Launders",
         "stage-1": {
           "3-0": ["Legacy", "PV"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "M80", "B8", "GL"],
@@ -949,6 +1000,8 @@
       {
         "id": "pimp",
         "name": "Pimp",
+        "platform": "直播分析师",
+        "link": "https://liquipedia.net/counterstrike/Pimp",
         "stage-1": {
           "3-0": ["GL", "FaZe"],
           "3-1-or-3-2": ["Legacy", "FlyQuest", "NIP", "Fnatic", "B8", "PV"],
@@ -968,6 +1021,8 @@
       {
         "id": "thorin",
         "name": "Thorin",
+        "platform": "直播分析师",
+        "link": "https://liquipedia.net/counterstrike/Thorin",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "FlyQuest", "NIP", "Fnatic", "B8", "GL"],
@@ -982,6 +1037,8 @@
       {
         "id": "dust",
         "name": "dusT",
+        "platform": "解说员、直播分析师",
+        "link": "https://liquipedia.net/counterstrike/DusT",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -991,6 +1048,8 @@
       {
         "id": "kassad",
         "name": "kassad",
+        "platform": "直播分析师、前 BLEED 战队教练",
+        "link": "https://liquipedia.net/counterstrike/Kassad",
         "stage-1": {
           "3-0": ["PV", "FaZe"],
           "3-1-or-3-2": ["Legacy", "FlyQuest", "NIP", "Fnatic", "B8", "M80"],
@@ -1010,6 +1069,8 @@
       {
         "id": "mauisnake",
         "name": "Mauisnake",
+        "platform": "解说员/分析师",
+        "link": "https://liquipedia.net/counterstrike/Mauisnake",
         "stage-2": {
           "3-0": ["Aurora", "NAVI"],
           "3-1-or-3-2": ["FaZe", "Astralis", "M80", "NIP", "B8", "PV"],
@@ -1024,6 +1085,8 @@
       {
         "id": "ceh9",
         "name": "ceh9",
+        "platform": "前 NAVI 选手",
+        "link": "https://www.hltv.org/player/301/ceh9",
         "stage-1": {
           "3-0": ["Legacy", "Fnatic"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "FlyQuest", "B8", "M80"],
@@ -1038,6 +1101,8 @@
       {
         "id": "cooper",
         "name": "Cooper",
+        "platform": "Mythic 战队选手",
+        "link": "https://www.hltv.org/player/15007/cooper",
         "stage-1": {
           "3-0": ["FaZe", "PV"],
           "3-1-or-3-2": ["Legacy", "M80", "NRG", "FlyQuest", "B8", "GL"],
@@ -1057,6 +1122,8 @@
       {
         "id": "nart-out",
         "name": "NartOut",
+        "platform": "YouTube",
+        "link": "https://www.youtube.com/nartouthere",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "Legacy", "NIP", "FlyQuest", "PV", "GL"],
@@ -1076,6 +1143,8 @@
       {
         "id": "trilluxe",
         "name": "TrilluXe",
+        "platform": "YouTube",
+        "link": "https://www.youtube.com/TrilluXe",
         "stage-1": {
           "3-0": ["FaZe", "Fnatic"],
           "3-1-or-3-2": ["Legacy", "RED", "Imperial", "FlyQuest", "Fluxo", "GL"],
@@ -1095,6 +1164,8 @@
       {
         "id": "mr-maxim",
         "name": "MrMaxim",
+        "platform": "YouTube",
+        "link": "https://www.youtube.com/@MrMaxim",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["FaZe", "LVG", "FlyQuest", "Fnatic", "B8", "M80"],
@@ -1115,6 +1186,7 @@
         "id": "clife",
         "name": "clife",
         "platform": "Spirit 分析师",
+        "link": "https://www.hltv.org/coach/20965/clife",
         "stage-1": {
           "3-0": ["FaZe", "B8"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "FlyQuest", "Legacy"],
@@ -1124,6 +1196,8 @@
       {
         "id": "degster",
         "name": "degster",
+        "platform": "前 Falcons/Spirit/OG/HEROIC 战队选手",
+        "link": "https://www.hltv.org/player/17306/degster",
         "stage-1": {
           "3-0": ["FaZe", "M80"],
           "3-1-or-3-2": ["PV", "Imperial", "NIP", "Fnatic", "B8", "GL"],
@@ -1138,6 +1212,8 @@
       {
         "id": "get-right",
         "name": "GeT_RiGhT",
+        "platform": "前 NIP 选手",
+        "link": "https://www.hltv.org/hof/39/get-right",
         "stage-2": {
           "3-0": ["FaZe", "M80"],
           "3-1-or-3-2": ["TYLOO", "Astralis", "Liquid", "NIP", "Fnatic", "Aurora"],
@@ -1147,6 +1223,8 @@
       {
         "id": "hades",
         "name": "hades",
+        "platform": "ex-Inner Circle 战队选手",
+        "link": "https://www.hltv.org/player/16848/hades",
         "stage-2": {
           "3-0": ["Aurora", "NAVI"],
           "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "M80", "3DMAX"],
@@ -1161,6 +1239,8 @@
       {
         "id": "r3-salt",
         "name": "r3salt",
+        "platform": "Sangal 战队选手",
+        "link": "https://www.hltv.org/player/20709/r3salt",
         "stage-3": {
           "3-0": ["FURIA", "Falcons"],
           "3-1-or-3-2": ["Vitality", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
@@ -1175,6 +1255,8 @@
       {
         "id": "magnojez",
         "name": "Magnojez",
+        "platform": "BB 战队选手",
+        "link": "https://www.hltv.org/player/21667/magnojez",
         "stage-3": {
           "3-0": ["MOUZ", "Falcons"],
           "3-1-or-3-2": ["NAVI", "3DMAX", "FURIA", "Vitality", "Spirit", "G2"],
@@ -1189,6 +1271,8 @@
       {
         "id": "cs-tactics",
         "name": "CS Tactics",
+        "platform": "YouTube",
+        "link": "https://www.youtube.com/@CS2Tactics",
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
@@ -1198,6 +1282,8 @@
       {
         "id": "co-jo-mo",
         "name": "CoJoMo",
+        "platform": "前 Phoenix 战队选手",
+        "stage-2": {},
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
@@ -1207,6 +1293,8 @@
       {
         "id": "ohne-pixel",
         "name": "ohnePixel",
+        "platform": "Twitch",
+        "link": "https://www.twitch.tv/ohnepixel",
         "stage-1": {
           "3-0": ["FaZe", "GL"],
           "3-1-or-3-2": ["Legacy", "NRG", "NIP", "Fnatic", "B8", "M80"],
@@ -1214,17 +1302,26 @@
         }
       },
       {
-        "id": "rinkle",
-        "name": "rinkle",
+        "id": "r1nkle",
+        "name": "r1nkle",
+        "platform": "NIP 战队选手",
+        "link": "https://www.hltv.org/player/20425/r1nkle",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "LVG", "Imperial", "Fnatic", "M80", "GL"],
           "0-3": ["RED", "NIP"]
+        },
+        "stage-2": {
+          "3-0": ["B8", "NAVI"],
+          "3-1-or-3-2": ["TYLOO", "3DMAX", "PUA", "M80", "Fnatic", "Aurora"],
+          "0-3": ["Imperial", "NIP"]
         }
       },
       {
         "id": "shox",
         "name": "shox",
+        "platform": "前 Vitality/G2/Liquid 选手",
+        "link": "https://www.hltv.org/player/1225/shox",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "FlyQuest", "GL"],
@@ -1234,6 +1331,8 @@
       {
         "id": "magixx",
         "name": "magixx",
+        "platform": "前 Spirit 选手",
+        "link": "https://www.hltv.org/player/18317/magixx",
         "stage-1": {
           "3-0": ["Legacy", "Fnatic"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "M80", "B8", "GL"],
@@ -1243,6 +1342,8 @@
       {
         "id": "fl4mus",
         "name": "FL4MUS",
+        "platform": "OG 战队选手",
+        "link": "https://www.hltv.org/player/20994/fl4mus",
         "stage-1": {
           "3-0": ["Legacy", "PV"],
           "3-1-or-3-2": ["FaZe", "Imperial", "NIP", "Fnatic", "B8", "GL"],
@@ -1267,6 +1368,8 @@
       {
         "id": "nip-cs",
         "name": "NIP CS",
+        "platform": "Twitch",
+        "link": "https://www.twitch.tv/nipgamingtv",
         "stage-1": {
           "3-0": ["Legacy", "NIP"],
           "3-1-or-3-2": ["FaZe", "LVG", "M80", "Fnatic", "B8", "GL"],
@@ -1276,6 +1379,8 @@
       {
         "id": "fly-quest-cs",
         "name": "FlyQuest CS",
+        "platform": "Twitch",
+        "link": "https://www.twitch.tv/flyquest",
         "stage-1": {
           "3-0": ["GL", "PV"],
           "3-1-or-3-2": ["FaZe", "LVG", "NIP", "M80", "Legacy", "FlyQuest"],
@@ -1285,6 +1390,8 @@
       {
         "id": "root-the-gamer",
         "name": "rootthegamer",
+        "platform": "Twitch",
+        "link": "https://www.twitch.tv/rootthegamer",
         "stage-1": {
           "3-0": ["Legacy", "GL"],
           "3-1-or-3-2": ["FaZe", "PV", "M80", "Fnatic", "B8", "FlyQuest"],
@@ -1303,7 +1410,7 @@
       },
       {
         "id": "statsmeister1",
-        "name": "statsmeister1",
+        "name": "statsmeister",
         "platform": "X",
         "link": "https://x.com/statsmeister1",
         "stage-3": {
@@ -1363,7 +1470,7 @@
       {
         "id": "fl0m",
         "name": "fl0m",
-        "platform": "Mythic 战队成员",
+        "platform": "Mythic 战队选手",
         "link": "https://www.hltv.org/player/8503/fl0m",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
@@ -1422,7 +1529,7 @@
       {
         "id": "interz",
         "name": "interz",
-        "platform": "1win 战队成员",
+        "platform": "1win 战队选手",
         "link": "https://www.hltv.org/player/15071/interz",
         "finals": {
           "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
@@ -1433,7 +1540,7 @@
       {
         "id": "yxngstxr",
         "name": "yxngstxr",
-        "platform": "HEROIC 战队成员",
+        "platform": "HEROIC 战队选手",
         "link": "https://www.hltv.org/player/22047/yxngstxr",
         "finals": {
           "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
@@ -1455,7 +1562,7 @@
       {
         "id": "markeloff",
         "name": "markeloff",
-        "platform": "前 NAVI 队员",
+        "platform": "前 NAVI 选手",
         "link": "https://www.hltv.org/player/338/markeloff",
         "finals": {
           "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],

@@ -246,6 +246,11 @@
           "3-0": ["Vitality", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
           "0-3": ["PUA", "B8"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -288,6 +293,11 @@
           "3-0": ["Vitality", "Spirit"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "paiN", "Falcons", "G2"],
           "0-3": ["FaZe", "B8"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "NAVI", "FaZe"],
+          "4-to-2": ["Vitality", "FaZe"],
+          "2-to-1": "FaZe"
         }
       },
       {
@@ -482,6 +492,11 @@
           "3-0": ["Spirit", "G2"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "paiN"],
           "0-3": ["B8", "Liquid"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Falcons", "FaZe"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -550,6 +565,11 @@
           "3-0": ["Vitality", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "FURIA", "Spirit", "G2"],
           "0-3": ["PUA", "Liquid"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "MongolZ", "FURIA", "MOUZ"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -582,6 +602,11 @@
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
           "0-3": ["PUA", "3DMAX"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -756,6 +781,11 @@
           "3-0": ["Vitality", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
           "0-3": ["PUA", "MongolZ"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {

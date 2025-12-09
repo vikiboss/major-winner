@@ -458,7 +458,6 @@ export function calculatePredictorStats(
     id: predictor.id,
     name: predictor.name,
     platform: predictor.platform || '',
-    description: predictor.description,
     link: predictor.link,
     totalPassed,
     totalStages,

@@ -104,13 +104,12 @@ export interface FinalsPrediction {
 export interface PredictorPrediction {
   id: string
   name: string
-  platform?: string
-  description?: string
+  platform: string
   link?: string
-  'stage-1'?: StagePrediction | null
-  'stage-2'?: StagePrediction | null
-  'stage-3'?: StagePrediction | null
-  finals: FinalsPrediction | null
+  'stage-1'?: StagePrediction
+  'stage-2'?: StagePrediction
+  'stage-3'?: StagePrediction
+  finals?: FinalsPrediction
 }
 
 // 赛事竞猜数据
@@ -136,7 +135,6 @@ export interface PredictorStats {
   id: string
   name: string
   platform: string
-  description?: string
   link?: string
 
   totalPassed: number // 通过的阶段数

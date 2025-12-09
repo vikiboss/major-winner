@@ -279,7 +279,7 @@ function SwissTable({
                         <span
                           className={`inline-block rounded px-2 py-1 text-xs font-medium text-nowrap ${
                             isInProgress
-                              ? 'bg-primary-500/10 text-primary-500'
+                              ? 'text-muted'
                               : stageResult.passed
                                 ? 'bg-win/10 text-win'
                                 : 'bg-lose/10 text-lose'
@@ -351,7 +351,7 @@ function SwissTable({
                       <span
                         className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
                           isInProgress
-                            ? 'bg-primary-500/10 text-primary-500'
+                            ? 'text-muted'
                             : stageResult.passed
                               ? 'bg-win/10 text-win'
                               : 'bg-lose/10 text-lose'
@@ -756,7 +756,7 @@ function FinalsTable({
                       <span
                         className={`text-xs font-medium ${
                           !finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
-                            ? 'text-primary-500'
+                            ? 'text-muted'
                             : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
                               ? 'text-win'
                               : 'text-lose'
@@ -801,7 +801,7 @@ function FinalsTable({
                       <span
                         className={`text-xs font-medium ${
                           !finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
-                            ? 'text-primary-500'
+                            ? 'text-muted'
                             : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
                               ? 'text-win'
                               : 'text-lose'
@@ -846,7 +846,7 @@ function FinalsTable({
                       <span
                         className={`text-xs font-medium ${
                           !finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
-                            ? 'text-primary-500'
+                            ? 'text-muted'
                             : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
                               ? 'text-win'
                               : 'text-lose'

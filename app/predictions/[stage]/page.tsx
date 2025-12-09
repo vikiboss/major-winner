@@ -178,16 +178,16 @@ function SwissTable({
                       )}
                       {isNotStarted && stats && (
                         <span className="text-muted text-xs text-nowrap">
+                          <span className="mr-1 opacity-80">阶段</span>
+                          <span className="font-medium">
+                            {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
+                            {stats.totalPassed}/{stats.totalStages - 1}
+                          </span>
+                          <span className="mx-1 opacity-60">|</span>
                           <span className="mr-1 opacity-80">猜对</span>
                           <span className="font-medium">
                             {/* 移除当前瑞士轮未开始阶段的 10 个竞猜 */}
                             {stats.totalCorrect}/{stats.totalPredictions - 10}
-                          </span>
-                          <span className="mx-1 opacity-60">|</span>
-                          <span className="mr-1 opacity-80">任务</span>
-                          <span className="font-medium">
-                            {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
-                            {stats.totalPassed}/{stats.totalStages - 1}
                           </span>
                         </span>
                       )}
@@ -329,16 +329,16 @@ function SwissTable({
                   )}
                   {isNotStarted && stats && (
                     <span className="text-muted text-xs text-nowrap">
+                      <span className="mr-1 opacity-80">阶段</span>
+                      <span className="font-medium">
+                        {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
+                        {stats.totalPassed}/{stats.totalStages - 1}
+                      </span>
+                      <span className="mx-1 opacity-60">|</span>
                       <span className="mr-1 opacity-80">猜对</span>
                       <span className="font-medium">
                         {/* 移除当前瑞士轮未开始阶段的 10 个竞猜 */}
                         {stats.totalCorrect}/{stats.totalPredictions - 10}
-                      </span>
-                      <span className="mx-1 opacity-60">|</span>
-                      <span className="mr-1 opacity-80">任务</span>
-                      <span className="font-medium">
-                        {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
-                        {stats.totalPassed}/{stats.totalStages - 1}
                       </span>
                     </span>
                   )}
@@ -551,16 +551,16 @@ function FinalsTable({
                       )}
                       {isNotStarted && stats && (
                         <span className="text-muted text-xs text-nowrap">
+                          <span className="mr-1 opacity-80">阶段</span>
+                          <span className="font-medium">
+                            {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
+                            {stats.totalPassed}/{stats.totalStages - 3}
+                          </span>
+                          <span className="mx-1 opacity-60">|</span>
                           <span className="mr-1 opacity-80">猜对</span>
                           <span className="font-medium">
                             {/* 移除当前瑞士轮未开始阶段的 7（4+2+1） 个竞猜 */}
                             {stats.totalCorrect}/{stats.totalPredictions - 7}
-                          </span>
-                          <span className="mx-1 opacity-60">|</span>
-                          <span className="mr-1 opacity-80">任务</span>
-                          <span className="font-medium">
-                            {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
-                            {stats.totalPassed}/{stats.totalStages - 3}
                           </span>
                         </span>
                       )}
@@ -715,16 +715,16 @@ function FinalsTable({
                   )}
                   {isNotStarted && stats && (
                     <span className="text-muted text-xs text-nowrap">
+                      <span className="mr-1 opacity-80">阶段</span>
+                      <span className="font-medium">
+                        {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
+                        {stats.totalPassed}/{stats.totalStages - 3}
+                      </span>
+                      <span className="mx-1 opacity-60">|</span>
                       <span className="mr-1 opacity-80">猜对</span>
                       <span className="font-medium">
                         {/* 移除当前瑞士轮未开始阶段的 7（4+2+1） 个竞猜 */}
                         {stats.totalCorrect}/{stats.totalPredictions - 7}
-                      </span>
-                      <span className="mx-1 opacity-60">|</span>
-                      <span className="mr-1 opacity-80">任务</span>
-                      <span className="font-medium">
-                        {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
-                        {stats.totalPassed}/{stats.totalStages - 3}
                       </span>
                     </span>
                   )}

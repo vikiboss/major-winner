@@ -142,10 +142,9 @@ export default function TeamsPage() {
 
   // 排序逻辑 - 实力越强越靠前:
   // 1. 决赛成绩优先: 冠军 > 亚军 > 四强 > 八强 > 未进决赛
-  // 2. 瑞士轮晋级: 3-0 > 3-1 > 3-2 (更强的晋级成绩靠前)
-  // 3. 比赛状态: 晋级/赛程中 > 待赛 > 淘汰
-  // 4. 淘汰队伍: 2-3 > 1-3 > 0-3 (接近晋级的靠前)
-  // 5. 所在阶段: stage-3 > stage-2 > stage-1 (更高阶段靠前)
+  // 2. 实际达到的最高阶段: stage-3 > stage-2 > stage-1 (打入更高阶段 = 更强)
+  // 3. 同阶段内比较战绩: 3-0 > 3-1 > 3-2 > 2-3 > 1-3 > 0-3
+  // 4. 比赛状态: 晋级/赛程中 > 待赛 > 淘汰
   const sortedTeams = teams.toSorted((a, b) => {
     const aPerf = getTeamPerformance(a.shortName)
     const bPerf = getTeamPerformance(b.shortName)
@@ -168,7 +167,36 @@ export default function TeamsPage() {
       if (aRank !== bRank) return aRank - bRank
     }
 
-    // 2. 瑞士轮战绩 - 胜率和净胜场代表实力
+    // 2. 找到每支队伍实际达到的最高瑞士轮阶段
+    const getHighestSwissStage = (perf: typeof aPerf) => {
+      const swissPerfs = perf.filter(
+        (p) => p.stage === 'stage-1' || p.stage === 'stage-2' || p.stage === 'stage-3',
+      )
+      if (swissPerfs.length === 0) return null
+      // 返回最后一个瑞士轮阶段（即最高阶段）
+      return swissPerfs[swissPerfs.length - 1]
+    }
+
+    const aHighestSwiss = getHighestSwissStage(aPerf)
+    const bHighestSwiss = getHighestSwissStage(bPerf)
+
+    // 3. 比较实际达到的最高阶段（打入冠军组一定强于只在传奇组）
+    const stageStrength = {
+      'stage-3': 1, // 冠军组
+      'stage-2': 2, // 传奇组
+      'stage-1': 3, // 挑战组
+    }
+
+    const aStageRank = aHighestSwiss
+      ? stageStrength[aHighestSwiss.stage as keyof typeof stageStrength] || 999
+      : 999
+    const bStageRank = bHighestSwiss
+      ? stageStrength[bHighestSwiss.stage as keyof typeof stageStrength] || 999
+      : 999
+
+    if (aStageRank !== bStageRank) return aStageRank - bStageRank
+
+    // 4. 同阶段内比较战绩（同在冠军组时，3-0 > 1-3）
     const getSwissStrength = (perf: typeof lastA) => {
       if (!perf) return 999
       // 最终成绩: 3-0 最强,0-3 最弱
@@ -194,35 +222,17 @@ export default function TeamsPage() {
       )
     }
 
-    const aSwiss = getSwissStrength(lastA)
-    const bSwiss = getSwissStrength(lastB)
-
-    // 同为晋级、同为淘汰、或同为赛程中时,按战绩排序
-    const aStatus = lastA?.status || 'eliminated'
-    const bStatus = lastB?.status || 'eliminated'
-
-    // 都晋级、等待下一比赛时，按照上一次瑞士轮成绩排序
-    if (aStatus === 'waiting' && bStatus === 'waiting') {
-      const lastSwissA = aPerf[aPerf.length - 2]
-      const lastSwissB = bPerf[bPerf.length - 2]
-
-      if (lastSwissA && lastSwissB) {
-        const aSwiss = getSwissStrength(lastSwissA)
-        const bSwiss = getSwissStrength(lastSwissB)
-
-        if (aSwiss !== bSwiss) return aSwiss - bSwiss
-      }
-    }
-
-    if (
-      (aStatus === 'advanced' && bStatus === 'advanced') ||
-      (aStatus === 'eliminated' && bStatus === 'eliminated') ||
-      (aStatus === 'in-progress' && bStatus === 'in-progress')
-    ) {
+    // 同阶段内，比较该阶段的战绩
+    if (aHighestSwiss && bHighestSwiss && aStageRank === bStageRank) {
+      const aSwiss = getSwissStrength(aHighestSwiss)
+      const bSwiss = getSwissStrength(bHighestSwiss)
       if (aSwiss !== bSwiss) return aSwiss - bSwiss
     }
 
-    // 3. 竞技状态 - 晋级/赛程中 > 待赛 > 淘汰
+    // 5. 比赛状态 - 晋级/赛程中 > 待赛 > 淘汰
+    const aStatus = lastA?.status || 'eliminated'
+    const bStatus = lastB?.status || 'eliminated'
+
     const statusStrength = {
       champion: 1, // 冠军最强
       advanced: 2, // 已晋级
@@ -236,21 +246,7 @@ export default function TeamsPage() {
 
     if (aStatusRank !== bStatusRank) return aStatusRank - bStatusRank
 
-    // 4. 所在阶段 - 更高阶段代表更强
-    const stageStrength = {
-      finals: 1,
-      'stage-3': 2,
-      'stage-2': 3,
-      'stage-1': 4,
-    }
-    const aStage = lastA?.stage || a.stage
-    const bStage = lastB?.stage || b.stage
-    const aStageRank = stageStrength[aStage as keyof typeof stageStrength] || 999
-    const bStageRank = stageStrength[bStage as keyof typeof stageStrength] || 999
-
-    if (aStageRank !== bStageRank) return aStageRank - bStageRank
-
-    // 5. 默认按起始阶段排序 (高阶段起点 = 实力强)
+    // 6. 默认按起始阶段排序 (高阶段起点 = 种子实力强)
     const startStageRank = stageStrength[a.stage as keyof typeof stageStrength] || 999
     const startStageRank2 = stageStrength[b.stage as keyof typeof stageStrength] || 999
 

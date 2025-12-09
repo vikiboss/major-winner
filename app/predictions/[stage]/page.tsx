@@ -663,11 +663,11 @@ function FinalsTable({
                                 : '决赛'
                           return (
                             <div key={s.stageId} className="flex items-center gap-1">
-                              <span className="text-muted text-xs">{stageName}:</span>
+                              <span className="text-muted text-xs text-nowrap">{stageName}:</span>
                               <span
-                                className={`text-xs font-medium ${
+                                className={`text-xs font-medium text-nowrap ${
                                   !s.isActualResultComplete
-                                    ? 'text-primary-500'
+                                    ? 'text-muted'
                                     : s.passed
                                       ? 'text-win'
                                       : 'text-lose'

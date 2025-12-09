@@ -410,7 +410,7 @@ export function calculatePredictorStats(
     }
   }
 
-  // 计算淘汰赛
+  // 计算决赛阶段
   if (event.finals && predictor.finals) {
     const finals = event.finals.result
 
@@ -502,7 +502,7 @@ export function getStageName(stageId: string): string {
     '8-to-4': '八进四',
     '4-to-2': '半决赛',
     '2-to-1': '决赛',
-    finals: '淘汰赛',
+    finals: '决赛阶段',
   }
   return names[stageId] || stageId
 }
@@ -556,7 +556,7 @@ function hasSwissResults(result: SwissResult | undefined): boolean {
 }
 
 /**
- * 检查淘汰赛某轮结果是否完整
+ * 检查决赛阶段某轮结果是否完整
  */
 function isFinalsRoundComplete(
   winners: string[],
@@ -633,7 +633,7 @@ const getStageConfig = (event: MajorEvent) => {
     { id: 'stage-1' as const, name: '第一阶段', data: event['stage-1'], type: 'swiss' as const },
     { id: 'stage-2' as const, name: '第二阶段', data: event['stage-2'], type: 'swiss' as const },
     { id: 'stage-3' as const, name: '第三阶段', data: event['stage-3'], type: 'swiss' as const },
-    { id: 'finals' as const, name: '淘汰赛', data: event.finals, type: 'finals' as const },
+    { id: 'finals' as const, name: '决赛阶段', data: event.finals, type: 'finals' as const },
   ]
 }
 

@@ -80,7 +80,7 @@ export default function TeamsPage() {
       }
     }
 
-    // 检查决赛阶段 - 只有真正在决赛名单中的队伍才显示决赛信息
+    // 检查淘汰赛 - 只有真正在决赛名单中的队伍才显示决赛信息
     if (event.finals && event.finals.teams.length > 0 && event.finals.teams.includes(shortName)) {
       const finals = event.finals
 

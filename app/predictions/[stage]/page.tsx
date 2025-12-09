@@ -20,7 +20,7 @@ const STAGE_NAMES: Record<Stage, string> = {
   'stage-1': '第一阶段',
   'stage-2': '第二阶段',
   'stage-3': '第三阶段',
-  finals: '决赛阶段',
+  finals: '淘汰赛',
 }
 
 interface PageProps {
@@ -464,7 +464,7 @@ function SwissTable({
   )
 }
 
-// 决赛阶段表格组件
+// 淘汰赛表格组件
 function FinalsTable({
   predictors,
   event,

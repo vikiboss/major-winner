@@ -50,7 +50,7 @@ export interface SwissStage {
   result: SwissResult
 }
 
-// 决赛阶段单轮结果
+// 淘汰赛单轮结果
 export interface FinalsRoundResult {
   winners: string[]
   losers: string[]
@@ -62,14 +62,14 @@ export interface FinalChampionshipResult {
   loser: string | null
 }
 
-// 决赛阶段完整结果
+// 淘汰赛完整结果
 export interface FinalsResult {
   '8-to-4': FinalsRoundResult
   '4-to-2': FinalsRoundResult
   '2-to-1': FinalChampionshipResult
 }
 
-// 决赛阶段
+// 淘汰赛
 export interface FinalsStage {
   teams: string[]
   result: FinalsResult
@@ -93,7 +93,7 @@ export interface StagePrediction {
   '0-3': string[] // 2 支队伍
 }
 
-// 竞猜数据 - 决赛阶段
+// 竞猜数据 - 淘汰赛
 export interface FinalsPrediction {
   '8-to-4': string[] // 4 支队伍(四强)
   '4-to-2': string[] // 2 支队伍(决赛)

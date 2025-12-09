@@ -575,15 +575,16 @@ function FinalsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['8-to-4'].map((team) => {
-                        const isCorrect = finalsResult['8-to-4'].winners.includes(team)
-                        const hasResult = finalsResult['8-to-4'].winners.length > 0
+                        const isMatch = finalsResult['8-to-4'].winners.includes(team)
+                        const isMisMatch = finalsResult['8-to-4'].losers.includes(team)
+
                         return (
                           <span
                             key={team}
                             className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
-                              isCorrect
+                              isMatch
                                 ? 'bg-win/10 text-win'
-                                : hasResult
+                                : isMisMatch
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
@@ -600,15 +601,18 @@ function FinalsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['4-to-2']?.map((team) => {
-                        const isCorrect = finalsResult?.['4-to-2'].winners.includes(team)
-                        const hasResult = finalsResult?.['4-to-2'].winners.length > 0
+                        const isMatch = finalsResult?.['4-to-2'].winners.includes(team)
+                        const isMismatch =
+                          finalsResult?.['4-to-2'].losers.includes(team) ||
+                          finalsResult?.['8-to-4'].losers.includes(team)
+
                         return (
                           <span
                             key={team}
                             className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
-                              isCorrect
+                              isMatch
                                 ? 'bg-win/10 text-win'
-                                : hasResult
+                                : isMismatch
                                   ? 'bg-lose/10 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
@@ -661,19 +665,20 @@ function FinalsTable({
                               : s.stageId === '4-to-2'
                                 ? '半决赛'
                                 : '决赛'
+
                           return (
                             <div key={s.stageId} className="flex items-center gap-1">
                               <span className="text-muted text-xs text-nowrap">{stageName}:</span>
                               <span
                                 className={`text-xs font-medium text-nowrap ${
-                                  !s.isActualResultComplete
+                                  s.passed === null
                                     ? 'text-muted'
                                     : s.passed
                                       ? 'text-win'
                                       : 'text-lose'
                                 }`}
                               >
-                                {!s.isActualResultComplete ? '祈祷中' : s.passed ? '✅' : '❌'}
+                                {s.passed === null ? '祈祷中' : s.passed ? '✅' : '❌'}
                               </span>
                             </div>
                           )
@@ -707,7 +712,12 @@ function FinalsTable({
           const finalsStats = stats?.stageResults.filter((s) =>
             FINAL_STAGES.some((e) => e === s.stageId),
           )
+
           const totalCorrect = finalsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
+
+          const e2f = finalsStats?.find((s) => s.stageId === '8-to-4')
+          const f2t = finalsStats?.find((s) => s.stageId === '4-to-2')
+          const t2o = finalsStats?.find((s) => s.stageId === '2-to-1')
 
           return (
             <div key={predictor.id} className="p-4">
@@ -752,35 +762,28 @@ function FinalsTable({
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">八进四</p>
-                    {finalsStats?.find((s) => s.stageId === '8-to-4') && (
+                    {e2f && (
                       <span
                         className={`text-xs font-medium ${
-                          !finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
-                            ? 'text-muted'
-                            : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
-                              ? 'text-win'
-                              : 'text-lose'
+                          e2f.passed === null ? 'text-muted' : e2f.passed ? 'text-win' : 'text-lose'
                         }`}
                       >
-                        {!finalsStats.find((s) => s.stageId === '8-to-4')?.isActualResultComplete
-                          ? '祈祷中'
-                          : finalsStats.find((s) => s.stageId === '8-to-4')?.passed
-                            ? '✅'
-                            : '❌'}
+                        {e2f.passed === null ? '祈祷中' : e2f?.passed ? '✅' : '❌'}
                       </span>
                     )}
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {prediction['8-to-4']?.map((team) => {
-                      const isCorrect = finalsResult?.['8-to-4'].winners.includes(team)
-                      const hasResult = finalsResult?.['8-to-4'].winners.length > 0
+                      const isMatch = finalsResult['8-to-4'].winners.includes(team)
+                      const isMisMatch = finalsResult['8-to-4'].losers.includes(team)
+
                       return (
                         <span
                           key={team}
                           className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
-                            isCorrect
+                            isMatch
                               ? 'bg-win/10 text-win'
-                              : hasResult
+                              : isMisMatch
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
@@ -797,35 +800,28 @@ function FinalsTable({
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">半决赛</p>
-                    {finalsStats?.find((s) => s.stageId === '4-to-2') && (
+                    {f2t && (
                       <span
                         className={`text-xs font-medium ${
-                          !finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
-                            ? 'text-muted'
-                            : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
-                              ? 'text-win'
-                              : 'text-lose'
+                          f2t.passed === null ? 'text-muted' : f2t.passed ? 'text-win' : 'text-lose'
                         }`}
                       >
-                        {!finalsStats.find((s) => s.stageId === '4-to-2')?.isActualResultComplete
-                          ? '祈祷中'
-                          : finalsStats.find((s) => s.stageId === '4-to-2')?.passed
-                            ? '✅'
-                            : '❌'}
+                        {f2t.passed === null ? '祈祷中' : f2t.passed ? '✅' : '❌'}
                       </span>
                     )}
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {prediction['4-to-2']?.map((team) => {
-                      const isCorrect = finalsResult?.['4-to-2'].winners.includes(team)
-                      const hasResult = finalsResult?.['4-to-2'].winners.length > 0
+                      const isMatch = finalsResult?.['4-to-2'].winners.includes(team)
+                      const isMismatch = finalsResult?.['4-to-2'].losers.includes(team)
+
                       return (
                         <span
                           key={team}
                           className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
-                            isCorrect
+                            isMatch
                               ? 'bg-win/10 text-win'
-                              : hasResult
+                              : isMismatch
                                 ? 'bg-lose/10 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
@@ -842,21 +838,13 @@ function FinalsTable({
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">决赛</p>
-                    {finalsStats?.find((s) => s.stageId === '2-to-1') && (
+                    {t2o && (
                       <span
                         className={`text-xs font-medium ${
-                          !finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
-                            ? 'text-muted'
-                            : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
-                              ? 'text-win'
-                              : 'text-lose'
+                          t2o.passed === null ? 'text-muted' : t2o.passed ? 'text-win' : 'text-lose'
                         }`}
                       >
-                        {!finalsStats.find((s) => s.stageId === '2-to-1')?.isActualResultComplete
-                          ? '祈祷中'
-                          : finalsStats.find((s) => s.stageId === '2-to-1')?.passed
-                            ? '✅'
-                            : '❌'}
+                        {t2o.passed === null ? '祈祷中' : t2o?.passed ? '✅' : '❌'}
                       </span>
                     )}
                   </div>

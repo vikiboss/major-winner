@@ -482,13 +482,13 @@ export function getAllPredictorStats(eventId: string): PredictorStats[] {
     }
   }
 
-  // 按总正确数排序，相同则按通过阶段数排序
+  // 按阶段数排序，相同则按通过总正确数排序
   return stats.toSorted((a, b) => {
-    if (b.totalCorrect !== a.totalCorrect) {
-      return b.totalCorrect - a.totalCorrect
-    }
     if (b.totalPassed !== a.totalPassed) {
       return b.totalPassed - a.totalPassed
+    }
+    if (b.totalCorrect !== a.totalCorrect) {
+      return b.totalCorrect - a.totalCorrect
     }
     return 0
   })

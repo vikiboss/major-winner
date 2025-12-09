@@ -130,7 +130,7 @@ export default function TeamsPage() {
     if (lastPerf.status === 'champion')
       return { text: '🏆 冠军', className: 'text-primary-400 font-semibold' }
     if (lastPerf.status === 'in-progress') return { text: '赛程中', className: 'text-primary-400' }
-    if (lastPerf.status === 'waiting') return { text: '等待比赛', className: 'text-muted' }
+    if (lastPerf.status === 'waiting') return { text: '等待中', className: 'text-muted' }
     if (lastPerf.status === 'advanced' && lastPerf.result === '亚军')
       return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
     if (lastPerf.status === 'eliminated')

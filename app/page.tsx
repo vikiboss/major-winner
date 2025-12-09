@@ -248,7 +248,7 @@ function StageSection({
                   ? '已完成'
                   : stageStatus === 'in_progress'
                     ? '进行中'
-                    : '等待比赛'}
+                    : '等待中'}
               </span>
             )}
           </div>
@@ -658,14 +658,18 @@ function PredictorPredictions({
                       ? stageResult.passed
                         ? 'bg-win/10 text-win'
                         : 'bg-lose/10 text-lose'
-                      : 'bg-primary-500/10 text-primary-400 animate-pulse'
+                      : stageStatus === 'in_progress'
+                        ? 'bg-primary-500/10 text-primary-400 animate-pulse'
+                        : 'bg-yellow-500/10 text-yellow-400'
                   }`}
                 >
                   {stageStatus === 'completed'
                     ? stageResult.passed
                       ? '通过'
                       : '未通过'
-                    : '进行中'}
+                    : stageStatus === 'in_progress'
+                      ? '进行中'
+                      : '等待中'}
                 </span>
               )}
             </div>

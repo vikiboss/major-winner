@@ -644,7 +644,7 @@ function FinalsTable({
                   </td>
 
                   <td className="px-4 py-3 text-center">
-                    {finalsStats && finalsStats.length > 0 ? (
+                    {!isNotStarted && finalsStats && finalsStats.length > 0 ? (
                       <span className="text-primary text-base font-semibold">{totalCorrect}</span>
                     ) : (
                       <span className="text-muted text-sm">-</span>

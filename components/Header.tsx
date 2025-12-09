@@ -61,13 +61,13 @@ export function Header() {
             })}
           </nav>
 
-          <div className="flex items-center gap-0 sm:gap-2">
+          <div className="flex items-center gap-0 sm:gap-3">
             {/* Theme toggle */}
             <div className="shrink-0">
               <ThemeToggle />
             </div>
             <div className="shrink-0">
-              <div className="inline-flex shrink-0 items-center p-1 transition-all hover:opacity-80">
+              <div className="inline-flex shrink-0 items-center p-1 opacity-80 transition-all hover:opacity-60">
                 <a
                   href="https://github.com/vikiboss/major-winner"
                   target="_blank"

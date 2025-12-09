@@ -486,7 +486,7 @@ function FinalsTable({
     const statsB = calculatePredictorStats(event.id, b.id)
 
     if (isNotStarted && statsA && statsB) {
-      return statsB.totalCorrect - statsA.totalCorrect
+      return statsB.totalPassed - statsA.totalPassed || statsA.totalCorrect - statsB.totalCorrect
     }
 
     const finalsStatsA = statsA?.stageResults.filter((s) =>

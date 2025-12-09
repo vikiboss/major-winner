@@ -787,7 +787,7 @@ function PredictorPredictions({
             {prediction && stageType === 'finals-round' && round && (
               <div className="text-xs">
                 {(round === '8-to-4' || round === '4-to-2') && (
-                  <div className="flex flex-wrap gap-1">
+                  <div className="flex flex-wrap items-center gap-1">
                     <span className="text-muted">竞猜晋级: </span>
                     {(prediction as { '8-to-4': string[]; '4-to-2': string[] })[round].map(
                       (team) => {
@@ -817,7 +817,7 @@ function PredictorPredictions({
                   </div>
                 )}
                 {round === '2-to-1' && (
-                  <div className="flex items-center gap-1">
+                  <div className="flex flex-wrap items-center gap-1">
                     <span className="text-muted">冠军竞猜: </span>
                     {(prediction as { '2-to-1': string | null })['2-to-1'] ? (
                       <span

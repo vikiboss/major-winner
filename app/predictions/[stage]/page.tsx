@@ -347,23 +347,25 @@ function SwissTable({
                 </div>
                 {stageResult && (
                   <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-end sm:gap-1">
-                    <span className="text-primary text-lg font-bold">
-                      {isNotStarted ? '等待中' : stageResult.correctCount}
-                    </span>
-                    <span
-                      className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
-                        isInProgress
-                          ? 'bg-primary-500/10 text-primary-500'
-                          : stageResult.passed
-                            ? 'bg-win/10 text-win'
-                            : 'bg-lose/10 text-lose'
-                      }`}
-                    >
-                      {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 通过' : '❌ 已炸'}
-                    </span>
-                    <span className="text-muted text-xs">
-                      {stageResult.correctCount}/{stageResult.requiredCount}
-                    </span>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
+                          isInProgress
+                            ? 'bg-primary-500/10 text-primary-500'
+                            : stageResult.passed
+                              ? 'bg-win/10 text-win'
+                              : 'bg-lose/10 text-lose'
+                        }`}
+                      >
+                        {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 通过' : '❌ 已炸'}
+                      </span>
+                      <span>
+                        <span className="text-primary font-bold">
+                          {isNotStarted ? '等待中' : stageResult.correctCount}
+                        </span>
+                        <span className="text-muted text-xs">/{stageResult.requiredCount}</span>
+                      </span>
+                    </div>
                   </div>
                 )}
               </div>
@@ -736,12 +738,12 @@ function FinalsTable({
                 {finalsStats &&
                   finalsStats.length > 0 &&
                   (isNotStarted ? (
+                    <span className="text-primary text-xs">等待中</span>
+                  ) : (
                     <div className="flex flex-col items-end">
                       <span className="text-primary text-lg font-bold">{totalCorrect}</span>
                       <span className="text-muted text-xs text-nowrap">猜对数</span>
                     </div>
-                  ) : (
-                    <span className="text-primary text-lg font-bold">等待中</span>
                   ))}
               </div>
 

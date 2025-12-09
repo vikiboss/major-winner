@@ -22,14 +22,14 @@ export interface Team {
 // 瑞士轮结果(包含最终结果和进行中的战绩)
 export interface SwissResult {
   // 进行中的战绩(比赛进行时填充这些字段)
-  '1-0'?: string[]
-  '0-1'?: string[]
-  '1-1'?: string[]
-  '2-0'?: string[]
-  '0-2'?: string[]
-  '2-1'?: string[]
-  '1-2'?: string[]
-  '2-2'?: string[]
+  '1-0': string[]
+  '0-1': string[]
+  '1-1': string[]
+  '2-0': string[]
+  '0-2': string[]
+  '2-1': string[]
+  '1-2': string[]
+  '2-2': string[]
 
   // 最终结果(比赛结束后填充这些字段)
   '3-0': string[]
@@ -79,10 +79,10 @@ export interface MajorEvent {
   id: string
   name: string
   teams: Team[]
-  'stage-1': SwissStage | null
-  'stage-2': SwissStage | null
-  'stage-3': SwissStage | null
-  finals: FinalsStage | null
+  'stage-1': SwissStage
+  'stage-2': SwissStage
+  'stage-3': SwissStage
+  finals: FinalsStage
 }
 
 // 竞猜数据 - 瑞士轮阶段(竞猜者只竞猜 3-0 / 3-1-or-3-2 / 0-3)
@@ -171,7 +171,7 @@ export interface StageProgress {
 // 赛事整体进度信息
 export interface EventProgress {
   eventStatus: EventStatus
-  currentStage: string | null
-  completedStages: string[]
+  currentStage: MajorStageType | null
+  completedStages: MajorStageType[]
   stagesProgress: StageProgress[]
 }

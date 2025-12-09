@@ -570,12 +570,13 @@ function isFinalsRoundComplete(
 /**
  * 获取单个阶段的进度信息
  */
-function getStageProgressInfo(
+export function getStageProgressInfo(
+  event: MajorEvent,
   stageId: MajorStageType,
-  stageName: string,
-  stageData: MajorEvent['stage-1'] | MajorEvent['finals'] | null,
   stageType: StageType,
 ): StageProgress {
+  const { data: stageData, name: stageName } = getStageConfig(event).find((e) => e.id === stageId)!
+
   if (!stageData) {
     return {
       stageId,
@@ -628,20 +629,24 @@ function getStageProgressInfo(
   }
 }
 
-/**
- * 智能判断赛事当前状态和进度
- * 根据 event 的 result 字段自动判断赛事进行到哪个阶段
- */
-export function getEventProgress(event: MajorEvent): EventProgress {
-  const stagesConfig = [
+const getStageConfig = (event: MajorEvent) => {
+  return [
     { id: 'stage-1' as const, name: '第一阶段', data: event['stage-1'], type: 'swiss' as const },
     { id: 'stage-2' as const, name: '第二阶段', data: event['stage-2'], type: 'swiss' as const },
     { id: 'stage-3' as const, name: '第三阶段', data: event['stage-3'], type: 'swiss' as const },
     { id: 'finals' as const, name: '决赛阶段', data: event.finals, type: 'finals' as const },
   ]
+}
+
+/**
+ * 智能判断赛事当前状态和进度
+ * 根据 event 的 result 字段自动判断赛事进行到哪个阶段
+ */
+export function getEventProgress(event: MajorEvent): EventProgress {
+  const stagesConfig = getStageConfig(event)
 
   const stagesProgress: StageProgress[] = stagesConfig.map((stage) =>
-    getStageProgressInfo(stage.id, stage.name, stage.data, stage.type),
+    getStageProgressInfo(event, stage.id, stage.type),
   )
 
   // 找到所有已完成和进行中的阶段
@@ -704,14 +709,14 @@ export function getEventProgress(event: MajorEvent): EventProgress {
   }
 
   // 主逻辑
-  let currentStage: string | null = null
+  let currentStage: MajorStageType | null = null
   let eventStatus: EventStatus = EventStatusEnum.NOT_STARTED
 
   if (noResults) {
     eventStatus = EventStatusEnum.NOT_STARTED
     currentStage = null
   } else if (hasInProgressStage) {
-    currentStage = inProgressStage!.stageId
+    currentStage = inProgressStage.stageId
 
     if (currentStage === 'finals') {
       eventStatus = getFinalsStatus(event.finals)

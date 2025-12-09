@@ -5,10 +5,12 @@ import {
   calculatePredictorStats,
   isPredictionPossible,
   FINAL_STAGES,
+  getEventProgress,
+  getStageProgressInfo,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
-import type { StagePrediction, FinalsPrediction } from '@/types'
 import { Metadata } from 'next'
+import type { StagePrediction, FinalsPrediction, MajorEvent, PredictorPrediction } from '@/types'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 
@@ -75,11 +77,7 @@ export default async function PredictionsPage({ params }: PageProps) {
       {activeStage === 'finals' ? (
         <FinalsTable predictors={predictorsWithStage} event={event} />
       ) : (
-        <SwissTable
-          predictors={predictorsWithStage}
-          event={event}
-          stageId={activeStage as 'stage-1' | 'stage-2' | 'stage-3'}
-        />
+        <SwissTable predictors={predictorsWithStage} event={event} stageId={activeStage} />
       )}
       <div>
         <p className="text-muted mt-4 text-center text-sm">更多数据正在持续整理中，敬请期待 ✨</p>
@@ -94,12 +92,22 @@ function SwissTable({
   event,
   stageId,
 }: {
-  predictors: any[]
-  event: any
+  predictors: PredictorPrediction[]
+  event: MajorEvent
   stageId: 'stage-1' | 'stage-2' | 'stage-3'
 }) {
   const stageData = event[stageId]
-  const actualResult = stageData?.result
+  const actualResult = stageData.result
+
+  const { currentStage } = getEventProgress(event)
+
+  const stageProgress =
+    currentStage === stageId && currentStage
+      ? getStageProgressInfo(event, currentStage, 'swiss')
+      : null
+
+  const isNotStarted =
+    currentStage === stageId && stageProgress && stageProgress.status === 'not_started'
 
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
@@ -107,6 +115,11 @@ function SwissTable({
   const sortedPredictors = predictors.toSorted((a, b) => {
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
+
+    if (isNotStarted && statsA && statsB) {
+      return statsB.totalCorrect - statsA.totalCorrect
+    }
+
     const resultA = statsA?.stageResults.find((s) => s.stageId === stageId)
     const resultB = statsB?.stageResults.find((s) => s.stageId === stageId)
 
@@ -159,10 +172,21 @@ function SwissTable({
                     <div className="flex flex-col gap-0.5">
                       <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
                       {predictor.platform && (
-                        <span className="text-muted text-xs text-nowrap">
+                        <span className="text-primary-400 text-xs text-nowrap">
                           @{predictor.platform}
                         </span>
                       )}
+                      <span className="text-muted text-xs text-nowrap">
+                        <span className="mr-1 opacity-80">猜对</span>
+                        <span className="font-medium">
+                          {stats?.totalCorrect}/{stats?.totalPredictions}
+                        </span>
+                        <span className="mx-1 opacity-60">|</span>
+                        <span className="mr-1 opacity-80">任务</span>
+                        <span className="font-medium">
+                          {stats?.totalPassed}/{stats?.totalStages}
+                        </span>
+                      </span>
                     </div>
                   </td>
                   <td className="px-4 py-3">
@@ -297,8 +321,19 @@ function SwissTable({
                 <div>
                   <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
                   {predictor.platform && (
-                    <p className="text-muted text-xs">@{predictor.platform}</p>
+                    <p className="text-primary-400 text-xs">@{predictor.platform}</p>
                   )}
+                  <span className="text-muted text-xs text-nowrap">
+                    <span className="mr-1 opacity-80">猜对</span>
+                    <span className="font-medium">
+                      {stats?.totalCorrect}/{stats?.totalPredictions}
+                    </span>
+                    <span className="mx-1 opacity-60">|</span>
+                    <span className="mr-1 opacity-80">任务</span>
+                    <span className="font-medium">
+                      {stats?.totalPassed}/{stats?.totalStages}
+                    </span>
+                  </span>
                 </div>
                 {stageResult && (
                   <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-end sm:gap-1">
@@ -418,8 +453,22 @@ function SwissTable({
 }
 
 // 决赛阶段表格组件
-function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
-  const finalsResult = event.finals?.result
+function FinalsTable({
+  predictors,
+  event,
+}: {
+  predictors: PredictorPrediction[]
+  event: MajorEvent
+}) {
+  const stageData = event.finals
+  const finalsResult = stageData.result
+
+  const { currentStage } = getEventProgress(event)
+
+  const stageProgress = currentStage ? getStageProgressInfo(event, currentStage, 'finals') : null
+
+  const isNotStarted =
+    currentStage === 'finals' && stageProgress && stageProgress.status === 'not_started'
 
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
@@ -427,6 +476,10 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
   const sortedPredictors = [...predictors].sort((a, b) => {
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
+
+    if (isNotStarted && statsA && statsB) {
+      return statsB.totalCorrect - statsA.totalCorrect
+    }
 
     const finalsStatsA = statsA?.stageResults.filter((s) =>
       FINAL_STAGES.some((e) => e === s.stageId),
@@ -486,17 +539,28 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                     <div className="flex flex-col gap-0.5">
                       <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
                       {predictor.platform && (
-                        <span className="text-muted text-xs">@{predictor.platform}</span>
+                        <span className="text-primary-400 text-xs">@{predictor.platform}</span>
                       )}
+                      <span className="text-muted text-xs text-nowrap">
+                        <span className="mr-1 opacity-80">猜对</span>
+                        <span className="font-medium">
+                          {stats?.totalCorrect}/{stats?.totalPredictions}
+                        </span>
+                        <span className="mx-1 opacity-60">|</span>
+                        <span className="mr-1 opacity-80">任务</span>
+                        <span className="font-medium">
+                          {stats?.totalPassed}/{stats?.totalStages}
+                        </span>
+                      </span>
                     </div>
                   </td>
 
                   {/* 八进四 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
-                      {prediction['8-to-4']?.map((team) => {
-                        const isCorrect = finalsResult?.['8-to-4'].winners.includes(team)
-                        const hasResult = finalsResult?.['8-to-4'].winners.length > 0
+                      {prediction['8-to-4'].map((team) => {
+                        const isCorrect = finalsResult['8-to-4'].winners.includes(team)
+                        const hasResult = finalsResult['8-to-4'].winners.length > 0
                         return (
                           <span
                             key={team}
@@ -635,8 +699,19 @@ function FinalsTable({ predictors, event }: { predictors: any[]; event: any }) {
                 <div>
                   <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
                   {predictor.platform && (
-                    <p className="text-muted text-xs">@{predictor.platform}</p>
+                    <p className="text-primary-400 text-xs">@{predictor.platform}</p>
                   )}
+                  <span className="text-muted text-xs text-nowrap">
+                    <span className="mr-1 opacity-80">猜对</span>
+                    <span className="font-medium">
+                      {stats?.totalCorrect}/{stats?.totalPredictions}
+                    </span>
+                    <span className="mx-1 opacity-60">|</span>
+                    <span className="mr-1 opacity-80">任务</span>
+                    <span className="font-medium">
+                      {stats?.totalPassed}/{stats?.totalStages}
+                    </span>
+                  </span>
                 </div>
                 {finalsStats && finalsStats.length > 0 && (
                   <div className="flex flex-col items-end">

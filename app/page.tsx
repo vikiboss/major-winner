@@ -647,7 +647,7 @@ function PredictorPredictions({
               <span className="flex items-center gap-2">
                 <span className="text-primary font-medium text-nowrap">{p.name}</span>
                 {p.platform && (
-                  <span className="text-muted text-xs text-nowrap">@{p.platform}</span>
+                  <span className="text-primary-400 text-xs text-nowrap">@{p.platform}</span>
                 )}
               </span>
               {/* 只在结束时显示通过/未通过 */}

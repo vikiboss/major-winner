@@ -60,7 +60,7 @@ export default function PredictorsPage() {
                 <div>
                   <span className="text-primary block font-medium">{stat.name}</span>
                   {stat.platform && (
-                    <span className="text-muted mt-0.5 block text-xs">@{stat.platform}</span>
+                    <span className="text-primary-400 mt-0.5 block text-xs">@{stat.platform}</span>
                   )}
                 </div>
               </div>
@@ -163,7 +163,7 @@ export default function PredictorsPage() {
                   <span>
                     <span className="text-primary font-medium">{stat.name}</span>
                     {stat.platform && (
-                      <span className="text-muted ml-2 text-xs">@{stat.platform}</span>
+                      <span className="text-primary-400 ml-2 text-xs">@{stat.platform}</span>
                     )}
                   </span>
                 </td>

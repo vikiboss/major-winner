@@ -25,7 +25,7 @@
       },
       {
         "id": "viki",
-        "name": "Viki（项目作者）",
+        "name": "Viki（网站作者）",
         "platform": "GitHub",
         "link": "https://github.com/vikiboss",
         "stage-1": {
@@ -42,6 +42,28 @@
           "3-0": ["FURIA", "FaZe"],
           "3-1-or-3-2": ["Spirit", "Falcons", "MongolZ", "Vitality", "MOUZ", "NAVI"],
           "0-3": ["Imperial", "PUA"]
+        }
+      },
+      {
+        "id": "yjs",
+        "name": "原劫色（制图作者）",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/472947493",
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Spirit", "FaZe"],
+          "2-to-1": "FaZe"
+        }
+      },
+      {
+        "id": "qiqi",
+        "name": "三米七七（制图作者）",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/1428295",
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {

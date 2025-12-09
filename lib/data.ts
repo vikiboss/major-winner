@@ -806,7 +806,7 @@ export function getEventStatusText(eventStatus: EventStatus): string {
     [EventStatusEnum.STAGE_2]: '第二阶段进行中',
     [EventStatusEnum.STAGE_2_COMPLETED]: '第二阶段已完成，第三阶段等待中',
     [EventStatusEnum.STAGE_3]: '第三阶段进行中',
-    [EventStatusEnum.STAGE_3_COMPLETED]: '第三阶段已完成，决赛阶段等待中',
+    [EventStatusEnum.STAGE_3_COMPLETED]: '第三阶段已完成，八进四等待中',
     [EventStatusEnum.FINALS_8_TO_4]: '八进四进行中',
     [EventStatusEnum.FINALS_4_TO_2]: '半决赛进行中',
     [EventStatusEnum.FINALS_2_TO_1]: '决赛进行中',

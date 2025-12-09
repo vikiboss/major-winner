@@ -176,17 +176,21 @@ function SwissTable({
                           @{predictor.platform}
                         </span>
                       )}
-                      <span className="text-muted text-xs text-nowrap">
-                        <span className="mr-1 opacity-80">猜对</span>
-                        <span className="font-medium">
-                          {stats?.totalCorrect}/{stats?.totalPredictions}
+                      {isNotStarted && stats && (
+                        <span className="text-muted text-xs text-nowrap">
+                          <span className="mr-1 opacity-80">猜对</span>
+                          <span className="font-medium">
+                            {/* 移除当前瑞士轮未开始阶段的 10 个竞猜 */}
+                            {stats.totalCorrect}/{stats.totalPredictions - 10}
+                          </span>
+                          <span className="mx-1 opacity-60">|</span>
+                          <span className="mr-1 opacity-80">任务</span>
+                          <span className="font-medium">
+                            {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
+                            {stats.totalPassed}/{stats.totalStages - 1}
+                          </span>
                         </span>
-                        <span className="mx-1 opacity-60">|</span>
-                        <span className="mr-1 opacity-80">任务</span>
-                        <span className="font-medium">
-                          {stats?.totalPassed}/{stats?.totalStages}
-                        </span>
-                      </span>
+                      )}
                     </div>
                   </td>
                   <td className="px-4 py-3">
@@ -323,17 +327,21 @@ function SwissTable({
                   {predictor.platform && (
                     <p className="text-primary-400 text-xs">@{predictor.platform}</p>
                   )}
-                  <span className="text-muted text-xs text-nowrap">
-                    <span className="mr-1 opacity-80">猜对</span>
-                    <span className="font-medium">
-                      {stats?.totalCorrect}/{stats?.totalPredictions}
+                  {isNotStarted && stats && (
+                    <span className="text-muted text-xs text-nowrap">
+                      <span className="mr-1 opacity-80">猜对</span>
+                      <span className="font-medium">
+                        {/* 移除当前瑞士轮未开始阶段的 10 个竞猜 */}
+                        {stats.totalCorrect}/{stats.totalPredictions - 10}
+                      </span>
+                      <span className="mx-1 opacity-60">|</span>
+                      <span className="mr-1 opacity-80">任务</span>
+                      <span className="font-medium">
+                        {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
+                        {stats.totalPassed}/{stats.totalStages - 1}
+                      </span>
                     </span>
-                    <span className="mx-1 opacity-60">|</span>
-                    <span className="mr-1 opacity-80">任务</span>
-                    <span className="font-medium">
-                      {stats?.totalPassed}/{stats?.totalStages}
-                    </span>
-                  </span>
+                  )}
                 </div>
                 {stageResult && (
                   <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-end sm:gap-1">
@@ -541,17 +549,21 @@ function FinalsTable({
                       {predictor.platform && (
                         <span className="text-primary-400 text-xs">@{predictor.platform}</span>
                       )}
-                      <span className="text-muted text-xs text-nowrap">
-                        <span className="mr-1 opacity-80">猜对</span>
-                        <span className="font-medium">
-                          {stats?.totalCorrect}/{stats?.totalPredictions}
+                      {isNotStarted && stats && (
+                        <span className="text-muted text-xs text-nowrap">
+                          <span className="mr-1 opacity-80">猜对</span>
+                          <span className="font-medium">
+                            {/* 移除当前瑞士轮未开始阶段的 7（4+2+1） 个竞猜 */}
+                            {stats.totalCorrect}/{stats.totalPredictions - 7}
+                          </span>
+                          <span className="mx-1 opacity-60">|</span>
+                          <span className="mr-1 opacity-80">任务</span>
+                          <span className="font-medium">
+                            {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
+                            {stats.totalPassed}/{stats.totalStages - 3}
+                          </span>
                         </span>
-                        <span className="mx-1 opacity-60">|</span>
-                        <span className="mr-1 opacity-80">任务</span>
-                        <span className="font-medium">
-                          {stats?.totalPassed}/{stats?.totalStages}
-                        </span>
-                      </span>
+                      )}
                     </div>
                   </td>
 
@@ -701,17 +713,21 @@ function FinalsTable({
                   {predictor.platform && (
                     <p className="text-primary-400 text-xs">@{predictor.platform}</p>
                   )}
-                  <span className="text-muted text-xs text-nowrap">
-                    <span className="mr-1 opacity-80">猜对</span>
-                    <span className="font-medium">
-                      {stats?.totalCorrect}/{stats?.totalPredictions}
+                  {isNotStarted && stats && (
+                    <span className="text-muted text-xs text-nowrap">
+                      <span className="mr-1 opacity-80">猜对</span>
+                      <span className="font-medium">
+                        {/* 移除当前瑞士轮未开始阶段的 7（4+2+1） 个竞猜 */}
+                        {stats.totalCorrect}/{stats.totalPredictions - 7}
+                      </span>
+                      <span className="mx-1 opacity-60">|</span>
+                      <span className="mr-1 opacity-80">任务</span>
+                      <span className="font-medium">
+                        {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
+                        {stats.totalPassed}/{stats.totalStages - 3}
+                      </span>
                     </span>
-                    <span className="mx-1 opacity-60">|</span>
-                    <span className="mr-1 opacity-80">任务</span>
-                    <span className="font-medium">
-                      {stats?.totalPassed}/{stats?.totalStages}
-                    </span>
-                  </span>
+                  )}
                 </div>
                 {finalsStats && finalsStats.length > 0 && (
                   <div className="flex flex-col items-end">

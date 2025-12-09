@@ -137,10 +137,13 @@ export interface PredictorStats {
   platform: string
   description?: string
   link?: string
+
   totalPassed: number // 通过的阶段数
   totalStages: number // 总阶段数
+
   totalCorrect: number // 总正确数
   totalPredictions: number // 总竞猜数
+
   stageResults: StagePassStatus[]
 }
 

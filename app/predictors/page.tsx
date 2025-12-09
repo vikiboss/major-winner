@@ -15,6 +15,7 @@ export default function PredictorsPage() {
   const finalsStage = eventProgress.stagesProgress.find(
     (s: { stageId: string }) => s.stageId === 'finals',
   )
+
   const finalsSubStages = ['8-to-4', '4-to-2', '2-to-1'].map((id) => ({
     id: id as '8-to-4' | '4-to-2' | '2-to-1',
     hasResults: finalsStage?.hasResults || false,

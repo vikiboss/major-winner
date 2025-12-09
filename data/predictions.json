@@ -215,6 +215,11 @@
           "3-0": ["Spirit", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Falcons", "MongolZ"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Spirit", "FURIA"],
+          "2-to-1": "Spirit"
         }
       },
       {
@@ -571,6 +576,11 @@
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "paiN", "Falcons", "Spirit", "MongolZ"],
           "0-3": ["PUA", "G2"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -882,6 +892,11 @@
           "3-0": ["Vitality", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -903,6 +918,11 @@
           "3-0": ["Vitality", "MongolZ"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "Falcons"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -946,6 +966,11 @@
           "3-0": ["Vitality", "Spirit"],
           "3-1-or-3-2": ["NAVI", "3DMAX", "FaZe", "FURIA", "Falcons", "Liquid"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Spirit", "FaZe"],
+          "2-to-1": "FaZe"
         }
       },
       {
@@ -1174,6 +1199,11 @@
           "3-0": ["Vitality", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "B8", "Spirit", "G2"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Spirit", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -1195,6 +1225,11 @@
           "3-0": ["Spirit", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "G2"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -1216,6 +1251,11 @@
           "3-0": ["Vitality", "MongolZ"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "Falcons"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "MongolZ", "FURIA", "MOUZ"],
+          "4-to-2": ["Spirit", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -1237,6 +1277,11 @@
           "3-0": ["FURIA", "Falcons"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "PV"],
           "0-3": ["paiN", "Liquid"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -1248,6 +1293,11 @@
           "3-0": ["FaZe", "B8"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "FlyQuest", "Legacy"],
           "0-3": ["RA", "Huns"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "MOUZ"],
+          "2-to-1": "MOUZ"
         }
       },
       {
@@ -1291,6 +1341,11 @@
           "3-0": ["MOUZ", "Falcons"],
           "3-1-or-3-2": ["NAVI", "FURIA", "FaZe", "Vitality", "Spirit", "G2"],
           "0-3": ["PUA", "PV"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "FaZe"],
+          "4-to-2": ["Spirit", "FURIA"],
+          "2-to-1": "Spirit"
         }
       },
       {
@@ -1473,6 +1528,11 @@
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "PV", "B8", "Spirit", "G2"],
           "0-3": ["PUA", "Liquid"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {
@@ -1489,6 +1549,11 @@
           "3-0": ["MOUZ", "FURIA"],
           "3-1-or-3-2": ["NAVI", "paiN", "FaZe", "Vitality", "Falcons", "Imperial"],
           "0-3": ["PUA", "PV"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Vitality", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {
@@ -1505,6 +1570,11 @@
           "3-0": ["Vitality", "G2"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "Falcons", "Spirit", "MongolZ"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "MongolZ", "FURIA", "MOUZ"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "FURIA"
         }
       },
       {

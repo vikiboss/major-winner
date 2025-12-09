@@ -2,6 +2,10 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
+* {
+  scroll-behavior: smooth;
+}
+
 @theme {
   /* 字体 */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;

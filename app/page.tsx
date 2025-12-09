@@ -398,7 +398,7 @@ function StageSection({
                                           {teams.map((t) => (
                                             <span
                                               key={t}
-                                              className="font-medium bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs"
+                                              className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
                                             >
                                               <TeamLogo shortName={t} size="xs" />
                                               {t}

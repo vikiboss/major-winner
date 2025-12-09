@@ -63,6 +63,11 @@
           "3-0": ["Falcons", "Spirit"],
           "3-1-or-3-2": ["G2", "MongolZ", "MOUZ", "NAVI", "Vitality", "FURIA"],
           "0-3": ["B8", "FaZe"]
+        },
+        "finals": {
+          "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Spirit", "MOUZ"],
+          "2-to-1": "Spirit"
         }
       },
       {
@@ -83,6 +88,11 @@
           "3-0": ["Falcons", "Vitality"],
           "3-1-or-3-2": ["MOUZ", "Spirit", "FURIA", "NAVI", "G2", "MongolZ"],
           "0-3": ["PUA", "Imperial"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Falcons", "FURIA"],
+          "2-to-1": "Falcons"
         }
       },
       {

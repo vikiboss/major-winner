@@ -126,7 +126,7 @@ export default function PredictorsPage() {
                         <span className="text-muted">-</span>
                       )
                     ) : (
-                      <span className="text-muted/50">待定</span>
+                      <span className="text-muted/50">等待中</span>
                     )}
                   </div>
                 )
@@ -214,7 +214,7 @@ export default function PredictorsPage() {
                           <span className="text-muted">-</span>
                         )
                       ) : (
-                        <span className="text-muted/50 text-xs">待定</span>
+                        <span className="text-muted/50 text-xs">等待中</span>
                       )}
                     </td>
                   )

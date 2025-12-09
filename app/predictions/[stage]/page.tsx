@@ -292,7 +292,7 @@ function SwissTable({
                         </span>
                       </div>
                     ) : (
-                      <span className="text-muted text-xs">待定</span>
+                      <span className="text-muted text-xs">等待中</span>
                     )}
                   </td>
                 </tr>
@@ -680,7 +680,7 @@ function FinalsTable({
                         })}
                       </div>
                     ) : (
-                      <span className="text-muted text-xs">待定</span>
+                      <span className="text-muted text-xs">等待中</span>
                     )}
                   </td>
                 </tr>

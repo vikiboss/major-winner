@@ -85,7 +85,7 @@ export default function PredictorsPage() {
                       : stage.id === 'stage-3'
                         ? '第三阶段'
                         : stage.id === '8-to-4'
-                          ? '八强'
+                          ? '八进四'
                           : stage.id === '4-to-2'
                             ? '半决赛'
                             : '决赛'
@@ -142,7 +142,7 @@ export default function PredictorsPage() {
               <th className="hidden px-4 py-3 text-center md:table-cell">第一阶段</th>
               <th className="hidden px-4 py-3 text-center md:table-cell">第二阶段</th>
               <th className="hidden px-4 py-3 text-center md:table-cell">第三阶段</th>
-              <th className="hidden px-4 py-3 text-center lg:table-cell">八强</th>
+              <th className="hidden px-4 py-3 text-center lg:table-cell">八进四</th>
               <th className="hidden px-4 py-3 text-center lg:table-cell">半决赛</th>
               <th className="hidden px-4 py-3 text-center lg:table-cell">决赛</th>
             </tr>

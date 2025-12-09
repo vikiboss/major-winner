@@ -17,6 +17,7 @@ export interface Team {
   name: string
   shortName: string
   stage: SwissStageType
+  link: string
 }
 
 // 瑞士轮结果(包含最终结果和进行中的战绩)

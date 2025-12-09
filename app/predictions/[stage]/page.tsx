@@ -322,11 +322,13 @@ function SwissTable({
           return (
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
-                <div>
-                  <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
-                  {predictor.platform && (
-                    <p className="text-primary-400 text-xs">@{predictor.platform}</p>
-                  )}
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
+                    {predictor.platform && (
+                      <p className="text-primary-400 text-xs">@{predictor.platform}</p>
+                    )}
+                  </div>
                   {isNotStarted && stats && (
                     <span className="text-muted text-xs text-nowrap">
                       <span className="mr-1 opacity-80">阶段</span>
@@ -346,7 +348,7 @@ function SwissTable({
                 {stageResult && (
                   <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-end sm:gap-1">
                     <span className="text-primary text-lg font-bold">
-                      {stageResult.correctCount}
+                      {isNotStarted ? '等待中' : stageResult.correctCount}
                     </span>
                     <span
                       className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
@@ -708,11 +710,13 @@ function FinalsTable({
           return (
             <div key={predictor.id} className="p-4">
               <div className="mb-3 flex items-center justify-between">
-                <div>
-                  <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
-                  {predictor.platform && (
-                    <p className="text-primary-400 text-xs">@{predictor.platform}</p>
-                  )}
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-2">
+                    <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
+                    {predictor.platform && (
+                      <p className="text-primary-400 text-xs">@{predictor.platform}</p>
+                    )}
+                  </div>
                   {isNotStarted && stats && (
                     <span className="text-muted text-xs text-nowrap">
                       <span className="mr-1 opacity-80">阶段</span>
@@ -729,12 +733,16 @@ function FinalsTable({
                     </span>
                   )}
                 </div>
-                {finalsStats && finalsStats.length > 0 && (
-                  <div className="flex flex-col items-end">
-                    <span className="text-primary text-lg font-bold">{totalCorrect}</span>
-                    <span className="text-muted text-xs text-nowrap">猜对数</span>
-                  </div>
-                )}
+                {finalsStats &&
+                  finalsStats.length > 0 &&
+                  (isNotStarted ? (
+                    <div className="flex flex-col items-end">
+                      <span className="text-primary text-lg font-bold">{totalCorrect}</span>
+                      <span className="text-muted text-xs text-nowrap">猜对数</span>
+                    </div>
+                  ) : (
+                    <span className="text-primary text-lg font-bold">等待中</span>
+                  ))}
               </div>
 
               <div className="space-y-3">

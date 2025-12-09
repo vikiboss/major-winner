@@ -49,29 +49,34 @@ export default function PredictorsPage() {
       <div className="space-y-3 md:hidden">
         {stats.map((stat, index) => (
           <div key={stat.name} className="bg-surface-1 border-border rounded-lg border p-4">
-            <div className="mb-3 flex items-start justify-between">
-              <div className="flex items-start gap-3">
+            <div className="mb-3 flex items-center justify-between">
+              <div className="flex items-center gap-3">
                 <span
-                  className={`text-lg font-bold ${
+                  className={`w-12 text-center text-lg font-bold ${
                     index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
                   }`}
                 >
                   #{index + 1}
                 </span>
-                <div>
+                <div className="flex flex-col">
                   <span className="text-primary block font-medium">{stat.name}</span>
                   {stat.platform && (
-                    <span className="text-primary-400 mt-0.5 block text-xs">@{stat.platform}</span>
+                    <span className="text-primary-400 inline-flex items-center text-xs">
+                      @{stat.platform}
+                    </span>
                   )}
                 </div>
               </div>
-              <div className="text-right">
-                <div className="text-primary font-semibold">
+              <div className="flex items-center gap-2 text-right">
+                <div className="text-primary">
+                  <span className="text-muted mr-1 text-xs">阶段</span>
+                  {stat.totalPassed}
+                  <span className="text-muted text-xs">/{stat.totalStages}</span>
+                </div>
+                <div className="text-primary">
+                  <span className="text-muted mr-1 text-xs">正确</span>
                   {stat.totalCorrect}
                   <span className="text-muted text-xs">/{stat.totalPredictions}</span>
-                </div>
-                <div className="text-muted mt-0.5 text-xs">
-                  通过 {stat.totalPassed}/{stat.totalStages}
                 </div>
               </div>
             </div>

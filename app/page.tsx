@@ -561,6 +561,7 @@ function PredictorPredictions({
 
   // 计算每个预测者在当前阶段的错误数,并排序(错误最少的排前面)
   const predictorsWithStats = eventPreds.predictions
+    .filter((e) => e.id !== 'result') // 排除比赛结果
     .map((p) => {
       const stats = calculatePredictorStats(event.id, p.id)
       const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)

@@ -978,7 +978,7 @@
       {
         "id": "styko",
         "name": "STYKO",
-        "platform": "前 MOUZ 战队选手",
+        "platform": "前 MOUZ 选手",
         "link": "https://www.hltv.org/player/6904/styko",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
@@ -1004,7 +1004,7 @@
       {
         "id": "taco",
         "name": "TACO",
-        "platform": "前 Liquid/MIBR 战队选手",
+        "platform": "前 Liquid/MIBR 选手",
         "link": "https://www.hltv.org/player/9217/taco",
         "stage-3": {
           "3-0": ["MOUZ", "FURIA"],
@@ -1153,7 +1153,7 @@
       {
         "id": "cooper",
         "name": "Cooper",
-        "platform": "Mythic 战队选手",
+        "platform": "Mythic 选手",
         "link": "https://www.hltv.org/player/15007/cooper",
         "stage-1": {
           "3-0": ["FaZe", "PV"],
@@ -1248,7 +1248,7 @@
       {
         "id": "degster",
         "name": "degster",
-        "platform": "前 Falcons/Spirit/OG/HEROIC 战队选手",
+        "platform": "前 Falcons/Spirit/OG/HEROIC 选手",
         "link": "https://www.hltv.org/player/17306/degster",
         "stage-1": {
           "3-0": ["FaZe", "M80"],
@@ -1275,7 +1275,7 @@
       {
         "id": "hades",
         "name": "hades",
-        "platform": "ex-Inner Circle 战队选手",
+        "platform": "ex-Inner Circle 选手",
         "link": "https://www.hltv.org/player/16848/hades",
         "stage-2": {
           "3-0": ["Aurora", "NAVI"],
@@ -1291,7 +1291,7 @@
       {
         "id": "r3-salt",
         "name": "r3salt",
-        "platform": "Sangal 战队选手",
+        "platform": "Sangal 选手",
         "link": "https://www.hltv.org/player/20709/r3salt",
         "stage-3": {
           "3-0": ["FURIA", "Falcons"],
@@ -1307,7 +1307,7 @@
       {
         "id": "magnojez",
         "name": "Magnojez",
-        "platform": "BB 战队选手",
+        "platform": "BB 选手",
         "link": "https://www.hltv.org/player/21667/magnojez",
         "stage-3": {
           "3-0": ["MOUZ", "Falcons"],
@@ -1334,7 +1334,7 @@
       {
         "id": "co-jo-mo",
         "name": "CoJoMo",
-        "platform": "前 Phoenix 战队选手",
+        "platform": "前 Phoenix 选手",
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
@@ -1355,7 +1355,7 @@
       {
         "id": "r1nkle",
         "name": "r1nkle",
-        "platform": "NIP 战队选手",
+        "platform": "NIP 选手",
         "link": "https://www.hltv.org/player/20425/r1nkle",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
@@ -1393,7 +1393,7 @@
       {
         "id": "fl4mus",
         "name": "FL4MUS",
-        "platform": "OG 战队选手",
+        "platform": "OG 选手",
         "link": "https://www.hltv.org/player/20994/fl4mus",
         "stage-1": {
           "3-0": ["Legacy", "PV"],
@@ -1521,7 +1521,7 @@
       {
         "id": "fl0m",
         "name": "fl0m",
-        "platform": "Mythic 战队选手",
+        "platform": "Mythic 选手",
         "link": "https://www.hltv.org/player/8503/fl0m",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
@@ -1580,7 +1580,7 @@
       {
         "id": "interz",
         "name": "interz",
-        "platform": "1win 战队选手",
+        "platform": "1win 选手",
         "link": "https://www.hltv.org/player/15071/interz",
         "finals": {
           "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
@@ -1591,7 +1591,7 @@
       {
         "id": "yxngstxr",
         "name": "yxngstxr",
-        "platform": "HEROIC 战队选手",
+        "platform": "HEROIC 选手",
         "link": "https://www.hltv.org/player/22047/yxngstxr",
         "finals": {
           "8-to-4": ["Spirit", "Vitality", "FURIA", "MOUZ"],

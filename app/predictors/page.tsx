@@ -182,7 +182,7 @@ export default function PredictorsPage() {
                 </td>
                 {allStages.map((stage) => {
                   const result = stat.stageResults.find((s) => s.stageId === stage.id)
-                  // 瑞士轮在 md 显示,决赛阶段在 lg 显示
+                  // 瑞士轮在 md 显示,决胜阶段在 lg 显示
                   const hideClass =
                     stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
                       ? 'hidden md:table-cell'

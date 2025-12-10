@@ -9,7 +9,7 @@ const STAGES: Array<{ id: Stage; label: string }> = [
   { id: 'stage-1', label: '第一阶段' },
   { id: 'stage-2', label: '第二阶段' },
   { id: 'stage-3', label: '第三阶段' },
-  { id: 'finals', label: '决赛阶段' },
+  { id: 'finals', label: '决胜阶段' },
 ]
 
 export function StageNav() {

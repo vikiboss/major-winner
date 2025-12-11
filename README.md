@@ -15,12 +15,7 @@ https://major.viki.moe
 
 ## 功能截图
 
-  <div style="display: flex; gap: 4px; justify-content: center; align-items: center; flex-wrap: wrap;">
-    <img src="./docs/image/home.png" alt="home" style="width: 24%; border-radius: 3px;" />
-    <img src="./docs/image/predictions.png" alt="predictions" style="width: 24%; border-radius: 3px;" />
-    <img src="./docs/image/predictors.png" alt="predictors" style="width: 24%; border-radius: 3px;" />
-    <img src="./docs/image/teams.png" alt="teams" style="width: 24%; border-radius: 3px;" />
-  </div>
+![竞猜详情](https://s2.loli.net/2025/12/11/c567EkBWbfYV9Xm.png)
 
 ## 交流群
 

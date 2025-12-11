@@ -151,6 +151,13 @@ export default function TeamsPage() {
     const lastA = aPerf[aPerf.length - 1]
     const lastB = bPerf[bPerf.length - 1]
 
+    const aStatus = lastA?.status || 'eliminated'
+    const bStatus = lastB?.status || 'eliminated'
+
+    // 优先考虑淘汰状态
+    if (aStatus === 'eliminated' && bStatus !== 'eliminated') return 1
+    if (aStatus !== 'eliminated' && bStatus === 'eliminated') return -1
+
     // 1. 决赛成绩 - 最强的证明
     const aFinals = aPerf.find((p) => p.stage === 'finals')
     const bFinals = bPerf.find((p) => p.stage === 'finals')
@@ -229,10 +236,6 @@ export default function TeamsPage() {
       if (aSwiss !== bSwiss) return aSwiss - bSwiss
     }
 
-    // 5. 比赛状态 - 晋级/赛程中 > 待赛 > 淘汰
-    const aStatus = lastA?.status || 'eliminated'
-    const bStatus = lastB?.status || 'eliminated'
-
     const statusStrength = {
       champion: 1, // 冠军最强
       advanced: 2, // 已晋级
@@ -241,6 +244,7 @@ export default function TeamsPage() {
       eliminated: 5, // 已淘汰
     }
 
+    // 5. 比赛状态 - 晋级/赛程中 > 待赛 > 淘汰
     const aStatusRank = statusStrength[aStatus] || 999
     const bStatusRank = statusStrength[bStatus] || 999
 

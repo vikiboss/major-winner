@@ -194,72 +194,69 @@ function SwissTable({
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-wrap items-start gap-1">
+                    <div className="flex items-start gap-1">
                       {prediction['3-0'].map((team) => {
                         const isCorrect = actualResult?.['3-0']?.includes(team)
                         const possible = isPredictionPossible(team, '3-0', actualResult)
                         return (
-                          <span
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
                             key={team}
-                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win'
+                                ? 'bg-win/20 text-win'
                                 : !possible && actualResult
-                                  ? 'bg-lose/10 text-lose'
+                                  ? 'bg-lose/20 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
+                          />
                         )
                       })}
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex gap-1">
                       {prediction['3-1-or-3-2'].map((team) => {
                         const isCorrect =
                           actualResult?.['3-1']?.includes(team) ||
                           actualResult?.['3-2']?.includes(team)
                         const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
                         return (
-                          <span
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
                             key={team}
-                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win'
+                                ? 'bg-win/20 text-win'
                                 : !possible && actualResult
-                                  ? 'bg-lose/10 text-lose'
+                                  ? 'bg-lose/20 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
+                          />
                         )
                       })}
                     </div>
                   </td>
                   <td className="px-4 py-3">
-                    <div className="flex flex-wrap items-start gap-1">
+                    <div className="flex items-start gap-1">
                       {prediction['0-3'].map((team) => {
                         const isCorrect = actualResult?.['0-3']?.includes(team)
                         const possible = isPredictionPossible(team, '0-3', actualResult)
                         return (
-                          <span
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
                             key={team}
-                            className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
                               isCorrect
-                                ? 'bg-win/10 text-win'
+                                ? 'bg-win/20 text-win'
                                 : !possible && actualResult
-                                  ? 'bg-lose/10 text-lose'
+                                  ? 'bg-lose/20 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
+                          />
                         )
                       })}
                     </div>
@@ -281,8 +278,8 @@ function SwissTable({
                             isInProgress
                               ? 'text-muted'
                               : stageResult.passed
-                                ? 'bg-win/10 text-win'
-                                : 'bg-lose/10 text-lose'
+                                ? 'bg-win/20 text-win'
+                                : 'bg-lose/20 text-lose'
                           }`}
                         >
                           {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 通过' : '❌ 已炸'}
@@ -353,8 +350,8 @@ function SwissTable({
                           isInProgress
                             ? 'text-muted'
                             : stageResult.passed
-                              ? 'bg-win/10 text-win'
-                              : 'bg-lose/10 text-lose'
+                              ? 'bg-win/20 text-win'
+                              : 'bg-lose/20 text-lose'
                         }`}
                       >
                         {isInProgress ? '祈祷中' : stageResult.passed ? '✅ 通过' : '❌ 已炸'}
@@ -379,19 +376,18 @@ function SwissTable({
                       const isCorrect = actualResult?.['3-0']?.includes(team)
                       const possible = isPredictionPossible(team, '3-0', actualResult)
                       return (
-                        <span
+                        <TeamLogo
+                          shortName={team}
+                          size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                          className={`flex items-center gap-1 rounded text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win'
+                              ? 'bg-win/20 text-win'
                               : !possible && actualResult
-                                ? 'bg-lose/10 text-lose'
+                                ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
+                        />
                       )
                     })}
                   </div>
@@ -407,19 +403,18 @@ function SwissTable({
                         actualResult?.['3-2']?.includes(team)
                       const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
                       return (
-                        <span
+                        <TeamLogo
+                          shortName={team}
+                          size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                          className={`flex items-center gap-1 rounded text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win'
+                              ? 'bg-win/20 text-win'
                               : !possible && actualResult
-                                ? 'bg-lose/10 text-lose'
+                                ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
+                        />
                       )
                     })}
                   </div>
@@ -433,19 +428,18 @@ function SwissTable({
                       const isCorrect = actualResult?.['0-3']?.includes(team)
                       const possible = isPredictionPossible(team, '0-3', actualResult)
                       return (
-                        <span
+                        <TeamLogo
+                          shortName={team}
+                          size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                          className={`flex items-center gap-1 rounded text-xs font-medium ${
                             isCorrect
-                              ? 'bg-win/10 text-win'
+                              ? 'bg-win/20 text-win'
                               : !possible && actualResult
-                                ? 'bg-lose/10 text-lose'
+                                ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
+                        />
                       )
                     })}
                   </div>
@@ -579,19 +573,18 @@ function FinalsTable({
                         const isMisMatch = finalsResult['8-to-4'].losers.includes(team)
 
                         return (
-                          <span
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
                               isMatch
-                                ? 'bg-win/10 text-win'
+                                ? 'bg-win/20 text-win'
                                 : isMisMatch
-                                  ? 'bg-lose/10 text-lose'
+                                  ? 'bg-lose/20 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
+                          />
                         )
                       }) || <span className="text-tertiary text-xs">未竞猜</span>}
                     </div>
@@ -602,24 +595,23 @@ function FinalsTable({
                     <div className="flex flex-wrap gap-1">
                       {prediction['4-to-2']?.map((team) => {
                         const isMatch = finalsResult?.['4-to-2'].winners.includes(team)
-                        const isMismatch =
+                        const isMisMatch =
                           finalsResult?.['4-to-2'].losers.includes(team) ||
                           finalsResult?.['8-to-4'].losers.includes(team)
 
                         return (
-                          <span
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
                               isMatch
-                                ? 'bg-win/10 text-win'
-                                : isMismatch
-                                  ? 'bg-lose/10 text-lose'
+                                ? 'bg-win/20 text-win'
+                                : isMisMatch
+                                  ? 'bg-lose/20 text-lose'
                                   : 'bg-surface-2 text-tertiary'
                             }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
+                          />
                         )
                       }) || <span className="text-tertiary text-xs">未竞猜</span>}
                     </div>
@@ -629,18 +621,17 @@ function FinalsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['2-to-1'] ? (
-                        <span
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                        <TeamLogo
+                          className={`flex items-center gap-1 rounded text-xs font-medium ${
                             finalsResult?.['2-to-1'].winner === prediction['2-to-1']
-                              ? 'bg-win/10 text-win'
+                              ? 'bg-win/20 text-win'
                               : finalsResult?.['2-to-1'].winner
-                                ? 'bg-lose/10 text-lose'
+                                ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
-                        >
-                          <TeamLogo shortName={prediction['2-to-1']} size="xs" />
-                          {prediction['2-to-1']}
-                        </span>
+                          shortName={prediction['2-to-1']}
+                          size="xl"
+                        />
                       ) : (
                         <span className="text-tertiary text-xs">未竞猜</span>
                       )}
@@ -778,19 +769,18 @@ function FinalsTable({
                       const isMisMatch = finalsResult['8-to-4'].losers.includes(team)
 
                       return (
-                        <span
+                        <TeamLogo
+                          shortName={team}
+                          size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                          className={`flex items-center gap-1 rounded text-xs font-medium ${
                             isMatch
-                              ? 'bg-win/10 text-win'
+                              ? 'bg-win/20 text-win'
                               : isMisMatch
-                                ? 'bg-lose/10 text-lose'
+                                ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
+                        />
                       )
                     }) || <span className="text-tertiary text-xs">未竞猜</span>}
                   </div>
@@ -813,22 +803,21 @@ function FinalsTable({
                   <div className="flex flex-wrap gap-1">
                     {prediction['4-to-2']?.map((team) => {
                       const isMatch = finalsResult?.['4-to-2'].winners.includes(team)
-                      const isMismatch = finalsResult?.['4-to-2'].losers.includes(team)
+                      const isMisMatch = finalsResult?.['4-to-2'].losers.includes(team)
 
                       return (
-                        <span
+                        <TeamLogo
+                          shortName={team}
+                          size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                          className={`flex items-center gap-1 rounded text-xs font-medium ${
                             isMatch
-                              ? 'bg-win/10 text-win'
-                              : isMismatch
-                                ? 'bg-lose/10 text-lose'
+                              ? 'bg-win/20 text-win'
+                              : isMisMatch
+                                ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}
-                        >
-                          <TeamLogo shortName={team} size="xs" />
-                          {team}
-                        </span>
+                        />
                       )
                     }) || <span className="text-tertiary text-xs">未竞猜</span>}
                   </div>
@@ -850,18 +839,17 @@ function FinalsTable({
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {prediction['2-to-1'] ? (
-                      <span
-                        className={`flex items-center gap-1 rounded px-2 py-1 text-xs font-medium ${
+                      <TeamLogo
+                        shortName={prediction['2-to-1']}
+                        size="xl"
+                        className={`flex items-center gap-1 rounded text-xs font-medium ${
                           finalsResult?.['2-to-1'].winner === prediction['2-to-1']
-                            ? 'bg-win/10 text-win'
+                            ? 'bg-win/20 text-win'
                             : finalsResult?.['2-to-1'].winner
-                              ? 'bg-lose/10 text-lose'
+                              ? 'bg-lose/20 text-lose'
                               : 'bg-surface-2 text-tertiary'
                         }`}
-                      >
-                        <TeamLogo shortName={prediction['2-to-1']} size="xs" />
-                        {prediction['2-to-1']}
-                      </span>
+                      />
                     ) : (
                       <span className="text-tertiary text-xs">未竞猜</span>
                     )}

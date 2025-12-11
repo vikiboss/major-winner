@@ -23,6 +23,7 @@ export default function TeamLogo({ shortName, size = 'sm', className = '' }: Tea
       alt={`${shortName} logo`}
       width={pixelSize}
       height={pixelSize}
+      title={shortName}
       className={`inline-block ${className}`}
       style={{ width: pixelSize, height: pixelSize }}
     />

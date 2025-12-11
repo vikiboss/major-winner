@@ -33,7 +33,7 @@ export function StageNav() {
             <Link
               key={stage.id}
               href={`/predictions/${stage.id}`}
-              className={`rounded px-3 py-2 text-center text-sm font-medium transition-colors sm:px-4 ${
+              className={`rounded px-2 py-1.5 text-center text-[10px] font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm ${
                 isActive
                   ? 'bg-primary-500/10 text-primary-400'
                   : 'text-secondary hover:bg-surface-2 hover-text-primary'
@@ -41,7 +41,7 @@ export function StageNav() {
             >
               <span>{stage.label}</span>
               {count > 0 ? (
-                <span className="bg-primary-500/10 text-primary-400 ml-1 hidden rounded-full px-2 py-0.5 text-xs font-medium sm:inline-block">
+                <span className="bg-primary-500/10 text-primary-400 ml-1 inline-block rounded-full px-1 text-[10px] font-medium sm:px-2 sm:py-0.5 sm:text-xs">
                   {count}
                 </span>
               ) : null}

@@ -195,70 +195,76 @@ function SwissTable({
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-start gap-1">
-                      {prediction['3-0'].map((team) => {
-                        const isCorrect = actualResult?.['3-0']?.includes(team)
-                        const possible = isPredictionPossible(team, '3-0', actualResult)
-                        return (
-                          <TeamLogo
-                            shortName={team}
-                            size="xl"
-                            key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isCorrect
-                                ? 'bg-win/20 text-win'
-                                : !possible && actualResult
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
-                          />
-                        )
-                      })}
+                      {prediction['3-0']
+                        .toSorted((p, n) => p.localeCompare(n))
+                        .map((team) => {
+                          const isCorrect = actualResult?.['3-0']?.includes(team)
+                          const possible = isPredictionPossible(team, '3-0', actualResult)
+                          return (
+                            <TeamLogo
+                              shortName={team}
+                              size="xl"
+                              key={team}
+                              className={`flex items-center gap-1 rounded text-xs font-medium ${
+                                isCorrect
+                                  ? 'bg-win/20 text-win'
+                                  : !possible && actualResult
+                                    ? 'bg-lose/20 text-lose'
+                                    : 'bg-surface-2 text-tertiary'
+                              }`}
+                            />
+                          )
+                        })}
                     </div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-1">
-                      {prediction['3-1-or-3-2'].map((team) => {
-                        const isCorrect =
-                          actualResult?.['3-1']?.includes(team) ||
-                          actualResult?.['3-2']?.includes(team)
-                        const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
-                        return (
-                          <TeamLogo
-                            shortName={team}
-                            size="xl"
-                            key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isCorrect
-                                ? 'bg-win/20 text-win'
-                                : !possible && actualResult
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
-                          />
-                        )
-                      })}
+                      {prediction['3-1-or-3-2']
+                        .toSorted((p, n) => p.localeCompare(n))
+                        .map((team) => {
+                          const isCorrect =
+                            actualResult?.['3-1']?.includes(team) ||
+                            actualResult?.['3-2']?.includes(team)
+                          const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                          return (
+                            <TeamLogo
+                              shortName={team}
+                              size="xl"
+                              key={team}
+                              className={`flex items-center gap-1 rounded text-xs font-medium ${
+                                isCorrect
+                                  ? 'bg-win/20 text-win'
+                                  : !possible && actualResult
+                                    ? 'bg-lose/20 text-lose'
+                                    : 'bg-surface-2 text-tertiary'
+                              }`}
+                            />
+                          )
+                        })}
                     </div>
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex items-start gap-1">
-                      {prediction['0-3'].map((team) => {
-                        const isCorrect = actualResult?.['0-3']?.includes(team)
-                        const possible = isPredictionPossible(team, '0-3', actualResult)
-                        return (
-                          <TeamLogo
-                            shortName={team}
-                            size="xl"
-                            key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isCorrect
-                                ? 'bg-win/20 text-win'
-                                : !possible && actualResult
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
-                          />
-                        )
-                      })}
+                      {prediction['0-3']
+                        .toSorted((p, n) => p.localeCompare(n))
+                        .map((team) => {
+                          const isCorrect = actualResult?.['0-3']?.includes(team)
+                          const possible = isPredictionPossible(team, '0-3', actualResult)
+                          return (
+                            <TeamLogo
+                              shortName={team}
+                              size="xl"
+                              key={team}
+                              className={`flex items-center gap-1 rounded text-xs font-medium ${
+                                isCorrect
+                                  ? 'bg-win/20 text-win'
+                                  : !possible && actualResult
+                                    ? 'bg-lose/20 text-lose'
+                                    : 'bg-surface-2 text-tertiary'
+                              }`}
+                            />
+                          )
+                        })}
                     </div>
                   </td>
                   <td className="px-4 py-3 text-center">
@@ -372,24 +378,26 @@ function SwissTable({
                 <div>
                   <p className="text-muted mb-1 text-xs">3-0 预测</p>
                   <div className="flex flex-wrap gap-1">
-                    {prediction['3-0'].map((team) => {
-                      const isCorrect = actualResult?.['3-0']?.includes(team)
-                      const possible = isPredictionPossible(team, '3-0', actualResult)
-                      return (
-                        <TeamLogo
-                          shortName={team}
-                          size="xl"
-                          key={team}
-                          className={`flex items-center gap-1 rounded text-xs font-medium ${
-                            isCorrect
-                              ? 'bg-win/20 text-win'
-                              : !possible && actualResult
-                                ? 'bg-lose/20 text-lose'
-                                : 'bg-surface-2 text-tertiary'
-                          }`}
-                        />
-                      )
-                    })}
+                    {prediction['3-0']
+                      .toSorted((p, n) => p.localeCompare(n))
+                      .map((team) => {
+                        const isCorrect = actualResult?.['3-0']?.includes(team)
+                        const possible = isPredictionPossible(team, '3-0', actualResult)
+                        return (
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
+                            key={team}
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
+                              isCorrect
+                                ? 'bg-win/20 text-win'
+                                : !possible && actualResult
+                                  ? 'bg-lose/20 text-lose'
+                                  : 'bg-surface-2 text-tertiary'
+                            }`}
+                          />
+                        )
+                      })}
                   </div>
                 </div>
 
@@ -397,26 +405,28 @@ function SwissTable({
                 <div>
                   <p className="text-muted mb-1 text-xs">3-1/3-2 预测</p>
                   <div className="flex flex-wrap gap-1">
-                    {prediction['3-1-or-3-2'].map((team) => {
-                      const isCorrect =
-                        actualResult?.['3-1']?.includes(team) ||
-                        actualResult?.['3-2']?.includes(team)
-                      const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
-                      return (
-                        <TeamLogo
-                          shortName={team}
-                          size="xl"
-                          key={team}
-                          className={`flex items-center gap-1 rounded text-xs font-medium ${
-                            isCorrect
-                              ? 'bg-win/20 text-win'
-                              : !possible && actualResult
-                                ? 'bg-lose/20 text-lose'
-                                : 'bg-surface-2 text-tertiary'
-                          }`}
-                        />
-                      )
-                    })}
+                    {prediction['3-1-or-3-2']
+                      .toSorted((p, n) => p.localeCompare(n))
+                      .map((team) => {
+                        const isCorrect =
+                          actualResult?.['3-1']?.includes(team) ||
+                          actualResult?.['3-2']?.includes(team)
+                        const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                        return (
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
+                            key={team}
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
+                              isCorrect
+                                ? 'bg-win/20 text-win'
+                                : !possible && actualResult
+                                  ? 'bg-lose/20 text-lose'
+                                  : 'bg-surface-2 text-tertiary'
+                            }`}
+                          />
+                        )
+                      })}
                   </div>
                 </div>
 
@@ -424,24 +434,26 @@ function SwissTable({
                 <div>
                   <p className="text-muted mb-1 text-xs">0-3 预测</p>
                   <div className="flex flex-wrap gap-1">
-                    {prediction['0-3'].map((team) => {
-                      const isCorrect = actualResult?.['0-3']?.includes(team)
-                      const possible = isPredictionPossible(team, '0-3', actualResult)
-                      return (
-                        <TeamLogo
-                          shortName={team}
-                          size="xl"
-                          key={team}
-                          className={`flex items-center gap-1 rounded text-xs font-medium ${
-                            isCorrect
-                              ? 'bg-win/20 text-win'
-                              : !possible && actualResult
-                                ? 'bg-lose/20 text-lose'
-                                : 'bg-surface-2 text-tertiary'
-                          }`}
-                        />
-                      )
-                    })}
+                    {prediction['0-3']
+                      .toSorted((p, n) => p.localeCompare(n))
+                      .map((team) => {
+                        const isCorrect = actualResult?.['0-3']?.includes(team)
+                        const possible = isPredictionPossible(team, '0-3', actualResult)
+                        return (
+                          <TeamLogo
+                            shortName={team}
+                            size="xl"
+                            key={team}
+                            className={`flex items-center gap-1 rounded text-xs font-medium ${
+                              isCorrect
+                                ? 'bg-win/20 text-win'
+                                : !possible && actualResult
+                                  ? 'bg-lose/20 text-lose'
+                                  : 'bg-surface-2 text-tertiary'
+                            }`}
+                          />
+                        )
+                      })}
                   </div>
                 </div>
               </div>
@@ -753,7 +765,7 @@ function FinalsTable({
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">八进四</p>
-                    {e2f && (
+                    {e2f && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${
                           e2f.passed === null ? 'text-muted' : e2f.passed ? 'text-win' : 'text-lose'
@@ -790,7 +802,7 @@ function FinalsTable({
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">半决赛</p>
-                    {f2t && (
+                    {f2t && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${
                           f2t.passed === null ? 'text-muted' : f2t.passed ? 'text-win' : 'text-lose'
@@ -827,7 +839,7 @@ function FinalsTable({
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">决赛</p>
-                    {t2o && (
+                    {t2o && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${
                           t2o.passed === null ? 'text-muted' : t2o.passed ? 'text-win' : 'text-lose'

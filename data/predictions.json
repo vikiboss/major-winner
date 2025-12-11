@@ -149,43 +149,6 @@
         }
       },
       {
-        "id": "xvduoyu",
-        "name": "许多鱼x",
-        "platform": "哔哩哔哩",
-        "link": "https://space.bilibili.com/30491919",
-        "stage-1": {
-          "3-0": ["Legacy", "GL"],
-          "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "PV"],
-          "0-3": ["NRG", "Huns"]
-        },
-        "stage-2": {
-          "3-0": ["Astralis", "NAVI"],
-          "3-1-or-3-2": ["B8", "3DMAX", "Liquid", "NIP", "M80", "Aurora"],
-          "0-3": ["FlyQuest", "TYLOO"]
-        },
-        "stage-3": {
-          "3-0": ["Vitality", "FURIA"],
-          "3-1-or-3-2": ["NAVI", "MOUZ", "B8", "Falcons", "Spirit", "G2"],
-          "0-3": ["PUA", "PV"]
-        },
-        "finals": {
-          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
-          "4-to-2": ["Falcons", "MOUZ"],
-          "2-to-1": "MOUZ"
-        }
-      },
-      {
-        "id": "danking",
-        "name": "DANKING",
-        "platform": "虎牙",
-        "link": "https://m.huya.com/dank1ng",
-        "stage-1": {
-          "3-0": ["GL", "FaZe"],
-          "3-1-or-3-2": ["Legacy", "NRG", "NIP", "PV", "B8", "RED"],
-          "0-3": ["RA", "Huns"]
-        }
-      },
-      {
         "id": "wanjiqi",
         "name": "玩机器丶Machine",
         "platform": "斗鱼",
@@ -214,7 +177,7 @@
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
-          "0-3": ["RED", "Huns"]
+          "0-3": ["NRG", "Huns"]
         },
         "stage-2": {
           "3-0": ["Aurora", "NAVI"],
@@ -236,7 +199,7 @@
         "id": "csboy-mo",
         "name": "CSBOY-MO",
         "platform": "虎牙",
-        "link": "https://m.huya.com/captainmo",
+        "link": "https://www.huya.com/captainmo",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
@@ -327,6 +290,43 @@
         }
       },
       {
+        "id": "xvduoyu",
+        "name": "许多鱼x",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/30491919",
+        "stage-1": {
+          "3-0": ["Legacy", "GL"],
+          "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "PV"],
+          "0-3": ["NRG", "Huns"]
+        },
+        "stage-2": {
+          "3-0": ["Astralis", "NAVI"],
+          "3-1-or-3-2": ["B8", "3DMAX", "Liquid", "NIP", "M80", "Aurora"],
+          "0-3": ["FlyQuest", "TYLOO"]
+        },
+        "stage-3": {
+          "3-0": ["Vitality", "FURIA"],
+          "3-1-or-3-2": ["NAVI", "MOUZ", "B8", "Falcons", "Spirit", "G2"],
+          "0-3": ["PUA", "PV"]
+        },
+        "finals": {
+          "8-to-4": ["Falcons", "Vitality", "FURIA", "MOUZ"],
+          "4-to-2": ["Falcons", "MOUZ"],
+          "2-to-1": "MOUZ"
+        }
+      },
+      {
+        "id": "danking",
+        "name": "DANKING",
+        "platform": "虎牙",
+        "link": "https://www.huya.com/dank1ng",
+        "stage-1": {
+          "3-0": ["GL", "FaZe"],
+          "3-1-or-3-2": ["Legacy", "NRG", "NIP", "PV", "B8", "RED"],
+          "0-3": ["RA", "Huns"]
+        }
+      },
+      {
         "id": "ququ",
         "name": "QUQU 太不常规",
         "platform": "斗鱼",
@@ -353,9 +353,10 @@
         }
       },
       {
-        "id": "csgo-dylg",
-        "name": "CSGO-德云两鬼",
-        "platform": "哔哩哔哩",
+        "id": "deyunlianggui",
+        "name": "CS2-德云两鬼",
+        "platform": "虎牙",
+        "link": "https://www.huya.com/298416",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["M80", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -380,6 +381,8 @@
       {
         "id": "xhcmdjzk",
         "name": "喜欢草莓的橘子可",
+        "platform": "哔哩哔哩",
+        "link": "https://space.bilibili.com/22871593",
         "stage-3": {
           "3-0": ["MOUZ", "Spirit"],
           "3-1-or-3-2": ["NAVI", "FURIA", "FaZe", "Vitality", "Falcons", "G2"],
@@ -390,6 +393,7 @@
         "id": "fallen",
         "name": "FalleN",
         "platform": "FURIA 指挥",
+        "link": "https://www.hltv.org/player/2023/fallen",
         "stage-2": {
           "3-0": ["3DMAX", "NAVI"],
           "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "Imperial", "Aurora"],
@@ -400,6 +404,7 @@
         "id": "overdrive",
         "name": "OverDrive",
         "platform": "Spirit 星探",
+        "link": "https://liquipedia.net/counterstrike/OverDrive",
         "stage-1": {
           "3-0": ["Legacy", "B8"],
           "3-1-or-3-2": ["FaZe", "PV", "Imperial", "Fnatic", "M80", "GL"],
@@ -424,6 +429,8 @@
       {
         "id": "laiangkai",
         "name": "莱昂凯shyeark",
+        "platform": "虎牙",
+        "link": "https://www.huya.com/shyeark",
         "stage-1": {
           "3-0": ["Legacy", "FaZe"],
           "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
@@ -1500,6 +1507,7 @@
         "id": "co-jo-mo",
         "name": "CoJoMo",
         "platform": "前 Phoenix 队员",
+        "link": "https://www.hltv.org/player/20629/cojomo",
         "stage-3": {
           "3-0": ["Vitality", "FURIA"],
           "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],

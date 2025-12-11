@@ -8,8 +8,8 @@ https://major.viki.moe
 
 ## 数据来源
 
-- **竞猜数据**: B 站 [@原劫色](https://space.bilibili.com/472947493)、[@三米七七](https://space.bilibili.com/1428295) 等 UP 主汇总的公开数据
-- **赛事结果**: [HLTV](https://www.hltv.org/) 官方数据
+- **竞猜数据**: 主要整理自 B 站 [@原劫色](https://space.bilibili.com/472947493)、[@三米七七](https://space.bilibili.com/1428295) 等 UP 主汇总的公开数据
+- **赛事结果**: 来源于 [HLTV](https://www.hltv.org/) 官方数据
 
 感谢所有数据贡献者的辛勤付出!
 

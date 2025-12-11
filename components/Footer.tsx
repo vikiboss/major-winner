@@ -13,7 +13,7 @@ export function Footer() {
             </div>
             <div className="text-muted space-y-2 text-sm leading-relaxed">
               <p>
-                CS2 Major 竞猜结果与排行，数据来自 B 站
+                CS2 Major 竞猜结果与排行，数据主要整理自 B 站 UP 主
                 <a
                   href="https://space.bilibili.com/472947493"
                   target="_blank"
@@ -31,7 +31,7 @@ export function Footer() {
                 >
                   @三米七七
                 </a>
-                等 UP 主。
+                等。
                 <br className="hidden sm:block" />
                 网站将及时更新赛事竞猜数据，助你轻松掌握作业情况。
               </p>

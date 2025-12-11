@@ -284,8 +284,8 @@
       "teams": ["FURIA", "Spirit", "Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
       "result": {
         "8-to-4": {
-          "winners": ["Spirit"],
-          "losers": ["Falcons"]
+          "winners": ["Spirit", "Vitality"],
+          "losers": ["Falcons", "MongolZ"]
         },
         "4-to-2": {
           "winners": [],

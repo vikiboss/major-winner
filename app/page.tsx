@@ -14,7 +14,15 @@ import {
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 import { useEvent } from '@/components/EventContext'
-import type { MajorEvent } from '@/types'
+
+import type {
+  FinalsStage,
+  FinalStageType,
+  MajorEvent,
+  SwissStage,
+  SwissStageType,
+  TaskStageType,
+} from '@/types'
 
 export default function Home() {
   const { currentEventId } = useEvent()
@@ -38,15 +46,15 @@ export default function Home() {
   // 将 finals 拆分成三个独立阶段
   type StageItem =
     | {
-        id: '8-to-4' | '4-to-2' | '2-to-1'
-        data: NonNullable<typeof event.finals>
-        type: 'finals-round'
+        id: FinalStageType
+        data: FinalsStage
+        type: 'finals'
         status: 'completed' | 'in_progress' | 'waiting'
-        round: '8-to-4' | '4-to-2' | '2-to-1'
+        round: FinalStageType
       }
     | {
-        id: string
-        data: NonNullable<(typeof event)['stage-1']>
+        id: SwissStageType
+        data: SwissStage
         type: 'swiss'
         status: 'completed' | 'in_progress' | 'waiting'
       }
@@ -56,13 +64,12 @@ export default function Home() {
       // 如果是 finals, 拆分成三个子阶段,但只显示有结果或进行中的子阶段
       const hasPredictions = stage.hasPredictions
 
-      if (stage.id === 'finals' && event.finals) {
+      if (stage.id === 'finals') {
+        if (!event.finals) return []
+
         const results = event.finals.result
 
-        const rounds: {
-          id: '8-to-4' | '4-to-2' | '2-to-1'
-          status: 'not_started' | 'waiting' | 'completed'
-        }[] = [
+        const rounds: { id: FinalStageType; status: 'not_started' | 'waiting' | 'completed' }[] = [
           {
             id: '8-to-4',
             status: hasPredictions
@@ -98,17 +105,18 @@ export default function Home() {
           .map((round) => ({
             id: round.id,
             data: event.finals!,
-            type: 'finals-round' as const,
+            type: 'finals' as const,
             status: round.status as 'completed' | 'in_progress' | 'waiting',
             round: round.id,
           }))
       }
+
       // 瑞士轮阶段
-      const stageData = event[stage.id as 'stage-1' | 'stage-2' | 'stage-3']
+      const stageData = event[stage.id]
 
       return {
-        id: stage.id,
-        data: stageData!,
+        id: stage.id as SwissStageType,
+        data: stageData! as SwissStage,
         type: 'swiss' as const,
         status: stage.status,
       }
@@ -203,18 +211,24 @@ function StageSection({
   stageStatus,
   round,
 }: {
-  stageId: string
+  stageId: TaskStageType
   stageName: string
-  stageData?: NonNullable<MajorEvent['stage-1']> | NonNullable<MajorEvent['finals']>
-  stageType: 'swiss' | 'finals-round'
+  stageData?: SwissStage | FinalsStage
+  stageType: 'swiss' | 'finals'
   event: MajorEvent
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
-  round?: '8-to-4' | '4-to-2' | '2-to-1'
+  round?: FinalStageType
 }) {
   const isSwiss = stageType === 'swiss'
-  const swissData = isSwiss ? (stageData as NonNullable<MajorEvent['stage-1']>) : null
-  const finalsData =
-    stageType === 'finals-round' ? (stageData as NonNullable<MajorEvent['finals']>) : null
+  const swissData = isSwiss ? (stageData as SwissStage) : null
+  const finalsData = stageType === 'finals' ? (stageData as FinalsStage) : null
+
+  const predictions =
+    getEventPredictions(event.id)?.predictions.filter((e) =>
+      stageType === 'swiss'
+        ? e[stageId as SwissStageType]?.['0-3']?.length
+        : e.finals?.[stageId as FinalStageType]?.length,
+    ) || []
 
   return (
     <section id={stageId} className="scroll-mt-32">
@@ -510,10 +524,10 @@ function StageSection({
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
               <Link
-                href={`/predictions/${stageType === 'finals-round' ? 'finals' : stageId}`}
+                href={`/predictions/${stageType === 'finals' ? 'finals' : stageId}`}
                 className="text-secondary hover:text-primary-300 text-xs hover:underline"
               >
-                查看全部 ➜
+                查看全部 ({predictions.length}) ➜
               </Link>
             </div>
             <div className="divide-border divide-y">
@@ -544,8 +558,8 @@ function PredictorPredictions({
   stageStatus,
   limit,
 }: {
-  stageId: string
-  stageType: 'swiss' | 'finals-round'
+  stageId: TaskStageType
+  stageType: 'swiss' | 'finals'
   event: MajorEvent
   round?: '8-to-4' | '4-to-2' | '2-to-1'
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
@@ -632,9 +646,7 @@ function PredictorPredictions({
     ? predictorsWithStats
         .filter(({ predictor: p }) => {
           const prediction =
-            stageType === 'finals-round'
-              ? p.finals
-              : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+            stageType === 'finals' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
           return prediction
         })
         .slice(0, limit)
@@ -646,7 +658,7 @@ function PredictorPredictions({
         const stats = calculatePredictorStats(event.id, p.id)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
         const prediction =
-          stageType === 'finals-round' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+          stageType === 'finals' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
 
         return (
           <div key={p.id} className="px-4 py-3">
@@ -784,7 +796,7 @@ function PredictorPredictions({
               </div>
             )}
 
-            {prediction && stageType === 'finals-round' && round && (
+            {prediction && stageType === 'finals' && round && (
               <div className="text-xs">
                 {(round === '8-to-4' || round === '4-to-2') && (
                   <div className="flex flex-wrap items-center gap-1">

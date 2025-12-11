@@ -749,7 +749,7 @@ export function getEventProgress(event: MajorEvent): EventProgress {
  * 获取当前活跃的阶段列表（已完成 + 进行中 + 已竞猜但等待结果的阶段）
  */
 export function getActiveStages(event: MajorEvent): {
-  id: string
+  id: MajorStageType
   name: string
   status: 'completed' | 'in_progress' | 'waiting'
   hasResults: boolean

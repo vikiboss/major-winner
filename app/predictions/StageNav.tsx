@@ -2,6 +2,8 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import { useEvent } from '@/components/EventContext'
+import { getEventPredictions } from '@/lib/data'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
 
@@ -13,7 +15,9 @@ const STAGES: Array<{ id: Stage; label: string }> = [
 ]
 
 export function StageNav() {
+  const event = useEvent()
   const pathname = usePathname()
+  const predictions = getEventPredictions(event.currentEventId)
 
   // 从路径中提取当前阶段 /predictions/stage-1 -> stage-1
   const currentStage = pathname.split('/').pop() as Stage
@@ -22,6 +26,7 @@ export function StageNav() {
     <div className="bg-surface-1 border-border mb-6 rounded-lg border p-1">
       <div className="grid grid-cols-4 gap-1">
         {STAGES.map((stage) => {
+          const count = predictions?.predictions?.filter((e) => !!e[stage.id]).length || 0
           const isActive = currentStage === stage.id
 
           return (
@@ -34,7 +39,12 @@ export function StageNav() {
                   : 'text-secondary hover:bg-surface-2 hover-text-primary'
               }`}
             >
-              {stage.label}
+              <span>{stage.label}</span>
+              {count > 0 ? (
+                <span className="bg-primary-500/10 text-primary-400 ml-1 hidden rounded-full px-2 py-0.5 text-xs font-medium sm:inline-block">
+                  {count}
+                </span>
+              ) : null}
             </Link>
           )
         })}

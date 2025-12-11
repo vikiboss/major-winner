@@ -491,7 +491,7 @@ function FinalsTable({
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
   // - 无猜对数：按已知错误数升序（错误少的排前面）
-  const sortedPredictors = [...predictors].sort((a, b) => {
+  const sortedPredictors = predictors.toSorted((a, b) => {
     const statsA = calculatePredictorStats(event.id, a.id)
     const statsB = calculatePredictorStats(event.id, b.id)
 
@@ -507,19 +507,24 @@ function FinalsTable({
       FINAL_STAGES.some((e) => e === s.stageId),
     )
 
+    const passedA = finalsStatsA?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
+    const passedB = finalsStatsB?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
+
+    const notPassedA = finalsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+    const notPassedB = finalsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+
     const correctA = finalsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
     const correctB = finalsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
 
-    // 如果都已完成，按猜对数降序
-    if (correctB || correctA) {
-      return correctB - correctA
-    }
-
-    // 如果都未完成（进行中），按已知错误数总和升序
     const impossibleA = finalsStatsA?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
     const impossibleB = finalsStatsB?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
 
-    return impossibleA - impossibleB // 错误少的排前面
+    return (
+      passedB - passedA ||
+      notPassedA - notPassedB ||
+      correctB - correctA ||
+      impossibleA - impossibleB
+    )
   })
 
   return (
@@ -637,7 +642,10 @@ function FinalsTable({
                           className={`flex items-center gap-1 rounded text-xs font-medium ${
                             finalsResult?.['2-to-1'].winner === prediction['2-to-1']
                               ? 'bg-win/20 text-win'
-                              : finalsResult?.['2-to-1'].winner
+                              : finalsResult?.['2-to-1'].winner ||
+                                  finalsResult?.['4-to-2'].losers
+                                    .concat(finalsResult?.['8-to-4'].losers)
+                                    .includes(prediction['2-to-1'])
                                 ? 'bg-lose/20 text-lose'
                                 : 'bg-surface-2 text-tertiary'
                           }`}

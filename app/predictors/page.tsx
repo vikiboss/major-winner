@@ -112,15 +112,15 @@ export default function PredictorsPage() {
                         )
                       ) : result ? (
                         <span className="text-muted">
-                          {result.correctCount}/{result.requiredCount}（
-                          {result.correctCount >= result.requiredCount
-                            ? '✅ 通过'
-                            : result.impossibleCount >= result.totalCount - result.requiredCount
-                              ? `❌ 已炸，已挂 ${result.impossibleCount} 个`
-                              : `祈祷中，还剩 ${
-                                  result.totalCount - result.correctCount - result.impossibleCount
-                                } 个`}
-                          ）
+                          {result.passed === true ? (
+                            '✅'
+                          ) : result.passed === false ? (
+                            `❌`
+                          ) : (
+                            <span className="text-xs">
+                              祈祷中 {result.correctCount}/{result.requiredCount}
+                            </span>
+                          )}
                         </span>
                       ) : (
                         <span className="text-muted">-</span>
@@ -199,16 +199,16 @@ export default function PredictorsPage() {
                             <span className="text-muted">-</span>
                           )
                         ) : result ? (
-                          <span className="text-muted text-xs">
-                            {result.correctCount}/{result.requiredCount}（
-                            {result.correctCount >= result.requiredCount
-                              ? '✅ 通过'
-                              : result.impossibleCount >= result.totalCount - result.requiredCount
-                                ? `❌ 已炸，已挂 ${result.impossibleCount} 个`
-                                : `祈祷中，还剩 ${
-                                    result.totalCount - result.correctCount - result.impossibleCount
-                                  } 个`}
-                            ）
+                          <span className="text-muted">
+                            {result.passed === true ? (
+                              '✅'
+                            ) : result.passed === false ? (
+                              `❌`
+                            ) : (
+                              <span className="text-xs">
+                                祈祷中 {result.correctCount}/{result.requiredCount}
+                              </span>
+                            )}
                           </span>
                         ) : (
                           <span className="text-muted">-</span>

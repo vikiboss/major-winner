@@ -216,14 +216,14 @@ function checkSwissStagePass(
  */
 function check8to4Pass(
   prediction: string[] | undefined,
-  actual: string[] | undefined,
+  winners: string[] | undefined,
   losers: string[] | undefined,
 ): StagePassStatus {
   const totalCount = 4
   const requiredCount = 2
   const stageId = '8-to-4'
 
-  if (!prediction || !actual) {
+  if (!prediction || !winners?.length) {
     return {
       stageId,
       passed: null,
@@ -237,14 +237,14 @@ function check8to4Pass(
   }
 
   // 8进4完整结果应该有4个winners
-  const isResultComplete = actual.length === 4
+  const isResultComplete = winners.length === 4
 
   let correctCount = 0
   let impossibleCount = 0
   for (const team of prediction) {
-    if (actual.includes(team)) {
+    if (winners.includes(team)) {
       correctCount++
-    } else if (losers && losers.includes(team)) {
+    } else if (losers?.length && losers.includes(team)) {
       // 已被淘汰的队伍，预测错误
       impossibleCount++
     }
@@ -280,7 +280,7 @@ function check4to2Pass(
   const requiredCount = 1
   const stageId = '4-to-2'
 
-  if (!prediction || !actual) {
+  if (!prediction || !actual?.length) {
     return {
       stageId,
       passed: null,
@@ -338,7 +338,7 @@ function check2to1Pass(
   const requiredCount = 1
   const stageId = '2-to-1'
 
-  if (!prediction || !actual) {
+  if (!prediction) {
     return {
       stageId,
       passed: null,
@@ -352,19 +352,16 @@ function check2to1Pass(
   }
 
   // 有冠军就是完整结果
-  const isResultComplete = true
+  const isResultComplete = !!actual
 
+  const isOut = loser === prediction || allEliminatedTeams.includes(prediction)
+  const isPassed = actual ? prediction === actual : isOut ? false : null
   const correctCount = prediction === actual ? 1 : 0
-
-  // 如果预测的队伍是决赛输家或之前被淘汰，则算错误
-  let impossibleCount = 0
-  if (prediction === loser || allEliminatedTeams.includes(prediction)) {
-    impossibleCount = 1
-  }
+  const impossibleCount = isOut ? 1 : 0
 
   return {
     stageId,
-    passed: correctCount >= requiredCount,
+    passed: isPassed,
     totalCount,
     correctCount,
     requiredCount,

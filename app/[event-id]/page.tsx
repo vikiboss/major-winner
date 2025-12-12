@@ -519,7 +519,7 @@ function StageSection({
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
               <Link
-                href={`${event.id}/predictions/${stageType === STAGE_TYPE.PLAYOFFS ? 'playoffs' : stageId}`}
+                href={`${event.id}/stages/${stageType === STAGE_TYPE.PLAYOFFS ? 'playoffs' : stageId}`}
                 className="text-secondary hover:text-primary-300 text-xs hover:underline"
               >
                 查看全部 ({predictions.length}) ➜

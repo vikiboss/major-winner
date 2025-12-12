@@ -17,11 +17,7 @@ const STAGE_NAME_MAP = {
   'stage-3': '👑 冠军组',
 }
 
-export default async function TeamsPage({
-  params,
-}: {
-  params: Promise<{ 'event-id': string }>
-}) {
+export default async function TeamsPage({ params }: { params: Promise<{ 'event-id': string }> }) {
   const { 'event-id': eventId } = await params
   const event = evt.getEvent(eventId)
   const teams = event.teams
@@ -102,6 +98,14 @@ export default async function TeamsPage({
           result: '亚军',
           status: 'advanced',
         })
+      } else if (finals.result['4-to-2'].winners.includes(shortName)) {
+        // 已经晋级决赛，等待总决赛
+        performance.push({
+          stage: 'finals',
+          stageName: '半决赛',
+          result: '已晋级决赛',
+          status: 'advanced',
+        })
       } else if (finals.result['4-to-2'].losers.includes(shortName)) {
         performance.push({
           stage: 'finals',
@@ -115,6 +119,14 @@ export default async function TeamsPage({
           stageName: '四分之一决赛',
           result: '八强',
           status: 'eliminated',
+        })
+      } else if (finals.result['8-to-4'].winners.includes(shortName)) {
+        // 已经晋级四强，等待半决赛
+        performance.push({
+          stage: 'finals',
+          stageName: '四分之一决赛',
+          result: '已晋级四强',
+          status: 'advanced',
         })
       } else {
         // 在决赛名单中但还没有结果,说明等待决赛
@@ -177,7 +189,15 @@ export default async function TeamsPage({
 
     // 决赛内部排序
     if (aFinals && bFinals) {
-      const finalsRank = { 冠军: 1, 亚军: 2, 四强: 3, 八强: 4 }
+      const finalsRank = {
+        冠军: 1,
+        亚军: 2,
+        已晋级决赛: 3,
+        四强: 4,
+        已晋级四强: 5,
+        八强: 6,
+        待赛: 999,
+      }
       const aRank = finalsRank[aFinals.result as keyof typeof finalsRank] || 999
       const bRank = finalsRank[bFinals.result as keyof typeof finalsRank] || 999
       if (aRank !== bRank) return aRank - bRank

@@ -1,4 +1,4 @@
-import { events, getAllPredictorStats, getEventProgress } from '@/lib/data'
+import { evt, getAllPredictorStats, getEventProgress } from '@/lib/data'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -6,9 +6,18 @@ export const metadata: Metadata = {
   description: '查看 CS2 Major 竞猜准确率排行榜，看看谁是真正的预言家。',
 }
 
-export default function PredictorsPage() {
-  const event = events[0]
-  const stats = getAllPredictorStats(event.id)
+export async function generateStaticParams() {
+  return evt.eventNames.map((e) => ({ 'event-id': e.id }))
+}
+
+export default async function PredictorsPage({
+  params,
+}: {
+  params: Promise<{ 'event-id': string }>
+}) {
+  const { 'event-id': eventId } = await params
+  const event = evt.getEvent(eventId)
+  const stats = getAllPredictorStats(eventId)
   const eventProgress = getEventProgress(event)
 
   // 显示所有阶段,包括决赛的三个子阶段

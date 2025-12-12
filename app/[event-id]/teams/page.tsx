@@ -1,10 +1,14 @@
-import TeamLogo from '../../components/TeamLogo'
-import { events } from '@/lib/data'
+import TeamLogo from '../../../components/TeamLogo'
+import { evt } from '@/lib/data'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: '参赛队伍',
   description: '查看所有 CS2 Major 参赛队伍的表现和晋级状态。',
+}
+
+export async function generateStaticParams() {
+  return evt.eventNames.map((e) => ({ 'event-id': e.id }))
 }
 
 const STAGE_NAME_MAP = {
@@ -13,8 +17,13 @@ const STAGE_NAME_MAP = {
   'stage-3': '👑 冠军组',
 }
 
-export default function TeamsPage() {
-  const event = events[0]
+export default async function TeamsPage({
+  params,
+}: {
+  params: Promise<{ 'event-id': string }>
+}) {
+  const { 'event-id': eventId } = await params
+  const event = evt.getEvent(eventId)
   const teams = event.teams
 
   const getTeamPerformance = (shortName: string) => {

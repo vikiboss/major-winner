@@ -3,21 +3,24 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
-const navItems = [
-  { href: '/', label: '首页' },
-  { href: '/predictions', label: '竞猜' },
-  { href: '/predictors', label: '排行' },
-  { href: '/teams', label: '战队' },
+const navItems = (id: string) => [
+  { href: `/${id}`, label: '首页' },
+  { href: `/${id}/predictions`, label: '竞猜' },
+  { href: `/${id}/predictors`, label: '排行' },
+  { href: `/${id}/teams`, label: '战队' },
 ]
 
-export function NavItems() {
+export function NavItems({ eventId }: { eventId: string }) {
   const pathname = usePathname()
+  const homeHref = `/${eventId}`
 
   return (
     <nav className="flex flex-1 items-center justify-end gap-1" role="navigation">
-      {navItems.map((item) => {
-        const isActive =
-          pathname === item.href || (item.href !== '/' && pathname.startsWith(item.href))
+      {navItems(eventId).map((item) => {
+        const isExactMatch = pathname === item.href
+        const isSubPathMatch = item.href !== homeHref && pathname.startsWith(item.href)
+        const isActive = isExactMatch || isSubPathMatch
+
         return (
           <Link
             key={item.href}

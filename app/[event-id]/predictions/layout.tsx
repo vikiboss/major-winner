@@ -1,9 +1,15 @@
-import { events, evt } from '@/lib/data'
+import { evt } from '@/lib/data'
 import { StageNav } from './StageNav'
 
-export default function PredictionsLayout({ children }: { children: React.ReactNode }) {
-  const event = events[0]
-  const predictions = evt.getPredictions(event.id)
+export default async function PredictionsLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: Promise<{ 'event-id': string }>
+}) {
+  const { 'event-id': eventId } = await params
+  const predictions = evt.getPredictions(eventId)
 
   if (!predictions.length) {
     return (
@@ -25,7 +31,7 @@ export default function PredictionsLayout({ children }: { children: React.ReactN
       </div>
 
       {/* 阶段切换标签 */}
-      <StageNav />
+      <StageNav eventId={eventId} />
 
       {/* 动态内容 */}
       {children}

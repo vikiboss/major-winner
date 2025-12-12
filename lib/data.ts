@@ -32,7 +32,7 @@ export const evt = {
 
   /** 获取指定赛事  */
   getEvent(eventId?: string): MajorEvent {
-    return eventId ? events.find((e) => e.id === eventId) || events[0] : events[0]
+    return eventId ? events.find((e) => e.id === eventId) || firstEvent : firstEvent
   },
 
   /** 获取所有赛事名称列表 */

@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useEvent } from '@/components/EventContext'
 import { evt } from '@/lib/data'
 
 import type { MajorStageType } from '@/types'
@@ -14,10 +13,9 @@ const STAGES: { id: MajorStageType; label: string }[] = [
   { id: 'finals', label: '决胜阶段' },
 ]
 
-export function StageNav() {
-  const event = useEvent()
+export function StageNav({ eventId }: { eventId: string }) {
   const pathname = usePathname()
-  const predictions = evt.getPredictions(event.eventId)
+  const predictions = evt.getPredictions(eventId)
 
   // 从路径中提取当前阶段 /predictions/stage-1 -> stage-1
   const currentStage = pathname.split('/').pop()
@@ -32,7 +30,7 @@ export function StageNav() {
           return (
             <Link
               key={stage.id}
-              href={`/predictions/${stage.id}`}
+              href={`/${eventId}/predictions/${stage.id}`}
               className={`rounded px-2 py-1.5 text-center text-[10px] font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm ${
                 isActive
                   ? 'bg-primary-500/10 text-primary-400'

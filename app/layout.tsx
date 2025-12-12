@@ -1,7 +1,5 @@
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { Header } from '@/components/Header'
-import { Footer } from '@/components/Footer'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 
@@ -10,6 +8,9 @@ import './globals.css'
 import type { Metadata, Viewport } from 'next'
 
 const inter = Inter({ subsets: ['latin'] })
+
+const ogUrl =
+  'https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fmajor.viki.moe%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://major.viki.moe'),
@@ -30,9 +31,9 @@ export const metadata: Metadata = {
     'Major Winner',
     'CSGO',
   ],
-  authors: [{ name: 'vikiboss' }],
-  creator: 'vikiboss',
-  publisher: 'vikiboss',
+  authors: [{ name: 'Viki' }],
+  creator: 'Viki',
+  publisher: 'Viki',
   robots: {
     index: true,
     follow: true,
@@ -47,13 +48,13 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'zh_CN',
-    url: 'https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fmajor.viki.moe%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto',
+    url: ogUrl,
     title: 'Major Winner - CS2 Major 竞猜结果展示',
     description: '查看 Counter Strike 2 Major 赛事竞猜结果、竞猜准确率排行榜',
     siteName: 'Major Winner',
     images: [
       {
-        url: '/og-image.png', // Make sure to add an og-image.png to your public folder
+        url: ogUrl,
         width: 1200,
         height: 630,
         alt: 'Major Winner',
@@ -64,10 +65,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Major Winner - CS2 Major 竞猜结果展示',
     description: '查看 Counter Strike 2 Major 赛事竞猜结果、竞猜准确率排行榜',
-    images: [
-      'https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fmajor.viki.moe%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto',
-    ],
-    creator: '@vikiboss',
+    images: [ogUrl],
+    creator: '@Viki',
   },
   appleWebApp: {
     capable: true,
@@ -79,7 +78,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
-    apple: '/apple-icon.png',
+    apple: '/icon.png',
   },
 }
 
@@ -100,12 +99,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
         <Analytics />
         <GoogleAnalytics gaId="G-NRG0R1D14W" />
-
-        <ThemeProvider>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

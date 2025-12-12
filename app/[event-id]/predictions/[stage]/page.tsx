@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import {
-  events,
   evt,
   calculatePredictorStats,
   isPredictionPossible,
@@ -24,7 +23,7 @@ const STAGE_NAMES: Record<Stage, string> = {
 }
 
 interface PageProps {
-  params: Promise<{ stage: string }>
+  params: Promise<{ stage: string; 'event-id': string }>
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
@@ -38,13 +37,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export async function generateStaticParams() {
-  return VALID_STAGES.map((stage) => ({
-    stage,
-  }))
+  const params = []
+  for (const event of evt.eventNames) {
+    for (const stage of VALID_STAGES) {
+      params.push({
+        'event-id': event.id,
+        stage,
+      })
+    }
+  }
+  return params
 }
 
 export default async function PredictionsPage({ params }: PageProps) {
-  const { stage: stageParam } = await params
+  const { stage: stageParam, 'event-id': eventId } = await params
   const activeStage = stageParam as Stage
 
   // 验证 stage 参数
@@ -52,8 +58,8 @@ export default async function PredictionsPage({ params }: PageProps) {
     notFound()
   }
 
-  const event = events[0]
-  const predictions = evt.getPredictions(event.id)
+  const event = evt.getEvent(eventId)
+  const predictions = evt.getPredictions(eventId)
 
   if (!predictions.length) {
     return (

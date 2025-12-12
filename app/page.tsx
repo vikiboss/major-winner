@@ -474,7 +474,7 @@ function StageSection({
                               {finalsData.teams
                                 .filter(
                                   (e) =>
-                                    !finalsData.result[round].winners.includes(e) ||
+                                    !finalsData.result[round].winners.includes(e) &&
                                     !finalsData.result[round].losers.includes(e),
                                 )
                                 .map((t) => (

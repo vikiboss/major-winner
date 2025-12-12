@@ -23,7 +23,7 @@ export default async function PredictionsLayout({
   }
 
   return (
-    <div className="mx-auto min-h-screen max-w-5xl px-4 py-6 sm:py-8">
+    <div className="mx-auto min-h-screen max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
       {/* 页面标题 */}
       <div className="mb-6">
         <h1 className="text-primary text-2xl font-bold sm:text-3xl">竞猜情况</h1>

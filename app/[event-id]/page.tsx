@@ -107,7 +107,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
           .map((round) => ({
             id: round.id,
             data: event.playoffs!,
-            type: 'playoffs' as const,
+            type: STAGE_TYPE.PLAYOFFS,
             status: round.status as 'completed' | 'in_progress' | 'waiting',
             round: round.id,
           }))
@@ -223,7 +223,7 @@ function StageSection({
 }) {
   const isSwiss = stageType === STAGE_TYPE.SWISS
   const swissData = isSwiss ? (stageData as SwissStage) : null
-  const playoffsData = stageType === 'playoffs' ? (stageData as PlayoffsStage) : null
+  const playoffsData = stageType === STAGE_TYPE.PLAYOFFS ? (stageData as PlayoffsStage) : null
 
   const predictions =
     evt
@@ -520,7 +520,7 @@ function StageSection({
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
               <Link
-                href={`/predictions/${stageType === 'playoffs' ? 'playoffs' : stageId}`}
+                href={`/predictions/${stageType === STAGE_TYPE.PLAYOFFS ? 'playoffs' : stageId}`}
                 className="text-secondary hover:text-primary-300 text-xs hover:underline"
               >
                 查看全部 ({predictions.length}) ➜
@@ -637,7 +637,8 @@ function PredictorPredictions({
   const displayPredictors = limit
     ? predictorsWithStats
         .filter(({ predictor: p }) => {
-          const prediction = stageType === 'playoffs' ? p.playoffs : p[stageId as SwissStageType]
+          const prediction =
+            stageType === STAGE_TYPE.PLAYOFFS ? p.playoffs : p[stageId as SwissStageType]
           return prediction
         })
         .slice(0, limit)
@@ -648,7 +649,8 @@ function PredictorPredictions({
       {displayPredictors.map(({ predictor: p }) => {
         const stats = calculatePredictorStats(event.id, p.id)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
-        const prediction = stageType === 'playoffs' ? p.playoffs : p[stageId as SwissStageType]
+        const prediction =
+          stageType === STAGE_TYPE.PLAYOFFS ? p.playoffs : p[stageId as SwissStageType]
 
         return (
           <div key={p.id} className="px-4 py-3">

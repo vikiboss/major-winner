@@ -476,7 +476,9 @@ function PlayoffsTable({
 
   const { currentStage } = getEventProgress(event)
 
-  const stageProgress = currentStage ? getStageProgressInfo(event, currentStage, 'playoffs') : null
+  const stageProgress = currentStage
+    ? getStageProgressInfo(event, currentStage, STAGE_TYPE.PLAYOFFS)
+    : null
 
   const isNotStarted =
     currentStage === 'playoffs' && stageProgress && stageProgress.status === 'not_started'

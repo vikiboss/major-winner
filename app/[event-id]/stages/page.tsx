@@ -13,5 +13,5 @@ export default async function PredictionsPage({
   const { 'event-id': eventId } = await params
   const event = evt.getEvent(eventId)
   const evtProgress = getEventProgress(event)
-  redirect(`/${eventId}/predictions/${evtProgress.currentStage || 'stage-1'}`)
+  redirect(`/${eventId}/stages/${evtProgress.currentStage || 'stage-1'}`)
 }

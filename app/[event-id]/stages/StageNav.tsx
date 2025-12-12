@@ -31,7 +31,7 @@ export function StageNav({ eventId }: { eventId: string }) {
             return (
               <Link
                 key={stage.id}
-                href={`/${eventId}/predictions/${stage.id}`}
+                href={`/${eventId}/stages/${stage.id}`}
                 className={`rounded px-2 py-1.5 text-center text-[10px] font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm ${
                   isActive
                     ? 'bg-primary-500/10 text-primary-400'

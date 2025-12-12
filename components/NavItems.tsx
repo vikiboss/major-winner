@@ -5,8 +5,8 @@ import { usePathname } from 'next/navigation'
 
 const navItems = (id: string) => [
   { href: `/${id}`, label: '首页' },
-  { href: `/${id}/predictions`, label: '竞猜' },
-  { href: `/${id}/predictors`, label: '排行' },
+  { href: `/${id}/stages`, label: '竞猜' },
+  { href: `/${id}/leaderboard`, label: '排行' },
   { href: `/${id}/teams`, label: '战队' },
 ]
 

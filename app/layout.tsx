@@ -1,6 +1,5 @@
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import { EventProvider } from '@/components/EventContext'
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
 import { GoogleAnalytics } from '@next/third-parties/google'
@@ -103,11 +102,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <GoogleAnalytics gaId="G-NRG0R1D14W" />
 
         <ThemeProvider>
-          <EventProvider>
-            <Header />
-            <main className="flex-1">{children}</main>
-            <Footer />
-          </EventProvider>
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

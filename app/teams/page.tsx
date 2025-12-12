@@ -1,5 +1,5 @@
-import { events } from '@/lib/data'
 import TeamLogo from '../../components/TeamLogo'
+import { events } from '@/lib/data'
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {

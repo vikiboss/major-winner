@@ -11,9 +11,9 @@ import {
   isPredictionPossible,
   hasSwissInProgressResults,
   hasSwissFinalResults,
+  events,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
-import { useEvent } from '@/components/EventContext'
 
 import { calculatePredictorStats } from '@/lib/data'
 import type { StagePrediction } from '@/types'
@@ -28,10 +28,9 @@ import type {
 } from '@/types'
 
 export default function Home() {
-  const { eventId: currentEventId } = useEvent()
-  const targetEvent = evt.getEvent(currentEventId)
+  const event = events[0]
 
-  if (!targetEvent) {
+  if (!event) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
@@ -41,9 +40,9 @@ export default function Home() {
       </div>
     )
   }
-  const stats = getAllPredictorStats(targetEvent.id)
-  const eventProgress = getEventProgress(targetEvent)
-  const activeStages = getActiveStages(targetEvent)
+  const stats = getAllPredictorStats(event.id)
+  const eventProgress = getEventProgress(event)
+  const activeStages = getActiveStages(event)
 
   // 只显示有结果的阶段（进行中或已完成）
   // 将 finals 拆分成三个独立阶段
@@ -68,9 +67,9 @@ export default function Home() {
       const hasPredictions = stage.hasPredictions
 
       if (stage.id === 'finals') {
-        if (!targetEvent.finals) return []
+        if (!event.finals) return []
 
-        const results = targetEvent.finals.result
+        const results = event.finals.result
 
         const rounds: {
           id: FinalStageType
@@ -114,7 +113,7 @@ export default function Home() {
           .filter((e) => e.status !== 'not_started')
           .map((round) => ({
             id: round.id,
-            data: targetEvent.finals!,
+            data: event.finals!,
             type: 'finals' as const,
             status: round.status as 'completed' | 'in_progress' | 'waiting',
             round: round.id,
@@ -122,7 +121,7 @@ export default function Home() {
       }
 
       // 瑞士轮阶段
-      const stageData = targetEvent[stage.id]
+      const stageData = event[stage.id]
 
       return {
         id: stage.id as SwissStageType,
@@ -141,7 +140,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
           <div className="min-w-0 flex-1">
             <h1 className="text-primary mb-3 text-2xl font-semibold sm:mb-4 sm:text-4xl lg:text-5xl">
-              {targetEvent.name}
+              {event.name}
             </h1>
             <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:text-base">
               <p className="text-muted">竞猜追踪 · {stats.length} 位竞猜者</p>
@@ -201,7 +200,7 @@ export default function Home() {
               stageName={getStageName(stage.id)}
               stageData={stage.data}
               stageType={stage.type}
-              event={targetEvent}
+              event={event}
               stageStatus={stage.status}
               round={'round' in stage ? stage.round : undefined}
             />

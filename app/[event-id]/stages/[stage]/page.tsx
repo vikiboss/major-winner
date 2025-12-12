@@ -485,43 +485,45 @@ function PlayoffsTable({
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
   // - 无猜对数：按已知错误数升序（错误少的排前面）
-  const sortedPredictors = predictors.toSorted((a, b) => {
-    const statsA = calculatePredictorStats(event.id, a.id)
-    const statsB = calculatePredictorStats(event.id, b.id)
+  const sortedPredictors = predictors
+    .map((e) => ({ ...e, stats: calculatePredictorStats(event.id, e.id) }))
+    .toSorted((a, b) => {
+      const statsA = a.stats
+      const statsB = b.stats
 
-    if (isNotStarted && statsA && statsB) {
-      return statsB.totalPassed - statsA.totalPassed || statsB.totalCorrect - statsA.totalCorrect
-    }
+      if (isNotStarted && statsA && statsB) {
+        return statsB.totalPassed - statsA.totalPassed || statsB.totalCorrect - statsA.totalCorrect
+      }
 
-    const playoffsStatsA = statsA?.stageResults.filter((s) =>
-      PLAYOFFS_STAGES.some((e) => e === s.stageId),
-    )
+      const playoffsStatsA = statsA?.stageResults.filter((s) =>
+        PLAYOFFS_STAGES.some((e) => e === s.stageId),
+      )
 
-    const playoffsStatsB = statsB?.stageResults.filter((s) =>
-      PLAYOFFS_STAGES.some((e) => e === s.stageId),
-    )
+      const playoffsStatsB = statsB?.stageResults.filter((s) =>
+        PLAYOFFS_STAGES.some((e) => e === s.stageId),
+      )
 
-    const passedA = playoffsStatsA?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
-    const passedB = playoffsStatsB?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
+      const passedA = playoffsStatsA?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
+      const passedB = playoffsStatsB?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
 
-    const notPassedA =
-      playoffsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
-    const notPassedB =
-      playoffsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+      const notPassedA =
+        playoffsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+      const notPassedB =
+        playoffsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
 
-    const correctA = playoffsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
-    const correctB = playoffsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
+      const correctA = playoffsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
+      const correctB = playoffsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
 
-    const impossibleA = playoffsStatsA?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
-    const impossibleB = playoffsStatsB?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
+      const impossibleA = playoffsStatsA?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
+      const impossibleB = playoffsStatsB?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
 
-    return (
-      passedB - passedA ||
-      notPassedA - notPassedB ||
-      correctB - correctA ||
-      impossibleA - impossibleB
-    )
-  })
+      return (
+        passedB - passedA ||
+        notPassedA - notPassedB ||
+        correctB - correctA ||
+        impossibleA - impossibleB
+      )
+    })
 
   return (
     <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
@@ -545,7 +547,7 @@ function PlayoffsTable({
               const prediction = predictor.playoffs as PlayoffsPrediction
               if (!prediction) return null
 
-              const stats = calculatePredictorStats(event.id, predictor.id)
+              const stats = predictor.stats
               const playoffsStats = stats?.stageResults.filter((s) =>
                 PLAYOFFS_STAGES.some((e) => e === s.stageId),
               )

@@ -1,6 +1,6 @@
 'use client'
 
-import { firstEvent, event } from '@/lib/data'
+import { firstEvent, evt } from '@/lib/data'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 
 import type { MajorEvent } from '@/types'
@@ -18,7 +18,7 @@ function useEventContext() {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('major-winner-event-id')
 
-      if (saved && event.hasEvent(saved)) {
+      if (saved && evt.hasEvent(saved)) {
         return saved
       }
     }
@@ -35,7 +35,7 @@ function useEventContext() {
   return {
     eventId,
     setEventId,
-    event: event.getEventById(eventId),
+    event: evt.getEvent(eventId),
   }
 }
 

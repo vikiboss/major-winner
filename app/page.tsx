@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import {
-  event,
+  evt,
   getAllPredictorStats,
   getStageName,
   getEventProgress,
@@ -15,6 +15,9 @@ import {
 import TeamLogo from '@/components/TeamLogo'
 import { useEvent } from '@/components/EventContext'
 
+import { calculatePredictorStats } from '@/lib/data'
+import type { StagePrediction } from '@/types'
+
 import type {
   FinalsStage,
   FinalStageType,
@@ -26,7 +29,7 @@ import type {
 
 export default function Home() {
   const { eventId: currentEventId } = useEvent()
-  const targetEvent = event.getEventById(currentEventId)
+  const targetEvent = evt.getEvent(currentEventId)
 
   if (!targetEvent) {
     return (
@@ -231,11 +234,13 @@ function StageSection({
   const finalsData = stageType === 'finals' ? (stageData as FinalsStage) : null
 
   const predictions =
-    getEventPredictions(event.id)?.predictions.filter((e) =>
-      stageType === 'swiss'
-        ? e[stageId as SwissStageType]?.['0-3']?.length
-        : e.finals?.[stageId as FinalStageType]?.length,
-    ) || []
+    evt
+      .getPredictions(event.id)
+      .filter((e) =>
+        stageType === 'swiss'
+          ? e[stageId as SwissStageType]?.['0-3']?.length
+          : e.finals?.[stageId as FinalStageType]?.length,
+      ) || []
 
   return (
     <section id={stageId} className="scroll-mt-32">
@@ -546,9 +551,6 @@ function StageSection({
   )
 }
 
-import { getEventPredictions, calculatePredictorStats } from '@/lib/data'
-import type { StagePrediction } from '@/types'
-
 function PredictorPredictions({
   stageId,
   stageType,
@@ -564,8 +566,8 @@ function PredictorPredictions({
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
   limit?: number
 }) {
-  const eventPreds = getEventPredictions(event.id)
-  if (!eventPreds) return null
+  const predictions = evt.getPredictions(event.id)
+  if (!predictions.length) return null
 
   // 获取当前阶段的实际结果
   const stageData =
@@ -573,7 +575,7 @@ function PredictorPredictions({
   const actualResult = stageData?.result
 
   // 计算每个预测者在当前阶段的错误数,并排序(错误最少的排前面)
-  const predictorsWithStats = eventPreds.predictions
+  const predictorsWithStats = predictions
     .filter((e) => e.id !== 'result') // 排除比赛结果
     .map((p) => {
       const stats = calculatePredictorStats(event.id, p.id)

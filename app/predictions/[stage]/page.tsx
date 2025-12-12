@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import {
   events,
-  getEventPredictions,
+  evt,
   calculatePredictorStats,
   isPredictionPossible,
   FINAL_STAGES,
@@ -53,9 +53,9 @@ export default async function PredictionsPage({ params }: PageProps) {
   }
 
   const event = events[0]
-  const eventPreds = getEventPredictions(event.id)
+  const predictions = evt.getPredictions(event.id)
 
-  if (!eventPreds) {
+  if (!predictions.length) {
     return (
       <div className="text-center">
         <p className="text-muted">暂无竞猜数据</p>
@@ -64,7 +64,7 @@ export default async function PredictionsPage({ params }: PageProps) {
   }
 
   // 过滤出有当前阶段预测的竞猜者
-  const predictorsWithStage = eventPreds.predictions.filter((p) => {
+  const predictorsWithStage = predictions.filter((p) => {
     if (activeStage === 'finals') {
       return p.finals
     }

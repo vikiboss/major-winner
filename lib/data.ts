@@ -24,24 +24,24 @@ export const predictions = predictionsData as EventPredictions[]
 export const FINAL_STAGES: FinalStageType[] = ['8-to-4', '4-to-2', '2-to-1']
 export const firstEvent = events.at(0) as MajorEvent
 
-export const event = {
+export const evt = {
   /** 存在指定赛事 ID */
   hasEvent(eventId: string): boolean {
     return events.some((e) => e.id === eventId)
   },
 
   /** 获取指定赛事  */
-  getEventById(eventId?: string): MajorEvent {
+  getEvent(eventId?: string): MajorEvent {
     return eventId ? events.find((e) => e.id === eventId) || events[0] : events[0]
   },
 
   /** 获取所有赛事名称列表 */
   eventNames: events.map((e) => ({ id: e.id, name: e.name })),
-}
 
-// 获取指定赛事的竞猜数据
-export function getEventPredictions(eventId: string): EventPredictions | undefined {
-  return predictions.find((p) => p.id === eventId)
+  /** 获取指定赛事的竞猜数据 */
+  getPredictions(eventId: string): PredictorPrediction[] {
+    return predictions.find((p) => p.id === eventId)?.predictions || []
+  },
 }
 
 /**
@@ -380,12 +380,12 @@ export function calculatePredictorStats(
   eventId: string,
   predictorId: string,
 ): PredictorStats | null {
-  const targetEvent = event.getEventById(eventId)
-  const eventPreds = getEventPredictions(eventId)
+  const targetEvent = evt.getEvent(eventId)
+  const predictions = evt.getPredictions(eventId)
 
-  if (!targetEvent || !eventPreds) return null
+  if (!targetEvent) return null
 
-  const predictor = eventPreds.predictions.find((p) => p.id === predictorId)
+  const predictor = predictions.find((p) => p.id === predictorId)
 
   if (!predictor) return null
 
@@ -470,12 +470,12 @@ export function calculatePredictorStats(
 
 // 获取所有竞猜者的统计数据并排序
 export function getAllPredictorStats(eventId: string): PredictorStats[] {
-  const eventPreds = getEventPredictions(eventId)
-  if (!eventPreds) return []
+  const predictions = evt.getPredictions(eventId)
+  if (!predictions.length) return []
 
   const stats: PredictorStats[] = []
 
-  for (const p of eventPreds.predictions) {
+  for (const p of predictions) {
     const stat = calculatePredictorStats(eventId, p.id)
     if (stat) {
       stats.push(stat)
@@ -513,10 +513,10 @@ export function getPredictorPrediction(
   eventId: string,
   predictorId: string,
 ): PredictorPrediction | null {
-  const eventPreds = getEventPredictions(eventId)
-  if (!eventPreds) return null
+  const predictions = evt.getPredictions(eventId)
+  if (!predictions.length) return null
 
-  return eventPreds.predictions.find((p) => p.id === predictorId) || null
+  return predictions.find((p) => p.id === predictorId) || null
 }
 
 /**
@@ -771,12 +771,12 @@ export function getActiveStages(event: MajorEvent): {
   hasPredictions: boolean
 }[] {
   const progress = getEventProgress(event)
-  const eventPreds = getEventPredictions(event.id)
+  const predictions = evt.getPredictions(event.id)
 
   // 检查某阶段是否有竞猜
   const hasPredictionsForStage = (stageId: string): boolean => {
-    if (!eventPreds) return false
-    return eventPreds.predictions.some((p) => {
+    if (!predictions.length) return false
+    return predictions.some((p) => {
       if (stageId === 'finals') return p.finals && p.finals['2-to-1']
       const stage = p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
       return stage && stage['3-0'].length && stage['3-1-or-3-2'].length && stage['0-3'].length

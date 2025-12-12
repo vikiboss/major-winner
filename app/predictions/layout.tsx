@@ -1,11 +1,11 @@
-import { events, getEventPredictions } from '@/lib/data'
+import { events, evt } from '@/lib/data'
 import { StageNav } from './StageNav'
 
 export default function PredictionsLayout({ children }: { children: React.ReactNode }) {
   const event = events[0]
-  const eventPreds = getEventPredictions(event.id)
+  const predictions = evt.getPredictions(event.id)
 
-  if (!eventPreds) {
+  if (!predictions.length) {
     return (
       <div className="mx-auto min-h-screen max-w-5xl px-4 py-6 sm:py-8">
         <div className="text-center">

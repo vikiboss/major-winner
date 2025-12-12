@@ -99,13 +99,26 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
           status: 'advanced',
         })
       } else if (finals.result['4-to-2'].winners.includes(shortName)) {
-        // 已经晋级决赛，等待总决赛
+        // 已经晋级决赛
         performance.push({
           stage: 'finals',
           stageName: '半决赛',
           result: '晋级决赛',
           status: 'advanced',
         })
+
+        // 检查决赛是否已经开始(有队伍已经有决赛结果)
+        const finalsStarted =
+          finals.result['2-to-1'].winner !== '' || finals.result['2-to-1'].loser !== ''
+        if (finalsStarted) {
+          // 决赛已经开始,但没有这个队伍的结果,说明在等待比赛
+          performance.push({
+            stage: 'finals',
+            stageName: '决赛',
+            result: '待赛',
+            status: 'waiting',
+          })
+        }
       } else if (finals.result['4-to-2'].losers.includes(shortName)) {
         performance.push({
           stage: 'finals',
@@ -121,13 +134,26 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
           status: 'eliminated',
         })
       } else if (finals.result['8-to-4'].winners.includes(shortName)) {
-        // 已经晋级四强，等待半决赛
+        // 已经晋级四强
         performance.push({
           stage: 'finals',
           stageName: '八进四',
           result: '晋级四强',
           status: 'advanced',
         })
+
+        // 检查四进二是否已经开始(有队伍已经有四进二结果)
+        const semifinalsStarted =
+          finals.result['4-to-2'].winners.length > 0 || finals.result['4-to-2'].losers.length > 0
+        if (semifinalsStarted) {
+          // 四进二已经开始,但没有这个队伍的结果,说明在等待比赛
+          performance.push({
+            stage: 'finals',
+            stageName: '半决赛',
+            result: '待赛',
+            status: 'waiting',
+          })
+        }
       } else {
         // 在决赛名单中但还没有结果,说明等待决赛
         performance.push({
@@ -299,9 +325,11 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       {/* Champion Banner */}
       {event.finals && event.finals.result['2-to-1'].winner && (
         <div className="from-primary-500/20 to-primary-400/10 border-primary-500/30 mb-6 rounded-lg border bg-linear-to-r px-6 py-3 text-center">
-          <span className="text-primary-400 text-sm font-medium">
-            🏆 Major 冠军: {event.finals.result['2-to-1'].winner}
-          </span>
+          <div className="text-primary-400 text-sm font-medium">
+            🏆 Major 冠军{' '}
+            {sortedTeams.find((e) => e.shortName === event.finals.result['2-to-1'].winner)?.name ||
+              '-'}
+          </div>
         </div>
       )}
 

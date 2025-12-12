@@ -1,50 +1,55 @@
 'use client'
 
+import { firstEvent, event } from '@/lib/data'
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { events } from '@/lib/data'
 
 import type { MajorEvent } from '@/types'
 
-export type StateType = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
-
 interface EventContextType {
-  currentEvent: MajorEvent
-  currentEventId: StateType
-  setCurrentEventId: (id: StateType) => void
+  event: MajorEvent
+  eventId: string
+  setEventId: (id: string) => void
 }
 
 const EventContext = createContext<EventContextType | undefined>(undefined)
 
-export function EventProvider({ children }: { children: ReactNode }) {
-  const [currentEventId, setCurrentEventId] = useState<StateType>(() => {
+function useEventContext() {
+  const [eventId, setEventId] = useState<string>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('major-winner-event-id')
-      if (saved && events.some((e) => e.id === saved)) {
-        return saved as StateType
+
+      if (saved && event.hasEvent(saved)) {
+        return saved
       }
     }
-    return (events[0]?.id || 'stage-1') as StateType
+
+    return firstEvent.id
   })
 
   useEffect(() => {
-    if (currentEventId) {
-      localStorage.setItem('major-winner-event-id', currentEventId)
+    if (eventId) {
+      localStorage.setItem('major-winner-event-id', eventId)
     }
-  }, [currentEventId])
+  }, [eventId])
 
-  const currentEvent = events.find((e) => e.id === currentEventId)!
+  return {
+    eventId,
+    setEventId,
+    event: event.getEventById(eventId),
+  }
+}
 
-  return (
-    <EventContext.Provider value={{ currentEvent, currentEventId, setCurrentEventId }}>
-      {children}
-    </EventContext.Provider>
-  )
+export function EventProvider({ children }: { children: ReactNode }) {
+  const ctx = useEventContext()
+  return <EventContext value={ctx}>{children}</EventContext>
 }
 
 export function useEvent() {
   const context = useContext(EventContext)
+
   if (context === undefined) {
     throw new Error('useEvent must be used within EventProvider')
   }
+
   return context
 }

@@ -42,11 +42,9 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Right Side: Community */}
           <div className="flex flex-col gap-4 md:items-end">
             <div className="text-sm font-semibold tracking-wider uppercase">加入交流群</div>
             <div className="flex flex-row items-center gap-4 md:flex-row-reverse">
-              {/* QR Code */}
               <div className="bg-surface-0 shrink-0 rounded-lg shadow-sm">
                 <Image
                   src="/group-qrcode.png"
@@ -57,7 +55,6 @@ export function Footer() {
                 />
               </div>
 
-              {/* Text Info */}
               <div className="flex flex-col items-start gap-1.5 text-left text-sm md:items-end md:text-right">
                 <p className="text-muted font-medium">与其他玩家讨论作业、激情开黑</p>
                 <a

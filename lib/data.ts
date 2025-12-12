@@ -1,5 +1,7 @@
 import eventsData from '@/data/events.json'
 import predictionsData from '@/data/predictions.json'
+import { EventStatus } from '../types'
+
 import type {
   MajorEvent,
   EventPredictions,
@@ -9,7 +11,6 @@ import type {
   SwissStageType,
   StagePassStatus,
   PredictorPrediction,
-  EventStatus,
   StageProgress,
   EventProgress,
   StageType,
@@ -17,27 +18,30 @@ import type {
   FinalStageType,
   TaskStageType,
 } from '../types'
-import { EventStatus as EventStatusEnum } from '../types'
 
-export const events = eventsData as unknown as MajorEvent[]
+export const events = eventsData as MajorEvent[]
 export const predictions = predictionsData as EventPredictions[]
-
 export const FINAL_STAGES: FinalStageType[] = ['8-to-4', '4-to-2', '2-to-1']
+export const firstEvent = events.at(0) as MajorEvent
 
-// 获取指定赛事
-export function getEvent(eventId: string): MajorEvent | undefined {
-  return events.find((e) => e.id === eventId)
+export const event = {
+  /** 存在指定赛事 ID */
+  hasEvent(eventId: string): boolean {
+    return events.some((e) => e.id === eventId)
+  },
+
+  /** 获取指定赛事  */
+  getEventById(eventId?: string): MajorEvent {
+    return eventId ? events.find((e) => e.id === eventId) || events[0] : events[0]
+  },
+
+  /** 获取所有赛事名称列表 */
+  eventNames: events.map((e) => ({ id: e.id, name: e.name })),
 }
 
 // 获取指定赛事的竞猜数据
 export function getEventPredictions(eventId: string): EventPredictions | undefined {
   return predictions.find((p) => p.id === eventId)
-}
-
-// 获取战队全名
-export function getTeamFullName(event: MajorEvent, shortName: string): string {
-  const team = event.teams.find((t) => t.name === shortName)
-  return team?.name || shortName
 }
 
 /**
@@ -376,10 +380,10 @@ export function calculatePredictorStats(
   eventId: string,
   predictorId: string,
 ): PredictorStats | null {
-  const event = getEvent(eventId)
+  const targetEvent = event.getEventById(eventId)
   const eventPreds = getEventPredictions(eventId)
 
-  if (!event || !eventPreds) return null
+  if (!targetEvent || !eventPreds) return null
 
   const predictor = eventPreds.predictions.find((p) => p.id === predictorId)
 
@@ -394,7 +398,7 @@ export function calculatePredictorStats(
   // 计算瑞士轮阶段 (stage-1, stage-2, stage-3)
   const stages: SwissStageType[] = ['stage-1', 'stage-2', 'stage-3']
   for (const stageId of stages) {
-    const stage = event[stageId]
+    const stage = targetEvent[stageId]
     const pred = predictor[stageId]
 
     if (stage && pred) {
@@ -408,8 +412,8 @@ export function calculatePredictorStats(
   }
 
   // 计算决胜阶段
-  if (event.finals && predictor.finals) {
-    const finals = event.finals.result
+  if (targetEvent.finals && predictor.finals) {
+    const finals = targetEvent.finals.result
 
     // 8 进 4
     const result84 = check8to4Pass(
@@ -663,7 +667,7 @@ export function getEventProgress(event: MajorEvent): EventProgress {
 
   // 赛阶段的状态判断抽离为独立函数
   const getFinalsStatus = (finalsStage: any): EventStatus => {
-    if (!finalsStage) return EventStatusEnum.FINALS_2_TO_1
+    if (!finalsStage) return EventStatus.FINALS_2_TO_1
 
     const is8to4Complete = isFinalsRoundComplete(
       finalsStage.result['8-to-4'].winners,
@@ -682,48 +686,48 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     const has2to1 = !!finalsStage.result['2-to-1'].winner
 
     if (!is8to4Complete) {
-      return EventStatusEnum.FINALS_8_TO_4
+      return EventStatus.FINALS_8_TO_4
     }
 
     if (!has4to2) {
-      return EventStatusEnum.FINALS_8_TO_4_COMPLETED
+      return EventStatus.FINALS_8_TO_4_COMPLETED
     }
 
     if (!is4to2Complete) {
-      return EventStatusEnum.FINALS_4_TO_2
+      return EventStatus.FINALS_4_TO_2
     }
 
-    return has2to1 ? EventStatusEnum.COMPLETED : EventStatusEnum.FINALS_2_TO_1
+    return has2to1 ? EventStatus.COMPLETED : EventStatus.FINALS_2_TO_1
   }
 
   // 阶段 ID 到状态的映射
   const stageStatusMap: Record<string, EventStatus> = {
-    'stage-1': EventStatusEnum.STAGE_1,
-    'stage-2': EventStatusEnum.STAGE_2,
-    'stage-3': EventStatusEnum.STAGE_3,
-    finals: EventStatusEnum.FINALS_2_TO_1, // 基础状态，决赛会特殊处理
+    'stage-1': EventStatus.STAGE_1,
+    'stage-2': EventStatus.STAGE_2,
+    'stage-3': EventStatus.STAGE_3,
+    finals: EventStatus.FINALS_2_TO_1, // 基础状态，决赛会特殊处理
   }
 
   const completedStageStatusMap: Record<string, EventStatus> = {
-    'stage-1': EventStatusEnum.STAGE_1_COMPLETED,
-    'stage-2': EventStatusEnum.STAGE_2_COMPLETED,
-    'stage-3': EventStatusEnum.STAGE_3_COMPLETED,
-    finals: EventStatusEnum.COMPLETED,
+    'stage-1': EventStatus.STAGE_1_COMPLETED,
+    'stage-2': EventStatus.STAGE_2_COMPLETED,
+    'stage-3': EventStatus.STAGE_3_COMPLETED,
+    finals: EventStatus.COMPLETED,
   }
 
   const notStartedStageStatusMap: Record<string, EventStatus> = {
-    'stage-1': EventStatusEnum.NOT_STARTED,
-    'stage-2': EventStatusEnum.STAGE_1_COMPLETED,
-    'stage-3': EventStatusEnum.STAGE_2_COMPLETED,
-    finals: EventStatusEnum.STAGE_3_COMPLETED,
+    'stage-1': EventStatus.NOT_STARTED,
+    'stage-2': EventStatus.STAGE_1_COMPLETED,
+    'stage-3': EventStatus.STAGE_2_COMPLETED,
+    finals: EventStatus.STAGE_3_COMPLETED,
   }
 
   // 主逻辑
   let currentStage: MajorStageType | null = null
-  let eventStatus: EventStatus = EventStatusEnum.NOT_STARTED
+  let eventStatus: EventStatus = EventStatus.NOT_STARTED
 
   if (noResults) {
-    eventStatus = EventStatusEnum.NOT_STARTED
+    eventStatus = EventStatus.NOT_STARTED
     currentStage = null
   } else if (hasInProgressStage) {
     currentStage = inProgressStage.stageId
@@ -731,21 +735,21 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     if (currentStage === 'finals') {
       eventStatus = getFinalsStatus(event.finals)
     } else {
-      eventStatus = stageStatusMap[currentStage] || EventStatusEnum.NOT_STARTED
+      eventStatus = stageStatusMap[currentStage] || EventStatus.NOT_STARTED
     }
   } else if (hasNotStartedStages) {
     // 取最后一个未开始的阶段
     const lastNotStarted = notStartedStages[notStartedStages.length - 1]
     currentStage = lastNotStarted || null
-    eventStatus = notStartedStageStatusMap[lastNotStarted] || EventStatusEnum.COMPLETED
+    eventStatus = notStartedStageStatusMap[lastNotStarted] || EventStatus.COMPLETED
   } else if (allStagesCompleted) {
-    eventStatus = EventStatusEnum.COMPLETED
+    eventStatus = EventStatus.COMPLETED
     currentStage = null
   } else {
     // 取最后一个已完成的阶段
     const lastCompleted = completedStages[completedStages.length - 1]
     currentStage = lastCompleted || null
-    eventStatus = completedStageStatusMap[lastCompleted] || EventStatusEnum.COMPLETED
+    eventStatus = completedStageStatusMap[lastCompleted] || EventStatus.COMPLETED
   }
 
   return {
@@ -810,19 +814,19 @@ export function shouldShowStage(event: MajorEvent, stageId: string): boolean {
  */
 export function getEventStatusText(eventStatus: EventStatus): string {
   const statusTexts: Record<EventStatus, string> = {
-    [EventStatusEnum.NOT_STARTED]: '赛事未开始',
-    [EventStatusEnum.STAGE_1]: '第一阶段进行中',
-    [EventStatusEnum.STAGE_1_COMPLETED]: '第一阶段已完成，第二阶段等待中',
-    [EventStatusEnum.STAGE_2]: '第二阶段进行中',
-    [EventStatusEnum.STAGE_2_COMPLETED]: '第二阶段已完成，第三阶段等待中',
-    [EventStatusEnum.STAGE_3]: '第三阶段进行中',
-    [EventStatusEnum.STAGE_3_COMPLETED]: '第三阶段已完成，八进四等待中',
-    [EventStatusEnum.FINALS_8_TO_4]: '八进四进行中',
-    [EventStatusEnum.FINALS_8_TO_4_COMPLETED]: '八进四已完成，半决赛等待中',
-    [EventStatusEnum.FINALS_4_TO_2]: '半决赛进行中',
-    [EventStatusEnum.FINALS_4_TO_2_COMPLETED]: '半决赛已完成，决赛等待中',
-    [EventStatusEnum.FINALS_2_TO_1]: '决赛进行中',
-    [EventStatusEnum.COMPLETED]: '赛事已完成',
+    [EventStatus.NOT_STARTED]: '赛事未开始',
+    [EventStatus.STAGE_1]: '第一阶段进行中',
+    [EventStatus.STAGE_1_COMPLETED]: '第一阶段已完成，第二阶段等待中',
+    [EventStatus.STAGE_2]: '第二阶段进行中',
+    [EventStatus.STAGE_2_COMPLETED]: '第二阶段已完成，第三阶段等待中',
+    [EventStatus.STAGE_3]: '第三阶段进行中',
+    [EventStatus.STAGE_3_COMPLETED]: '第三阶段已完成，八进四等待中',
+    [EventStatus.FINALS_8_TO_4]: '八进四进行中',
+    [EventStatus.FINALS_8_TO_4_COMPLETED]: '八进四已完成，半决赛等待中',
+    [EventStatus.FINALS_4_TO_2]: '半决赛进行中',
+    [EventStatus.FINALS_4_TO_2_COMPLETED]: '半决赛已完成，决赛等待中',
+    [EventStatus.FINALS_2_TO_1]: '决赛进行中',
+    [EventStatus.COMPLETED]: '赛事已完成',
   }
   return statusTexts[eventStatus]
 }

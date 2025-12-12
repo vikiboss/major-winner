@@ -17,7 +17,7 @@ const STAGES: Array<{ id: Stage; label: string }> = [
 export function StageNav() {
   const event = useEvent()
   const pathname = usePathname()
-  const predictions = getEventPredictions(event.currentEventId)
+  const predictions = getEventPredictions(event.eventId)
 
   // 从路径中提取当前阶段 /predictions/stage-1 -> stage-1
   const currentStage = pathname.split('/').pop() as Stage

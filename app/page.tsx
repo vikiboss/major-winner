@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import {
-  getEvent,
+  event,
   getAllPredictorStats,
   getStageName,
   getEventProgress,
@@ -25,10 +25,10 @@ import type {
 } from '@/types'
 
 export default function Home() {
-  const { currentEventId } = useEvent()
-  const event = getEvent(currentEventId)
+  const { eventId: currentEventId } = useEvent()
+  const targetEvent = event.getEventById(currentEventId)
 
-  if (!event) {
+  if (!targetEvent) {
     return (
       <div className="flex min-h-screen items-center justify-center">
         <div className="text-center">
@@ -38,9 +38,9 @@ export default function Home() {
       </div>
     )
   }
-  const stats = getAllPredictorStats(event.id)
-  const eventProgress = getEventProgress(event)
-  const activeStages = getActiveStages(event)
+  const stats = getAllPredictorStats(targetEvent.id)
+  const eventProgress = getEventProgress(targetEvent)
+  const activeStages = getActiveStages(targetEvent)
 
   // 只显示有结果的阶段（进行中或已完成）
   // 将 finals 拆分成三个独立阶段
@@ -65,9 +65,9 @@ export default function Home() {
       const hasPredictions = stage.hasPredictions
 
       if (stage.id === 'finals') {
-        if (!event.finals) return []
+        if (!targetEvent.finals) return []
 
-        const results = event.finals.result
+        const results = targetEvent.finals.result
 
         const rounds: {
           id: FinalStageType
@@ -111,7 +111,7 @@ export default function Home() {
           .filter((e) => e.status !== 'not_started')
           .map((round) => ({
             id: round.id,
-            data: event.finals!,
+            data: targetEvent.finals!,
             type: 'finals' as const,
             status: round.status as 'completed' | 'in_progress' | 'waiting',
             round: round.id,
@@ -119,7 +119,7 @@ export default function Home() {
       }
 
       // 瑞士轮阶段
-      const stageData = event[stage.id]
+      const stageData = targetEvent[stage.id]
 
       return {
         id: stage.id as SwissStageType,
@@ -138,7 +138,7 @@ export default function Home() {
         <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
           <div className="min-w-0 flex-1">
             <h1 className="text-primary mb-3 text-2xl font-semibold sm:mb-4 sm:text-4xl lg:text-5xl">
-              {event.name}
+              {targetEvent.name}
             </h1>
             <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:text-base">
               <p className="text-muted">竞猜追踪 · {stats.length} 位竞猜者</p>
@@ -198,7 +198,7 @@ export default function Home() {
               stageName={getStageName(stage.id)}
               stageData={stage.data}
               stageType={stage.type}
-              event={event}
+              event={targetEvent}
               stageStatus={stage.status}
               round={'round' in stage ? stage.round : undefined}
             />
@@ -348,13 +348,7 @@ function StageSection({
                                     </span>
                                     <div className="flex flex-wrap gap-1">
                                       {teams.map((t) => (
-                                        <span
-                                          key={t}
-                                          className="bg-surface-2 text-secondary flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
-                                        >
-                                          <TeamLogo shortName={t} size="xs" />
-                                          {t}
-                                        </span>
+                                        <TeamLogo key={t} shortName={t} />
                                       ))}
                                     </div>
                                   </div>
@@ -384,13 +378,7 @@ function StageSection({
                                         </span>
                                         <div className="flex flex-wrap gap-1">
                                           {teams.map((t) => (
-                                            <span
-                                              key={t}
-                                              className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
-                                            >
-                                              <TeamLogo shortName={t} size="xs" />
-                                              {t}
-                                            </span>
+                                            <TeamLogo key={t} shortName={t} status="win" />
                                           ))}
                                         </div>
                                       </div>
@@ -417,13 +405,7 @@ function StageSection({
                                         </span>
                                         <div className="flex flex-wrap gap-1">
                                           {teams.map((t) => (
-                                            <span
-                                              key={t}
-                                              className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
-                                            >
-                                              <TeamLogo shortName={t} size="xs" />
-                                              {t}
-                                            </span>
+                                            <TeamLogo key={t} shortName={t} status="lose" />
                                           ))}
                                         </div>
                                       </div>
@@ -478,13 +460,7 @@ function StageSection({
                                     !finalsData.result[round].losers.includes(e),
                                 )
                                 .map((t) => (
-                                  <span
-                                    key={t}
-                                    className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
-                                  >
-                                    <TeamLogo shortName={t} size="xs" />
-                                    {t}
-                                  </span>
+                                  <TeamLogo key={t} shortName={t} />
                                 ))}
                             </div>
                           </div>
@@ -493,13 +469,7 @@ function StageSection({
                               <p className="text-win mb-1 font-medium">晋级</p>
                               <div className="flex flex-wrap gap-1">
                                 {finalsData.result[round].winners.map((t) => (
-                                  <span
-                                    key={t}
-                                    className="bg-win/10 text-win flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
-                                  >
-                                    <TeamLogo shortName={t} size="xs" />
-                                    {t}
-                                  </span>
+                                  <TeamLogo key={t} shortName={t} status="win" />
                                 ))}
                               </div>
                             </div>
@@ -507,13 +477,7 @@ function StageSection({
                               <p className="text-lose mb-1 font-medium">淘汰</p>
                               <div className="flex flex-wrap gap-1">
                                 {finalsData.result[round].losers.map((t) => (
-                                  <span
-                                    key={t}
-                                    className="bg-lose/10 text-lose flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
-                                  >
-                                    <TeamLogo shortName={t} size="xs" />
-                                    {t}
-                                  </span>
+                                  <TeamLogo key={t} shortName={t} status="lose" />
                                 ))}
                               </div>
                             </div>
@@ -525,14 +489,22 @@ function StageSection({
                         <div>
                           <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
                           <div className="flex items-center gap-2">
-                            <TeamLogo shortName={finalsData.result['2-to-1'].winner} size="lg" />
+                            <TeamLogo
+                              shortName={finalsData.result['2-to-1'].winner}
+                              size="lg"
+                              hideLabel
+                            />
                             <p className="text-primary text-lg font-semibold">
                               {finalsData.result['2-to-1'].winner}
                             </p>
                           </div>
                           {finalsData.result['2-to-1'].loser && (
                             <div className="text-muted mt-2 flex items-center gap-2 text-sm">
-                              <TeamLogo shortName={finalsData.result['2-to-1'].loser} size="sm" />
+                              <TeamLogo
+                                shortName={finalsData.result['2-to-1'].loser}
+                                size="sm"
+                                hideLabel
+                              />
                               <span>亚军: {finalsData.result['2-to-1'].loser}</span>
                             </div>
                           )}
@@ -733,25 +705,20 @@ function PredictorPredictions({
                           stageStatus === 'waiting'
                             ? true
                             : isPredictionPossible(team, '3-0', actualResult)
+
                         const isCorrect =
                           stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
-                        return (
-                          <span
-                            key={team}
-                            className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ${
-                              stageStatus === 'waiting'
-                                ? 'bg-surface-2 text-tertiary'
-                                : isCorrect
-                                  ? 'bg-win/10 text-win'
-                                  : !possible
-                                    ? 'bg-lose/10 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                            }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
-                        )
+
+                        const status =
+                          stageStatus === 'waiting'
+                            ? 'normal'
+                            : isCorrect
+                              ? 'win'
+                              : !possible
+                                ? 'lose'
+                                : 'normal'
+
+                        return <TeamLogo key={team} shortName={team} status={status} />
                       })}
                   </div>
                 </div>
@@ -772,23 +739,17 @@ function PredictorPredictions({
                             ? false
                             : actualResult?.['3-1']?.includes(team) ||
                               actualResult?.['3-2']?.includes(team)
-                        return (
-                          <span
-                            key={team}
-                            className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ${
-                              stageStatus === 'waiting'
-                                ? 'bg-surface-2 text-tertiary'
-                                : isCorrect
-                                  ? 'bg-win/10 text-win'
-                                  : !possible
-                                    ? 'bg-lose/10 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                            }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
-                        )
+
+                        const status =
+                          stageStatus === 'waiting'
+                            ? 'normal'
+                            : isCorrect
+                              ? 'win'
+                              : !possible
+                                ? 'lose'
+                                : 'normal'
+
+                        return <TeamLogo key={team} shortName={team} status={status} />
                       })}
                   </div>
                 </div>
@@ -806,23 +767,17 @@ function PredictorPredictions({
                             : isPredictionPossible(team, '0-3', actualResult)
                         const isCorrect =
                           stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
-                        return (
-                          <span
-                            key={team}
-                            className={`flex items-center gap-0.5 rounded px-1.5 py-0.5 font-medium ${
-                              stageStatus === 'waiting'
-                                ? 'bg-surface-2 text-tertiary'
-                                : isCorrect
-                                  ? 'bg-win/10 text-win'
-                                  : !possible
-                                    ? 'bg-lose/10 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                            }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
-                        )
+
+                        const status =
+                          stageStatus === 'waiting'
+                            ? 'normal'
+                            : isCorrect
+                              ? 'win'
+                              : !possible
+                                ? 'lose'
+                                : 'normal'
+
+                        return <TeamLogo key={team} shortName={team} status={status} />
                       })}
                   </div>
                 </div>
@@ -840,23 +795,16 @@ function PredictorPredictions({
                         const hasResult =
                           roundResult && 'winners' in roundResult && roundResult.winners.length > 0
                         const isCorrect = hasResult && roundResult.winners.includes(team)
-                        return (
-                          <span
-                            key={team}
-                            className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium ${
-                              stageStatus === 'waiting'
-                                ? 'bg-surface-2 text-tertiary'
-                                : isCorrect
-                                  ? 'bg-win/10 text-win'
-                                  : hasResult
-                                    ? 'bg-lose/10 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                            }`}
-                          >
-                            <TeamLogo shortName={team} size="xs" />
-                            {team}
-                          </span>
-                        )
+                        const status =
+                          stageStatus === 'waiting'
+                            ? 'normal'
+                            : isCorrect
+                              ? 'win'
+                              : hasResult
+                                ? 'lose'
+                                : 'normal'
+
+                        return <TeamLogo key={team} shortName={team} status={status} />
                       },
                     )}
                   </div>
@@ -865,24 +813,19 @@ function PredictorPredictions({
                   <div className="flex flex-wrap items-center gap-1">
                     <span className="text-muted">冠军竞猜: </span>
                     {(prediction as { '2-to-1': string | null })['2-to-1'] ? (
-                      <span
-                        className={`flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium ${
+                      <TeamLogo
+                        shortName={(prediction as { '2-to-1': string | null })['2-to-1']!}
+                        status={
                           stageStatus === 'waiting'
-                            ? 'bg-surface-2 text-tertiary'
+                            ? 'normal'
                             : event.finals?.result['2-to-1'].winner
                               ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
                                 event.finals.result['2-to-1'].winner
-                                ? 'bg-win/10 text-win'
-                                : 'bg-lose/10 text-lose'
-                              : 'bg-surface-2 text-tertiary'
-                        }`}
-                      >
-                        <TeamLogo
-                          shortName={(prediction as { '2-to-1': string | null })['2-to-1']!}
-                          size="xs"
-                        />
-                        {(prediction as { '2-to-1': string | null })['2-to-1']}
-                      </span>
+                                ? 'win'
+                                : 'lose'
+                              : 'normal'
+                        }
+                      />
                     ) : (
                       <span className="text-tertiary text-xs">未竞猜</span>
                     )}

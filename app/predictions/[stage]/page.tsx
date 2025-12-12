@@ -202,16 +202,13 @@ function SwissTable({
                           const possible = isPredictionPossible(team, '3-0', actualResult)
                           return (
                             <TeamLogo
+                              hideLabel
                               shortName={team}
                               size="xl"
                               key={team}
-                              className={`flex items-center gap-1 rounded text-xs font-medium ${
-                                isCorrect
-                                  ? 'bg-win/20 text-win'
-                                  : !possible && actualResult
-                                    ? 'bg-lose/20 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                              }`}
+                              status={
+                                isCorrect ? 'win' : !possible && actualResult ? 'lose' : 'normal'
+                              }
                             />
                           )
                         })}
@@ -228,16 +225,13 @@ function SwissTable({
                           const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
                           return (
                             <TeamLogo
+                              hideLabel
                               shortName={team}
                               size="xl"
                               key={team}
-                              className={`flex items-center gap-1 rounded text-xs font-medium ${
-                                isCorrect
-                                  ? 'bg-win/20 text-win'
-                                  : !possible && actualResult
-                                    ? 'bg-lose/20 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                              }`}
+                              status={
+                                isCorrect ? 'win' : !possible && actualResult ? 'lose' : 'normal'
+                              }
                             />
                           )
                         })}
@@ -252,16 +246,13 @@ function SwissTable({
                           const possible = isPredictionPossible(team, '0-3', actualResult)
                           return (
                             <TeamLogo
+                              hideLabel
                               shortName={team}
                               size="xl"
                               key={team}
-                              className={`flex items-center gap-1 rounded text-xs font-medium ${
-                                isCorrect
-                                  ? 'bg-win/20 text-win'
-                                  : !possible && actualResult
-                                    ? 'bg-lose/20 text-lose'
-                                    : 'bg-surface-2 text-tertiary'
-                              }`}
+                              status={
+                                isCorrect ? 'win' : !possible && actualResult ? 'lose' : 'normal'
+                              }
                             />
                           )
                         })}
@@ -385,16 +376,13 @@ function SwissTable({
                         const possible = isPredictionPossible(team, '3-0', actualResult)
                         return (
                           <TeamLogo
+                            hideLabel
                             shortName={team}
                             size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isCorrect
-                                ? 'bg-win/20 text-win'
-                                : !possible && actualResult
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
+                            status={
+                              isCorrect ? 'win' : !possible && actualResult ? 'lose' : 'normal'
+                            }
                           />
                         )
                       })}
@@ -414,16 +402,13 @@ function SwissTable({
                         const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
                         return (
                           <TeamLogo
+                            hideLabel
                             shortName={team}
                             size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isCorrect
-                                ? 'bg-win/20 text-win'
-                                : !possible && actualResult
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
+                            status={
+                              isCorrect ? 'win' : !possible && actualResult ? 'lose' : 'normal'
+                            }
                           />
                         )
                       })}
@@ -441,16 +426,13 @@ function SwissTable({
                         const possible = isPredictionPossible(team, '0-3', actualResult)
                         return (
                           <TeamLogo
+                            hideLabel
                             shortName={team}
                             size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isCorrect
-                                ? 'bg-win/20 text-win'
-                                : !possible && actualResult
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
+                            status={
+                              isCorrect ? 'win' : !possible && actualResult ? 'lose' : 'normal'
+                            }
                           />
                         )
                       })}
@@ -591,16 +573,11 @@ function FinalsTable({
 
                         return (
                           <TeamLogo
+                            hideLabel
                             shortName={team}
                             size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isMatch
-                                ? 'bg-win/20 text-win'
-                                : isMisMatch
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
+                            status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
                           />
                         )
                       }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -618,16 +595,11 @@ function FinalsTable({
 
                         return (
                           <TeamLogo
+                            hideLabel
                             shortName={team}
                             size="xl"
                             key={team}
-                            className={`flex items-center gap-1 rounded text-xs font-medium ${
-                              isMatch
-                                ? 'bg-win/20 text-win'
-                                : isMisMatch
-                                  ? 'bg-lose/20 text-lose'
-                                  : 'bg-surface-2 text-tertiary'
-                            }`}
+                            status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
                           />
                         )
                       }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -639,18 +611,19 @@ function FinalsTable({
                     <div className="flex flex-wrap gap-1">
                       {prediction['2-to-1'] ? (
                         <TeamLogo
-                          className={`flex items-center gap-1 rounded text-xs font-medium ${
+                          hideLabel
+                          shortName={prediction['2-to-1']}
+                          size="xl"
+                          status={
                             finalsResult?.['2-to-1'].winner === prediction['2-to-1']
-                              ? 'bg-win/20 text-win'
+                              ? 'win'
                               : finalsResult?.['2-to-1'].winner ||
                                   finalsResult?.['4-to-2'].losers
                                     .concat(finalsResult?.['8-to-4'].losers)
                                     .includes(prediction['2-to-1'])
-                                ? 'bg-lose/20 text-lose'
-                                : 'bg-surface-2 text-tertiary'
-                          }`}
-                          shortName={prediction['2-to-1']}
-                          size="xl"
+                                ? 'lose'
+                                : 'normal'
+                          }
                         />
                       ) : (
                         <span className="text-tertiary text-xs">未竞猜</span>
@@ -790,16 +763,11 @@ function FinalsTable({
 
                       return (
                         <TeamLogo
+                          hideLabel
                           shortName={team}
                           size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded text-xs font-medium ${
-                            isMatch
-                              ? 'bg-win/20 text-win'
-                              : isMisMatch
-                                ? 'bg-lose/20 text-lose'
-                                : 'bg-surface-2 text-tertiary'
-                          }`}
+                          status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
                         />
                       )
                     }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -827,16 +795,11 @@ function FinalsTable({
 
                       return (
                         <TeamLogo
+                          hideLabel
                           shortName={team}
                           size="xl"
                           key={team}
-                          className={`flex items-center gap-1 rounded text-xs font-medium ${
-                            isMatch
-                              ? 'bg-win/20 text-win'
-                              : isMisMatch
-                                ? 'bg-lose/20 text-lose'
-                                : 'bg-surface-2 text-tertiary'
-                          }`}
+                          status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
                         />
                       )
                     }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -860,15 +823,19 @@ function FinalsTable({
                   <div className="flex flex-wrap gap-1">
                     {prediction['2-to-1'] ? (
                       <TeamLogo
+                        hideLabel
                         shortName={prediction['2-to-1']}
                         size="xl"
-                        className={`flex items-center gap-1 rounded text-xs font-medium ${
+                        status={
                           finalsResult?.['2-to-1'].winner === prediction['2-to-1']
-                            ? 'bg-win/20 text-win'
-                            : finalsResult?.['2-to-1'].winner
-                              ? 'bg-lose/20 text-lose'
-                              : 'bg-surface-2 text-tertiary'
-                        }`}
+                            ? 'win'
+                            : finalsResult?.['2-to-1'].winner ||
+                                finalsResult?.['4-to-2'].losers
+                                  .concat(finalsResult?.['8-to-4'].losers)
+                                  .includes(prediction['2-to-1'])
+                              ? 'lose'
+                              : 'normal'
+                        }
                       />
                     ) : (
                       <span className="text-tertiary text-xs">未竞猜</span>

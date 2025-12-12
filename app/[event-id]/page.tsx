@@ -6,14 +6,15 @@ import {
   getEventProgress,
   getActiveStages,
   getEventStatusText,
-  isPredictionPossible,
+  isSwissPredictionPossible,
   hasSwissInProgressResults,
   hasSwissPlayoffResults,
+  STAGE_TYPE,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 
 import { calculatePredictorStats } from '@/lib/data'
-import type { StagePrediction } from '@/types'
+import type { StagePrediction, StageType } from '@/types'
 
 import type {
   PlayoffsStage,
@@ -118,7 +119,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
       return {
         id: stage.id as SwissStageType,
         data: stageData! as SwissStage,
-        type: 'swiss' as const,
+        type: STAGE_TYPE.SWISS,
         status: stage.status,
       }
     })
@@ -165,7 +166,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
                 className="hover:bg-surface-2 hover-text-primary text-secondary shrink-0 rounded-md px-3 py-2 text-xs font-medium transition-colors active:scale-95 sm:min-w-20 sm:px-4 sm:text-sm"
                 style={{ scrollSnapAlign: 'start' }}
               >
-                {getStageName(stage.id as string)}
+                {getStageName(stage.id)}
               </a>
             ))}
           </nav>
@@ -215,12 +216,12 @@ function StageSection({
   stageId: TaskStageType
   stageName: string
   stageData?: SwissStage | PlayoffsStage
-  stageType: 'swiss' | 'playoffs'
+  stageType: StageType
   event: MajorEvent
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
   round?: PlayoffStageType
 }) {
-  const isSwiss = stageType === 'swiss'
+  const isSwiss = stageType === STAGE_TYPE.SWISS
   const swissData = isSwiss ? (stageData as SwissStage) : null
   const playoffsData = stageType === 'playoffs' ? (stageData as PlayoffsStage) : null
 
@@ -228,7 +229,7 @@ function StageSection({
     evt
       .getPredictions(event.id)
       .filter((e) =>
-        stageType === 'swiss'
+        stageType === STAGE_TYPE.SWISS
           ? e[stageId as SwissStageType]?.['0-3']?.length
           : e.playoffs?.[stageId as PlayoffStageType]?.length,
       ) || []
@@ -551,9 +552,9 @@ function PredictorPredictions({
   limit,
 }: {
   stageId: TaskStageType
-  stageType: 'swiss' | 'playoffs'
+  stageType: StageType
   event: MajorEvent
-  round?: '8-to-4' | '4-to-2' | '2-to-1'
+  round?: PlayoffStageType
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
   limit?: number
 }) {
@@ -561,8 +562,7 @@ function PredictorPredictions({
   if (!predictions.length) return null
 
   // 获取当前阶段的实际结果
-  const stageData =
-    stageType === 'swiss' ? event[stageId as 'stage-1' | 'stage-2' | 'stage-3'] : null
+  const stageData = stageType === STAGE_TYPE.SWISS ? event[stageId as SwissStageType] : null
   const actualResult = stageData?.result
 
   // 计算每个预测者在当前阶段的错误数,并排序(错误最少的排前面)
@@ -577,15 +577,15 @@ function PredictorPredictions({
       let correctCount = stageResult?.correctCount || 0
       let incorrectCount = 0
 
-      if (stageType === 'swiss') {
-        const prediction = p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+      if (stageType === STAGE_TYPE.SWISS) {
+        const prediction = p[stageId as SwissStageType]
         if (prediction && actualResult) {
           totalPredictions = 10 // 瑞士轮固定10个预测
 
           // 统计已经确认错误的预测(不可能成真的)
           for (const team of prediction['3-0']) {
             if (
-              !isPredictionPossible(team, '3-0', actualResult) &&
+              !isSwissPredictionPossible(team, '3-0', actualResult) &&
               !actualResult['3-0']?.includes(team)
             ) {
               incorrectCount++
@@ -593,7 +593,7 @@ function PredictorPredictions({
           }
           for (const team of prediction['3-1-or-3-2']) {
             if (
-              !isPredictionPossible(team, '3-1-or-3-2', actualResult) &&
+              !isSwissPredictionPossible(team, '3-1-or-3-2', actualResult) &&
               !actualResult['3-1']?.includes(team) &&
               !actualResult['3-2']?.includes(team)
             ) {
@@ -602,7 +602,7 @@ function PredictorPredictions({
           }
           for (const team of prediction['0-3']) {
             if (
-              !isPredictionPossible(team, '0-3', actualResult) &&
+              !isSwissPredictionPossible(team, '0-3', actualResult) &&
               !actualResult['0-3']?.includes(team)
             ) {
               incorrectCount++
@@ -637,8 +637,7 @@ function PredictorPredictions({
   const displayPredictors = limit
     ? predictorsWithStats
         .filter(({ predictor: p }) => {
-          const prediction =
-            stageType === 'playoffs' ? p.playoffs : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+          const prediction = stageType === 'playoffs' ? p.playoffs : p[stageId as SwissStageType]
           return prediction
         })
         .slice(0, limit)
@@ -649,8 +648,7 @@ function PredictorPredictions({
       {displayPredictors.map(({ predictor: p }) => {
         const stats = calculatePredictorStats(event.id, p.id)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
-        const prediction =
-          stageType === 'playoffs' ? p.playoffs : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+        const prediction = stageType === 'playoffs' ? p.playoffs : p[stageId as SwissStageType]
 
         return (
           <div key={p.id} className="px-4 py-3">
@@ -685,7 +683,7 @@ function PredictorPredictions({
               )}
             </div>
 
-            {prediction && stageType === 'swiss' && (
+            {prediction && stageType === STAGE_TYPE.SWISS && (
               <div className="space-y-2 text-xs">
                 {/* 3-0 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
@@ -697,7 +695,7 @@ function PredictorPredictions({
                         const possible =
                           stageStatus === 'waiting'
                             ? true
-                            : isPredictionPossible(team, '3-0', actualResult)
+                            : isSwissPredictionPossible(team, '3-0', actualResult)
 
                         const isCorrect =
                           stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
@@ -726,7 +724,7 @@ function PredictorPredictions({
                         const possible =
                           stageStatus === 'waiting'
                             ? true
-                            : isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                            : isSwissPredictionPossible(team, '3-1-or-3-2', actualResult)
                         const isCorrect =
                           stageStatus === 'waiting'
                             ? false
@@ -757,7 +755,7 @@ function PredictorPredictions({
                         const possible =
                           stageStatus === 'waiting'
                             ? true
-                            : isPredictionPossible(team, '0-3', actualResult)
+                            : isSwissPredictionPossible(team, '0-3', actualResult)
                         const isCorrect =
                           stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
 
@@ -777,7 +775,7 @@ function PredictorPredictions({
               </div>
             )}
 
-            {prediction && stageType === 'playoffs' && round && (
+            {prediction && stageType === STAGE_TYPE.PLAYOFFS && round && (
               <div className="text-xs">
                 {(round === '8-to-4' || round === '4-to-2') && (
                   <div className="flex flex-wrap items-center gap-1">

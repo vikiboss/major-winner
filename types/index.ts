@@ -86,6 +86,10 @@ export interface MajorEvent {
   playoffs: PlayoffsStage
 }
 
+export type SwissPredictionBucket = '3-0' | '3-1-or-3-2' | '0-3'
+export type SwissProgressRecord = '1-0' | '0-1' | '1-1' | '2-0' | '0-2' | '2-1' | '1-2' | '2-2'
+export type SwissResultRecord = '3-0' | '3-1' | '3-2' | '2-3' | '1-3' | '0-3'
+
 // 竞猜数据 - 瑞士轮阶段(竞猜者只竞猜 3-0 / 3-1-or-3-2 / 0-3)
 export interface StagePrediction {
   '3-0': string[] // 2 支队伍

@@ -2,10 +2,11 @@ import { notFound } from 'next/navigation'
 import {
   evt,
   calculatePredictorStats,
-  isPredictionPossible,
-  playoff_STAGES,
+  isSwissPredictionPossible,
+  PLAYOFFS_STAGES,
   getEventProgress,
   getStageProgressInfo,
+  STAGE_TYPE,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 import { Metadata } from 'next'
@@ -109,7 +110,7 @@ function SwissTable({
 
   const stageProgress =
     currentStage === stageId && currentStage
-      ? getStageProgressInfo(event, currentStage, 'swiss')
+      ? getStageProgressInfo(event, currentStage, STAGE_TYPE.SWISS)
       : null
 
   const isNotStarted =
@@ -205,7 +206,7 @@ function SwissTable({
                         .toSorted((p, n) => p.localeCompare(n))
                         .map((team) => {
                           const isCorrect = actualResult?.['3-0']?.includes(team)
-                          const possible = isPredictionPossible(team, '3-0', actualResult)
+                          const possible = isSwissPredictionPossible(team, '3-0', actualResult)
                           return (
                             <TeamLogo
                               hideLabel
@@ -228,7 +229,11 @@ function SwissTable({
                           const isCorrect =
                             actualResult?.['3-1']?.includes(team) ||
                             actualResult?.['3-2']?.includes(team)
-                          const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                          const possible = isSwissPredictionPossible(
+                            team,
+                            '3-1-or-3-2',
+                            actualResult,
+                          )
                           return (
                             <TeamLogo
                               hideLabel
@@ -249,7 +254,7 @@ function SwissTable({
                         .toSorted((p, n) => p.localeCompare(n))
                         .map((team) => {
                           const isCorrect = actualResult?.['0-3']?.includes(team)
-                          const possible = isPredictionPossible(team, '0-3', actualResult)
+                          const possible = isSwissPredictionPossible(team, '0-3', actualResult)
                           return (
                             <TeamLogo
                               hideLabel
@@ -379,7 +384,7 @@ function SwissTable({
                       .toSorted((p, n) => p.localeCompare(n))
                       .map((team) => {
                         const isCorrect = actualResult?.['3-0']?.includes(team)
-                        const possible = isPredictionPossible(team, '3-0', actualResult)
+                        const possible = isSwissPredictionPossible(team, '3-0', actualResult)
                         return (
                           <TeamLogo
                             hideLabel
@@ -405,7 +410,7 @@ function SwissTable({
                         const isCorrect =
                           actualResult?.['3-1']?.includes(team) ||
                           actualResult?.['3-2']?.includes(team)
-                        const possible = isPredictionPossible(team, '3-1-or-3-2', actualResult)
+                        const possible = isSwissPredictionPossible(team, '3-1-or-3-2', actualResult)
                         return (
                           <TeamLogo
                             hideLabel
@@ -429,7 +434,7 @@ function SwissTable({
                       .toSorted((p, n) => p.localeCompare(n))
                       .map((team) => {
                         const isCorrect = actualResult?.['0-3']?.includes(team)
-                        const possible = isPredictionPossible(team, '0-3', actualResult)
+                        const possible = isSwissPredictionPossible(team, '0-3', actualResult)
                         return (
                           <TeamLogo
                             hideLabel
@@ -488,18 +493,20 @@ function PlayoffsTable({
     }
 
     const playoffsStatsA = statsA?.stageResults.filter((s) =>
-      playoff_STAGES.some((e) => e === s.stageId),
+      PLAYOFFS_STAGES.some((e) => e === s.stageId),
     )
 
     const playoffsStatsB = statsB?.stageResults.filter((s) =>
-      playoff_STAGES.some((e) => e === s.stageId),
+      PLAYOFFS_STAGES.some((e) => e === s.stageId),
     )
 
     const passedA = playoffsStatsA?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
     const passedB = playoffsStatsB?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
 
-    const notPassedA = playoffsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
-    const notPassedB = playoffsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+    const notPassedA =
+      playoffsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+    const notPassedB =
+      playoffsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
 
     const correctA = playoffsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
     const correctB = playoffsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
@@ -539,7 +546,7 @@ function PlayoffsTable({
 
               const stats = calculatePredictorStats(event.id, predictor.id)
               const playoffsStats = stats?.stageResults.filter((s) =>
-                playoff_STAGES.some((e) => e === s.stageId),
+                PLAYOFFS_STAGES.some((e) => e === s.stageId),
               )
               const totalCorrect =
                 playoffsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
@@ -700,10 +707,11 @@ function PlayoffsTable({
 
           const stats = calculatePredictorStats(event.id, predictor.id)
           const playoffsStats = stats?.stageResults.filter((s) =>
-            playoff_STAGES.some((e) => e === s.stageId),
+            PLAYOFFS_STAGES.some((e) => e === s.stageId),
           )
 
-          const totalCorrect = playoffsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
+          const totalCorrect =
+            playoffsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
 
           const e2f = playoffsStats?.find((s) => s.stageId === '8-to-4')
           const f2t = playoffsStats?.find((s) => s.stageId === '4-to-2')

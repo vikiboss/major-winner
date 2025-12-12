@@ -9,8 +9,8 @@ import {
   isSwissPredictionPossible,
   hasSwissInProgressResults,
   hasSwissPlayoffResults,
-  STAGE_TYPE,
 } from '@/lib/data'
+import { STAGE_TYPE } from '@/lib/constants'
 import TeamLogo from '@/components/TeamLogo'
 
 import { calculatePredictorStats } from '@/lib/data'

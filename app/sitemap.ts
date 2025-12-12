@@ -1,4 +1,5 @@
-import { MAJOR_STAGES, evt } from '@/lib/data'
+import { evt } from '@/lib/data'
+import { MAJOR_STAGES } from '@/lib/constants'
 import { MetadataRoute } from 'next'
 
 export const dynamic = 'force-static'

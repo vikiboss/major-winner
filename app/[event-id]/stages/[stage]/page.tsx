@@ -3,13 +3,12 @@ import {
   evt,
   calculatePredictorStats,
   isSwissPredictionPossible,
-  PLAYOFFS_STAGES,
   getEventProgress,
   getStageProgressInfo,
-  STAGE_TYPE,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 import { Metadata } from 'next'
+import { STAGE_TYPE, PLAYOFFS_STAGES } from '@/lib/constants'
 import type { StagePrediction, PlayoffsPrediction, MajorEvent, PredictorPrediction } from '@/types'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'playoffs'

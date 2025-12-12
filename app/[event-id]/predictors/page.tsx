@@ -151,85 +151,91 @@ export default async function PredictorsPage({
           <thead className="bg-surface-2 border-border border-b">
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="w-12 px-4 py-3">#</th>
-              <th className="px-4 py-3">竞猜者</th>
-              <th className="px-4 py-3 text-center">猜对个数</th>
-              <th className="px-4 py-3 text-center">任务通过</th>
-              <th className="hidden px-4 py-3 text-center md:table-cell">第一阶段</th>
-              <th className="hidden px-4 py-3 text-center md:table-cell">第二阶段</th>
-              <th className="hidden px-4 py-3 text-center md:table-cell">第三阶段</th>
-              <th className="hidden px-4 py-3 text-center lg:table-cell">八进四</th>
-              <th className="hidden px-4 py-3 text-center lg:table-cell">半决赛</th>
-              <th className="hidden px-4 py-3 text-center lg:table-cell">决赛</th>
+              <th className="px-4 py-3 text-nowrap">竞猜者</th>
+              <th className="px-4 py-3 text-center text-nowrap">猜对个数</th>
+              <th className="px-4 py-3 text-center text-nowrap">任务通过</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap md:table-cell">第一阶段</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap md:table-cell">第二阶段</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap md:table-cell">第三阶段</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap lg:table-cell">八进四</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap lg:table-cell">半决赛</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap lg:table-cell">决赛</th>
             </tr>
           </thead>
           <tbody className="divide-border divide-y">
-            {stats.map((stat, index) => (
-              <tr key={stat.name} className="hover:bg-surface-2 transition-colors">
-                <td className="px-4 py-3">
-                  <span
-                    className={`text-sm font-medium ${
-                      index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
-                    }`}
-                  >
-                    {index + 1}
-                  </span>
-                </td>
-                <td className="px-4 py-3">
-                  <span>
-                    <span className="text-primary font-medium">{stat.name}</span>
-                    {stat.platform && (
-                      <span className="text-primary-400 ml-2 text-xs">@{stat.platform}</span>
-                    )}
-                  </span>
-                </td>
-                <td className="px-4 py-3 text-center">
-                  <span className="text-primary font-semibold">{stat.totalCorrect}</span>
-                  <span className="text-muted text-xs">/{stat.totalPredictions}</span>
-                </td>
-                <td className="text-muted px-4 py-3 text-center">
-                  {stat.totalPassed}/{stat.totalStages}
-                </td>
-                {allStages.map((stage) => {
-                  const result = stat.stageResults.find((s) => s.stageId === stage.id)
-                  // 瑞士轮在 md 显示,决胜阶段在 lg 显示
-                  const hideClass =
-                    stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
-                      ? 'hidden md:table-cell'
-                      : 'hidden lg:table-cell'
-                  return (
-                    <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
-                      {stage.hasResults ? (
-                        stage.isResultsComplete ? (
-                          result ? (
-                            <span className={result.passed ? 'text-win' : 'text-lose'}>
-                              {result.passed ? '✅' : '❌'}
+            {stats
+              .filter((e) => e.name !== '赛果')
+              .map((stat, index) => (
+                <tr key={stat.name} className="hover:bg-surface-2 transition-colors">
+                  <td className="px-4 py-3">
+                    <span
+                      className={`text-sm font-medium ${
+                        index === 0
+                          ? 'text-primary-400'
+                          : index < 3
+                            ? 'text-secondary'
+                            : 'text-muted'
+                      }`}
+                    >
+                      {index + 1}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3">
+                    <span>
+                      <span className="text-primary font-medium">{stat.name}</span>
+                      {stat.platform && (
+                        <span className="text-primary-400 ml-2 text-xs">@{stat.platform}</span>
+                      )}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-center">
+                    <span className="text-primary font-semibold">{stat.totalCorrect}</span>
+                    <span className="text-muted text-xs">/{stat.totalPredictions}</span>
+                  </td>
+                  <td className="text-muted px-4 py-3 text-center">
+                    {stat.totalPassed}/{stat.totalStages}
+                  </td>
+                  {allStages.map((stage) => {
+                    const result = stat.stageResults.find((s) => s.stageId === stage.id)
+                    // 瑞士轮在 md 显示,决胜阶段在 lg 显示
+                    const hideClass =
+                      stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
+                        ? 'hidden md:table-cell'
+                        : 'hidden lg:table-cell'
+                    return (
+                      <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
+                        {stage.hasResults ? (
+                          stage.isResultsComplete ? (
+                            result ? (
+                              <span className={result.passed ? 'text-win' : 'text-lose'}>
+                                {result.passed ? '✅' : '❌'}
+                              </span>
+                            ) : (
+                              <span className="text-muted">-</span>
+                            )
+                          ) : result ? (
+                            <span className="text-muted">
+                              {result.passed === true ? (
+                                '✅'
+                              ) : result.passed === false ? (
+                                `❌`
+                              ) : (
+                                <span className="text-xs">
+                                  祈祷中 {result.correctCount}/{result.requiredCount}
+                                </span>
+                              )}
                             </span>
                           ) : (
                             <span className="text-muted">-</span>
                           )
-                        ) : result ? (
-                          <span className="text-muted">
-                            {result.passed === true ? (
-                              '✅'
-                            ) : result.passed === false ? (
-                              `❌`
-                            ) : (
-                              <span className="text-xs">
-                                祈祷中 {result.correctCount}/{result.requiredCount}
-                              </span>
-                            )}
-                          </span>
                         ) : (
-                          <span className="text-muted">-</span>
-                        )
-                      ) : (
-                        <span className="text-muted/50 text-xs">等待中</span>
-                      )}
-                    </td>
-                  )
-                })}
-              </tr>
-            ))}
+                          <span className="text-muted/50 text-xs">等待中</span>
+                        )}
+                      </td>
+                    )
+                  })}
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>

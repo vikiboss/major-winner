@@ -788,12 +788,13 @@ function PredictorPredictions({
                         const hasResult =
                           roundResult && 'winners' in roundResult && roundResult.winners.length > 0
                         const isCorrect = hasResult && roundResult.winners.includes(team)
+                        const isWrong = hasResult && roundResult.losers.includes(team)
                         const status =
                           stageStatus === 'waiting'
                             ? 'normal'
                             : isCorrect
                               ? 'win'
-                              : hasResult
+                              : isWrong
                                 ? 'lose'
                                 : 'normal'
 

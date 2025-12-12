@@ -21,27 +21,27 @@ export default async function PredictorsPage({
   const eventProgress = getEventProgress(event)
 
   // 显示所有阶段,包括决赛的三个子阶段
-  const finalsStage = eventProgress.stagesProgress.find(
-    (s: { stageId: string }) => s.stageId === 'finals',
+  const playoffsStage = eventProgress.stagesProgress.find(
+    (s: { stageId: string }) => s.stageId === 'playoffs',
   )
 
-  const finalsSubStages = ['8-to-4', '4-to-2', '2-to-1'].map((id) => ({
+  const playoffsSubStages = ['8-to-4', '4-to-2', '2-to-1'].map((id) => ({
     id: id as '8-to-4' | '4-to-2' | '2-to-1',
-    hasResults: finalsStage?.hasResults || false,
-    isResultsComplete: finalsStage?.isResultsComplete || false,
-    status: finalsStage?.status || 'not_started',
+    hasResults: playoffsStage?.hasResults || false,
+    isResultsComplete: playoffsStage?.isResultsComplete || false,
+    status: playoffsStage?.status || 'not_started',
   }))
 
   const allStages = [
     ...eventProgress.stagesProgress
-      .filter((s) => s.stageId !== 'finals')
+      .filter((s) => s.stageId !== 'playoffs')
       .map((s) => ({
         id: s.stageId,
         hasResults: s.hasResults,
         isResultsComplete: s.isResultsComplete,
         status: s.status,
       })),
-    ...finalsSubStages,
+    ...playoffsSubStages,
   ]
 
   return (

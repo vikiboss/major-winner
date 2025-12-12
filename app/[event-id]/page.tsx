@@ -8,7 +8,7 @@ import {
   getEventStatusText,
   isPredictionPossible,
   hasSwissInProgressResults,
-  hasSwissFinalResults,
+  hasSwissPlayoffResults,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 
@@ -16,8 +16,8 @@ import { calculatePredictorStats } from '@/lib/data'
 import type { StagePrediction } from '@/types'
 
 import type {
-  FinalsStage,
-  FinalStageType,
+  PlayoffsStage,
+  PlayoffStageType,
   MajorEvent,
   SwissStage,
   SwissStageType,
@@ -29,14 +29,14 @@ export async function generateStaticParams() {
 }
 
 // 只显示有结果的阶段（进行中或已完成）
-// 将 finals 拆分成三个独立阶段
+// 将 playoffs 拆分成三个独立阶段
 type StageItem =
   | {
-      id: FinalStageType
-      data: FinalsStage
-      type: 'finals'
+      id: PlayoffStageType
+      data: PlayoffsStage
+      type: 'playoffs'
       status: 'completed' | 'in_progress' | 'waiting'
-      round: FinalStageType
+      round: PlayoffStageType
     }
   | {
       id: SwissStageType
@@ -55,16 +55,16 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
 
   const stages: StageItem[] = activeStages
     .flatMap((stage): StageItem | StageItem[] => {
-      // 如果是 finals, 拆分成三个子阶段,但只显示有结果或进行中的子阶段
+      // 如果是 playoffs, 拆分成三个子阶段,但只显示有结果或进行中的子阶段
       const hasPredictions = stage.hasPredictions
 
-      if (stage.id === 'finals') {
-        if (!event.finals) return []
+      if (stage.id === 'playoffs') {
+        if (!event.playoffs) return []
 
-        const results = event.finals.result
+        const results = event.playoffs.result
 
         const rounds: {
-          id: FinalStageType
+          id: PlayoffStageType
           status: 'not_started' | 'in_progress' | 'waiting' | 'completed'
         }[] = [
           {
@@ -105,8 +105,8 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
           .filter((e) => e.status !== 'not_started')
           .map((round) => ({
             id: round.id,
-            data: event.finals!,
-            type: 'finals' as const,
+            data: event.playoffs!,
+            type: 'playoffs' as const,
             status: round.status as 'completed' | 'in_progress' | 'waiting',
             round: round.id,
           }))
@@ -214,15 +214,15 @@ function StageSection({
 }: {
   stageId: TaskStageType
   stageName: string
-  stageData?: SwissStage | FinalsStage
-  stageType: 'swiss' | 'finals'
+  stageData?: SwissStage | PlayoffsStage
+  stageType: 'swiss' | 'playoffs'
   event: MajorEvent
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
-  round?: FinalStageType
+  round?: PlayoffStageType
 }) {
   const isSwiss = stageType === 'swiss'
   const swissData = isSwiss ? (stageData as SwissStage) : null
-  const finalsData = stageType === 'finals' ? (stageData as FinalsStage) : null
+  const playoffsData = stageType === 'playoffs' ? (stageData as PlayoffsStage) : null
 
   const predictions =
     evt
@@ -230,7 +230,7 @@ function StageSection({
       .filter((e) =>
         stageType === 'swiss'
           ? e[stageId as SwissStageType]?.['0-3']?.length
-          : e.finals?.[stageId as FinalStageType]?.length,
+          : e.playoffs?.[stageId as PlayoffStageType]?.length,
       ) || []
 
   return (
@@ -300,11 +300,11 @@ function StageSection({
               {stageStatus !== 'waiting' && isSwiss && swissData
                 ? // 检查是否有最终结果或进行中的战绩
                   (() => {
-                    const hasFinalResults = hasSwissFinalResults(swissData.result)
+                    const hasPlayoffResults = hasSwissPlayoffResults(swissData.result)
                     const hasInProgress = hasSwissInProgressResults(swissData.result)
 
                     // 如果既没有最终结果,也没有进行中的结果,显示占位符
-                    if (!hasFinalResults && !hasInProgress) {
+                    if (!hasPlayoffResults && !hasInProgress) {
                       return (
                         <div className="text-muted py-8 text-center">
                           <div className="mb-2 text-2xl">⚔️</div>
@@ -355,7 +355,7 @@ function StageSection({
                         )}
 
                         {/* 晋级(仅在有最终结果时显示) */}
-                        {hasFinalResults && (
+                        {hasPlayoffResults && (
                           <>
                             {/* 晋级队伍 */}
                             {(swissData.result['3-0'].length > 0 ||
@@ -419,15 +419,15 @@ function StageSection({
 
               {stageStatus !== 'waiting' &&
                 !isSwiss &&
-                finalsData &&
+                playoffsData &&
                 round &&
                 (() => {
                   // 检查当前轮次是否有结果
                   const hasResults =
                     round === '2-to-1'
-                      ? finalsData.result['2-to-1'].winner !== null
-                      : finalsData.result[round].winners.length > 0 ||
-                        finalsData.result[round].losers.length > 0
+                      ? playoffsData.result['2-to-1'].winner !== null
+                      : playoffsData.result[round].winners.length > 0 ||
+                        playoffsData.result[round].losers.length > 0
 
                   // 如果没有结果，显示进行中提示
                   if (!hasResults) {
@@ -449,11 +449,11 @@ function StageSection({
                           <div className="flex-1">
                             <p className="text-muted mb-1 font-medium">等待比赛</p>
                             <div className="flex flex-wrap gap-1">
-                              {finalsData.teams
+                              {playoffsData.teams
                                 .filter(
                                   (e) =>
-                                    !finalsData.result[round].winners.includes(e) &&
-                                    !finalsData.result[round].losers.includes(e),
+                                    !playoffsData.result[round].winners.includes(e) &&
+                                    !playoffsData.result[round].losers.includes(e),
                                 )
                                 .map((t) => (
                                   <TeamLogo key={t} shortName={t} />
@@ -464,7 +464,7 @@ function StageSection({
                             <div className="flex-1">
                               <p className="text-win mb-1 font-medium">晋级</p>
                               <div className="flex flex-wrap gap-1">
-                                {finalsData.result[round].winners.map((t) => (
+                                {playoffsData.result[round].winners.map((t) => (
                                   <TeamLogo key={t} shortName={t} status="win" />
                                 ))}
                               </div>
@@ -472,7 +472,7 @@ function StageSection({
                             <div className="flex-1">
                               <p className="text-lose mb-1 font-medium">淘汰</p>
                               <div className="flex flex-wrap gap-1">
-                                {finalsData.result[round].losers.map((t) => (
+                                {playoffsData.result[round].losers.map((t) => (
                                   <TeamLogo key={t} shortName={t} status="lose" />
                                 ))}
                               </div>
@@ -481,27 +481,27 @@ function StageSection({
                         </div>
                       )}
                       {/* 决赛 - 冠军 */}
-                      {round === '2-to-1' && finalsData.result['2-to-1'].winner && (
+                      {round === '2-to-1' && playoffsData.result['2-to-1'].winner && (
                         <div>
                           <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
                           <div className="flex items-center gap-2">
                             <TeamLogo
-                              shortName={finalsData.result['2-to-1'].winner}
+                              shortName={playoffsData.result['2-to-1'].winner}
                               size="lg"
                               hideLabel
                             />
                             <p className="text-primary text-lg font-semibold">
-                              {finalsData.result['2-to-1'].winner}
+                              {playoffsData.result['2-to-1'].winner}
                             </p>
                           </div>
-                          {finalsData.result['2-to-1'].loser && (
+                          {playoffsData.result['2-to-1'].loser && (
                             <div className="text-muted mt-2 flex items-center gap-2 text-sm">
                               <TeamLogo
-                                shortName={finalsData.result['2-to-1'].loser}
+                                shortName={playoffsData.result['2-to-1'].loser}
                                 size="sm"
                                 hideLabel
                               />
-                              <span>亚军: {finalsData.result['2-to-1'].loser}</span>
+                              <span>亚军: {playoffsData.result['2-to-1'].loser}</span>
                             </div>
                           )}
                         </div>
@@ -519,7 +519,7 @@ function StageSection({
             <div className="border-border flex items-center justify-between border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
               <Link
-                href={`/predictions/${stageType === 'finals' ? 'finals' : stageId}`}
+                href={`/predictions/${stageType === 'playoffs' ? 'playoffs' : stageId}`}
                 className="text-secondary hover:text-primary-300 text-xs hover:underline"
               >
                 查看全部 ({predictions.length}) ➜
@@ -551,7 +551,7 @@ function PredictorPredictions({
   limit,
 }: {
   stageId: TaskStageType
-  stageType: 'swiss' | 'finals'
+  stageType: 'swiss' | 'playoffs'
   event: MajorEvent
   round?: '8-to-4' | '4-to-2' | '2-to-1'
   stageStatus?: 'completed' | 'in_progress' | 'waiting'
@@ -638,7 +638,7 @@ function PredictorPredictions({
     ? predictorsWithStats
         .filter(({ predictor: p }) => {
           const prediction =
-            stageType === 'finals' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+            stageType === 'playoffs' ? p.playoffs : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
           return prediction
         })
         .slice(0, limit)
@@ -650,7 +650,7 @@ function PredictorPredictions({
         const stats = calculatePredictorStats(event.id, p.id)
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
         const prediction =
-          stageType === 'finals' ? p.finals : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
+          stageType === 'playoffs' ? p.playoffs : p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
 
         return (
           <div key={p.id} className="px-4 py-3">
@@ -777,14 +777,14 @@ function PredictorPredictions({
               </div>
             )}
 
-            {prediction && stageType === 'finals' && round && (
+            {prediction && stageType === 'playoffs' && round && (
               <div className="text-xs">
                 {(round === '8-to-4' || round === '4-to-2') && (
                   <div className="flex flex-wrap items-center gap-1">
                     <span className="text-muted">竞猜晋级: </span>
                     {(prediction as { '8-to-4': string[]; '4-to-2': string[] })[round].map(
                       (team) => {
-                        const roundResult = event.finals?.result[round]
+                        const roundResult = event.playoffs?.result[round]
                         const hasResult =
                           roundResult && 'winners' in roundResult && roundResult.winners.length > 0
                         const isCorrect = hasResult && roundResult.winners.includes(team)
@@ -812,9 +812,9 @@ function PredictorPredictions({
                         status={
                           stageStatus === 'waiting'
                             ? 'normal'
-                            : event.finals?.result['2-to-1'].winner
+                            : event.playoffs?.result['2-to-1'].winner
                               ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
-                                event.finals.result['2-to-1'].winner
+                                event.playoffs.result['2-to-1'].winner
                                 ? 'win'
                                 : 'lose'
                               : 'normal'

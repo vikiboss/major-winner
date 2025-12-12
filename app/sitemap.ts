@@ -12,7 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 1,
   }))
 
-  const stages = ['stage-1', 'stage-2', 'stage-3', 'finals']
+  const stages = ['stage-1', 'stage-2', 'stage-3', 'playoffs']
   const predictionRoutes = stages.map((stage) => ({
     url: `${baseUrl}/predictions/${stage}`,
     lastModified: new Date(),

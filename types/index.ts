@@ -2,15 +2,15 @@
 export type SwissStageType = 'stage-1' | 'stage-2' | 'stage-3'
 
 // Major 竞猜类型
-export type MajorStageType = SwissStageType | 'finals'
+export type MajorStageType = SwissStageType | 'playoffs'
 
 // 决赛轮次类型
-export type FinalStageType = '8-to-4' | '4-to-2' | '2-to-1'
+export type PlayoffStageType = '8-to-4' | '4-to-2' | '2-to-1'
 
 // 任务阶段类型
-export type TaskStageType = Exclude<MajorStageType, 'finals'> | FinalStageType
+export type TaskStageType = Exclude<MajorStageType, 'playoffs'> | PlayoffStageType
 
-export type StageType = 'swiss' | 'finals'
+export type StageType = 'swiss' | 'playoffs'
 
 // 战队信息(包含所属阶段)
 export interface Team {
@@ -51,28 +51,28 @@ export interface SwissStage {
 }
 
 // 决胜阶段单轮结果
-export interface FinalsRoundResult {
+export interface PlayoffsRoundResult {
   winners: string[]
   losers: string[]
 }
 
 // 决赛总决赛结果(冠军赛)
-export interface FinalChampionshipResult {
+export interface PlayoffChampionshipResult {
   winner: string | null
   loser: string | null
 }
 
 // 决胜阶段完整结果
-export interface FinalsResult {
-  '8-to-4': FinalsRoundResult
-  '4-to-2': FinalsRoundResult
-  '2-to-1': FinalChampionshipResult
+export interface PlayoffsResult {
+  '8-to-4': PlayoffsRoundResult
+  '4-to-2': PlayoffsRoundResult
+  '2-to-1': PlayoffChampionshipResult
 }
 
 // 决胜阶段
-export interface FinalsStage {
+export interface PlayoffsStage {
   teams: string[]
-  result: FinalsResult
+  result: PlayoffsResult
 }
 
 // 赛事信息
@@ -83,7 +83,7 @@ export interface MajorEvent {
   'stage-1': SwissStage
   'stage-2': SwissStage
   'stage-3': SwissStage
-  finals: FinalsStage
+  playoffs: PlayoffsStage
 }
 
 // 竞猜数据 - 瑞士轮阶段(竞猜者只竞猜 3-0 / 3-1-or-3-2 / 0-3)
@@ -94,7 +94,7 @@ export interface StagePrediction {
 }
 
 // 竞猜数据 - 决胜阶段
-export interface FinalsPrediction {
+export interface PlayoffsPrediction {
   '8-to-4': string[] // 4 支队伍(四强)
   '4-to-2': string[] // 2 支队伍(决赛)
   '2-to-1': string | null // 1 支队伍(冠军)或 null
@@ -109,7 +109,7 @@ export interface PredictorPrediction {
   'stage-1'?: StagePrediction
   'stage-2'?: StagePrediction
   'stage-3'?: StagePrediction
-  finals?: FinalsPrediction
+  playoffs?: PlayoffsPrediction
 }
 
 // 赛事竞猜数据
@@ -155,11 +155,11 @@ export enum EventStatus {
   STAGE_2_COMPLETED = 'stage_2_completed', // 第二阶段已完成
   STAGE_3 = 'stage_3', // 第三阶段进行中
   STAGE_3_COMPLETED = 'stage_3_completed', // 第三阶段已完成
-  FINALS_8_TO_4 = 'finals_8_to_4', // 八进四进行中
-  FINALS_8_TO_4_COMPLETED = 'finals_8_to_4_completed', // 八进四已完成
-  FINALS_4_TO_2 = 'finals_4_to_2', // 半决赛进行中
-  FINALS_4_TO_2_COMPLETED = 'finals_4_to_2_completed', // 半决赛已完成
-  FINALS_2_TO_1 = 'finals_2_to_1', // 决赛进行中
+  playoffS_8_TO_4 = 'playoffs_8_to_4', // 八进四进行中
+  playoffS_8_TO_4_COMPLETED = 'playoffs_8_to_4_completed', // 八进四已完成
+  playoffS_4_TO_2 = 'playoffs_4_to_2', // 半决赛进行中
+  playoffS_4_TO_2_COMPLETED = 'playoffs_4_to_2_completed', // 半决赛已完成
+  playoffS_2_TO_1 = 'playoffs_2_to_1', // 决赛进行中
   COMPLETED = 'completed', // 赛事已完成
 }
 

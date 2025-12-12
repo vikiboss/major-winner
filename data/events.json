@@ -280,7 +280,7 @@
         "0-3": ["PV", "Liquid"]
       }
     },
-    "finals": {
+    "playoffs": {
       "teams": ["FURIA", "Spirit", "Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
       "result": {
         "8-to-4": {

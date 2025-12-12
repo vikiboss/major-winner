@@ -43,14 +43,14 @@ The app uses a **static data-driven architecture** with no backend:
 
 2. **Data Layer** (`lib/data.ts`)
    - Core business logic for calculating prediction accuracy
-   - Stage pass/fail determination (Swiss rounds, finals)
+   - Stage pass/fail determination (Swiss rounds, playoffs)
    - Predictor statistics and rankings
    - Event progress tracking and state management
 
 3. **Type System** (`types/index.ts`)
    - Comprehensive TypeScript types for all data structures
-   - Stage types: Swiss rounds (stage-1/2/3) and Finals (8-to-4, 4-to-2, 2-to-1)
-   - Result types: SwissResult, FinalsResult, StagePassStatus
+   - Stage types: Swiss rounds (stage-1/2/3) and Playoffs (8-to-4, 4-to-2, 2-to-1)
+   - Result types: SwissResult, PlayoffsResult, StagePassStatus
 
 ### Prediction Scoring Rules
 
@@ -60,10 +60,10 @@ The app uses a **static data-driven architecture** with no backend:
 - Pass threshold: 5/10 correct predictions
 - Exact match required (3-0 prediction must be 3-0 actual, not 3-1)
 
-**Finals**:
+**Playoffs**（淘汰赛）:
 
-- 8-to-4: Predict 4 semifinalists, need 2/4 correct
-- 4-to-2: Predict 2 finalists, need 1/2 correct
+- 8-to-4: Predict 4 semiplayoffists, need 2/4 correct
+- 4-to-2: Predict 2 playoffists, need 1/2 correct
 - 2-to-1: Predict champion, must match exactly
 
 ### Component Structure

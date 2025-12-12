@@ -86,69 +86,69 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
     }
 
     // 检查决胜阶段 - 只有真正在决赛名单中的队伍才显示决赛信息
-    if (event.finals && event.finals.teams.length > 0 && event.finals.teams.includes(shortName)) {
-      const finals = event.finals
+    if (event.playoffs && event.playoffs.teams.length > 0 && event.playoffs.teams.includes(shortName)) {
+      const playoffs = event.playoffs
 
-      if (finals.result['2-to-1'].winner === shortName) {
-        performance.push({ stage: 'finals', stageName: '决赛', result: '冠军', status: 'champion' })
-      } else if (finals.result['2-to-1'].loser === shortName) {
+      if (playoffs.result['2-to-1'].winner === shortName) {
+        performance.push({ stage: 'playoffs', stageName: '决赛', result: '冠军', status: 'champion' })
+      } else if (playoffs.result['2-to-1'].loser === shortName) {
         performance.push({
-          stage: 'finals',
+          stage: 'playoffs',
           stageName: '决赛',
           result: '亚军',
           status: 'advanced',
         })
-      } else if (finals.result['4-to-2'].winners.includes(shortName)) {
+      } else if (playoffs.result['4-to-2'].winners.includes(shortName)) {
         // 已经晋级决赛
         performance.push({
-          stage: 'finals',
+          stage: 'playoffs',
           stageName: '半决赛',
           result: '晋级决赛',
           status: 'advanced',
         })
 
         // 检查决赛是否已经开始(有队伍已经有决赛结果)
-        const finalsStarted =
-          finals.result['2-to-1'].winner !== '' || finals.result['2-to-1'].loser !== ''
-        if (finalsStarted) {
+        const playoffsStarted =
+          playoffs.result['2-to-1'].winner !== '' || playoffs.result['2-to-1'].loser !== ''
+        if (playoffsStarted) {
           // 决赛已经开始,但没有这个队伍的结果,说明在等待比赛
           performance.push({
-            stage: 'finals',
+            stage: 'playoffs',
             stageName: '决赛',
             result: '待赛',
             status: 'waiting',
           })
         }
-      } else if (finals.result['4-to-2'].losers.includes(shortName)) {
+      } else if (playoffs.result['4-to-2'].losers.includes(shortName)) {
         performance.push({
-          stage: 'finals',
+          stage: 'playoffs',
           stageName: '半决赛',
           result: '四强',
           status: 'eliminated',
         })
-      } else if (finals.result['8-to-4'].losers.includes(shortName)) {
+      } else if (playoffs.result['8-to-4'].losers.includes(shortName)) {
         performance.push({
-          stage: 'finals',
+          stage: 'playoffs',
           stageName: '八进四',
           result: '八强',
           status: 'eliminated',
         })
-      } else if (finals.result['8-to-4'].winners.includes(shortName)) {
+      } else if (playoffs.result['8-to-4'].winners.includes(shortName)) {
         // 已经晋级四强
         performance.push({
-          stage: 'finals',
+          stage: 'playoffs',
           stageName: '八进四',
           result: '晋级四强',
           status: 'advanced',
         })
 
         // 检查四进二是否已经开始(有队伍已经有四进二结果)
-        const semifinalsStarted =
-          finals.result['4-to-2'].winners.length > 0 || finals.result['4-to-2'].losers.length > 0
-        if (semifinalsStarted) {
+        const semiplayoffsStarted =
+          playoffs.result['4-to-2'].winners.length > 0 || playoffs.result['4-to-2'].losers.length > 0
+        if (semiplayoffsStarted) {
           // 四进二已经开始,但没有这个队伍的结果,说明在等待比赛
           performance.push({
-            stage: 'finals',
+            stage: 'playoffs',
             stageName: '半决赛',
             result: '待赛',
             status: 'waiting',
@@ -157,7 +157,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       } else {
         // 在决赛名单中但还没有结果,说明等待八进四
         performance.push({
-          stage: 'finals',
+          stage: 'playoffs',
           stageName: '八进四',
           result: '待赛',
           status: 'waiting',
@@ -206,16 +206,16 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
     if (aStatus !== 'eliminated' && bStatus === 'eliminated') return -1
 
     // 1. 决赛成绩 - 最强的证明
-    const aFinals = aPerf.find((p) => p.stage === 'finals')
-    const bFinals = bPerf.find((p) => p.stage === 'finals')
+    const aPlayoffs = aPerf.find((p) => p.stage === 'playoffs')
+    const bPlayoffs = bPerf.find((p) => p.stage === 'playoffs')
 
     // 进决赛的队伍一定强于未进决赛的
-    if (aFinals && !bFinals) return -1
-    if (!aFinals && bFinals) return 1
+    if (aPlayoffs && !bPlayoffs) return -1
+    if (!aPlayoffs && bPlayoffs) return 1
 
     // 决赛内部排序
-    if (aFinals && bFinals) {
-      const finalsRank = {
+    if (aPlayoffs && bPlayoffs) {
+      const playoffsRank = {
         冠军: 1,
         亚军: 2,
         晋级决赛: 3,
@@ -224,8 +224,8 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
         八强: 6,
         待赛: 999,
       }
-      const aRank = finalsRank[aFinals.result as keyof typeof finalsRank] || 999
-      const bRank = finalsRank[bFinals.result as keyof typeof finalsRank] || 999
+      const aRank = playoffsRank[aPlayoffs.result as keyof typeof playoffsRank] || 999
+      const bRank = playoffsRank[bPlayoffs.result as keyof typeof playoffsRank] || 999
       if (aRank !== bRank) return aRank - bRank
     }
 
@@ -262,7 +262,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
     const getSwissStrength = (perf: typeof lastA) => {
       if (!perf) return 999
       // 最终成绩: 3-0 最强,0-3 最弱
-      const finalScores = { '3-0': 1, '3-1': 2, '3-2': 3, '2-3': 4, '1-3': 5, '0-3': 6 }
+      const playoffScores = { '3-0': 1, '3-1': 2, '3-2': 3, '2-3': 4, '1-3': 5, '0-3': 6 }
       // 赛程中成绩: 按胜率排序 (2-0 > 2-1 > 1-0 > 2-2 > 1-1 > 0-1 > 1-2 > 0-2)
       const inProgressScores = {
         '2-0': 10,
@@ -278,7 +278,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       const result = perf.result as string
 
       return (
-        finalScores[result as keyof typeof finalScores] ||
+        playoffScores[result as keyof typeof playoffScores] ||
         inProgressScores[result as keyof typeof inProgressScores] ||
         999
       )
@@ -323,11 +323,11 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       </div>
 
       {/* Champion Banner */}
-      {event.finals && event.finals.result['2-to-1'].winner && (
+      {event.playoffs && event.playoffs.result['2-to-1'].winner && (
         <div className="from-primary-500/20 to-primary-400/10 border-primary-500/30 mb-6 rounded-lg border bg-linear-to-r px-6 py-3 text-center">
           <div className="text-primary-400 text-sm font-medium">
             🏆 Major 冠军{' '}
-            {sortedTeams.find((e) => e.shortName === event.finals.result['2-to-1'].winner)?.name ||
+            {sortedTeams.find((e) => e.shortName === event.playoffs.result['2-to-1'].winner)?.name ||
               '-'}
           </div>
         </div>

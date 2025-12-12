@@ -3,23 +3,23 @@ import {
   evt,
   calculatePredictorStats,
   isPredictionPossible,
-  FINAL_STAGES,
+  playoff_STAGES,
   getEventProgress,
   getStageProgressInfo,
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 import { Metadata } from 'next'
-import type { StagePrediction, FinalsPrediction, MajorEvent, PredictorPrediction } from '@/types'
+import type { StagePrediction, PlayoffsPrediction, MajorEvent, PredictorPrediction } from '@/types'
 
-type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'finals'
+type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'playoffs'
 
-const VALID_STAGES: Stage[] = ['stage-1', 'stage-2', 'stage-3', 'finals']
+const VALID_STAGES: Stage[] = ['stage-1', 'stage-2', 'stage-3', 'playoffs']
 
 const STAGE_NAMES: Record<Stage, string> = {
   'stage-1': '第一阶段',
   'stage-2': '第二阶段',
   'stage-3': '第三阶段',
-  finals: '决胜阶段',
+  playoffs: '决胜阶段',
 }
 
 interface PageProps {
@@ -71,8 +71,8 @@ export default async function PredictionsPage({ params }: PageProps) {
 
   // 过滤出有当前阶段预测的竞猜者
   const predictorsWithStage = predictions.filter((p) => {
-    if (activeStage === 'finals') {
-      return p.finals
+    if (activeStage === 'playoffs') {
+      return p.playoffs
     }
     return p[activeStage]
   })
@@ -80,8 +80,8 @@ export default async function PredictionsPage({ params }: PageProps) {
   // 竞猜表格
   return (
     <>
-      {activeStage === 'finals' ? (
-        <FinalsTable predictors={predictorsWithStage} event={event} />
+      {activeStage === 'playoffs' ? (
+        <PlayoffsTable predictors={predictorsWithStage} event={event} />
       ) : (
         <SwissTable predictors={predictorsWithStage} event={event} stageId={activeStage} />
       )}
@@ -459,22 +459,22 @@ function SwissTable({
 }
 
 // 决胜阶段表格组件
-function FinalsTable({
+function PlayoffsTable({
   predictors,
   event,
 }: {
   predictors: PredictorPrediction[]
   event: MajorEvent
 }) {
-  const stageData = event.finals
-  const finalsResult = stageData.result
+  const stageData = event.playoffs
+  const playoffsResult = stageData.result
 
   const { currentStage } = getEventProgress(event)
 
-  const stageProgress = currentStage ? getStageProgressInfo(event, currentStage, 'finals') : null
+  const stageProgress = currentStage ? getStageProgressInfo(event, currentStage, 'playoffs') : null
 
   const isNotStarted =
-    currentStage === 'finals' && stageProgress && stageProgress.status === 'not_started'
+    currentStage === 'playoffs' && stageProgress && stageProgress.status === 'not_started'
 
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
@@ -487,25 +487,25 @@ function FinalsTable({
       return statsB.totalPassed - statsA.totalPassed || statsB.totalCorrect - statsA.totalCorrect
     }
 
-    const finalsStatsA = statsA?.stageResults.filter((s) =>
-      FINAL_STAGES.some((e) => e === s.stageId),
+    const playoffsStatsA = statsA?.stageResults.filter((s) =>
+      playoff_STAGES.some((e) => e === s.stageId),
     )
 
-    const finalsStatsB = statsB?.stageResults.filter((s) =>
-      FINAL_STAGES.some((e) => e === s.stageId),
+    const playoffsStatsB = statsB?.stageResults.filter((s) =>
+      playoff_STAGES.some((e) => e === s.stageId),
     )
 
-    const passedA = finalsStatsA?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
-    const passedB = finalsStatsB?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
+    const passedA = playoffsStatsA?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
+    const passedB = playoffsStatsB?.reduce((sum, s) => sum + (s.passed ? 1 : 0), 0) ?? -1
 
-    const notPassedA = finalsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
-    const notPassedB = finalsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+    const notPassedA = playoffsStatsA?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
+    const notPassedB = playoffsStatsB?.reduce((sum, s) => sum + (s.passed === false ? 1 : 0), 0) ?? -1
 
-    const correctA = finalsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
-    const correctB = finalsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
+    const correctA = playoffsStatsA?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
+    const correctB = playoffsStatsB?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? -1
 
-    const impossibleA = finalsStatsA?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
-    const impossibleB = finalsStatsB?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
+    const impossibleA = playoffsStatsA?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
+    const impossibleB = playoffsStatsB?.reduce((sum, s) => sum + (s.impossibleCount || 0), 0) ?? 0
 
     return (
       passedB - passedA ||
@@ -534,15 +534,15 @@ function FinalsTable({
           </thead>
           <tbody className="divide-border divide-y">
             {sortedPredictors.map((predictor) => {
-              const prediction = predictor.finals as FinalsPrediction
+              const prediction = predictor.playoffs as PlayoffsPrediction
               if (!prediction) return null
 
               const stats = calculatePredictorStats(event.id, predictor.id)
-              const finalsStats = stats?.stageResults.filter((s) =>
-                FINAL_STAGES.some((e) => e === s.stageId),
+              const playoffsStats = stats?.stageResults.filter((s) =>
+                playoff_STAGES.some((e) => e === s.stageId),
               )
               const totalCorrect =
-                finalsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
+                playoffsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
 
               return (
                 <tr key={predictor.id} className="hover:bg-surface-2">
@@ -574,8 +574,8 @@ function FinalsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['8-to-4'].map((team) => {
-                        const isMatch = finalsResult['8-to-4'].winners.includes(team)
-                        const isMisMatch = finalsResult['8-to-4'].losers.includes(team)
+                        const isMatch = playoffsResult['8-to-4'].winners.includes(team)
+                        const isMisMatch = playoffsResult['8-to-4'].losers.includes(team)
 
                         return (
                           <TeamLogo
@@ -594,10 +594,10 @@ function FinalsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['4-to-2']?.map((team) => {
-                        const isMatch = finalsResult?.['4-to-2'].winners.includes(team)
+                        const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
                         const isMisMatch =
-                          finalsResult?.['4-to-2'].losers.includes(team) ||
-                          finalsResult?.['8-to-4'].losers.includes(team)
+                          playoffsResult?.['4-to-2'].losers.includes(team) ||
+                          playoffsResult?.['8-to-4'].losers.includes(team)
 
                         return (
                           <TeamLogo
@@ -621,11 +621,11 @@ function FinalsTable({
                           shortName={prediction['2-to-1']}
                           size="xl"
                           status={
-                            finalsResult?.['2-to-1'].winner === prediction['2-to-1']
+                            playoffsResult?.['2-to-1'].winner === prediction['2-to-1']
                               ? 'win'
-                              : finalsResult?.['2-to-1'].winner ||
-                                  finalsResult?.['4-to-2'].losers
-                                    .concat(finalsResult?.['8-to-4'].losers)
+                              : playoffsResult?.['2-to-1'].winner ||
+                                  playoffsResult?.['4-to-2'].losers
+                                    .concat(playoffsResult?.['8-to-4'].losers)
                                     .includes(prediction['2-to-1'])
                                 ? 'lose'
                                 : 'normal'
@@ -638,7 +638,7 @@ function FinalsTable({
                   </td>
 
                   <td className="px-4 py-3 text-center">
-                    {!isNotStarted && finalsStats && finalsStats.length > 0 ? (
+                    {!isNotStarted && playoffsStats && playoffsStats.length > 0 ? (
                       <span className="text-primary text-base font-semibold">{totalCorrect}</span>
                     ) : (
                       <span className="text-muted text-sm">-</span>
@@ -646,9 +646,9 @@ function FinalsTable({
                   </td>
 
                   <td className="px-4 py-3 text-center">
-                    {finalsStats && finalsStats.length > 0 ? (
+                    {playoffsStats && playoffsStats.length > 0 ? (
                       <div className="flex flex-col items-center gap-1">
-                        {finalsStats.map((s) => {
+                        {playoffsStats.map((s) => {
                           const stageName =
                             s.stageId === '8-to-4'
                               ? '八进四'
@@ -695,19 +695,19 @@ function FinalsTable({
       {/* 移动端卡片视图 */}
       <div className="divide-border divide-y md:hidden">
         {sortedPredictors.map((predictor) => {
-          const prediction = predictor.finals as FinalsPrediction
+          const prediction = predictor.playoffs as PlayoffsPrediction
           if (!prediction) return null
 
           const stats = calculatePredictorStats(event.id, predictor.id)
-          const finalsStats = stats?.stageResults.filter((s) =>
-            FINAL_STAGES.some((e) => e === s.stageId),
+          const playoffsStats = stats?.stageResults.filter((s) =>
+            playoff_STAGES.some((e) => e === s.stageId),
           )
 
-          const totalCorrect = finalsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
+          const totalCorrect = playoffsStats?.reduce((sum, s) => sum + (s.correctCount || 0), 0) ?? 0
 
-          const e2f = finalsStats?.find((s) => s.stageId === '8-to-4')
-          const f2t = finalsStats?.find((s) => s.stageId === '4-to-2')
-          const t2o = finalsStats?.find((s) => s.stageId === '2-to-1')
+          const e2f = playoffsStats?.find((s) => s.stageId === '8-to-4')
+          const f2t = playoffsStats?.find((s) => s.stageId === '4-to-2')
+          const t2o = playoffsStats?.find((s) => s.stageId === '2-to-1')
 
           return (
             <div key={predictor.id} className="p-4">
@@ -735,8 +735,8 @@ function FinalsTable({
                     </span>
                   )}
                 </div>
-                {finalsStats &&
-                  finalsStats.length > 0 &&
+                {playoffsStats &&
+                  playoffsStats.length > 0 &&
                   (isNotStarted ? (
                     <span className="text-primary text-xs">等待中</span>
                   ) : (
@@ -764,8 +764,8 @@ function FinalsTable({
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {prediction['8-to-4']?.map((team) => {
-                      const isMatch = finalsResult['8-to-4'].winners.includes(team)
-                      const isMisMatch = finalsResult['8-to-4'].losers.includes(team)
+                      const isMatch = playoffsResult['8-to-4'].winners.includes(team)
+                      const isMisMatch = playoffsResult['8-to-4'].losers.includes(team)
 
                       return (
                         <TeamLogo
@@ -796,8 +796,8 @@ function FinalsTable({
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {prediction['4-to-2']?.map((team) => {
-                      const isMatch = finalsResult?.['4-to-2'].winners.includes(team)
-                      const isMisMatch = finalsResult?.['4-to-2'].losers.includes(team)
+                      const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
+                      const isMisMatch = playoffsResult?.['4-to-2'].losers.includes(team)
 
                       return (
                         <TeamLogo
@@ -833,11 +833,11 @@ function FinalsTable({
                         shortName={prediction['2-to-1']}
                         size="xl"
                         status={
-                          finalsResult?.['2-to-1'].winner === prediction['2-to-1']
+                          playoffsResult?.['2-to-1'].winner === prediction['2-to-1']
                             ? 'win'
-                            : finalsResult?.['2-to-1'].winner ||
-                                finalsResult?.['4-to-2'].losers
-                                  .concat(finalsResult?.['8-to-4'].losers)
+                            : playoffsResult?.['2-to-1'].winner ||
+                                playoffsResult?.['4-to-2'].losers
+                                  .concat(playoffsResult?.['8-to-4'].losers)
                                   .includes(prediction['2-to-1'])
                               ? 'lose'
                               : 'normal'

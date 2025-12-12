@@ -10,7 +10,7 @@ const STAGES: { id: MajorStageType; label: string }[] = [
   { id: 'stage-1', label: '第一阶段' },
   { id: 'stage-2', label: '第二阶段' },
   { id: 'stage-3', label: '第三阶段' },
-  { id: 'finals', label: '决胜阶段' },
+  { id: 'playoffs', label: '决胜阶段' },
 ]
 
 export function StageNav({ eventId }: { eventId: string }) {

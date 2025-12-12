@@ -15,13 +15,13 @@ import type {
   EventProgress,
   StageType,
   MajorStageType,
-  FinalStageType,
+  PlayoffStageType,
   TaskStageType,
 } from '../types'
 
 export const events = eventsData as MajorEvent[]
 export const predictions = predictionsData as EventPredictions[]
-export const FINAL_STAGES: FinalStageType[] = ['8-to-4', '4-to-2', '2-to-1']
+export const playoff_STAGES: PlayoffStageType[] = ['8-to-4', '4-to-2', '2-to-1']
 export const firstEvent = events.at(0) as MajorEvent
 
 export const evt = {
@@ -70,10 +70,10 @@ export function isPredictionPossible(
     '1-2',
     '2-2',
   ]
-  const finalRecords: Array<keyof SwissResult> = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3']
+  const playoffRecords: Array<keyof SwissResult> = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3']
 
   // 先检查队伍是否已经有最终结果
-  for (const record of finalRecords) {
+  for (const record of playoffRecords) {
     if (result[record]?.includes(teamName)) {
       // 已经确定最终结果，检查是否匹配竞猜
       if (predictionBucket === '3-0') {
@@ -412,46 +412,46 @@ export function calculatePredictorStats(
   }
 
   // 计算决胜阶段
-  if (targetEvent.finals && predictor.finals) {
-    const finals = targetEvent.finals.result
+  if (targetEvent.playoffs && predictor.playoffs) {
+    const playoffs = targetEvent.playoffs.result
 
     // 8 进 4
     const result84 = check8to4Pass(
-      predictor.finals['8-to-4'],
-      finals['8-to-4'].winners,
-      finals['8-to-4'].losers,
+      predictor.playoffs['8-to-4'],
+      playoffs['8-to-4'].winners,
+      playoffs['8-to-4'].losers,
     )
     stageResults.push(result84)
     totalStages++
     totalCorrect += result84.correctCount
-    totalPredictions += predictor.finals['8-to-4'].length
+    totalPredictions += predictor.playoffs['8-to-4'].length
     if (result84.passed) totalPassed++
 
     // 4 进 2（需要传入所有已淘汰队伍：8进4的losers + 4进2的losers）
-    const allEliminatedBefore4to2 = [...finals['8-to-4'].losers, ...finals['4-to-2'].losers]
+    const allEliminatedBefore4to2 = [...playoffs['8-to-4'].losers, ...playoffs['4-to-2'].losers]
     const result42 = check4to2Pass(
-      predictor.finals['4-to-2'],
-      finals['4-to-2'].winners,
+      predictor.playoffs['4-to-2'],
+      playoffs['4-to-2'].winners,
       allEliminatedBefore4to2,
     )
     stageResults.push(result42)
     totalStages++
     totalCorrect += result42.correctCount
-    totalPredictions += predictor.finals['4-to-2'].length
+    totalPredictions += predictor.playoffs['4-to-2'].length
     if (result42.passed) totalPassed++
 
     // 冠军（需要传入所有已淘汰队伍：8进4 + 4进2 + 决赛loser）
-    const allEliminatedBeforeChampion = [...finals['8-to-4'].losers, ...finals['4-to-2'].losers]
+    const allEliminatedBeforeChampion = [...playoffs['8-to-4'].losers, ...playoffs['4-to-2'].losers]
     const result21 = check2to1Pass(
-      predictor.finals['2-to-1'],
-      finals['2-to-1'].winner,
-      finals['2-to-1'].loser,
+      predictor.playoffs['2-to-1'],
+      playoffs['2-to-1'].winner,
+      playoffs['2-to-1'].loser,
       allEliminatedBeforeChampion,
     )
     stageResults.push(result21)
     totalStages++
     totalCorrect += result21.correctCount
-    totalPredictions += predictor.finals['2-to-1'] ? 1 : 0
+    totalPredictions += predictor.playoffs['2-to-1'] ? 1 : 0
     if (result21.passed) totalPassed++
   }
 
@@ -503,7 +503,7 @@ export function getStageName(stageId: string): string {
     '8-to-4': '八进四',
     '4-to-2': '半决赛',
     '2-to-1': '决赛',
-    finals: '决胜阶段',
+    playoffs: '决胜阶段',
   }
   return names[stageId] || stageId
 }
@@ -559,7 +559,7 @@ function hasSwissResults(result: SwissResult | undefined): boolean {
 /**
  * 检查决胜阶段某轮结果是否完整
  */
-function isFinalsRoundComplete(
+function isPlayoffsRoundComplete(
   winners: string[],
   losers: string[],
   expectedWinners: number,
@@ -600,21 +600,21 @@ export function getStageProgressInfo(
       isResultsComplete: isComplete,
     }
   } else {
-    // finals
-    const finalsStage = stageData as NonNullable<MajorEvent['finals']>
-    const has8to4 = finalsStage.result['8-to-4'].winners.length > 0
-    const is8to4Complete = isFinalsRoundComplete(
-      finalsStage.result['8-to-4'].winners,
-      finalsStage.result['8-to-4'].losers,
+    // playoffs
+    const playoffsStage = stageData as NonNullable<MajorEvent['playoffs']>
+    const has8to4 = playoffsStage.result['8-to-4'].winners.length > 0
+    const is8to4Complete = isPlayoffsRoundComplete(
+      playoffsStage.result['8-to-4'].winners,
+      playoffsStage.result['8-to-4'].losers,
       4,
     )
-    const has4to2 = finalsStage.result['4-to-2'].winners.length > 0
-    const is4to2Complete = isFinalsRoundComplete(
-      finalsStage.result['4-to-2'].winners,
-      finalsStage.result['4-to-2'].losers,
+    const has4to2 = playoffsStage.result['4-to-2'].winners.length > 0
+    const is4to2Complete = isPlayoffsRoundComplete(
+      playoffsStage.result['4-to-2'].winners,
+      playoffsStage.result['4-to-2'].losers,
       2,
     )
-    const hasChampion = !!finalsStage.result['2-to-1'].winner
+    const hasChampion = !!playoffsStage.result['2-to-1'].winner
 
     const hasResults = has8to4 || has4to2 || hasChampion
     const isComplete = hasChampion && is4to2Complete && is8to4Complete
@@ -634,7 +634,7 @@ const getStageConfig = (event: MajorEvent) => {
     { id: 'stage-1' as const, name: '第一阶段', data: event['stage-1'], type: 'swiss' as const },
     { id: 'stage-2' as const, name: '第二阶段', data: event['stage-2'], type: 'swiss' as const },
     { id: 'stage-3' as const, name: '第三阶段', data: event['stage-3'], type: 'swiss' as const },
-    { id: 'finals' as const, name: '决胜阶段', data: event.finals, type: 'finals' as const },
+    { id: 'playoffs' as const, name: '决胜阶段', data: event.playoffs, type: 'playoffs' as const },
   ]
 }
 
@@ -666,38 +666,38 @@ export function getEventProgress(event: MajorEvent): EventProgress {
   const noResults = !hasAnyResults
 
   // 赛阶段的状态判断抽离为独立函数
-  const getFinalsStatus = (finalsStage: any): EventStatus => {
-    if (!finalsStage) return EventStatus.FINALS_2_TO_1
+  const getPlayoffsStatus = (playoffsStage: any): EventStatus => {
+    if (!playoffsStage) return EventStatus.playoffS_2_TO_1
 
-    const is8to4Complete = isFinalsRoundComplete(
-      finalsStage.result['8-to-4'].winners,
-      finalsStage.result['8-to-4'].losers,
+    const is8to4Complete = isPlayoffsRoundComplete(
+      playoffsStage.result['8-to-4'].winners,
+      playoffsStage.result['8-to-4'].losers,
       4,
     )
 
-    const has4to2 = finalsStage.result['4-to-2'].winners.length > 0
+    const has4to2 = playoffsStage.result['4-to-2'].winners.length > 0
 
-    const is4to2Complete = isFinalsRoundComplete(
-      finalsStage.result['4-to-2'].winners,
-      finalsStage.result['4-to-2'].losers,
+    const is4to2Complete = isPlayoffsRoundComplete(
+      playoffsStage.result['4-to-2'].winners,
+      playoffsStage.result['4-to-2'].losers,
       2,
     )
 
-    const has2to1 = !!finalsStage.result['2-to-1'].winner
+    const has2to1 = !!playoffsStage.result['2-to-1'].winner
 
     if (!is8to4Complete) {
-      return EventStatus.FINALS_8_TO_4
+      return EventStatus.playoffS_8_TO_4
     }
 
     if (!has4to2) {
-      return EventStatus.FINALS_8_TO_4_COMPLETED
+      return EventStatus.playoffS_8_TO_4_COMPLETED
     }
 
     if (!is4to2Complete) {
-      return EventStatus.FINALS_4_TO_2
+      return EventStatus.playoffS_4_TO_2
     }
 
-    return has2to1 ? EventStatus.COMPLETED : EventStatus.FINALS_2_TO_1
+    return has2to1 ? EventStatus.COMPLETED : EventStatus.playoffS_2_TO_1
   }
 
   // 阶段 ID 到状态的映射
@@ -705,21 +705,21 @@ export function getEventProgress(event: MajorEvent): EventProgress {
     'stage-1': EventStatus.STAGE_1,
     'stage-2': EventStatus.STAGE_2,
     'stage-3': EventStatus.STAGE_3,
-    finals: EventStatus.FINALS_2_TO_1, // 基础状态，决赛会特殊处理
+    playoffs: EventStatus.playoffS_2_TO_1, // 基础状态，决赛会特殊处理
   }
 
   const completedStageStatusMap: Record<string, EventStatus> = {
     'stage-1': EventStatus.STAGE_1_COMPLETED,
     'stage-2': EventStatus.STAGE_2_COMPLETED,
     'stage-3': EventStatus.STAGE_3_COMPLETED,
-    finals: EventStatus.COMPLETED,
+    playoffs: EventStatus.COMPLETED,
   }
 
   const notStartedStageStatusMap: Record<string, EventStatus> = {
     'stage-1': EventStatus.NOT_STARTED,
     'stage-2': EventStatus.STAGE_1_COMPLETED,
     'stage-3': EventStatus.STAGE_2_COMPLETED,
-    finals: EventStatus.STAGE_3_COMPLETED,
+    playoffs: EventStatus.STAGE_3_COMPLETED,
   }
 
   // 主逻辑
@@ -732,8 +732,8 @@ export function getEventProgress(event: MajorEvent): EventProgress {
   } else if (hasInProgressStage) {
     currentStage = inProgressStage.stageId
 
-    if (currentStage === 'finals') {
-      eventStatus = getFinalsStatus(event.finals)
+    if (currentStage === 'playoffs') {
+      eventStatus = getPlayoffsStatus(event.playoffs)
     } else {
       eventStatus = stageStatusMap[currentStage] || EventStatus.NOT_STARTED
     }
@@ -777,7 +777,7 @@ export function getActiveStages(event: MajorEvent): {
   const hasPredictionsForStage = (stageId: string): boolean => {
     if (!predictions.length) return false
     return predictions.some((p) => {
-      if (stageId === 'finals') return p.finals && p.finals['2-to-1']
+      if (stageId === 'playoffs') return p.playoffs && p.playoffs['2-to-1']
       const stage = p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
       return stage && stage['3-0'].length && stage['3-1-or-3-2'].length && stage['0-3'].length
     })
@@ -821,11 +821,11 @@ export function getEventStatusText(eventStatus: EventStatus): string {
     [EventStatus.STAGE_2_COMPLETED]: '第二阶段已完成，第三阶段等待中',
     [EventStatus.STAGE_3]: '第三阶段进行中',
     [EventStatus.STAGE_3_COMPLETED]: '第三阶段已完成，八进四等待中',
-    [EventStatus.FINALS_8_TO_4]: '八进四进行中',
-    [EventStatus.FINALS_8_TO_4_COMPLETED]: '八进四已完成，半决赛等待中',
-    [EventStatus.FINALS_4_TO_2]: '半决赛进行中',
-    [EventStatus.FINALS_4_TO_2_COMPLETED]: '半决赛已完成，决赛等待中',
-    [EventStatus.FINALS_2_TO_1]: '决赛进行中',
+    [EventStatus.playoffS_8_TO_4]: '八进四进行中',
+    [EventStatus.playoffS_8_TO_4_COMPLETED]: '八进四已完成，半决赛等待中',
+    [EventStatus.playoffS_4_TO_2]: '半决赛进行中',
+    [EventStatus.playoffS_4_TO_2_COMPLETED]: '半决赛已完成，决赛等待中',
+    [EventStatus.playoffS_2_TO_1]: '决赛进行中',
     [EventStatus.COMPLETED]: '赛事已完成',
   }
   return statusTexts[eventStatus]
@@ -835,8 +835,8 @@ export function getEventStatusText(eventStatus: EventStatus): string {
  * 判断竞猜者是否有某个阶段的竞猜数据
  */
 export function hasPredictionForStage(prediction: PredictorPrediction, stageId: string): boolean {
-  if (stageId === 'finals') {
-    return !!prediction.finals
+  if (stageId === 'playoffs') {
+    return !!prediction.playoffs
   } else {
     const stagePred = prediction[stageId as 'stage-1' | 'stage-2' | 'stage-3']
     return !!stagePred
@@ -857,8 +857,8 @@ export function shouldShowStageInPredictorDetail(
   if (!hasPrediction) return false
 
   // 检查阶段配置是否存在
-  if (stageId === 'finals') {
-    return !!event.finals
+  if (stageId === 'playoffs') {
+    return !!event.playoffs
   } else {
     return !!event[stageId as 'stage-1' | 'stage-2' | 'stage-3']
   }
@@ -885,10 +885,10 @@ export function hasSwissInProgressResults(result: SwissResult | undefined): bool
 /**
  * 检查瑞士轮是否有最终结果(晋级/淘汰)
  */
-export function hasSwissFinalResults(result: SwissResult | undefined): boolean {
+export function hasSwissPlayoffResults(result: SwissResult | undefined): boolean {
   if (!result) return false
 
-  const finalRecords = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'] as const
+  const playoffRecords = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'] as const
 
-  return finalRecords.some((record) => result[record] && result[record].length > 0)
+  return playoffRecords.some((record) => result[record] && result[record].length > 0)
 }

@@ -167,11 +167,13 @@ export enum EventStatus {
   COMPLETED = 'completed', // 赛事已完成
 }
 
+export type StageProgressStatus = 'not_started' | 'in_progress' | 'completed' | 'waiting'
+
 // 阶段进度信息
 export interface StageProgress {
   stageId: MajorStageType
   stageName: string
-  status: 'not_started' | 'in_progress' | 'completed'
+  status: StageProgressStatus
   hasResults: boolean
   isResultsComplete: boolean
 }

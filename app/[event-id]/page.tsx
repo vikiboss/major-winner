@@ -12,10 +12,9 @@ import {
 } from '@/lib/data'
 import { STAGE_TYPE } from '@/lib/constants'
 import TeamLogo from '@/components/TeamLogo'
-
 import { calculatePredictorStats } from '@/lib/data'
-import type { StagePrediction, StageType } from '@/types'
 
+import type { StagePrediction, StageType } from '@/types'
 import type {
   PlayoffsStage,
   PlayoffStageType,
@@ -31,7 +30,7 @@ export async function generateStaticParams() {
 
 // 只显示有结果的阶段（进行中或已完成）
 // 将 playoffs 拆分成三个独立阶段
-type StageItem =
+type TaskStageItem =
   | {
       id: PlayoffStageType
       data: PlayoffsStage
@@ -54,8 +53,8 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
   const eventProgress = getEventProgress(event)
   const activeStages = getActiveStages(event)
 
-  const stages: StageItem[] = activeStages
-    .flatMap((stage): StageItem | StageItem[] => {
+  const stages: TaskStageItem[] = activeStages
+    .flatMap((stage): TaskStageItem | TaskStageItem[] => {
       // 如果是 playoffs, 拆分成三个子阶段,但只显示有结果或进行中的子阶段
       const hasPredictions = stage.hasPredictions
 
@@ -123,7 +122,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
         status: stage.status,
       }
     })
-    .filter((s): s is StageItem => s.data !== null)
+    .filter((s): s is TaskStageItem => s.data !== null)
     .toReversed()
 
   return (

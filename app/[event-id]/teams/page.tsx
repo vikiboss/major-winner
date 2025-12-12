@@ -2,7 +2,7 @@ import TeamLogo from '@/components/TeamLogo'
 import { evt } from '@/lib/data'
 import { Metadata } from 'next'
 import { STAGE_GROUP_NAME_MAP } from '@/lib/constants'
-import { getTeamPerformance, getTeamStatus, sortTeamsByPerformance } from '@/lib/team'
+import { getSortedTeamsByPerformance, type TeamPerformanceStatus } from '@/lib/team'
 
 export const metadata: Metadata = {
   title: '参赛队伍',
@@ -13,15 +13,18 @@ export async function generateStaticParams() {
   return evt.eventNames.map((e) => ({ 'event-id': e.id }))
 }
 
+const TEAM_STATUS_CLASSES: Record<TeamPerformanceStatus, string> = {
+  champion: 'bg-primary-500/20 text-primary-400',
+  advanced: 'bg-win/10 text-win',
+  eliminated: 'bg-lose/10 text-lose',
+  'in-progress': 'bg-primary-500/10 text-primary-400',
+  waiting: 'bg-muted/10 text-muted',
+}
+
 export default async function TeamsPage({ params }: { params: Promise<{ 'event-id': string }> }) {
   const { 'event-id': eventId } = await params
   const event = evt.getEvent(eventId)
-
-  const sortedTeamsWithExtra = sortTeamsByPerformance(event).map((team) => {
-    const performance = getTeamPerformance(event, team.shortName)
-    const status = getTeamStatus(event, team.shortName)
-    return { ...team, performance, status }
-  })
+  const teams = getSortedTeamsByPerformance(event)
 
   return (
     <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-6 sm:py-8">
@@ -29,7 +32,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       <div className="mb-6">
         <h1 className="text-primary text-2xl font-bold sm:text-3xl">参赛战队</h1>
         <p className="text-muted mt-1 text-sm">
-          {event.name} • 共 {sortedTeamsWithExtra.length} 支队伍
+          {event.name} • 共 {teams.length} 支队伍
         </p>
       </div>
 
@@ -38,16 +41,14 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
         <div className="from-primary-500/20 to-primary-400/10 border-primary-500/30 mb-6 rounded-lg border bg-linear-to-r px-6 py-3 text-center">
           <div className="text-primary-400 text-sm font-medium">
             🏆 Major 冠军{' '}
-            {sortedTeamsWithExtra.find(
-              (e) => e.shortName === event.playoffs.result['2-to-1'].winner,
-            )?.name || '-'}
+            {teams.find((e) => e.shortName === event.playoffs.result['2-to-1'].winner)?.name || '-'}
           </div>
         </div>
       )}
 
       {/* Teams - Mobile Card View */}
       <div className="space-y-3 md:hidden">
-        {sortedTeamsWithExtra.map((team) => {
+        {teams.map((team) => {
           return (
             <div key={team.name} className="bg-surface-1 border-border rounded-lg border p-4">
               <div className="mb-3 flex items-start justify-between">
@@ -68,15 +69,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
                       <span
                         key={idx}
                         className={`inline-flex items-center gap-1 rounded px-2 py-1 text-xs ${
-                          p.status === 'champion'
-                            ? 'bg-primary-500/20 text-primary-400'
-                            : p.status === 'advanced'
-                              ? 'bg-win/10 text-win'
-                              : p.status === 'eliminated'
-                                ? 'bg-lose/10 text-lose'
-                                : p.status === 'waiting'
-                                  ? 'bg-muted/10 text-muted'
-                                  : 'bg-primary-500/10 text-primary-400'
+                          TEAM_STATUS_CLASSES[p.status]
                         }`}
                       >
                         <span className="opacity-70">{p.stageName}</span>
@@ -109,7 +102,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
             </tr>
           </thead>
           <tbody className="divide-border divide-y">
-            {sortedTeamsWithExtra.map((team, index) => {
+            {teams.map((team, index) => {
               return (
                 <tr
                   key={team.name}
@@ -156,15 +149,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
                             <span
                               key={idx}
                               className={`inline-flex items-center gap-1 rounded px-2 py-0.5 text-xs ${
-                                p.status === 'champion'
-                                  ? 'bg-primary-500/20 text-primary-400'
-                                  : p.status === 'advanced'
-                                    ? 'bg-win/10 text-win'
-                                    : p.status === 'eliminated'
-                                      ? 'bg-lose/10 text-lose'
-                                      : p.status === 'waiting'
-                                        ? 'bg-muted/10 text-muted'
-                                        : 'bg-primary-500/10 text-primary-400'
+                                TEAM_STATUS_CLASSES[p.status]
                               }`}
                             >
                               <span className="opacity-70">{p.stageName}</span>

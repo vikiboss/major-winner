@@ -155,10 +155,10 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
           })
         }
       } else {
-        // 在决赛名单中但还没有结果,说明等待决赛
+        // 在决赛名单中但还没有结果,说明等待八进四
         performance.push({
           stage: 'finals',
-          stageName: '决赛',
+          stageName: '八进四',
           result: '待赛',
           status: 'waiting',
         })

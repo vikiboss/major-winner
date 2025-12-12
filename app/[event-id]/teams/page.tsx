@@ -103,7 +103,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
         performance.push({
           stage: 'finals',
           stageName: '半决赛',
-          result: '已晋级决赛',
+          result: '晋级决赛',
           status: 'advanced',
         })
       } else if (finals.result['4-to-2'].losers.includes(shortName)) {
@@ -116,7 +116,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       } else if (finals.result['8-to-4'].losers.includes(shortName)) {
         performance.push({
           stage: 'finals',
-          stageName: '四分之一决赛',
+          stageName: '八进四',
           result: '八强',
           status: 'eliminated',
         })
@@ -124,8 +124,8 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
         // 已经晋级四强，等待半决赛
         performance.push({
           stage: 'finals',
-          stageName: '四分之一决赛',
-          result: '已晋级四强',
+          stageName: '八进四',
+          result: '晋级四强',
           status: 'advanced',
         })
       } else {
@@ -156,7 +156,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
     if (lastPerf.status === 'eliminated')
       return { text: `❌ 已淘汰 (${lastPerf.stageName})`, className: 'text-lose' }
-    if (lastPerf.status === 'advanced') return { text: '✅ 已晋级', className: 'text-win' }
+    if (lastPerf.status === 'advanced') return { text: '已晋级', className: 'text-win' }
 
     return { text: '赛程中', className: 'text-muted' }
   }
@@ -192,9 +192,9 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
       const finalsRank = {
         冠军: 1,
         亚军: 2,
-        已晋级决赛: 3,
+        晋级决赛: 3,
         四强: 4,
-        已晋级四强: 5,
+        晋级四强: 5,
         八强: 6,
         待赛: 999,
       }

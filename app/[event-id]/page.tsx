@@ -10,7 +10,7 @@ import {
   hasSwissInProgressResults,
   hasSwissPlayoffResults,
 } from '@/lib/data'
-import { STAGE_TYPE } from '@/lib/constants'
+import { PLAYOFFS_STAGES, STAGE_TYPE } from '@/lib/constants'
 import TeamLogo from '@/components/TeamLogo'
 import { calculatePredictorStats } from '@/lib/data'
 
@@ -574,7 +574,7 @@ function PredictorPredictions({
       // 计算错误数: 总预测数 - 正确数 - 仍有可能的数
       let totalPredictions = 0
       let correctCount = stageResult?.correctCount || 0
-      let incorrectCount = 0
+      let impossibleCount = 0
 
       if (stageType === STAGE_TYPE.SWISS) {
         const prediction = p[stageId as SwissStageType]
@@ -587,7 +587,7 @@ function PredictorPredictions({
               !isSwissPredictionPossible(team, '3-0', actualResult) &&
               !actualResult['3-0']?.includes(team)
             ) {
-              incorrectCount++
+              impossibleCount++
             }
           }
           for (const team of prediction['3-1-or-3-2']) {
@@ -596,7 +596,7 @@ function PredictorPredictions({
               !actualResult['3-1']?.includes(team) &&
               !actualResult['3-2']?.includes(team)
             ) {
-              incorrectCount++
+              impossibleCount++
             }
           }
           for (const team of prediction['0-3']) {
@@ -604,16 +604,20 @@ function PredictorPredictions({
               !isSwissPredictionPossible(team, '0-3', actualResult) &&
               !actualResult['0-3']?.includes(team)
             ) {
-              incorrectCount++
+              impossibleCount++
             }
           }
         }
+      } else {
+        impossibleCount = stageResult?.impossibleCount || 0
       }
 
       return {
         predictor: p,
+        stats,
+        stageResult,
         correctCount,
-        incorrectCount,
+        impossibleCount,
         totalPredictions,
         totalCorrect: stats?.totalCorrect || 0,
         totalPassed: stats?.totalPassed || 0,
@@ -625,7 +629,7 @@ function PredictorPredictions({
       // 正确数相同，按总通过阶段数降序
       // 总通过阶段数相同，按总正确数降序
       return (
-        a.incorrectCount - b.incorrectCount ||
+        a.impossibleCount - b.impossibleCount ||
         b.correctCount - a.correctCount ||
         b.totalPassed - a.totalPassed ||
         b.totalCorrect - a.totalCorrect
@@ -645,8 +649,7 @@ function PredictorPredictions({
 
   return (
     <>
-      {displayPredictors.map(({ predictor: p }) => {
-        const stats = calculatePredictorStats(event.id, p.id)
+      {displayPredictors.map(({ predictor: p, stats }) => {
         const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
         const prediction =
           stageType === STAGE_TYPE.PLAYOFFS ? p.playoffs : p[stageId as SwissStageType]
@@ -784,12 +787,16 @@ function PredictorPredictions({
                     {(prediction as { '8-to-4': string[]; '4-to-2': string[] })[round].map(
                       (team) => {
                         const roundResult = event.playoffs?.result[round]
-                        const hasResult =
-                          roundResult && 'winners' in roundResult && roundResult.winners.length > 0
+                        const hasResult = roundResult && roundResult.winners.length > 0
                         const isCorrect = hasResult && roundResult.winners.includes(team)
-                        const isWrong = hasResult && roundResult.losers.includes(team)
+
+                        const isWrong =
+                          (hasResult && roundResult.losers.includes(team)) ||
+                          (round === '4-to-2' &&
+                            event.playoffs?.result['8-to-4'].losers.includes(team)) // 八进四已淘汰
+
                         const status =
-                          stageStatus === 'waiting'
+                          stageStatus === 'waiting' && !isWrong
                             ? 'normal'
                             : isCorrect
                               ? 'win'

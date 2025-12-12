@@ -670,16 +670,30 @@ export function getEventProgress(event: MajorEvent): EventProgress {
       finalsStage.result['8-to-4'].losers,
       4,
     )
+
     const has4to2 = finalsStage.result['4-to-2'].winners.length > 0
+
     const is4to2Complete = isFinalsRoundComplete(
       finalsStage.result['4-to-2'].winners,
       finalsStage.result['4-to-2'].losers,
       2,
     )
 
-    if (!is8to4Complete) return EventStatusEnum.FINALS_8_TO_4
-    if (has4to2 && !is4to2Complete) return EventStatusEnum.FINALS_4_TO_2
-    return EventStatusEnum.FINALS_2_TO_1
+    const has2to1 = !!finalsStage.result['2-to-1'].winner
+
+    if (!is8to4Complete) {
+      return EventStatusEnum.FINALS_8_TO_4
+    }
+
+    if (!has4to2) {
+      return EventStatusEnum.FINALS_8_TO_4_COMPLETED
+    }
+
+    if (!is4to2Complete) {
+      return EventStatusEnum.FINALS_4_TO_2
+    }
+
+    return has2to1 ? EventStatusEnum.COMPLETED : EventStatusEnum.FINALS_2_TO_1
   }
 
   // 阶段 ID 到状态的映射
@@ -804,7 +818,9 @@ export function getEventStatusText(eventStatus: EventStatus): string {
     [EventStatusEnum.STAGE_3]: '第三阶段进行中',
     [EventStatusEnum.STAGE_3_COMPLETED]: '第三阶段已完成，八进四等待中',
     [EventStatusEnum.FINALS_8_TO_4]: '八进四进行中',
+    [EventStatusEnum.FINALS_8_TO_4_COMPLETED]: '八进四已完成，半决赛等待中',
     [EventStatusEnum.FINALS_4_TO_2]: '半决赛进行中',
+    [EventStatusEnum.FINALS_4_TO_2_COMPLETED]: '半决赛已完成，决赛等待中',
     [EventStatusEnum.FINALS_2_TO_1]: '决赛进行中',
     [EventStatusEnum.COMPLETED]: '赛事已完成',
   }

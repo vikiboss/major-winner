@@ -69,21 +69,28 @@ export default function Home() {
 
         const results = event.finals.result
 
-        const rounds: { id: FinalStageType; status: 'not_started' | 'waiting' | 'completed' }[] = [
+        const rounds: {
+          id: FinalStageType
+          status: 'not_started' | 'in_progress' | 'waiting' | 'completed'
+        }[] = [
           {
             id: '8-to-4',
             status: hasPredictions
               ? results['8-to-4'].winners.length > 0
-                ? 'completed'
+                ? results['8-to-4'].winners.length === 4
+                  ? 'completed'
+                  : 'in_progress'
                 : 'waiting'
               : 'not_started',
           },
           {
             id: '4-to-2',
             status:
-              hasPredictions && results['8-to-4'].winners.length > 0
+              hasPredictions && results['8-to-4'].winners.length === 4
                 ? results['4-to-2'].winners.length > 0
-                  ? 'completed'
+                  ? results['4-to-2'].winners.length === 2
+                    ? 'in_progress'
+                    : 'completed'
                   : 'waiting'
                 : 'not_started',
           },
@@ -91,8 +98,8 @@ export default function Home() {
             id: '2-to-1',
             status:
               hasPredictions &&
-              results['8-to-4'].winners.length > 0 &&
-              results['4-to-2'].winners.length > 0
+              results['8-to-4'].winners.length === 4 &&
+              results['4-to-2'].winners.length === 2
                 ? results['2-to-1'].winner
                   ? 'completed'
                   : 'waiting'
@@ -460,7 +467,27 @@ function StageSection({
                     <div className="space-y-4">
                       {/* 八进四 和 半决赛 */}
                       {(round === '8-to-4' || round === '4-to-2') && (
-                        <div>
+                        <div className="flex flex-col gap-2 sm:gap-4">
+                          <div className="flex-1">
+                            <p className="text-muted mb-1 font-medium">等待比赛</p>
+                            <div className="flex flex-wrap gap-1">
+                              {finalsData.teams
+                                .filter(
+                                  (e) =>
+                                    !finalsData.result[round].winners.includes(e) ||
+                                    !finalsData.result[round].losers.includes(e),
+                                )
+                                .map((t) => (
+                                  <span
+                                    key={t}
+                                    className="bg-surface-2 text-tertiary flex items-center gap-1 rounded px-2 py-0.5 text-xs font-medium"
+                                  >
+                                    <TeamLogo shortName={t} size="xs" />
+                                    {t}
+                                  </span>
+                                ))}
+                            </div>
+                          </div>
                           <div className="flex gap-4">
                             <div className="flex-1">
                               <p className="text-win mb-1 font-medium">晋级</p>

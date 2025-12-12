@@ -32,13 +32,18 @@ export function Header() {
               width={48}
               height={48}
             />
-            <div className="flex shrink-0 flex-col items-start sm:flex-row sm:items-center sm:gap-3">
+          </Link>
+          <div className="flex shrink-0 flex-col items-start sm:flex-row sm:items-center sm:gap-3">
+            <Link
+              href="/"
+              className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
+            >
               <span className="text-primary ml-1 text-xs font-semibold sm:ml-0 sm:text-lg">
                 Major Winner
               </span>
-              <EventSelector />
-            </div>
-          </Link>
+            </Link>
+            <EventSelector />
+          </div>
 
           {/* Navigation */}
           <nav className="flex flex-1 items-center justify-end gap-1" role="navigation">

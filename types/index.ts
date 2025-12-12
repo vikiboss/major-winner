@@ -156,7 +156,9 @@ export enum EventStatus {
   STAGE_3 = 'stage_3', // 第三阶段进行中
   STAGE_3_COMPLETED = 'stage_3_completed', // 第三阶段已完成
   FINALS_8_TO_4 = 'finals_8_to_4', // 八进四进行中
+  FINALS_8_TO_4_COMPLETED = 'finals_8_to_4_completed', // 八进四已完成
   FINALS_4_TO_2 = 'finals_4_to_2', // 半决赛进行中
+  FINALS_4_TO_2_COMPLETED = 'finals_4_to_2_completed', // 半决赛已完成
   FINALS_2_TO_1 = 'finals_2_to_1', // 决赛进行中
   COMPLETED = 'completed', // 赛事已完成
 }

@@ -265,7 +265,7 @@ function check4to2Pass(
   const requiredCount = 1
   const stageId = '4-to-2'
 
-  if (!prediction || !result.length) {
+  if (!prediction) {
     return {
       stageId,
       passed: null,

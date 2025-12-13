@@ -288,8 +288,8 @@
           "losers": ["Falcons", "MongolZ", "MOUZ", "FURIA"]
         },
         "4-to-2": {
-          "winners": [],
-          "losers": []
+          "winners": ["Vitality"],
+          "losers": ["Spirit"]
         },
         "2-to-1": {
           "winner": null,

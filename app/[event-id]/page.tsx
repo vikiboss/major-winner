@@ -440,26 +440,31 @@ function StageSection({
                     )
                   }
 
+                  const waitingTeams =
+                    round === '8-to-4' || round === '4-to-2'
+                      ? playoffsData.teams.filter(
+                          (e) =>
+                            !playoffsData.result[round].winners.includes(e) &&
+                            !playoffsData.result[round].losers.includes(e),
+                        )
+                      : []
+
                   // 有结果，显示结果内容
                   return (
                     <div className="space-y-4">
                       {/* 八进四 和 半决赛 */}
                       {(round === '8-to-4' || round === '4-to-2') && (
                         <div className="flex flex-col gap-2 sm:gap-4">
-                          <div className="flex-1">
-                            <p className="text-muted mb-1 font-medium">等待比赛</p>
-                            <div className="flex flex-wrap gap-1">
-                              {playoffsData.teams
-                                .filter(
-                                  (e) =>
-                                    !playoffsData.result[round].winners.includes(e) &&
-                                    !playoffsData.result[round].losers.includes(e),
-                                )
-                                .map((t) => (
+                          {waitingTeams.length > 0 && (
+                            <div className="flex-1">
+                              <p className="text-muted mb-1 font-medium">等待比赛</p>
+                              <div className="flex flex-wrap gap-1">
+                                {waitingTeams.map((t) => (
                                   <TeamLogo key={t} shortName={t} />
                                 ))}
+                              </div>
                             </div>
-                          </div>
+                          )}
                           <div className="flex gap-4">
                             <div className="flex-1">
                               <p className="text-win mb-1 font-medium">晋级</p>

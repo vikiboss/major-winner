@@ -83,8 +83,8 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
               hasPredictions && results['8-to-4'].winners.length === 4
                 ? results['4-to-2'].winners.length > 0
                   ? results['4-to-2'].winners.length === 2
-                    ? 'in_progress'
-                    : 'completed'
+                    ? 'completed'
+                    : 'in_progress'
                   : 'waiting'
                 : 'not_started',
           },
@@ -441,13 +441,19 @@ function StageSection({
                   }
 
                   const waitingTeams =
-                    round === '8-to-4' || round === '4-to-2'
+                    round === '8-to-4'
                       ? playoffsData.teams.filter(
                           (e) =>
                             !playoffsData.result[round].winners.includes(e) &&
                             !playoffsData.result[round].losers.includes(e),
                         )
-                      : []
+                      : round === '4-to-2'
+                        ? playoffsData.result['8-to-4'].winners.filter(
+                            (e) =>
+                              !playoffsData.result[round].winners.includes(e) &&
+                              !playoffsData.result[round].losers.includes(e),
+                          )
+                        : []
 
                   // 有结果，显示结果内容
                   return (

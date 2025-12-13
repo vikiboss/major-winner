@@ -135,10 +135,10 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
                     </div>
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className="text-muted text-sm">{STAGE_GROUP_NAME_MAP[team.stage]}</span>
+                    <span className="text-muted text-sm text-nowrap">{STAGE_GROUP_NAME_MAP[team.stage]}</span>
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className={`text-sm ${team.status.className}`}>{team.status.text}</span>
+                    <span className={`text-sm text-nowrap ${team.status.className}`}>{team.status.text}</span>
                   </td>
                   <td className="px-4 py-2.5">
                     {team.performance.length > 0 ? (

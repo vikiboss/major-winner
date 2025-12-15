@@ -56,93 +56,95 @@ export default async function PredictorsPage({
 
       {/* Mobile Card Layout */}
       <div className="space-y-3 md:hidden">
-        {stats.map((stat, index) => (
-          <div key={stat.name} className="bg-surface-1 border-border rounded-lg border p-4">
-            <div className="mb-3 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <span
-                  className={`w-12 text-center text-lg font-bold ${
-                    index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
-                  }`}
-                >
-                  #{index + 1}
-                </span>
-                <div className="flex flex-col">
-                  <span className="text-primary block font-medium">{stat.name}</span>
-                  {stat.platform && (
-                    <span className="text-primary-400 inline-flex items-center text-xs">
-                      @{stat.platform}
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="flex items-center gap-2 text-right">
-                <div className="text-primary">
-                  <span className="text-muted mr-1 text-xs">阶段</span>
-                  {stat.totalPassed}
-                  <span className="text-muted text-xs">/{stat.totalStages}</span>
-                </div>
-                <div className="text-primary">
-                  <span className="text-muted mr-1 text-xs">正确</span>
-                  {stat.totalCorrect}
-                  <span className="text-muted text-xs">/{stat.totalPredictions}</span>
-                </div>
-              </div>
-            </div>
-            <div className="border-border flex flex-wrap gap-2 border-t pt-3">
-              {allStages.map((stage) => {
-                const result = stat.stageResults.find((s) => s.stageId === stage.id)
-                const stageName =
-                  stage.id === 'stage-1'
-                    ? '第一阶段'
-                    : stage.id === 'stage-2'
-                      ? '第二阶段'
-                      : stage.id === 'stage-3'
-                        ? '第三阶段'
-                        : stage.id === '8-to-4'
-                          ? '八进四'
-                          : stage.id === '4-to-2'
-                            ? '半决赛'
-                            : '决赛'
-                return (
-                  <div
-                    key={stage.id}
-                    className="bg-surface-2 flex items-center gap-1.5 rounded px-2 py-1 text-xs"
+        {stats
+          .filter((e) => e.name !== '赛果')
+          .map((stat, index) => (
+            <div key={stat.name} className="bg-surface-1 border-border rounded-lg border p-4">
+              <div className="mb-3 flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <span
+                    className={`w-12 text-center text-lg font-bold ${
+                      index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
+                    }`}
                   >
-                    <span className="text-muted">{stageName}</span>
-                    {stage.hasResults ? (
-                      stage.isResultsComplete ? (
-                        result ? (
-                          <span className={result.passed ? 'text-win' : 'text-lose'}>
-                            {result.passed ? '✅' : '❌'}
+                    #{index + 1}
+                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-primary block font-medium">{stat.name}</span>
+                    {stat.platform && (
+                      <span className="text-primary-400 inline-flex items-center text-xs">
+                        @{stat.platform}
+                      </span>
+                    )}
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-right">
+                  <div className="text-primary">
+                    <span className="text-muted mr-1 text-xs">阶段</span>
+                    {stat.totalPassed}
+                    <span className="text-muted text-xs">/{stat.totalStages}</span>
+                  </div>
+                  <div className="text-primary">
+                    <span className="text-muted mr-1 text-xs">正确</span>
+                    {stat.totalCorrect}
+                    <span className="text-muted text-xs">/{stat.totalPredictions}</span>
+                  </div>
+                </div>
+              </div>
+              <div className="border-border flex flex-wrap gap-2 border-t pt-3">
+                {allStages.map((stage) => {
+                  const result = stat.stageResults.find((s) => s.stageId === stage.id)
+                  const stageName =
+                    stage.id === 'stage-1'
+                      ? '第一阶段'
+                      : stage.id === 'stage-2'
+                        ? '第二阶段'
+                        : stage.id === 'stage-3'
+                          ? '第三阶段'
+                          : stage.id === '8-to-4'
+                            ? '八进四'
+                            : stage.id === '4-to-2'
+                              ? '半决赛'
+                              : '决赛'
+                  return (
+                    <div
+                      key={stage.id}
+                      className="bg-surface-2 flex items-center gap-1.5 rounded px-2 py-1 text-xs"
+                    >
+                      <span className="text-muted">{stageName}</span>
+                      {stage.hasResults ? (
+                        stage.isResultsComplete ? (
+                          result ? (
+                            <span className={result.passed ? 'text-win' : 'text-lose'}>
+                              {result.passed ? '✅' : '❌'}
+                            </span>
+                          ) : (
+                            <span className="text-muted">-</span>
+                          )
+                        ) : result ? (
+                          <span className="text-muted">
+                            {result.passed === true ? (
+                              '✅'
+                            ) : result.passed === false ? (
+                              `❌`
+                            ) : (
+                              <span className="text-xs">
+                                祈祷中 {result.correctCount}/{result.requiredCount}
+                              </span>
+                            )}
                           </span>
                         ) : (
                           <span className="text-muted">-</span>
                         )
-                      ) : result ? (
-                        <span className="text-muted">
-                          {result.passed === true ? (
-                            '✅'
-                          ) : result.passed === false ? (
-                            `❌`
-                          ) : (
-                            <span className="text-xs">
-                              祈祷中 {result.correctCount}/{result.requiredCount}
-                            </span>
-                          )}
-                        </span>
                       ) : (
-                        <span className="text-muted">-</span>
-                      )
-                    ) : (
-                      <span className="text-muted/50">等待中</span>
-                    )}
-                  </div>
-                )
-              })}
+                        <span className="text-muted/50">等待中</span>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
 
       {/* Desktop Table Layout */}
@@ -154,12 +156,12 @@ export default async function PredictorsPage({
               <th className="px-4 py-3 text-nowrap">竞猜者</th>
               <th className="px-4 py-3 text-center text-nowrap">猜对个数</th>
               <th className="px-4 py-3 text-center text-nowrap">任务通过</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap md:table-cell">第一阶段</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap md:table-cell">第二阶段</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap md:table-cell">第三阶段</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap lg:table-cell">八进四</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap lg:table-cell">半决赛</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap lg:table-cell">决赛</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">第一阶段</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">第二阶段</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">第三阶段</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">八进四</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">半决赛</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">决赛</th>
             </tr>
           </thead>
           <tbody className="divide-border divide-y">
@@ -200,8 +202,8 @@ export default async function PredictorsPage({
                     // 瑞士轮在 md 显示,决胜阶段在 lg 显示
                     const hideClass =
                       stage.id === 'stage-1' || stage.id === 'stage-2' || stage.id === 'stage-3'
-                        ? 'hidden md:table-cell'
-                        : 'hidden lg:table-cell'
+                        ? 'hidden sm:table-cell'
+                        : 'hidden sm:table-cell'
                     return (
                       <td key={stage.id} className={`px-4 py-3 text-center ${hideClass}`}>
                         {stage.hasResults ? (

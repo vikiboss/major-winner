@@ -808,7 +808,9 @@ function PlayoffsTable({
                   <div className="flex flex-wrap gap-1">
                     {prediction['4-to-2']?.map((team) => {
                       const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
-                      const isMisMatch = playoffsResult?.['4-to-2'].losers.includes(team)
+                      const isMisMatch =
+                        playoffsResult?.['4-to-2'].losers.includes(team) ||
+                        playoffsResult?.['8-to-4'].losers.includes(team)
 
                       return (
                         <TeamLogo

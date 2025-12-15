@@ -292,8 +292,8 @@
           "losers": ["Spirit", "NAVI"]
         },
         "2-to-1": {
-          "winner": null,
-          "loser": null
+          "winner": "Vitality",
+          "loser": "FaZe"
         }
       }
     }

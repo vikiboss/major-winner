@@ -585,7 +585,7 @@ function PlayoffsTable({
                     <div className="flex flex-wrap gap-1">
                       {prediction['8-to-4'].map((team) => {
                         const isMatch = playoffsResult['8-to-4'].winners.includes(team)
-                        const isMisMatch = playoffsResult['8-to-4'].losers.includes(team)
+                        const isMismatch = playoffsResult['8-to-4'].losers.includes(team)
 
                         return (
                           <TeamLogo
@@ -593,7 +593,7 @@ function PlayoffsTable({
                             shortName={team}
                             size="xl"
                             key={team}
-                            status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
+                            status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                           />
                         )
                       }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -605,7 +605,7 @@ function PlayoffsTable({
                     <div className="flex flex-wrap gap-1">
                       {prediction['4-to-2']?.map((team) => {
                         const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
-                        const isMisMatch =
+                        const isMismatch =
                           playoffsResult?.['4-to-2'].losers.includes(team) ||
                           playoffsResult?.['8-to-4'].losers.includes(team)
 
@@ -615,7 +615,7 @@ function PlayoffsTable({
                             shortName={team}
                             size="xl"
                             key={team}
-                            status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
+                            status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                           />
                         )
                       }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -776,7 +776,7 @@ function PlayoffsTable({
                   <div className="flex flex-wrap gap-1">
                     {prediction['8-to-4']?.map((team) => {
                       const isMatch = playoffsResult['8-to-4'].winners.includes(team)
-                      const isMisMatch = playoffsResult['8-to-4'].losers.includes(team)
+                      const isMismatch = playoffsResult['8-to-4'].losers.includes(team)
 
                       return (
                         <TeamLogo
@@ -784,7 +784,7 @@ function PlayoffsTable({
                           shortName={team}
                           size="xl"
                           key={team}
-                          status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
+                          status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                         />
                       )
                     }) || <span className="text-tertiary text-xs">未竞猜</span>}
@@ -808,7 +808,7 @@ function PlayoffsTable({
                   <div className="flex flex-wrap gap-1">
                     {prediction['4-to-2']?.map((team) => {
                       const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
-                      const isMisMatch =
+                      const isMismatch =
                         playoffsResult?.['4-to-2'].losers.includes(team) ||
                         playoffsResult?.['8-to-4'].losers.includes(team)
 
@@ -818,7 +818,7 @@ function PlayoffsTable({
                           shortName={team}
                           size="xl"
                           key={team}
-                          status={isMatch ? 'win' : isMisMatch ? 'lose' : 'normal'}
+                          status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                         />
                       )
                     }) || <span className="text-tertiary text-xs">未竞猜</span>}

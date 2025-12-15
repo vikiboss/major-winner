@@ -21,6 +21,11 @@
           "3-0": ["FURIA", "Spirit"],
           "3-1-or-3-2": ["Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
           "0-3": ["PV", "Liquid"]
+        },
+        "playoffs": {
+          "8-to-4": ["Spirit", "Vitality", "NAVI", "FaZe"],
+          "4-to-2": ["Vitality", "FaZe"],
+          "2-to-1": "Vitality"
         }
       },
       {

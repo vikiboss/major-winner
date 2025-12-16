@@ -1,3 +1,5 @@
+![Major Winner Stats](https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fmajor.viki.moe%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto)
+
 # 🏆 Major Winner
 
 Counter Strike 2 布达佩斯 Major 竞猜结果展示与排行榜。关于这个项目的最初想法可参考 [这篇博客文章](https://blog.viki.moe/major-winner)。

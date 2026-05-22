@@ -1,5 +1,318 @@
 [
   {
+    "id": "2026-cologne",
+    "name": "IEM 科隆 Major 2026",
+    "teams": [
+       {
+        "name": "Team Vitality",
+        "shortName": "Vitality",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/9565/vitality"
+      },
+      {
+        "name": "Natus Vincere",
+        "shortName": "NAVI",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/4608/natus-vincere"
+      },
+      {
+        "name": "Team Falcons",
+        "shortName": "Falcons",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/11283/falcons"
+      },
+      {
+        "name": "FURIA",
+        "shortName": "FURIA",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/8297/furia"
+      },
+      {
+        "name": "Aurora Gaming",
+        "shortName": "Aurora",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/11861/aurora"
+      },
+      {
+        "name": "PARIVISION",
+        "shortName": "PV",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/12467/parivision"
+      },
+      {
+        "name": "The MongolZ",
+        "shortName": "MongolZ",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/6248/the-mongolz"
+      },
+      {
+        "name": "MOUZ",
+        "shortName": "MOUZ",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/4494/mouz"
+      },
+
+      {
+        "name": "Team Spirit",
+        "shortName": "Spirit",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/7020/spirit"
+      },
+      {
+        "name": "G2 Esports",
+        "shortName": "G2",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/5995/g2"
+      },
+      {
+        "name": "paiN Gaming",
+        "shortName": "paiN",
+        "stage": "stage-3",
+        "link": "https://www.hltv.org/team/4773/pain"
+      },
+      {
+        "name": "Team Liquid",
+        "shortName": "Liquid",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/5973/liquid"
+      },
+      {
+        "name": "3DMAX",
+        "shortName": "3DMAX",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/4914/3dmax"
+      },
+      {
+        "name": "Astralis",
+        "shortName": "Astralis",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/6665/astralis"
+      },
+      {
+        "name": "TYLOO",
+        "shortName": "TYLOO",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/4863/tyloo"
+      },
+      {
+        "name": "MIBR",
+        "shortName": "MIBR",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/9215/mibr"
+      },
+      {
+        "name": "Passion UA",
+        "shortName": "PUA",
+        "stage": "stage-2",
+        "link": "https://www.hltv.org/team/12426/passion-ua"
+      },
+      {
+        "name": "Legacy",
+        "shortName": "Legacy",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/12468/legacy"
+      },
+      {
+        "name": "FlyQuest",
+        "shortName": "FlyQuest",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/12774/flyquest"
+      },
+      {
+        "name": "FaZe Clan",
+        "shortName": "FaZe",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/6667/faze"
+      },
+      {
+        "name": "Lynn Vision Gaming",
+        "shortName": "LVG",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/8840/lynn-vision"
+      },
+      {
+        "name": "B8",
+        "shortName": "B8",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/11241/b8"
+      },
+      {
+        "name": "M80",
+        "shortName": "M80",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/12376/m80"
+      },
+      {
+        "name": "GamerLegion",
+        "shortName": "GL",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/9928/gamerlegion"
+      },
+      {
+        "name": "Fluxo",
+        "shortName": "Fluxo",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/11837/fluxo"
+      },
+      {
+        "name": "Fnatic",
+        "shortName": "Fnatic",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/4991/fnatic"
+      },
+      {
+        "name": "RED Canids",
+        "shortName": "RED",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/7176/red-canids"
+      },
+      {
+        "name": "The Huns Esports",
+        "shortName": "Huns",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/12510/the-huns"
+      },
+      {
+        "name": "Ninjas in Pyjamas",
+        "shortName": "NIP",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/4411/ninjas-in-pyjamas"
+      },
+      {
+        "name": "NRG",
+        "shortName": "NRG",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/6673/nrg"
+      },
+      {
+        "name": "Imperial Esports",
+        "shortName": "Imperial",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/9455/imperial"
+      },
+      {
+        "name": "Rare Atom",
+        "shortName": "RA",
+        "stage": "stage-1",
+        "link": "https://www.hltv.org/team/11514/rare-atom"
+      }
+    ],
+    "stage-1": {
+      "name": "第一阶段",
+      "teams": [
+        "GL",
+        "B8",
+        "BB",
+        "HEROIC",
+        "M80",
+        "Liquid",
+        "SINNERS",
+        "MIBR",
+        "TYLOO",
+        "BIG",
+        "NRG",
+        "LVG",
+        "GG",
+        "Sharks",
+        "FlyQuest",
+        "TD"
+      ],
+      "result": {
+        "1-0": [],
+        "0-1": [],
+        "1-1": [],
+        "2-0": [],
+        "0-2": [],
+        "2-1": [],
+        "1-2": [],
+        "2-2": [],
+        "3-0": [],
+        "3-1": [],
+        "3-2": [],
+        "2-3": [],
+        "1-3": [],
+        "0-3": []
+      }
+    },
+    "stage-2": {
+      "name": "第二阶段",
+      "teams": [
+        "Spirit",
+        "Astralis",
+        "G2",
+        "FUT",
+        "Legacy",
+        "9z",
+        "paiN",
+        "Monte"
+      ],
+      "teamsFromAdvanced": [],
+      "result": {
+        "1-0": [],
+        "0-1": [],
+        "1-1": [],
+        "2-0": [],
+        "0-2": [],
+        "2-1": [],
+        "1-2": [],
+        "2-2": [],
+        "3-0": [],
+        "3-1": [],
+        "3-2": [],
+        "2-3": [],
+        "1-3": [],
+        "0-3": []
+      }
+    },
+    "stage-3": {
+      "name": "第三阶段",
+      "teams": [
+        "Vitality",
+        "NAVI",
+        "Falcons",
+        "FURIA",
+        "Aurora",
+        "PV",
+        "MongolZ",
+        "MOUZ"
+      ],
+      "teamsFromAdvanced": [],
+      "result": {
+        "1-0": [],
+        "0-1": [],
+        "1-1": [],
+        "2-0": [],
+        "0-2": [],
+        "2-1": [],
+        "1-2": [],
+        "2-2": [],
+        "3-0": [],
+        "3-1": [],
+        "3-2": [],
+        "2-3": [],
+        "1-3": [],
+        "0-3": []
+      }
+    },
+    "playoffs": {
+      "teams": [],
+      "result": {
+        "8-to-4": {
+          "winners": [],
+          "losers": []
+        },
+        "4-to-2": {
+          "winners": [],
+          "losers": []
+        },
+        "2-to-1": {
+          "winner": null,
+          "loser": null
+        }
+      }
+    }
+  },
+  {
     "id": "2025-budapest",
     "name": "SL 布达佩斯 Major 2025",
     "teams": [
@@ -51,7 +364,6 @@
         "stage": "stage-3",
         "link": "https://www.hltv.org/team/4773/pain"
       },
-
       {
         "name": "Aurora Gaming",
         "shortName": "Aurora",
@@ -100,7 +412,6 @@
         "stage": "stage-2",
         "link": "https://www.hltv.org/team/12426/passion-ua"
       },
-
       {
         "name": "Legacy",
         "shortName": "Legacy",
@@ -227,19 +538,58 @@
         "2-1": [],
         "1-2": [],
         "2-2": [],
-
-        "3-0": ["M80", "FlyQuest"],
-        "3-1": ["B8", "Fnatic", "NIP"],
-        "3-2": ["PV", "Imperial", "FaZe"],
-        "2-3": ["NRG", "Fluxo", "Legacy"],
-        "1-3": ["Huns", "RED", "GL"],
-        "0-3": ["LVG", "RA"]
+        "3-0": [
+          "M80",
+          "FlyQuest"
+        ],
+        "3-1": [
+          "B8",
+          "Fnatic",
+          "NIP"
+        ],
+        "3-2": [
+          "PV",
+          "Imperial",
+          "FaZe"
+        ],
+        "2-3": [
+          "NRG",
+          "Fluxo",
+          "Legacy"
+        ],
+        "1-3": [
+          "Huns",
+          "RED",
+          "GL"
+        ],
+        "0-3": [
+          "LVG",
+          "RA"
+        ]
       }
     },
     "stage-2": {
       "name": "第二阶段",
-      "teams": ["Aurora", "NAVI", "Liquid", "3DMAX", "Astralis", "TYLOO", "MIBR", "PUA"],
-      "teamsFromAdvanced": ["M80", "FlyQuest", "B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
+      "teams": [
+        "Aurora",
+        "NAVI",
+        "Liquid",
+        "3DMAX",
+        "Astralis",
+        "TYLOO",
+        "MIBR",
+        "PUA"
+      ],
+      "teamsFromAdvanced": [
+        "M80",
+        "FlyQuest",
+        "B8",
+        "Fnatic",
+        "NIP",
+        "PV",
+        "Imperial",
+        "FaZe"
+      ],
       "result": {
         "1-0": [],
         "0-1": [],
@@ -249,19 +599,58 @@
         "2-1": [],
         "1-2": [],
         "2-2": [],
-
-        "3-0": ["NAVI", "FaZe"],
-        "3-1": ["B8", "Imperial", "PV"],
-        "3-2": ["Liquid", "PUA", "3DMAX"],
-        "2-3": ["NIP", "M80", "Astralis"],
-        "1-3": ["Aurora", "Fnatic", "TYLOO"],
-        "0-3": ["MIBR", "FlyQuest"]
+        "3-0": [
+          "NAVI",
+          "FaZe"
+        ],
+        "3-1": [
+          "B8",
+          "Imperial",
+          "PV"
+        ],
+        "3-2": [
+          "Liquid",
+          "PUA",
+          "3DMAX"
+        ],
+        "2-3": [
+          "NIP",
+          "M80",
+          "Astralis"
+        ],
+        "1-3": [
+          "Aurora",
+          "Fnatic",
+          "TYLOO"
+        ],
+        "0-3": [
+          "MIBR",
+          "FlyQuest"
+        ]
       }
     },
     "stage-3": {
       "name": "第三阶段",
-      "teams": ["FURIA", "Vitality", "Falcons", "MongolZ", "MOUZ", "Spirit", "G2", "paiN"],
-      "teamsFromAdvanced": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
+      "teams": [
+        "FURIA",
+        "Vitality",
+        "Falcons",
+        "MongolZ",
+        "MOUZ",
+        "Spirit",
+        "G2",
+        "paiN"
+      ],
+      "teamsFromAdvanced": [
+        "NAVI",
+        "FaZe",
+        "B8",
+        "Imperial",
+        "PV",
+        "Liquid",
+        "PUA",
+        "3DMAX"
+      ],
       "result": {
         "1-0": [],
         "0-1": [],
@@ -271,25 +660,71 @@
         "2-1": [],
         "1-2": [],
         "2-2": [],
-
-        "3-0": ["FURIA", "Spirit"],
-        "3-1": ["Vitality", "MongolZ", "MOUZ"],
-        "3-2": ["NAVI", "FaZe", "Falcons"],
-        "2-3": ["B8", "PUA", "G2"],
-        "1-3": ["Imperial", "paiN", "3DMAX"],
-        "0-3": ["PV", "Liquid"]
+        "3-0": [
+          "FURIA",
+          "Spirit"
+        ],
+        "3-1": [
+          "Vitality",
+          "MongolZ",
+          "MOUZ"
+        ],
+        "3-2": [
+          "NAVI",
+          "FaZe",
+          "Falcons"
+        ],
+        "2-3": [
+          "B8",
+          "PUA",
+          "G2"
+        ],
+        "1-3": [
+          "Imperial",
+          "paiN",
+          "3DMAX"
+        ],
+        "0-3": [
+          "PV",
+          "Liquid"
+        ]
       }
     },
     "playoffs": {
-      "teams": ["FURIA", "Spirit", "Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
+      "teams": [
+        "FURIA",
+        "Spirit",
+        "Vitality",
+        "MongolZ",
+        "MOUZ",
+        "NAVI",
+        "FaZe",
+        "Falcons"
+      ],
       "result": {
         "8-to-4": {
-          "winners": ["Spirit", "Vitality", "FaZe", "NAVI"],
-          "losers": ["Falcons", "MongolZ", "MOUZ", "FURIA"]
+          "winners": [
+            "Spirit",
+            "Vitality",
+            "FaZe",
+            "NAVI"
+          ],
+          "losers": [
+            "Falcons",
+            "MongolZ",
+            "MOUZ",
+            "FURIA"
+          ]
         },
         "4-to-2": {
-          "winners": ["Vitality", "FaZe"],
-          "losers": ["Spirit", "NAVI"]
+          "winners": [
+            "Vitality",
+            "FaZe"
+          ],
+          "losers": [
+            "Spirit",
+            "NAVI"
+          ]
         },
         "2-to-1": {
           "winner": "Vitality",

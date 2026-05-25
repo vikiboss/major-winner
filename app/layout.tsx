@@ -15,7 +15,7 @@ const ogUrl =
 export const metadata: Metadata = {
   metadataBase: new URL('https://major.viki.moe'),
   title: {
-    default: 'Major Winner - CS2 Major 竞猜结果展示',
+    default: 'Major Winner - CS2 Major 竞猜参考 & 排行',
     template: '%s | Major Winner',
   },
   description:
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'zh_CN',
     url: ogUrl,
-    title: 'Major Winner - CS2 Major 竞猜结果展示',
+    title: 'Major Winner - CS2 Major 竞猜参考 & 排行',
     description: '查看 Counter Strike 2 Major 赛事竞猜结果、竞猜准确率排行榜',
     siteName: 'Major Winner',
     images: [
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Major Winner - CS2 Major 竞猜结果展示',
+    title: 'Major Winner - CS2 Major 竞猜参考 & 排行',
     description: '查看 Counter Strike 2 Major 赛事竞猜结果、竞猜准确率排行榜',
     images: [ogUrl],
     creator: '@Viki',
@@ -97,8 +97,14 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="zh-CN" suppressHydrationWarning>
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon='{"token": "f28dcc707af64d76bfaba5c33cf7fbdd"}'
+        ></script>
         <Analytics />
         <GoogleAnalytics gaId="G-NRG0R1D14W" />
+
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>

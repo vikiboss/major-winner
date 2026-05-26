@@ -57,7 +57,11 @@ export default function TeamLogo(props: TeamLogoProps) {
       height={pixelSize}
       title={shortName}
       className={`inline-block ${hideLabel ? iconStatusClass : ''} ${className}`}
-      style={{ width: pixelSize, height: pixelSize }}
+      style={{
+        width: pixelSize,
+        height: pixelSize,
+        // filter: 'url(#png-stroke)',
+      }}
     />
   )
 

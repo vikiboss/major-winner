@@ -1,5 +1,6 @@
-import eventsData from '@/data/events.json'
-import predictionsData from '@/data/predictions.json'
+import eventsData from '@/data/events.json' with { type: 'json' }
+import budapest2025 from '@/data/predictions/2025-budapest.json' with { type: 'json' }
+import cologne20236 from '@/data/predictions/2026-cologne.json' with { type: 'json' }
 import { EventStatus } from '../types'
 
 import type {
@@ -27,7 +28,7 @@ import {
 } from './constants'
 
 export const events = eventsData as MajorEvent[]
-export const predictions = predictionsData as EventPredictions[]
+export const predictions = [budapest2025, cologne20236] as EventPredictions[]
 export const firstEvent = events.at(0) as MajorEvent
 
 export const evt = {

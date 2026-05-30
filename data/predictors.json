@@ -7,41 +7,6 @@
     "link": "https://www.counter-strike.net"
   },
   {
-    "id": "viki",
-    "name": "Viki（网站作者）",
-    "platform": "GitHub",
-    "avatar": "https://blog.viki.moe/avatar.png",
-    "link": "https://github.com/vikiboss"
-  },
-  {
-    "id": "yjs",
-    "name": "原劫色（制图作者）",
-    "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/472947493.jpg",
-    "link": "https://space.bilibili.com/472947493"
-  },
-  {
-    "id": "qiqi",
-    "name": "三米七七（制图作者）",
-    "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/1428295.jpg",
-    "link": "https://space.bilibili.com/1428295"
-  },
-  {
-    "id": "14k",
-    "name": "14K（网站贡献者）",
-    "platform": "GitHub",
-    "avatar": "https://avatars.githubusercontent.com/u/34759162?v=4",
-    "link": "https://github.com/14kay"
-  },
-  {
-    "id": "logic",
-    "name": "罗辑",
-    "platform": "群友",
-    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
-    "link": "https://blog.shiro.team"
-  },
-  {
     "id": "cs-advent",
     "name": "CS-advent/259/老九",
     "platform": "哔哩哔哩",
@@ -54,6 +19,27 @@
     "platform": "斗鱼",
     "avatar": "https://apic.douyucdn.cn/upload/avatar_v3/201905/badbf01f7ab943358bf78bcd9245305f_big.jpg",
     "link": "https://www.douyu.com/6657"
+  },
+  {
+    "id": "danking",
+    "name": "DANKING/蛋神",
+    "platform": "虎牙",
+    "avatar": "https://huyaimg.msstatic.com/avatar/1009/21/d479da7839241ade1e136d7324df4f_180_135.jpg",
+    "link": "https://www.huya.com/dank1ng"
+  },
+  {
+    "id": "bhsydjb",
+    "name": "不会沙鹰的珏宝、",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/230240655.jpg",
+    "link": "https://space.bilibili.com/230240655"
+  },
+  {
+    "id": "sunxiaochuan",
+    "name": "川臊258/孙笑川",
+    "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/3e8e1419-ab3e-4975-8352-8b123f33a8ff-profile_image-70x70.jpg",
+    "link": "https://www.twitch.tv/chuansao258"
   },
   {
     "id": "csboy-maxixi",
@@ -70,13 +56,6 @@
     "link": "https://www.huya.com/captainmo"
   },
   {
-    "id": "bhsydjb",
-    "name": "不会沙鹰的珏宝、",
-    "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/230240655.jpg",
-    "link": "https://space.bilibili.com/230240655"
-  },
-  {
     "id": "biliwang",
     "name": "比利王",
     "platform": "哔哩哔哩",
@@ -84,25 +63,11 @@
     "link": "https://space.bilibili.com/1263468216"
   },
   {
-    "id": "sunxiaochuan",
-    "name": "川臊258/孙笑川",
-    "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/3e8e1419-ab3e-4975-8352-8b123f33a8ff-profile_image-70x70.jpg",
-    "link": "https://www.twitch.tv/chuansao258"
-  },
-  {
     "id": "xvduoyu",
     "name": "许多鱼 x",
     "platform": "哔哩哔哩",
     "avatar": "https://ba.nioi.in/30491919.jpg",
     "link": "https://space.bilibili.com/30491919"
-  },
-  {
-    "id": "danking",
-    "name": "DANKING/蛋神",
-    "platform": "虎牙",
-    "avatar": "https://huyaimg.msstatic.com/avatar/1009/21/d479da7839241ade1e136d7324df4f_180_135.jpg",
-    "link": "https://www.huya.com/dank1ng"
   },
   {
     "id": "ququ",
@@ -866,5 +831,40 @@
     "platform": "解说员",
     "avatar": "https://liquipedia.net/commons/images/thumb/4/4b/Scrawny_at_PGL_Cluj-Napoca_2025.jpg/675px-Scrawny_at_PGL_Cluj-Napoca_2025.jpg",
     "link": "https://liquipedia.net/counterstrike/Scrawny"
+  },
+  {
+    "id": "viki",
+    "name": "Viki（网站作者）",
+    "platform": "GitHub",
+    "avatar": "https://blog.viki.moe/avatar.png",
+    "link": "https://github.com/vikiboss"
+  },
+  {
+    "id": "yjs",
+    "name": "原劫色（制图作者）",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/472947493.jpg",
+    "link": "https://space.bilibili.com/472947493"
+  },
+  {
+    "id": "qiqi",
+    "name": "三米七七（制图作者）",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/1428295.jpg",
+    "link": "https://space.bilibili.com/1428295"
+  },
+  {
+    "id": "14k",
+    "name": "14K（网站贡献者）",
+    "platform": "GitHub",
+    "avatar": "https://avatars.githubusercontent.com/u/34759162?v=4",
+    "link": "https://github.com/14kay"
+  },
+  {
+    "id": "logic",
+    "name": "罗辑",
+    "platform": "群友",
+    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
+    "link": "https://blog.shiro.team"
   }
 ]

@@ -1,0 +1,792 @@
+[
+  {
+    "id": "result",
+    "name": "赛果",
+    "platform": "CS2官方",
+    "avatar": "https://www.counter-strike.net/favicon.ico",
+    "link": "https://www.counter-strike.net"
+  },
+  {
+    "id": "viki",
+    "name": "Viki（网站作者）",
+    "platform": "GitHub",
+    "avatar": "https://blog.viki.moe/avatar.png",
+    "link": "https://github.com/vikiboss"
+  },
+  {
+    "id": "yjs",
+    "name": "原劫色（制图作者）",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/472947493.jpg",
+    "link": "https://space.bilibili.com/472947493"
+  },
+  {
+    "id": "qiqi",
+    "name": "三米七七（制图作者）",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/1428295.jpg",
+    "link": "https://space.bilibili.com/1428295"
+  },
+  {
+    "id": "14k",
+    "name": "14K（网站贡献者）",
+    "platform": "GitHub",
+    "avatar": "https://avatars.githubusercontent.com/u/34759162?v=4",
+    "link": "https://github.com/14kay"
+  },
+  {
+    "id": "logic",
+    "name": "罗辑",
+    "platform": "群友",
+    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
+    "link": "https://blog.shiro.team"
+  },
+  {
+    "id": "cs-advent",
+    "name": "CS-advent",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/3546687211572101.jpg",
+    "link": "https://space.bilibili.com/3546687211572101"
+  },
+  {
+    "id": "wanjiqi",
+    "name": "玩机器丶Machine",
+    "platform": "斗鱼",
+    "avatar": "https://apic.douyucdn.cn/upload/avatar_v3/201905/badbf01f7ab943358bf78bcd9245305f_big.jpg",
+    "link": "https://www.douyu.com/6657"
+  },
+  {
+    "id": "csboy-maxixi",
+    "name": "CSBOY-马西西",
+    "platform": "虎牙",
+    "avatar": "https://huyaimg.msstatic.com/avatar/1007/05/307e35b419b9d8b6e76d385e6c52dd_180_135.jpg",
+    "link": "https://www.huya.com/19307729"
+  },
+  {
+    "id": "csboy-mo",
+    "name": "CSBOY-MO",
+    "platform": "虎牙",
+    "avatar": "https://huyaimg.msstatic.com/avatar/1074/8b/35c96e4faf41942a783f9ffb0b89b4_180_135.jpg",
+    "link": "https://www.huya.com/captainmo"
+  },
+  {
+    "id": "bhsydjb",
+    "name": "不会沙鹰的珏宝、",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/230240655.jpg",
+    "link": "https://space.bilibili.com/230240655"
+  },
+  {
+    "id": "biliwang",
+    "name": "比利王",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/1263468216.jpg",
+    "link": "https://space.bilibili.com/1263468216"
+  },
+  {
+    "id": "sunxiaochuan",
+    "name": "川臊258/孙笑川258",
+    "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/1c8e9b4c-5a0d-4f1b-9a3e-7c8d2b1c8e5c-profile_image-300x300.png",
+    "link": "https://www.twitch.tv/chuansao258"
+  },
+  {
+    "id": "xvduoyu",
+    "name": "许多鱼 x",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/30491919.jpg",
+    "link": "https://space.bilibili.com/30491919"
+  },
+  {
+    "id": "danking",
+    "name": "DANKING",
+    "platform": "虎牙",
+    "avatar": "https://huyaimg.msstatic.com/avatar/1009/21/d479da7839241ade1e136d7324df4f_180_135.jpg",
+    "link": "https://www.huya.com/dank1ng"
+  },
+  {
+    "id": "ququ",
+    "name": "QUQU 太不常规",
+    "platform": "斗鱼",
+    "link": "https://www.douyu.com/ququ"
+  },
+  {
+    "id": "deyunlianggui",
+    "name": "CS2-德云两鬼",
+    "platform": "虎牙",
+    "avatar": "https://apic.douyucdn.cn/upload/avatar_v3/202311/92f2a1e9602e4005a73012397adff54b_big.jpg",
+    "link": "https://www.huya.com/298416"
+  },
+  {
+    "id": "xhcmdjzk",
+    "name": "喜欢草莓的橘子可",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/22871593.jpg",
+    "link": "https://space.bilibili.com/22871593"
+  },
+  {
+    "id": "fallen",
+    "name": "FalleN",
+    "platform": "FURIA 指挥",
+    "avatar": "https://cdn.wmpvp.com/appengine/DCE71FE0914642C6A15701949A593120-1780084432974.png",
+    "link": "https://www.hltv.org/player/2023/fallen"
+  },
+  {
+    "id": "overdrive",
+    "name": "OverDrive",
+    "platform": "Spirit 星探",
+    "avatar": "https://tse1.mm.bing.net/th/id/OIP.sMM3No61mISma9x9p4xQdwHaE7",
+    "link": "https://liquipedia.net/counterstrike/OverDrive"
+  },
+  {
+    "id": "laiangkai",
+    "name": "莱昂凯 shyeark",
+    "platform": "虎牙",
+    "avatar": "https://huyaimg.msstatic.com/avatar/1080/a1/9097407568b4976a0912171108c922_180_135.jpg",
+    "link": "https://www.huya.com/shyeark"
+  },
+  {
+    "id": "dongguaqiang",
+    "name": "椰汁糕冬瓜强",
+    "platform": "斗鱼",
+    "link": "https://www.douyu.com/63136"
+  },
+  {
+    "id": "k4mi",
+    "name": "k4Mi",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/97480905"
+  },
+  {
+    "id": "xiaotian",
+    "name": "小天 FreeZing",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/1979685"
+  },
+  {
+    "id": "laojiao",
+    "name": "老蕉 Banous",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/10999014"
+  },
+  {
+    "id": "ban-ga",
+    "name": "CS2-BanGa",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/8498990"
+  },
+  {
+    "id": "boshiyk",
+    "name": "BOSHIYK",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/65822877"
+  },
+  {
+    "id": "xieshaonian",
+    "name": "邪少年、",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/69185991"
+  },
+  {
+    "id": "yinxing",
+    "name": "银杏就是 YINXING",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/283051605"
+  },
+  {
+    "id": "cs2-dq",
+    "name": "CS2-dq",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/25912175"
+  },
+  {
+    "id": "fga",
+    "name": "FGA 字幕组",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/398592369"
+  },
+  {
+    "id": "sam-cs2",
+    "name": "Sam-CS2",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/2971435"
+  },
+  {
+    "id": "cs2-jjg",
+    "name": "CS2 将军鸽",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/496798834"
+  },
+  {
+    "id": "ounijiang",
+    "name": "瓜鱼欧尼酱",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/1448301"
+  },
+  {
+    "id": "tatukunn",
+    "name": "Tatukunn",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/272421703"
+  },
+  {
+    "id": "cs-laozhang",
+    "name": "CS 解说老张",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/3461579393731313"
+  },
+  {
+    "id": "winning",
+    "name": "温宁winningOvO",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/40093819"
+  },
+  {
+    "id": "cs-rw",
+    "name": "CS-RW",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/37012016"
+  },
+  {
+    "id": "xiaoliuyu",
+    "name": "小刘鱼",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/5174692"
+  },
+  {
+    "id": "yezi-c",
+    "name": "椰子 c",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/21994094"
+  },
+  {
+    "id": "rose",
+    "name": "-玫瑰予乐-",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/485759425"
+  },
+  {
+    "id": "elysia-cs2",
+    "name": "ElysiaCS2",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/178467085"
+  },
+  {
+    "id": "lancerrr",
+    "name": "幸运的 LANCERRR",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/9038639"
+  },
+  {
+    "id": "cs2-lwz",
+    "name": "李文哲/哲易直胡说",
+    "platform": "虎牙",
+    "link": "https://www.huya.com/lwz6038"
+  },
+  {
+    "id": "david-tao",
+    "name": "陶喆的音乐难产房",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/544173861"
+  },
+  {
+    "id": "vince",
+    "name": "Vince",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Vince"
+  },
+  {
+    "id": "mac-mate",
+    "name": "MacMate",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Mac"
+  },
+  {
+    "id": "voo",
+    "name": "voo",
+    "platform": "直播分析师",
+    "link": "https://liquipedia.net/counterstrike/Voo"
+  },
+  { "id": "poloolpp", "name": "Poloolpp", "platform": "X", "link": "https://x.com/Poloolpp" },
+  {
+    "id": "ash",
+    "name": "Ash",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Ash"
+  },
+  {
+    "id": "banks",
+    "name": "BanKs",
+    "platform": "主持人",
+    "link": "https://liquipedia.net/counterstrike/James_Banks"
+  },
+  {
+    "id": "styko",
+    "name": "STYKO",
+    "platform": "前 MOUZ 队员",
+    "link": "https://www.hltv.org/player/6904/styko"
+  },
+  {
+    "id": "taco",
+    "name": "TACO",
+    "platform": "前 Liquid 队员",
+    "link": "https://www.hltv.org/player/9217/taco"
+  },
+  {
+    "id": "hawka",
+    "name": "Hawka",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Hawka"
+  },
+  {
+    "id": "launders",
+    "name": "launders",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Launders"
+  },
+  {
+    "id": "pimp",
+    "name": "Pimp",
+    "platform": "直播分析师",
+    "link": "https://liquipedia.net/counterstrike/Pimp"
+  },
+  {
+    "id": "thorin",
+    "name": "Thorin",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/@Thooorin"
+  },
+  {
+    "id": "dust",
+    "name": "dusT",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/DusT"
+  },
+  {
+    "id": "kassad",
+    "name": "kassad",
+    "platform": "直播分析师",
+    "link": "https://liquipedia.net/counterstrike/Kassad"
+  },
+  {
+    "id": "mauisnake",
+    "name": "Mauisnake",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Mauisnake"
+  },
+  {
+    "id": "ceh9",
+    "name": "ceh9",
+    "platform": "前 NAVI 队员",
+    "link": "https://www.hltv.org/player/301/ceh9"
+  },
+  {
+    "id": "cooper",
+    "name": "Cooper",
+    "platform": "Mythic 队员",
+    "link": "https://www.hltv.org/player/15007/cooper"
+  },
+  {
+    "id": "nart-out",
+    "name": "NartOut",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/nartouthere"
+  },
+  {
+    "id": "trilluxe",
+    "name": "TrilluXe",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/TrilluXe"
+  },
+  {
+    "id": "mr-maxim",
+    "name": "MrMaxim",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/@MrMaxim"
+  },
+  {
+    "id": "clife",
+    "name": "clife",
+    "platform": "Spirit 分析师",
+    "link": "https://www.hltv.org/coach/20965/clife"
+  },
+  {
+    "id": "degster",
+    "name": "degster",
+    "platform": "前 Falcons 队员",
+    "link": "https://www.hltv.org/player/17306/degster"
+  },
+  {
+    "id": "get-right",
+    "name": "GeT_RiGhT",
+    "platform": "前 NIP 队员",
+    "link": "https://www.hltv.org/hof/39/get-right"
+  },
+  {
+    "id": "hades",
+    "name": "hades",
+    "platform": "ex-Inner Circle 队员",
+    "link": "https://www.hltv.org/player/16848/hades"
+  },
+  {
+    "id": "r3-salt",
+    "name": "r3salt",
+    "platform": "Sangal 队员",
+    "link": "https://www.hltv.org/player/20709/r3salt"
+  },
+  {
+    "id": "magnojez",
+    "name": "Magnojez",
+    "platform": "BB 队员",
+    "link": "https://www.hltv.org/player/21667/magnojez"
+  },
+  {
+    "id": "cs-tactics",
+    "name": "CS Tactics",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/@CS2Tactics"
+  },
+  {
+    "id": "co-jo-mo",
+    "name": "CoJoMo",
+    "platform": "前 Phoenix 队员",
+    "link": "https://www.hltv.org/player/20629/cojomo"
+  },
+  {
+    "id": "ohne-pixel",
+    "name": "ohnePixel",
+    "platform": "Twitch",
+    "link": "https://www.twitch.tv/ohnepixel"
+  },
+  {
+    "id": "r1nkle",
+    "name": "r1nkle",
+    "platform": "NIP 队员",
+    "link": "https://www.hltv.org/player/20425/r1nkle"
+  },
+  {
+    "id": "shox",
+    "name": "shox",
+    "platform": "前 Vitality 队员",
+    "link": "https://www.hltv.org/player/1225/shox"
+  },
+  {
+    "id": "magixx",
+    "name": "magixx",
+    "platform": "前 Spirit 队员",
+    "link": "https://www.hltv.org/player/18317/magixx"
+  },
+  {
+    "id": "fl4mus",
+    "name": "FL4MUS",
+    "platform": "OG 队员",
+    "link": "https://www.hltv.org/player/20994/fl4mus"
+  },
+  {
+    "id": "nip-cs",
+    "name": "NIP CS",
+    "platform": "Twitch",
+    "link": "https://www.twitch.tv/nipgamingtv"
+  },
+  {
+    "id": "fly-quest-cs",
+    "name": "FlyQuest CS",
+    "platform": "Twitch",
+    "link": "https://www.twitch.tv/flyquest"
+  },
+  {
+    "id": "root-the-gamer",
+    "name": "rootthegamer",
+    "platform": "Twitch",
+    "link": "https://www.twitch.tv/rootthegamer"
+  },
+  {
+    "id": "statsmeister1",
+    "name": "statsmeister",
+    "platform": "X",
+    "link": "https://x.com/statsmeister1"
+  },
+  {
+    "id": "alfonsina",
+    "name": "Alfonsina",
+    "platform": "TikTok",
+    "link": "https://www.tiktok.com/@alfonsina.cs"
+  },
+  {
+    "id": "elfish-guy",
+    "name": "Elfishguy",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Elfishguy"
+  },
+  {
+    "id": "gaules",
+    "name": "Gaules",
+    "platform": "Twitch",
+    "link": "https://www.twitch.tv/gaules"
+  },
+  {
+    "id": "fl0m",
+    "name": "fl0m",
+    "platform": "Mythic 队员",
+    "link": "https://www.hltv.org/player/8503/fl0m"
+  },
+  {
+    "id": "austincs",
+    "name": "austincs",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/@austincsgo"
+  },
+  {
+    "id": "hotu-mou",
+    "name": "mou",
+    "platform": "HOTU 战队教练",
+    "link": "https://www.hltv.org/player/964/mou"
+  },
+  {
+    "id": "professur",
+    "name": "Professur",
+    "platform": "HLTV 主编",
+    "link": "https://www.hltv.org/player/21814/professeur"
+  },
+  {
+    "id": "interz",
+    "name": "interz",
+    "platform": "1win 队员",
+    "link": "https://www.hltv.org/player/15071/interz"
+  },
+  {
+    "id": "yxngstxr",
+    "name": "yxngstxr",
+    "platform": "HEROIC 队员",
+    "link": "https://www.hltv.org/player/22047/yxngstxr"
+  },
+  {
+    "id": "solution00",
+    "name": "solution00",
+    "platform": "独立爆料人",
+    "link": "https://t.me/s/solution00page?before=1313"
+  },
+  {
+    "id": "markeloff",
+    "name": "markeloff",
+    "platform": "前 NAVI 队员",
+    "link": "https://www.hltv.org/player/338/markeloff"
+  },
+  {
+    "id": "nuko",
+    "name": "Nuko 丶",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/39253279"
+  },
+  {
+    "id": "beimingyouyu",
+    "name": "北冥忧郁",
+    "platform": "小黑盒",
+    "link": "https://www.xiaoheihe.cn/app/user/profile/65336ad56eb0"
+  },
+  {
+    "id": "n0rb3r7",
+    "name": "n0rb3r7",
+    "platform": "HOTU 队员",
+    "link": "https://www.hltv.org/player/16612/n0rb3r7"
+  },
+  {
+    "id": "officialhyper",
+    "name": "Officialhyper",
+    "platform": "Twitch",
+    "link": "https://www.twitch.tv/officialhyper"
+  },
+  {
+    "id": "flamez",
+    "name": "flameZ",
+    "platform": "Vitality 队员",
+    "link": "https://www.hltv.org/player/16693/flamez"
+  },
+  {
+    "id": "angelka",
+    "name": "Angelka",
+    "platform": "前 NAVI 女子队队员",
+    "link": "https://www.hltv.org/player/22065/angelka#tab-teamsBox"
+  },
+  {
+    "id": "taz",
+    "name": "TaZ",
+    "platform": "前 VP 队员",
+    "link": "https://www.hltv.org/player/161/taz"
+  },
+  {
+    "id": "chopper",
+    "name": "chopper",
+    "platform": "前 Spirit 指挥",
+    "link": "https://www.hltv.org/player/7716/chopper"
+  },
+  {
+    "id": "m1chaeL",
+    "name": "-m1chaeL-",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/560117518"
+  },
+  {
+    "id": "qianzhihe-cs",
+    "name": "千纸鹤 cs",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/47209995"
+  },
+  {
+    "id": "csgo-leien",
+    "name": "CSGO 雷恩",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/228323941"
+  },
+  { "id": "ozzny", "name": "Ozzny", "platform": "X", "link": "https://x.com/Ozzny_CS2" },
+  {
+    "id": "jerry",
+    "name": "Jerry",
+    "platform": "前 PV 队员",
+    "link": "https://www.hltv.org/player/13157/jerry"
+  },
+  {
+    "id": "kane",
+    "name": "Kane",
+    "platform": "前 NAVI 教练",
+    "link": "https://www.hltv.org/player/482/kane"
+  },
+  {
+    "id": "momo",
+    "name": "MoMo 侠",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/403687607"
+  },
+  {
+    "id": "niaozi",
+    "name": "斋藤飛鸟子",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/15660608"
+  },
+  {
+    "id": "jiayounuli",
+    "name": "- 加油努力 Ovo-",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/406929044"
+  },
+  {
+    "id": "cangshanxue",
+    "name": "CS2 苍山雪",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/354745275"
+  },
+  {
+    "id": "sishen",
+    "name": "死神怪蜀黍",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/50094288"
+  },
+  {
+    "id": "duckie",
+    "name": "duckie__",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/322114568"
+  },
+  {
+    "id": "ninjiajam",
+    "name": "NinjaJam",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/12892504"
+  },
+  {
+    "id": "cmtry",
+    "name": "cmtry",
+    "platform": "FUT 队员",
+    "link": "https://www.hltv.org/player/22674/cmtry"
+  },
+  {
+    "id": "trav",
+    "name": "Trav",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Trav"
+  },
+  {
+    "id": "Officialhypercs",
+    "name": "Officialhyper",
+    "platform": "YouTube",
+    "link": "https://www.youtube.com/@Officialhypercs"
+  },
+  {
+    "id": "xiaoyuan",
+    "name": "-小鸢 w-",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/526848366"
+  },
+  {
+    "id": "fenlegeli",
+    "name": "CS2 芬了个黎",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/1312481647"
+  },
+  {
+    "id": "xiaowo",
+    "name": "小蜗 Snail",
+    "platform": "小黑盒",
+    "link": "https://www.xiaoheihe.cn/app/user/profile/24915352"
+  },
+  {
+    "id": "zheguchenshi",
+    "name": "折骨成诗的女人",
+    "platform": "哔哩哔哩",
+    "avatar": "https://ba.nioi.in/",
+    "link": "https://space.bilibili.com/7676887"
+  },
+  {
+    "id": "niko",
+    "name": "NiKo",
+    "platform": "Falcons 队员",
+    "link": "https://www.hltv.org/player/3741/NiKo"
+  },
+  {
+    "id": "tedd",
+    "name": "Tedd",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Tedd"
+  },
+  {
+    "id": "conner",
+    "name": "Conner/Scrawny",
+    "platform": "解说员",
+    "link": "https://liquipedia.net/counterstrike/Scrawny"
+  }
+]

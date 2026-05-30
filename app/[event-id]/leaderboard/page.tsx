@@ -61,7 +61,7 @@ export default async function PredictorsPage({
           .map((stat, index) => (
             <div key={stat.name} className="bg-surface-1 border-border rounded-lg border p-4">
               <div className="mb-3 flex items-center justify-between">
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-1">
                   <span
                     className={`w-12 text-center text-lg font-bold ${
                       index === 0 ? 'text-primary-400' : index < 3 ? 'text-secondary' : 'text-muted'
@@ -69,13 +69,30 @@ export default async function PredictorsPage({
                   >
                     #{index + 1}
                   </span>
-                  <div className="flex flex-col">
-                    <span className="text-primary block font-medium">{stat.name}</span>
-                    {stat.platform && (
-                      <span className="text-primary-400 inline-flex items-center text-xs">
-                        @{stat.platform}
-                      </span>
+                  <div className="flex items-center gap-2">
+                    {stat.avatar && (
+                      <img
+                        className="size-6 rounded-full object-cover"
+                        src={stat.avatar}
+                        alt={`${stat.name} logo`}
+                        referrerPolicy="no-referrer"
+                      />
                     )}
+                    <div className="flex flex-col">
+                      <a
+                        className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                        href={stat.link || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {stat.name}
+                      </a>
+                      {stat.platform && (
+                        <span className="text-primary-400 text-xs text-nowrap">
+                          @{stat.platform}
+                        </span>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 text-right">
@@ -183,12 +200,27 @@ export default async function PredictorsPage({
                     </span>
                   </td>
                   <td className="px-4 py-3">
-                    <span>
-                      <span className="text-primary font-medium">{stat.name}</span>
-                      {stat.platform && (
-                        <span className="text-primary-400 ml-2 text-xs">@{stat.platform}</span>
+                    <div className="flex items-center gap-2">
+                      {stat.avatar && (
+                        <img
+                          className="size-6 rounded-full object-cover"
+                          src={stat.avatar}
+                          alt={`${stat.name} logo`}
+                          referrerPolicy="no-referrer"
+                        />
                       )}
-                    </span>
+                      <a
+                        className="text-primary hover:text-primary-400 font-medium text-nowrap hover:underline"
+                        href={stat.link || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {stat.name}
+                      </a>
+                      {stat.platform && (
+                        <span className="text-primary-400 text-xs text-nowrap">@{stat.platform}</span>
+                      )}
+                    </div>
                   </td>
                   <td className="px-4 py-3 text-center">
                     <span className="text-primary font-semibold">{stat.totalCorrect}</span>

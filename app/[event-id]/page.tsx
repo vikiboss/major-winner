@@ -10,7 +10,7 @@ import {
   hasSwissInProgressResults,
   hasSwissPlayoffResults,
 } from '@/lib/data'
-import { PLAYOFFS_STAGES, STAGE_TYPE } from '@/lib/constants'
+import { STAGE_TYPE } from '@/lib/constants'
 import TeamLogo from '@/components/TeamLogo'
 import { calculatePredictorStats } from '@/lib/data'
 
@@ -668,12 +668,27 @@ function PredictorPredictions({
         return (
           <div key={p.id} className="px-4 py-3">
             <div className="mb-2 flex items-center justify-between">
-              <span className="flex items-center gap-2">
-                <span className="text-primary font-medium text-nowrap">{p.name}</span>
+              <div className="flex items-center gap-2">
+                {p.avatar && (
+                  <img
+                    className="size-6 rounded-full object-cover"
+                    src={p.avatar}
+                    alt={`${p.name} logo`}
+                    referrerPolicy="no-referrer"
+                  />
+                )}
+                <a
+                  className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                  href={p.link || '#'}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {p.name}
+                </a>
                 {p.platform && (
                   <span className="text-primary-400 text-xs text-nowrap">@{p.platform}</span>
                 )}
-              </span>
+              </div>
               {/* 只在结束时显示通过/未通过 */}
               {stageResult && (
                 <span

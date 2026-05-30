@@ -1,6 +1,7 @@
 {
   "name": "major-winner",
   "version": "0.0.0-alpha.0",
+  "type": "module",
   "description": "CS2 Major 竞猜结果展示与排行榜",
   "scripts": {
     "dev": "next dev --turbopack",

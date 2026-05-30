@@ -104,12 +104,18 @@ export interface PlayoffsPrediction {
   '2-to-1': string | null // 1 支队伍(冠军)或 null
 }
 
-// 单个竞猜者数据
-export interface PredictorPrediction {
+// 单个竞猜者
+export interface Predictor {
   id: string
   name: string
   platform: string
   link?: string
+  avatar?: string
+}
+
+// 单个竞猜者数据
+export interface PredictorPrediction extends Predictor {
+  id: string
   'stage-1'?: StagePrediction
   'stage-2'?: StagePrediction
   'stage-3'?: StagePrediction
@@ -135,12 +141,7 @@ export interface StagePassStatus {
 }
 
 // 计算统计用类型
-export interface PredictorStats {
-  id: string
-  name: string
-  platform: string
-  link?: string
-
+export interface PredictorStats extends Predictor {
   totalPassed: number // 通过的阶段数
   totalStages: number // 总阶段数
 

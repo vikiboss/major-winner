@@ -176,12 +176,31 @@ function SwissTable({
                 <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
-                      {predictor.platform && (
-                        <span className="text-primary-400 text-xs text-nowrap">
-                          @{predictor.platform}
-                        </span>
-                      )}
+                      <div className="flex items-center gap-2">
+                        {predictor.avatar && (
+                          <img
+                            className="size-8 rounded-full object-cover"
+                            src={predictor.avatar}
+                            alt={`${predictor.name} logo`}
+                            referrerPolicy="no-referrer"
+                          />
+                        )}
+                        <div className="flex flex-col">
+                          <a
+                            className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                            href={predictor.link || '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {predictor.name}
+                          </a>
+                          {predictor.platform && (
+                            <span className="text-primary-400 text-xs text-nowrap">
+                              @{predictor.platform}
+                            </span>
+                          )}
+                        </div>
+                      </div>
                       {isNotStarted && stats && (
                         <span className="text-muted text-xs text-nowrap">
                           <span className="mr-1 opacity-80">阶段</span>

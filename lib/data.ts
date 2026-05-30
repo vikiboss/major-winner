@@ -1,7 +1,10 @@
 import eventsData from '@/data/events.json' with { type: 'json' }
+import predictors from '@/data/predictors.json' with { type: 'json' }
 import budapest2025 from '@/data/predictions/2025-budapest.json' with { type: 'json' }
 import cologne20236 from '@/data/predictions/2026-cologne.json' with { type: 'json' }
 import { EventStatus } from '../types'
+
+const predictorsMap = new Map(predictors.map((p) => [p.id, p]))
 
 import type {
   MajorEvent,
@@ -47,7 +50,10 @@ export const evt = {
 
   /** 获取指定赛事的竞猜数据 */
   getPredictions(eventId: string): PredictorPrediction[] {
-    return predictions.find((p) => p.id === eventId)?.predictions || []
+    return (predictions.find((p) => p.id === eventId)?.predictions || []).map((e) => {
+      const predictor = predictorsMap.get(e.id)!
+      return { ...e, ...predictor }
+    })
   },
 }
 
@@ -435,10 +441,7 @@ export function calculatePredictorStats(
   }
 
   return {
-    id: predictor.id,
-    name: predictor.name,
-    platform: predictor.platform || '',
-    link: predictor.link,
+    ...predictor,
     totalPassed,
     totalStages,
     totalCorrect,

@@ -72,13 +72,13 @@ export default async function PredictorsPage({
                   <div className="flex items-center gap-2">
                     {stat.avatar && (
                       <img
-                        className="size-6 rounded-full object-cover"
+                        className="size-8 rounded-full object-cover"
                         src={stat.avatar}
                         alt={`${stat.name} logo`}
                         referrerPolicy="no-referrer"
                       />
                     )}
-                    <div className="flex flex-col">
+                    <div className="flex flex-col items-start">
                       <a
                         className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
                         href={stat.link || '#'}
@@ -203,7 +203,7 @@ export default async function PredictorsPage({
                     <div className="flex items-center gap-2">
                       {stat.avatar && (
                         <img
-                          className="size-6 rounded-full object-cover"
+                          className="size-8 rounded-full object-cover"
                           src={stat.avatar}
                           alt={`${stat.name} logo`}
                           referrerPolicy="no-referrer"

@@ -179,13 +179,13 @@ function SwissTable({
                       <div className="flex items-center gap-2">
                         {predictor.avatar && (
                           <img
-                            className="size-8 rounded-full object-cover"
+                            className="size-10 rounded-full object-cover"
                             src={predictor.avatar}
                             alt={`${predictor.name} logo`}
                             referrerPolicy="no-referrer"
                           />
                         )}
-                        <div className="flex flex-col">
+                        <div className="flex flex-col items-start">
                           <a
                             className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
                             href={predictor.link || '#'}
@@ -347,10 +347,29 @@ function SwissTable({
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex flex-col gap-0.5">
                   <div className="flex items-center gap-2">
-                    <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
-                    {predictor.platform && (
-                      <p className="text-primary-400 text-xs">@{predictor.platform}</p>
+                    {predictor.avatar && (
+                      <img
+                        className="size-8 rounded-full object-cover"
+                        src={predictor.avatar}
+                        alt={`${predictor.name} logo`}
+                        referrerPolicy="no-referrer"
+                      />
                     )}
+                    <div className="flex flex-col items-start">
+                      <a
+                        className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                        href={predictor.link || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {predictor.name}
+                      </a>
+                      {predictor.platform && (
+                        <span className="text-primary-400 text-xs text-nowrap">
+                          @{predictor.platform}
+                        </span>
+                      )}
+                    </div>
                   </div>
                   {isNotStarted && stats && (
                     <span className="text-muted text-xs text-nowrap">

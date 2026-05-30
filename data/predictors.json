@@ -108,6 +108,7 @@
     "id": "ququ",
     "name": "QUQU 太不常规",
     "platform": "斗鱼",
+    "avatar": "https://apic.douyucdn.cn/upload/avatar_v3/202311/92f2a1e9602e4005a73012397adff54b_big.jpg",
     "link": "https://www.douyu.com/ququ"
   },
   {
@@ -128,7 +129,7 @@
     "id": "fallen",
     "name": "FalleN",
     "platform": "FURIA 指挥",
-    "avatar": "https://cdn.wmpvp.com/appengine/DCE71FE0914642C6A15701949A593120-1780084432974.png",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/14/FalleN_at_BLAST_Open_Spring_2026.jpg/900px-FalleN_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/2023/fallen"
   },
   {
@@ -149,644 +150,721 @@
     "id": "dongguaqiang",
     "name": "椰汁糕冬瓜强",
     "platform": "斗鱼",
+    "avatar": "https://apic.douyucdn.cn/upload/avatar_v3/201808/e2b4d01edd7dd82f44efeb434a0d3a86_big.jpg",
     "link": "https://www.douyu.com/63136"
   },
   {
     "id": "k4mi",
     "name": "k4Mi",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/97480905.jpg",
     "link": "https://space.bilibili.com/97480905"
   },
   {
     "id": "xiaotian",
     "name": "小天 FreeZing",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/1979685.jpg",
     "link": "https://space.bilibili.com/1979685"
   },
   {
     "id": "laojiao",
     "name": "老蕉 Banous",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/10999014.jpg",
     "link": "https://space.bilibili.com/10999014"
   },
   {
     "id": "ban-ga",
     "name": "CS2-BanGa",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/8498990.jpg",
     "link": "https://space.bilibili.com/8498990"
   },
   {
     "id": "boshiyk",
     "name": "BOSHIYK",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/65822877.jpg",
     "link": "https://space.bilibili.com/65822877"
   },
   {
     "id": "xieshaonian",
     "name": "邪少年、",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/69185991.jpg",
     "link": "https://space.bilibili.com/69185991"
   },
   {
     "id": "yinxing",
     "name": "银杏就是 YINXING",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/283051605.jpg",
     "link": "https://space.bilibili.com/283051605"
   },
   {
     "id": "cs2-dq",
     "name": "CS2-dq",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/25912175.jpg",
     "link": "https://space.bilibili.com/25912175"
   },
   {
     "id": "fga",
     "name": "FGA 字幕组",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/398592369.jpg",
     "link": "https://space.bilibili.com/398592369"
   },
   {
     "id": "sam-cs2",
     "name": "Sam-CS2",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/2971435.jpg",
     "link": "https://space.bilibili.com/2971435"
   },
   {
     "id": "cs2-jjg",
     "name": "CS2 将军鸽",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/496798834.jpg",
     "link": "https://space.bilibili.com/496798834"
   },
   {
     "id": "ounijiang",
     "name": "瓜鱼欧尼酱",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/1448301.jpg",
     "link": "https://space.bilibili.com/1448301"
   },
   {
     "id": "tatukunn",
     "name": "Tatukunn",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/272421703.jpg",
     "link": "https://space.bilibili.com/272421703"
   },
   {
     "id": "cs-laozhang",
     "name": "CS 解说老张",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/3461579393731313.jpg",
     "link": "https://space.bilibili.com/3461579393731313"
   },
   {
     "id": "winning",
     "name": "温宁winningOvO",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/40093819.jpg",
     "link": "https://space.bilibili.com/40093819"
   },
   {
     "id": "cs-rw",
     "name": "CS-RW",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/37012016.jpg",
     "link": "https://space.bilibili.com/37012016"
   },
   {
     "id": "xiaoliuyu",
     "name": "小刘鱼",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/5174692.jpg",
     "link": "https://space.bilibili.com/5174692"
   },
   {
     "id": "yezi-c",
     "name": "椰子 c",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/21994094.jpg",
     "link": "https://space.bilibili.com/21994094"
   },
   {
     "id": "rose",
     "name": "-玫瑰予乐-",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/485759425.jpg",
     "link": "https://space.bilibili.com/485759425"
   },
   {
     "id": "elysia-cs2",
     "name": "ElysiaCS2",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/178467085.jpg",
     "link": "https://space.bilibili.com/178467085"
   },
   {
     "id": "lancerrr",
     "name": "幸运的 LANCERRR",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/9038639.jpg",
     "link": "https://space.bilibili.com/9038639"
   },
   {
     "id": "cs2-lwz",
     "name": "李文哲/哲易直胡说",
     "platform": "虎牙",
+    "avatar": "https://huyaimg.msstatic.com/avatar/1088/2e/3f158ec38138288a55fdce0a09b6db_180_135.jpg",
     "link": "https://www.huya.com/lwz6038"
   },
   {
     "id": "david-tao",
     "name": "陶喆的音乐难产房",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/97480905.jpg",
     "link": "https://space.bilibili.com/544173861"
   },
   {
     "id": "vince",
     "name": "Vince",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/f/fa/Vince_at_PGL_Antwerp_Major_2022.jpg/900px-Vince_at_PGL_Antwerp_Major_2022.jpg",
     "link": "https://liquipedia.net/counterstrike/Vince"
   },
   {
     "id": "mac-mate",
     "name": "MacMate",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/aa/Mac_at_IEM_Rio_2026.jpg/900px-Mac_at_IEM_Rio_2026.jpg",
     "link": "https://liquipedia.net/counterstrike/Mac"
   },
   {
     "id": "voo",
     "name": "voo",
     "platform": "直播分析师",
+    "avatar": "https://liquipedia.net/commons/images/thumb/e/e2/Voo_at_BLAST_Open_Spring_2026.jpg/900px-Voo_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://liquipedia.net/counterstrike/Voo"
   },
-  { "id": "poloolpp", "name": "Poloolpp", "platform": "X", "link": "https://x.com/Poloolpp" },
+  {
+    "id": "poloolpp",
+    "name": "Poloolpp",
+    "platform": "X",
+    "avatar": "https://pbs.twimg.com/profile_images/2041177026183540736/oxrPfNsz_400x400.jpg",
+    "link": "https://x.com/Poloolpp"
+  },
   {
     "id": "ash",
     "name": "Ash",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/5/5a/Charles_%22ash%22_at_GC_Masters_Fem_IV.jpg",
     "link": "https://liquipedia.net/counterstrike/Ash"
   },
   {
     "id": "banks",
     "name": "BanKs",
     "platform": "主持人",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/a1/James_Banks_at_PGL_Astana_2026.jpg/900px-James_Banks_at_PGL_Astana_2026.jpg",
     "link": "https://liquipedia.net/counterstrike/James_Banks"
   },
   {
     "id": "styko",
     "name": "STYKO",
-    "platform": "前 MOUZ 队员",
-    "link": "https://www.hltv.org/player/6904/styko"
+    "platform": "分析师",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/a4/STYKO_at_SL_Budapest_Major_2025.jpg/900px-STYKO_at_SL_Budapest_Major_2025.jpg",
+    "link": "https://liquipedia.net/counterstrike/STYKO"
   },
   {
     "id": "taco",
     "name": "TACO",
     "platform": "前 Liquid 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/6/62/TACO_at_SL_Budapest_Major_2025.jpg/900px-TACO_at_SL_Budapest_Major_2025.jpg",
     "link": "https://www.hltv.org/player/9217/taco"
   },
   {
     "id": "hawka",
     "name": "Hawka",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/b/b7/Hawka_%40_EPICENTER_2019.jpg/675px-Hawka_%40_EPICENTER_2019.jpg",
     "link": "https://liquipedia.net/counterstrike/Hawka"
   },
   {
     "id": "launders",
     "name": "launders",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/4/49/Launders_at_BLAST_Open_Spring_2026.jpg/900px-Launders_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://liquipedia.net/counterstrike/Launders"
   },
   {
     "id": "pimp",
     "name": "Pimp",
     "platform": "直播分析师",
+    "avatar": "https://liquipedia.net/commons/images/thumb/e/ea/Pimp_at_BLAST_Bounty_Winter_2026.jpg/900px-Pimp_at_BLAST_Bounty_Winter_2026.jpg",
     "link": "https://liquipedia.net/counterstrike/Pimp"
   },
   {
     "id": "thorin",
     "name": "Thorin",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/GQFvQXB3kMcJy2sTPYzFl6dTDBM1za-NXDMYd-Ps3q_vd094UdawzVK8HKarXOXRTgzYsJtzrg=s0",
     "link": "https://www.youtube.com/@Thooorin"
   },
   {
     "id": "dust",
     "name": "dusT",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/5/57/DusT_at_PGL_Cluj-Napoca_2025.jpg/675px-DusT_at_PGL_Cluj-Napoca_2025.jpg",
     "link": "https://liquipedia.net/counterstrike/DusT"
   },
   {
     "id": "kassad",
     "name": "kassad",
     "platform": "直播分析师",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/1b/Kassad_at_IEM_Cologne_2023.jpg/900px-Kassad_at_IEM_Cologne_2023.jpg",
     "link": "https://liquipedia.net/counterstrike/Kassad"
   },
   {
     "id": "mauisnake",
     "name": "Mauisnake",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/e/ec/Mauisnake_at_BLAST_Bounty_Winter_2026.jpg/900px-Mauisnake_at_BLAST_Bounty_Winter_2026.jpg",
     "link": "https://liquipedia.net/counterstrike/Mauisnake"
   },
   {
     "id": "ceh9",
     "name": "ceh9",
     "platform": "前 NAVI 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/e/e4/Ceh9_EPICENTER_2019.jpg/900px-Ceh9_EPICENTER_2019.jpg",
     "link": "https://www.hltv.org/player/301/ceh9"
   },
   {
     "id": "cooper",
     "name": "Cooper",
     "platform": "Mythic 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/6/60/Cooper-_%40_EPICENTER_2018.jpg/675px-Cooper-_%40_EPICENTER_2018.jpg",
     "link": "https://www.hltv.org/player/15007/cooper"
   },
   {
     "id": "nart-out",
     "name": "NartOut",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_kXDNj7IDR_RXdeEhdC_5zYIXZLgaXdCpm-qH0qidThj2g=s0",
     "link": "https://www.youtube.com/nartouthere"
   },
   {
     "id": "trilluxe",
     "name": "TrilluXe",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/0uvJWwqVYHKJWEDGJNafUZ897r7w9PPwlMYEYxJAc-OLE4u8uY95Lo9P-xN0oquLYOF_Jwn43g=s0",
     "link": "https://www.youtube.com/TrilluXe"
   },
   {
     "id": "mr-maxim",
     "name": "MrMaxim",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/PKZG64zcACQKZ6QDiV-jIywQJssvhsAuPv6A2x3MxhlvJf23ihIFkWNvl9CCay5VZnG4Qf2ZD0o=s0",
     "link": "https://www.youtube.com/@MrMaxim"
   },
   {
     "id": "clife",
     "name": "clife",
     "platform": "Spirit 分析师",
+    "avatar": "https://liquipedia.net/commons/images/a/a7/Clife_Team_Spirit_2025.png",
     "link": "https://www.hltv.org/coach/20965/clife"
   },
   {
     "id": "degster",
     "name": "degster",
     "platform": "前 Falcons 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/7/74/Degster_at_IEM_Katowice_2025.jpg/900px-Degster_at_IEM_Katowice_2025.jpg",
     "link": "https://www.hltv.org/player/17306/degster"
   },
   {
     "id": "get-right",
     "name": "GeT_RiGhT",
     "platform": "前 NIP 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/4/4b/GeT_RiGhT_%40_PGL_Major_Stockholm_2021.jpg/900px-GeT_RiGhT_%40_PGL_Major_Stockholm_2021.jpg",
     "link": "https://www.hltv.org/hof/39/get-right"
   },
   {
     "id": "hades",
     "name": "hades",
     "platform": "ex-Inner Circle 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/19/Hades_at_PGL_Astana_2025.jpg/675px-Hades_at_PGL_Astana_2025.jpg",
     "link": "https://www.hltv.org/player/16848/hades"
   },
   {
     "id": "r3-salt",
     "name": "r3salt",
     "platform": "Sangal 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/a6/R3salt_at_Stake_Ranked_Episode_1.jpg/900px-R3salt_at_Stake_Ranked_Episode_1.jpg",
     "link": "https://www.hltv.org/player/20709/r3salt"
   },
   {
     "id": "magnojez",
     "name": "Magnojez",
     "platform": "BB 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/a9/Magnojez_at_Stake_Ranked_Episode_1.jpg/900px-Magnojez_at_Stake_Ranked_Episode_1.jpg",
     "link": "https://www.hltv.org/player/21667/magnojez"
   },
   {
     "id": "cs-tactics",
     "name": "CS Tactics",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/g45SN83w-lSJVADWu-HUlPJl_3127Qo1vWiYFaYI-Lnq286oj3FJtkhFyULytU1tws1KtJyNVnY=s0",
     "link": "https://www.youtube.com/@CS2Tactics"
   },
   {
     "id": "co-jo-mo",
     "name": "CoJoMo",
     "platform": "前 Phoenix 队员",
+    "avatar": "https://liquipedia.net/commons/images/1/17/CoJoMo_Davenport_photoshoot.png",
     "link": "https://www.hltv.org/player/20629/cojomo"
   },
   {
     "id": "ohne-pixel",
     "name": "ohnePixel",
     "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/5742b015-e6ed-4f7c-a1dd-87cd88fe1eb9-profile_image-300x300.png",
     "link": "https://www.twitch.tv/ohnepixel"
   },
   {
     "id": "r1nkle",
     "name": "r1nkle",
     "platform": "NIP 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/1d/R1nkle_at_BLAST_Open_Spring_2026.jpg/900px-R1nkle_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/20425/r1nkle"
   },
   {
     "id": "shox",
     "name": "shox",
     "platform": "前 Vitality 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/3/3f/Shox_at_La_Coupe_2023.jpeg/900px-Shox_at_La_Coupe_2023.jpeg",
     "link": "https://www.hltv.org/player/1225/shox"
   },
   {
     "id": "magixx",
     "name": "magixx",
-    "platform": "前 Spirit 队员",
+    "platform": "Spirit 指挥",
+    "avatar": "https://liquipedia.net/commons/images/thumb/e/e3/Magixx_at_BLAST_Bounty_Winter_2026.jpg/900px-Magixx_at_BLAST_Bounty_Winter_2026.jpg",
     "link": "https://www.hltv.org/player/18317/magixx"
   },
   {
     "id": "fl4mus",
     "name": "FL4MUS",
     "platform": "OG 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/0/0d/FL4MUS_at_LanDaLan_3.jpg/675px-FL4MUS_at_LanDaLan_3.jpg",
     "link": "https://www.hltv.org/player/20994/fl4mus"
   },
   {
     "id": "nip-cs",
     "name": "NIP CS",
     "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/27ce029c-3b5f-4909-85ba-73b08d618d5f-profile_image-300x300.png",
     "link": "https://www.twitch.tv/nipgamingtv"
   },
   {
     "id": "fly-quest-cs",
     "name": "FlyQuest CS",
     "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/d899abcf-0102-4eca-9c2c-ea8d603f1616-profile_image-300x300.png",
     "link": "https://www.twitch.tv/flyquest"
   },
   {
     "id": "root-the-gamer",
     "name": "rootthegamer",
     "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/fd13408a-ae9b-4437-ab62-87ff5b8eae09-profile_image-300x300.png",
     "link": "https://www.twitch.tv/rootthegamer"
   },
   {
     "id": "statsmeister1",
     "name": "statsmeister",
     "platform": "X",
+    "avatar": "https://pbs.twimg.com/profile_images/1938039077552472064/n14qP-Sg_400x400.jpg",
     "link": "https://x.com/statsmeister1"
   },
   {
     "id": "alfonsina",
     "name": "Alfonsina",
-    "platform": "TikTok",
-    "link": "https://www.tiktok.com/@alfonsina.cs"
+    "platform": "X",
+    "avatar": "https://pbs.twimg.com/profile_images/2024477168839921664/ZdDyc2Z6_400x400.jpg",
+    "link": "https://x.com/alfonavellaneda"
   },
   {
     "id": "elfish-guy",
     "name": "Elfishguy",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/4/49/Elfishguy_at_IEM_Chengdu_2024.jpg/900px-Elfishguy_at_IEM_Chengdu_2024.jpg",
     "link": "https://liquipedia.net/counterstrike/Elfishguy"
   },
   {
     "id": "gaules",
     "name": "Gaules",
     "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/ea0fe422-84bd-4aee-9d10-fd4b0b3a7054-profile_image-70x70.png",
     "link": "https://www.twitch.tv/gaules"
   },
   {
     "id": "fl0m",
     "name": "fl0m",
     "platform": "Mythic 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/b/bc/Fl0m_at_BLAST_Rivals_Spring_2026.jpg/900px-Fl0m_at_BLAST_Rivals_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/8503/fl0m"
   },
   {
     "id": "austincs",
     "name": "austincs",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/ytc/AIdro_nRZ_96sGDbyEUpbIEBmTEf6iDfgLCqwss5fG0u9rZqBw=s0",
     "link": "https://www.youtube.com/@austincsgo"
   },
   {
     "id": "hotu-mou",
     "name": "mou",
     "platform": "HOTU 战队教练",
+    "avatar": "https://liquipedia.net/commons/images/thumb/c/c4/Mou_at_Roman_Imperium_Cup_V.jpg/900px-Mou_at_Roman_Imperium_Cup_V.jpg",
     "link": "https://www.hltv.org/player/964/mou"
   },
   {
     "id": "professur",
     "name": "Professur",
     "platform": "HLTV 主编",
+    "avatar": "https://liquipedia.net/commons/images/thumb/6/6e/Professeur_at_IEM_Katowice_2022.jpg/675px-Professeur_at_IEM_Katowice_2022.jpg",
     "link": "https://www.hltv.org/player/21814/professeur"
   },
   {
     "id": "interz",
     "name": "interz",
     "platform": "1win 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/7/7f/Interz_at_Antwerp_Major_2022_EU_RMR.jpg/675px-Interz_at_Antwerp_Major_2022_EU_RMR.jpg",
     "link": "https://www.hltv.org/player/15071/interz"
   },
   {
     "id": "yxngstxr",
     "name": "yxngstxr",
     "platform": "HEROIC 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/a2/Yxngstxr_at_Stake_Ranked_Episode_1.jpg/900px-Yxngstxr_at_Stake_Ranked_Episode_1.jpg",
     "link": "https://www.hltv.org/player/22047/yxngstxr"
   },
   {
     "id": "solution00",
     "name": "solution00",
     "platform": "独立爆料人",
+    "avatar": "https://pbs.twimg.com/profile_images/1707797024232427524/mZVpZC7j_400x400.jpg",
     "link": "https://t.me/s/solution00page?before=1313"
   },
   {
     "id": "markeloff",
     "name": "markeloff",
     "platform": "前 NAVI 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/c/ca/Markeloff_at_PGL_Major_Krakow_2017.jpg/900px-Markeloff_at_PGL_Major_Krakow_2017.jpg",
     "link": "https://www.hltv.org/player/338/markeloff"
   },
   {
     "id": "nuko",
     "name": "Nuko 丶",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/39253279.jpg",
     "link": "https://space.bilibili.com/39253279"
   },
   {
     "id": "beimingyouyu",
     "name": "北冥忧郁",
     "platform": "小黑盒",
+    "avatar": "https://imgheybox.max-c.com/avatar/2025/04/09/447ebaf7bc7430064d422994bd2c1f16.jpeg?imageMogr2/thumbnail/100x100",
     "link": "https://www.xiaoheihe.cn/app/user/profile/65336ad56eb0"
   },
   {
     "id": "n0rb3r7",
     "name": "n0rb3r7",
     "platform": "HOTU 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/6/6c/N0rb3r7_at_Roman_Imperium_Cup_V.jpg/900px-N0rb3r7_at_Roman_Imperium_Cup_V.jpg",
     "link": "https://www.hltv.org/player/16612/n0rb3r7"
   },
   {
     "id": "officialhyper",
     "name": "Officialhyper",
     "platform": "Twitch",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/afd9b1c2-dcd3-46a2-8ff0-2dce9fdfee9e-profile_image-70x70.png",
     "link": "https://www.twitch.tv/officialhyper"
   },
   {
     "id": "flamez",
-    "name": "flameZ",
+    "name": "flameZ/火仔",
     "platform": "Vitality 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/2/29/FlameZ_at_BLAST_Open_Spring_2026.jpg/900px-FlameZ_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/16693/flamez"
   },
   {
     "id": "angelka",
     "name": "Angelka",
     "platform": "前 NAVI 女子队队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/1c/Angelka_at_ESL_Impact_League_S6.jpg/900px-Angelka_at_ESL_Impact_League_S6.jpg",
     "link": "https://www.hltv.org/player/22065/angelka#tab-teamsBox"
   },
   {
     "id": "taz",
     "name": "TaZ",
-    "platform": "前 VP 队员",
+    "platform": "BC.Game 教练",
+    "avatar": "https://liquipedia.net/commons/images/thumb/4/4c/TaZ_at_IEM_Cologne_2024.jpg/675px-TaZ_at_IEM_Cologne_2024.jpg",
     "link": "https://www.hltv.org/player/161/taz"
   },
   {
     "id": "chopper",
     "name": "chopper",
     "platform": "前 Spirit 指挥",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/ae/Chopper_at_BLAST_Open_Spring_2025.jpg/675px-Chopper_at_BLAST_Open_Spring_2025.jpg",
     "link": "https://www.hltv.org/player/7716/chopper"
   },
   {
     "id": "m1chaeL",
     "name": "-m1chaeL-",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
-    "link": "https://space.bilibili.com/560117518"
+    "avatar": "https://ba.nioi.in/228323941.jpg",
+    "link": "https://space.bilibili.com/228323941"
   },
   {
     "id": "qianzhihe-cs",
     "name": "千纸鹤 cs",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/47209995.jpg",
     "link": "https://space.bilibili.com/47209995"
   },
   {
     "id": "csgo-leien",
     "name": "CSGO 雷恩",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/228323941.jpg",
     "link": "https://space.bilibili.com/228323941"
   },
-  { "id": "ozzny", "name": "Ozzny", "platform": "X", "link": "https://x.com/Ozzny_CS2" },
+  {
+    "id": "ozzny",
+    "name": "Ozzny",
+    "platform": "X",
+    "avatar": "https://pbs.twimg.com/profile_images/1636790512202940417/GCN_JgEz_400x400.jpg",
+    "link": "https://x.com/Ozzny_CS2"
+  },
   {
     "id": "jerry",
     "name": "Jerry",
     "platform": "前 PV 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/d/d5/Jerry_at_Antwerp_Major_2022_EU_RMR.jpg/675px-Jerry_at_Antwerp_Major_2022_EU_RMR.jpg",
     "link": "https://www.hltv.org/player/13157/jerry"
   },
   {
     "id": "kane",
     "name": "Kane",
     "platform": "前 NAVI 教练",
+    "avatar": "https://liquipedia.net/commons/images/thumb/b/b3/Kane_at_DreamHack_Winter_2017.jpg/676px-Kane_at_DreamHack_Winter_2017.jpg",
     "link": "https://www.hltv.org/player/482/kane"
   },
   {
     "id": "momo",
     "name": "MoMo 侠",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/403687607.jpg",
     "link": "https://space.bilibili.com/403687607"
   },
   {
     "id": "niaozi",
     "name": "斋藤飛鸟子",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/15660608.jpg",
     "link": "https://space.bilibili.com/15660608"
   },
   {
     "id": "jiayounuli",
     "name": "- 加油努力 Ovo-",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/406929044.jpg",
     "link": "https://space.bilibili.com/406929044"
   },
   {
     "id": "cangshanxue",
     "name": "CS2 苍山雪",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/354745275.jpg",
     "link": "https://space.bilibili.com/354745275"
   },
   {
     "id": "sishen",
     "name": "死神怪蜀黍",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/50094288.jpg",
     "link": "https://space.bilibili.com/50094288"
   },
   {
     "id": "duckie",
     "name": "duckie__",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/322114568.jpg",
     "link": "https://space.bilibili.com/322114568"
   },
   {
     "id": "ninjiajam",
     "name": "NinjaJam",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/12892504.jpg",
     "link": "https://space.bilibili.com/12892504"
   },
   {
     "id": "cmtry",
     "name": "cmtry",
     "platform": "FUT 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/18/Cmtry_at_BLAST_Rivals_Spring_2026.jpg/900px-Cmtry_at_BLAST_Rivals_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/22674/cmtry"
   },
   {
     "id": "trav",
     "name": "Trav",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/5/57/Trav_%40_ESL_Challenger_J%C3%B6nk%C3%B6ping_2023.jpg/675px-Trav_%40_ESL_Challenger_J%C3%B6nk%C3%B6ping_2023.jpg",
     "link": "https://liquipedia.net/counterstrike/Trav"
   },
   {
     "id": "Officialhypercs",
     "name": "Officialhyper",
     "platform": "YouTube",
+    "avatar": "https://yt3.googleusercontent.com/L7SCCIflqjQQuG6EwPukTaQ0TRbMiaBiiVQyjyy0RnHm0JP_666E2hNXslV5YdtTiQNQcirhlA=s0",
     "link": "https://www.youtube.com/@Officialhypercs"
   },
   {
     "id": "xiaoyuan",
     "name": "-小鸢 w-",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/526848366.jpg",
     "link": "https://space.bilibili.com/526848366"
   },
   {
     "id": "fenlegeli",
     "name": "CS2 芬了个黎",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/1312481647.jpg",
     "link": "https://space.bilibili.com/1312481647"
   },
   {
     "id": "xiaowo",
     "name": "小蜗 Snail",
     "platform": "小黑盒",
+    "avatar": "https://cdn.max-c.com/avatar/2021/04/16/fc250cc17df44edb974fa349c61777f2?imageMogr2/thumbnail/100x100",
     "link": "https://www.xiaoheihe.cn/app/user/profile/24915352"
   },
   {
     "id": "zheguchenshi",
     "name": "折骨成诗的女人",
     "platform": "哔哩哔哩",
-    "avatar": "https://ba.nioi.in/",
+    "avatar": "https://ba.nioi.in/7676887.jpg",
     "link": "https://space.bilibili.com/7676887"
   },
   {
     "id": "niko",
     "name": "NiKo",
     "platform": "Falcons 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/1/19/NiKo_at_BLAST_Open_Spring_2026.jpg/900px-NiKo_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/3741/NiKo"
   },
   {
     "id": "tedd",
     "name": "Tedd",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/c/cc/Tedd_at_SL_Budapest_Major_2025.jpg/900px-Tedd_at_SL_Budapest_Major_2025.jpg",
     "link": "https://liquipedia.net/counterstrike/Tedd"
   },
   {
     "id": "conner",
     "name": "Conner/Scrawny",
     "platform": "解说员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/4/4b/Scrawny_at_PGL_Cluj-Napoca_2025.jpg/675px-Scrawny_at_PGL_Cluj-Napoca_2025.jpg",
     "link": "https://liquipedia.net/counterstrike/Scrawny"
   }
 ]

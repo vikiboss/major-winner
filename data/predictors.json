@@ -2,7 +2,7 @@
   {
     "id": "result",
     "name": "赛果",
-    "platform": "CS2官方",
+    "platform": "CS2 官方",
     "avatar": "https://www.counter-strike.net/favicon.ico",
     "link": "https://www.counter-strike.net"
   },
@@ -43,7 +43,7 @@
   },
   {
     "id": "cs-advent",
-    "name": "CS-advent",
+    "name": "CS-advent/259/老九",
     "platform": "哔哩哔哩",
     "avatar": "https://ba.nioi.in/3546687211572101.jpg",
     "link": "https://space.bilibili.com/3546687211572101"
@@ -85,9 +85,9 @@
   },
   {
     "id": "sunxiaochuan",
-    "name": "川臊258/孙笑川258",
+    "name": "川臊258/孙笑川",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/1c8e9b4c-5a0d-4f1b-9a3e-7c8d2b1c8e5c-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/3e8e1419-ab3e-4975-8352-8b123f33a8ff-profile_image-70x70.jpg",
     "link": "https://www.twitch.tv/chuansao258"
   },
   {
@@ -99,7 +99,7 @@
   },
   {
     "id": "danking",
-    "name": "DANKING",
+    "name": "DANKING/蛋神",
     "platform": "虎牙",
     "avatar": "https://huyaimg.msstatic.com/avatar/1009/21/d479da7839241ade1e136d7324df4f_180_135.jpg",
     "link": "https://www.huya.com/dank1ng"
@@ -366,7 +366,7 @@
   {
     "id": "taco",
     "name": "TACO",
-    "platform": "前 Liquid 队员",
+    "platform": "前 Legacy 队员",
     "avatar": "https://liquipedia.net/commons/images/thumb/6/62/TACO_at_SL_Budapest_Major_2025.jpg/900px-TACO_at_SL_Budapest_Major_2025.jpg",
     "link": "https://www.hltv.org/player/9217/taco"
   },
@@ -478,14 +478,14 @@
   {
     "id": "hades",
     "name": "hades",
-    "platform": "ex-Inner Circle 队员",
+    "platform": "BAE 队员",
     "avatar": "https://liquipedia.net/commons/images/thumb/1/19/Hades_at_PGL_Astana_2025.jpg/675px-Hades_at_PGL_Astana_2025.jpg",
     "link": "https://www.hltv.org/player/16848/hades"
   },
   {
     "id": "r3-salt",
     "name": "r3salt",
-    "platform": "Sangal 队员",
+    "platform": "Nemesis 队员",
     "avatar": "https://liquipedia.net/commons/images/thumb/a/a6/R3salt_at_Stake_Ranked_Episode_1.jpg/900px-R3salt_at_Stake_Ranked_Episode_1.jpg",
     "link": "https://www.hltv.org/player/20709/r3salt"
   },
@@ -506,7 +506,7 @@
   {
     "id": "co-jo-mo",
     "name": "CoJoMo",
-    "platform": "前 Phoenix 队员",
+    "platform": "前职业选手",
     "avatar": "https://liquipedia.net/commons/images/1/17/CoJoMo_Davenport_photoshoot.png",
     "link": "https://www.hltv.org/player/20629/cojomo"
   },
@@ -520,7 +520,7 @@
   {
     "id": "r1nkle",
     "name": "r1nkle",
-    "platform": "NIP 队员",
+    "platform": "前 NIP 队员",
     "avatar": "https://liquipedia.net/commons/images/thumb/1/1d/R1nkle_at_BLAST_Open_Spring_2026.jpg/900px-R1nkle_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/20425/r1nkle"
   },
@@ -541,7 +541,7 @@
   {
     "id": "fl4mus",
     "name": "FL4MUS",
-    "platform": "OG 队员",
+    "platform": "前 OG 队员",
     "avatar": "https://liquipedia.net/commons/images/thumb/0/0d/FL4MUS_at_LanDaLan_3.jpg/675px-FL4MUS_at_LanDaLan_3.jpg",
     "link": "https://www.hltv.org/player/20994/fl4mus"
   },
@@ -625,7 +625,7 @@
   {
     "id": "interz",
     "name": "interz",
-    "platform": "1win 队员",
+    "platform": "前 Gambit 队员",
     "avatar": "https://liquipedia.net/commons/images/thumb/7/7f/Interz_at_Antwerp_Major_2022_EU_RMR.jpg/675px-Interz_at_Antwerp_Major_2022_EU_RMR.jpg",
     "link": "https://www.hltv.org/player/15071/interz"
   },

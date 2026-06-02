@@ -220,10 +220,10 @@
       ],
       "result": {
         "1-0": ["BB", "Liquid"],
-        "0-1": ["GG", "BIG"],
-        "1-1": ["LVG", "TD", "MIBR", "NRG", "Sharks", "FlyQuest"],
+        "0-1": [],
+        "1-1": ["LVG", "TD", "MIBR", "NRG", "Sharks", "FlyQuest", "BIG"],
         "2-0": ["GL", "M80", "B8"],
-        "0-2": ["HEROIC", "TYLOO", "SINNERS"],
+        "0-2": ["HEROIC", "TYLOO", "SINNERS", "GG"],
         "2-1": [],
         "1-2": [],
         "2-2": [],

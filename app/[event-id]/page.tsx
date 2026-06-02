@@ -708,7 +708,7 @@ function PredictorPredictions({
                       : '未通过'
                     : stageStatus === 'in_progress'
                       ? '进行中'
-                      : '等待中'}
+                      : '祈祷中'}
                 </span>
               )}
             </div>

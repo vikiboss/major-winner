@@ -1,5 +1,4 @@
 import { Inter } from 'next/font/google'
-import { ThemeProvider } from '@/components/ThemeProvider'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 
@@ -95,7 +94,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" suppressHydrationWarning>
+    <html lang="zh-CN" suppressHydrationWarning className="dark">
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
         <script
           defer
@@ -105,7 +104,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <GoogleAnalytics gaId="G-NRG0R1D14W" />
 
-        <ThemeProvider>{children}</ThemeProvider>
+        {children}
       </body>
     </html>
   )

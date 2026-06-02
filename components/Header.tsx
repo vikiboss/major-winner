@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ThemeToggle } from './ThemeToggle'
 import { EventSelector } from './EventSelector'
 import { GitHubIcon } from './GitHubIcon'
 import { NavItems } from './NavItems'
@@ -28,21 +27,19 @@ export function Header({ eventId }: HeaderProps) {
           </Link>
 
           <div className="flex shrink-0 flex-col items-start sm:flex-row sm:items-center sm:gap-3">
-            <span className="text-primary ml-1 text-xs font-semibold sm:ml-0 sm:text-lg">
+            <Link
+              href={`/${eventId}`}
+              className="text-primary ml-1 text-xs font-semibold sm:ml-0 sm:text-lg"
+            >
               Major Winner
-            </span>
+            </Link>
             <EventSelector eventId={eventId} />
           </div>
 
           <NavItems eventId={eventId} />
 
-          <div className="flex items-center gap-0 sm:gap-3">
-            <div className="shrink-0">
-              <ThemeToggle />
-            </div>
-            <div className="shrink-0">
-              <GitHubIcon link="https://github.com/vikiboss/major-winner" />
-            </div>
+          <div className="shrink-0">
+            <GitHubIcon link="https://github.com/vikiboss/major-winner" />
           </div>
         </div>
       </div>

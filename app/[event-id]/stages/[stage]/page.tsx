@@ -8,7 +8,8 @@ import {
 } from '@/lib/data'
 import TeamLogo from '@/components/TeamLogo'
 import { Metadata } from 'next'
-import { STAGE_TYPE, PLAYOFFS_STAGES } from '@/lib/constants'
+import { PLAYOFFS_STAGES } from '@/lib/constants'
+
 import type { StagePrediction, PlayoffsPrediction, MajorEvent, PredictorPrediction } from '@/types'
 
 type Stage = 'stage-1' | 'stage-2' | 'stage-3' | 'playoffs'
@@ -108,9 +109,7 @@ function SwissTable({
   const { currentStage } = getEventProgress(event)
 
   const stageProgress =
-    currentStage === stageId && currentStage
-      ? getStageProgressInfo(event, currentStage, STAGE_TYPE.SWISS)
-      : null
+    currentStage === stageId && currentStage ? getStageProgressInfo(event, currentStage) : null
 
   const isNotStarted =
     currentStage === stageId && stageProgress && stageProgress.status === 'not_started'
@@ -510,15 +509,13 @@ function PlayoffsTable({
 }) {
   const stageData = event.playoffs
   const playoffsResult = stageData.result
-
   const { currentStage } = getEventProgress(event)
 
-  const stageProgress = currentStage
-    ? getStageProgressInfo(event, currentStage, STAGE_TYPE.PLAYOFFS)
-    : null
+  console.log('Current stage:', currentStage)
 
-  const isNotStarted =
-    currentStage === 'playoffs' && stageProgress && stageProgress.status === 'not_started'
+  const stageProgress = currentStage ? getStageProgressInfo(event, currentStage) : null
+
+  const isNotStarted = currentStage === 'playoffs' && stageProgress?.status === 'not_started'
 
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
@@ -622,8 +619,8 @@ function PlayoffsTable({
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['8-to-4'].map((team) => {
-                        const isMatch = playoffsResult['8-to-4'].winners.includes(team)
-                        const isMismatch = playoffsResult['8-to-4'].losers.includes(team)
+                        const isMatch = playoffsResult?.['8-to-4'].winners.includes(team)
+                        const isMismatch = playoffsResult?.['8-to-4'].losers.includes(team)
 
                         return (
                           <TeamLogo
@@ -813,8 +810,8 @@ function PlayoffsTable({
                   </div>
                   <div className="flex flex-wrap gap-1">
                     {prediction['8-to-4']?.map((team) => {
-                      const isMatch = playoffsResult['8-to-4'].winners.includes(team)
-                      const isMismatch = playoffsResult['8-to-4'].losers.includes(team)
+                      const isMatch = playoffsResult?.['8-to-4'].winners.includes(team)
+                      const isMismatch = playoffsResult?.['8-to-4'].losers.includes(team)
 
                       return (
                         <TeamLogo

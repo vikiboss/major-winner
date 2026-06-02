@@ -528,12 +528,12 @@ function isPlayoffsRoundComplete(
 /**
  * 获取单个阶段的进度信息
  */
-export function getStageProgressInfo(
-  event: MajorEvent,
-  stageId: MajorStageType,
-  stageType: StageType,
-): StageProgress {
-  const { data: stageData, name: stageName } = getStageConfig(event).find((e) => e.id === stageId)!
+export function getStageProgressInfo(event: MajorEvent, stageId: MajorStageType): StageProgress {
+  const {
+    data: stageData,
+    name: stageName,
+    type: stageType,
+  } = getStageConfig(event).find((e) => e.id === stageId)!
 
   if (!stageData) {
     return {
@@ -544,6 +544,8 @@ export function getStageProgressInfo(
       isResultsComplete: false,
     }
   }
+
+  console.log(`Calculating progress for stage ${stageId} (${stageType})`)
 
   if (stageType === STAGE_TYPE.SWISS) {
     const swissStage = stageData as NonNullable<MajorEvent['stage-1']>
@@ -587,7 +589,7 @@ export function getStageProgressInfo(
   }
 }
 
-const getStageConfig = (event: MajorEvent) => {
+export const getStageConfig = (event: MajorEvent) => {
   return [
     { id: 'stage-1' as const, name: '第一阶段', data: event['stage-1'], type: STAGE_TYPE.SWISS },
     { id: 'stage-2' as const, name: '第二阶段', data: event['stage-2'], type: STAGE_TYPE.SWISS },
@@ -604,7 +606,7 @@ export function getEventProgress(event: MajorEvent): EventProgress {
   const stagesConfig = getStageConfig(event)
 
   const stagesProgress: StageProgress[] = stagesConfig.map((stage) =>
-    getStageProgressInfo(event, stage.id, stage.type),
+    getStageProgressInfo(event, stage.id),
   )
 
   // 找到所有已完成和进行中的阶段

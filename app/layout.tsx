@@ -94,7 +94,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="zh-CN" suppressHydrationWarning className="dark">
+    <html lang="zh-CN" suppressHydrationWarning className="dark" data-scroll-behavior="smooth">
       {/* Preconnect to external domains for better performance */}
       <link rel="preconnect" href="https://image.viki.moe" />
       <link rel="dns-prefetch" href="https://image.viki.moe" />

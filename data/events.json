@@ -3,7 +3,7 @@
     "id": "2026-cologne",
     "name": "IEM 科隆 Major 2026",
     "teams": [
-       {
+      {
         "name": "Team Vitality",
         "shortName": "Vitality",
         "stage": "stage-3",
@@ -100,7 +100,7 @@
         "stage": "stage-2",
         "link": "https://www.hltv.org/team/11811/monte"
       },
-      
+
       {
         "name": "GamerLegion",
         "shortName": "GL",
@@ -219,8 +219,8 @@
         "TD"
       ],
       "result": {
-        "1-0": [],
-        "0-1": [],
+        "1-0": ["M80"],
+        "0-1": ["LVG"],
         "1-1": [],
         "2-0": [],
         "0-2": [],
@@ -237,16 +237,7 @@
     },
     "stage-2": {
       "name": "第二阶段",
-      "teams": [
-        "Spirit",
-        "Astralis",
-        "G2",
-        "FUT",
-        "Legacy",
-        "9z",
-        "paiN",
-        "Monte"
-      ],
+      "teams": ["Spirit", "Astralis", "G2", "FUT", "Legacy", "9z", "paiN", "Monte"],
       "teamsFromAdvanced": [],
       "result": {
         "1-0": [],
@@ -267,16 +258,7 @@
     },
     "stage-3": {
       "name": "第三阶段",
-      "teams": [
-        "Vitality",
-        "NAVI",
-        "Falcons",
-        "FURIA",
-        "Aurora",
-        "PV",
-        "MongolZ",
-        "MOUZ"
-      ],
+      "teams": ["Vitality", "NAVI", "Falcons", "FURIA", "Aurora", "PV", "MongolZ", "MOUZ"],
       "teamsFromAdvanced": [],
       "result": {
         "1-0": [],
@@ -539,58 +521,18 @@
         "2-1": [],
         "1-2": [],
         "2-2": [],
-        "3-0": [
-          "M80",
-          "FlyQuest"
-        ],
-        "3-1": [
-          "B8",
-          "Fnatic",
-          "NIP"
-        ],
-        "3-2": [
-          "PV",
-          "Imperial",
-          "FaZe"
-        ],
-        "2-3": [
-          "NRG",
-          "Fluxo",
-          "Legacy"
-        ],
-        "1-3": [
-          "Huns",
-          "RED",
-          "GL"
-        ],
-        "0-3": [
-          "LVG",
-          "RA"
-        ]
+        "3-0": ["M80", "FlyQuest"],
+        "3-1": ["B8", "Fnatic", "NIP"],
+        "3-2": ["PV", "Imperial", "FaZe"],
+        "2-3": ["NRG", "Fluxo", "Legacy"],
+        "1-3": ["Huns", "RED", "GL"],
+        "0-3": ["LVG", "RA"]
       }
     },
     "stage-2": {
       "name": "第二阶段",
-      "teams": [
-        "Aurora",
-        "NAVI",
-        "Liquid",
-        "3DMAX",
-        "Astralis",
-        "TYLOO",
-        "MIBR",
-        "PUA"
-      ],
-      "teamsFromAdvanced": [
-        "M80",
-        "FlyQuest",
-        "B8",
-        "Fnatic",
-        "NIP",
-        "PV",
-        "Imperial",
-        "FaZe"
-      ],
+      "teams": ["Aurora", "NAVI", "Liquid", "3DMAX", "Astralis", "TYLOO", "MIBR", "PUA"],
+      "teamsFromAdvanced": ["M80", "FlyQuest", "B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
       "result": {
         "1-0": [],
         "0-1": [],
@@ -600,58 +542,18 @@
         "2-1": [],
         "1-2": [],
         "2-2": [],
-        "3-0": [
-          "NAVI",
-          "FaZe"
-        ],
-        "3-1": [
-          "B8",
-          "Imperial",
-          "PV"
-        ],
-        "3-2": [
-          "Liquid",
-          "PUA",
-          "3DMAX"
-        ],
-        "2-3": [
-          "NIP",
-          "M80",
-          "Astralis"
-        ],
-        "1-3": [
-          "Aurora",
-          "Fnatic",
-          "TYLOO"
-        ],
-        "0-3": [
-          "MIBR",
-          "FlyQuest"
-        ]
+        "3-0": ["NAVI", "FaZe"],
+        "3-1": ["B8", "Imperial", "PV"],
+        "3-2": ["Liquid", "PUA", "3DMAX"],
+        "2-3": ["NIP", "M80", "Astralis"],
+        "1-3": ["Aurora", "Fnatic", "TYLOO"],
+        "0-3": ["MIBR", "FlyQuest"]
       }
     },
     "stage-3": {
       "name": "第三阶段",
-      "teams": [
-        "FURIA",
-        "Vitality",
-        "Falcons",
-        "MongolZ",
-        "MOUZ",
-        "Spirit",
-        "G2",
-        "paiN"
-      ],
-      "teamsFromAdvanced": [
-        "NAVI",
-        "FaZe",
-        "B8",
-        "Imperial",
-        "PV",
-        "Liquid",
-        "PUA",
-        "3DMAX"
-      ],
+      "teams": ["FURIA", "Vitality", "Falcons", "MongolZ", "MOUZ", "Spirit", "G2", "paiN"],
+      "teamsFromAdvanced": ["NAVI", "FaZe", "B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
       "result": {
         "1-0": [],
         "0-1": [],
@@ -661,71 +563,24 @@
         "2-1": [],
         "1-2": [],
         "2-2": [],
-        "3-0": [
-          "FURIA",
-          "Spirit"
-        ],
-        "3-1": [
-          "Vitality",
-          "MongolZ",
-          "MOUZ"
-        ],
-        "3-2": [
-          "NAVI",
-          "FaZe",
-          "Falcons"
-        ],
-        "2-3": [
-          "B8",
-          "PUA",
-          "G2"
-        ],
-        "1-3": [
-          "Imperial",
-          "paiN",
-          "3DMAX"
-        ],
-        "0-3": [
-          "PV",
-          "Liquid"
-        ]
+        "3-0": ["FURIA", "Spirit"],
+        "3-1": ["Vitality", "MongolZ", "MOUZ"],
+        "3-2": ["NAVI", "FaZe", "Falcons"],
+        "2-3": ["B8", "PUA", "G2"],
+        "1-3": ["Imperial", "paiN", "3DMAX"],
+        "0-3": ["PV", "Liquid"]
       }
     },
     "playoffs": {
-      "teams": [
-        "FURIA",
-        "Spirit",
-        "Vitality",
-        "MongolZ",
-        "MOUZ",
-        "NAVI",
-        "FaZe",
-        "Falcons"
-      ],
+      "teams": ["FURIA", "Spirit", "Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
       "result": {
         "8-to-4": {
-          "winners": [
-            "Spirit",
-            "Vitality",
-            "FaZe",
-            "NAVI"
-          ],
-          "losers": [
-            "Falcons",
-            "MongolZ",
-            "MOUZ",
-            "FURIA"
-          ]
+          "winners": ["Spirit", "Vitality", "FaZe", "NAVI"],
+          "losers": ["Falcons", "MongolZ", "MOUZ", "FURIA"]
         },
         "4-to-2": {
-          "winners": [
-            "Vitality",
-            "FaZe"
-          ],
-          "losers": [
-            "Spirit",
-            "NAVI"
-          ]
+          "winners": ["Vitality", "FaZe"],
+          "losers": ["Spirit", "NAVI"]
         },
         "2-to-1": {
           "winner": "Vitality",

@@ -32,7 +32,7 @@ export function StageNav({ eventId }: { eventId: string }) {
               <Link
                 key={stage.id}
                 href={`/${eventId}/stages/${stage.id}`}
-                className={`rounded px-2 py-1.5 text-center text-[10px] font-medium transition-colors sm:px-4 sm:py-2 sm:text-sm ${
+                className={`rounded px-1.5 py-1 text-center text-[10px] font-medium transition-colors sm:px-2 sm:py-1.5 sm:text-sm ${
                   isActive
                     ? 'bg-primary-500/10 text-primary-400'
                     : 'text-secondary hover:bg-surface-2 hover-text-primary'
@@ -40,7 +40,7 @@ export function StageNav({ eventId }: { eventId: string }) {
               >
                 <span>{stage.label}</span>
                 {count > 0 ? (
-                  <span className="bg-primary-500/10 text-primary-400 ml-1 inline-block rounded-full px-1 text-[10px] font-medium sm:px-2 sm:py-0.5 sm:text-xs">
+                  <span className="bg-primary-500/10 text-primary-400 ml-1 inline-block rounded-full px-1 text-[8px] font-medium sm:px-2 sm:py-0.5 sm:text-xs">
                     {count}
                   </span>
                 ) : null}

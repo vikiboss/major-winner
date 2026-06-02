@@ -4,7 +4,7 @@ export function Footer() {
   return (
     <footer className="border-border bg-surface-1 mt-auto border-t">
       <div className="mx-auto max-w-5xl px-4 py-8 md:py-12">
-        <div className="flex flex-col gap-2 md:flex-row md:justify-between md:gap-2">
+        <div className="flex flex-col gap-4 md:flex-row md:justify-between md:gap-4">
           {/* Left Side: Brand & Copyright */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
@@ -13,7 +13,7 @@ export function Footer() {
             </div>
             <div className="text-muted space-y-2 text-sm leading-relaxed">
               <p>
-                CS2 Major 竞猜结果与排行，数据主要整理自 B 站 UP 主
+                CS2 Major 竞猜情况，数据主要来自 B 站 UP 主
                 <a
                   href="https://space.bilibili.com/472947493"
                   target="_blank"
@@ -22,7 +22,7 @@ export function Footer() {
                 >
                   @原劫色
                 </a>
-                和
+                、
                 <a
                   href="https://space.bilibili.com/1428295"
                   target="_blank"
@@ -31,13 +31,22 @@ export function Footer() {
                 >
                   @三米七七
                 </a>
+                和
+                <a
+                  href="https://space.bilibili.com/65822877"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-primary-400 mx-1 hover:underline"
+                >
+                  @BOSHIYK
+                </a>
                 等。
                 <br className="hidden sm:block" />
-                网站将及时更新赛事竞猜数据，助你轻松掌握作业情况。
+                网站将及时更新竞猜情况，助你轻松完成竞猜任务。
               </p>
               <p className="text-xs opacity-60">
-                © {new Date().getFullYear()} Major Winner, Viki.
-                数据仅供娱乐参考，不保证完全准确性。
+                © 2025-{new Date().getFullYear()} Major Winner, Viki.
+                数据仅供娱乐参考。
               </p>
             </div>
           </div>
@@ -65,7 +74,7 @@ export function Footer() {
                 >
                   点此拉起 QQ 一键加群
                 </a>
-                <span className="text-muted select-all">QQ 群: 902511365（Major Winner）</span>
+                <span className="text-muted select-all">QQ 群号: 902511365</span>
               </div>
             </div>
           </div>

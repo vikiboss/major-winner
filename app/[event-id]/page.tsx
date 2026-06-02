@@ -671,23 +671,25 @@ function PredictorPredictions({
               <div className="flex items-center gap-2">
                 {p.avatar && (
                   <img
-                    className="size-6 rounded-full object-cover"
+                    className="size-8 rounded-full object-cover"
                     src={p.avatar}
                     alt={`${p.name} logo`}
                     referrerPolicy="no-referrer"
                   />
                 )}
-                <a
-                  className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
-                  href={p.link || '#'}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {p.name}
-                </a>
-                {p.platform && (
-                  <span className="text-primary-400 text-xs text-nowrap">@{p.platform}</span>
-                )}
+                <div className="flex flex-col items-start">
+                  <a
+                    className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                    href={p.link || '#'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {p.name}
+                  </a>
+                  {p.platform && (
+                    <span className="text-primary-400 text-xs text-nowrap">@{p.platform}</span>
+                  )}
+                </div>
               </div>
               {/* 只在结束时显示通过/未通过 */}
               {stageResult && (

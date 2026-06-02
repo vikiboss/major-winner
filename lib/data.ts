@@ -545,8 +545,6 @@ export function getStageProgressInfo(event: MajorEvent, stageId: MajorStageType)
     }
   }
 
-  console.log(`Calculating progress for stage ${stageId} (${stageType})`)
-
   if (stageType === STAGE_TYPE.SWISS) {
     const swissStage = stageData as NonNullable<MajorEvent['stage-1']>
     const hasResults = hasSwissResults(swissStage.result)

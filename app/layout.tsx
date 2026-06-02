@@ -9,7 +9,7 @@ import type { Metadata, Viewport } from 'next'
 const inter = Inter({ subsets: ['latin'] })
 
 const ogUrl =
-  'https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fmajor.viki.moe%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto'
+  'https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fimage.viki.moe%2Fcs%2Fi%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://major.viki.moe'),
@@ -77,7 +77,7 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: '/favicon.ico',
-    apple: '/icon.png',
+    apple: 'https://image.viki.moe/cs/i/icon.png',
   },
 }
 
@@ -95,6 +95,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN" suppressHydrationWarning className="dark">
+      {/* Preconnect to external domains for better performance */}
+      <link rel="preconnect" href="https://image.viki.moe" />
+      <link rel="dns-prefetch" href="https://image.viki.moe" />
+
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
         <script
           defer

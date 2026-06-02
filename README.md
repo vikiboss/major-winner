@@ -1,4 +1,4 @@
-![Major Winner Stats](https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fmajor.viki.moe%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto)
+![Major Winner Stats](https://socialify.git.ci/vikiboss/major-winner/image?description=1&font=Inter&forks=1&issues=1&language=1&logo=https%3A%2F%2Fimage.viki.moe%2Fcs%2Fi%2Ficon.png&name=1&owner=1&pattern=Circuit+Board&pulls=1&stargazers=1&theme=Auto)
 
 # 🏆 Major Winner
 
@@ -23,7 +23,7 @@ https://major.viki.moe
 
 QQ 群: [902511365](https://qm.qq.com/q/oiHxyHNfl6) (Major Winner)
 
-<img src="./docs/image/group-qrcode.jpg" alt="group-qrcode" style="width: 36%; border-radius: 3px;" />
+<img src="https://image.viki.moe/cs/i/group-qrcode.png" alt="group-qrcode" style="width: 36%; border-radius: 3px;" />
 
 ## 技术栈
 

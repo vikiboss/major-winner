@@ -8,7 +8,7 @@ export function Footer() {
           {/* Left Side: Brand & Copyright */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <Image src="/icon.png" alt="Logo" width={32} height={32} className="size-8" />
+              <Image src="https://image.viki.moe/cs/i/icon.png" alt="Logo" width={32} height={32} className="size-8" />
               <span className="text-lg font-bold tracking-tight">Major Winner</span>
             </div>
             <div className="text-muted space-y-2 text-sm leading-relaxed">
@@ -56,7 +56,7 @@ export function Footer() {
             <div className="flex flex-row items-center gap-4 md:flex-row-reverse">
               <div className="bg-surface-0 shrink-0 rounded-lg shadow-sm">
                 <Image
-                  src="/group-qrcode.png"
+                  src="https://image.viki.moe/cs/i/group-qrcode.png"
                   alt="QQ Group QR"
                   width={80}
                   height={80}

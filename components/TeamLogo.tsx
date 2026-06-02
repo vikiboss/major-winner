@@ -51,7 +51,7 @@ export default function TeamLogo(props: TeamLogoProps) {
 
   const img = (
     <Image
-      src={`/logo/${shortName}.png`}
+      src={`https://image.viki.moe/cs/t/${shortName}.png`}
       alt={`${shortName} logo`}
       width={pixelSize}
       height={pixelSize}

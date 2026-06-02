@@ -18,7 +18,7 @@ export function Header({ eventId }: HeaderProps) {
             className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
           >
             <Image
-              src="/icon.png"
+              src="https://image.viki.moe/cs/i/icon.png"
               alt="Major Winner Logo"
               className="size-6 sm:size-8"
               width={48}

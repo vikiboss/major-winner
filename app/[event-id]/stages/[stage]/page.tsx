@@ -131,14 +131,14 @@ function SwissTable({
     const correctA = resultA?.correctCount ?? -1
     const correctB = resultB?.correctCount ?? -1
 
-    // 如果有猜对数，优先按猜对数排序
-    if (correctB || correctA) {
-      return correctB - correctA
-    }
-
     // 如果都未完成（进行中），按已知错误数升序
     const impossibleA = resultA?.impossibleCount ?? 0
     const impossibleB = resultB?.impossibleCount ?? 0
+
+    // 如果有猜对数，优先按猜对数排序
+    if (correctB || correctA) {
+      return correctB - correctA || impossibleA - impossibleB
+    }
 
     return impossibleA - impossibleB // 错误少的排前面
   })

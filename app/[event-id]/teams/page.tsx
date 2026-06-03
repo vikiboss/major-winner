@@ -91,7 +91,7 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
 
       {/* Teams Table - Desktop */}
       <div className="bg-surface-1 border-border hidden overflow-x-auto rounded-lg border md:block">
-        <table className="w-full min-w-[500px]">
+        <table className="w-full min-w-125">
           <thead className="bg-surface-2 border-border border-b">
             <tr className="border-border text-primary text-muted border-b text-left text-xs font-medium tracking-wide uppercase">
               <th className="w-12 px-4 py-3">#</th>
@@ -135,10 +135,14 @@ export default async function TeamsPage({ params }: { params: Promise<{ 'event-i
                     </div>
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className="text-muted text-sm text-nowrap">{STAGE_GROUP_NAME_MAP[team.stage]}</span>
+                    <span className="text-muted text-sm text-nowrap">
+                      {STAGE_GROUP_NAME_MAP[team.stage]}
+                    </span>
                   </td>
                   <td className="px-4 py-2.5">
-                    <span className={`text-sm text-nowrap ${team.status.className}`}>{team.status.text}</span>
+                    <span className={`text-sm text-nowrap ${team.status.className}`}>
+                      {team.status.text}
+                    </span>
                   </td>
                   <td className="px-4 py-2.5">
                     {team.performance.length > 0 ? (

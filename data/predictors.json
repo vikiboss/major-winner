@@ -875,9 +875,16 @@
     "link": "https://github.com/14kay"
   },
   {
+    "id": "mio",
+    "name": "Mio（网站贡献者）",
+    "platform": "Blog",
+    "avatar": "https://s2.loli.net/2025/11/21/CcTp4FnkGH6dO1g.png",
+    "link": "https://blog.viki.moe/mio-says"
+  },
+  {
     "id": "logic",
-    "name": "罗辑",
-    "platform": "群友",
+    "name": "罗辑（群友）",
+    "platform": "Blog",
     "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
     "link": "https://blog.shiro.team"
   }

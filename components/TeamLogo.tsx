@@ -27,14 +27,14 @@ const sizeClsMap = {
 
 const statusMap = {
   normal: 'rounded bg-surface-2 text-tertiary',
-  win: 'rounded bg-win/10 text-win',
-  lose: 'rounded bg-lose/10 text-lose',
+  win: 'rounded bg-win/30 text-win',
+  lose: 'rounded bg-lose/30 text-lose',
 }
 
 const iconStatusMap = {
-  normal: 'rounded bg-surface-3 text-tertiary',
-  win: 'rounded bg-win/20 text-win',
-  lose: 'rounded bg-lose/20 text-lose',
+  normal: 'rounded border border border-transparent bg-surface-3 text-tertiary',
+  win: 'rounded border border border-win/80 bg-win/30 text-win',
+  lose: 'rounded border border border-lose/80 bg-lose/30 text-lose',
 }
 
 export default function TeamLogo(props: TeamLogoProps) {

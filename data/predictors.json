@@ -10,7 +10,7 @@
     "id": "cs-advent",
     "name": "CS-advent/259/老九",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/d1c4a0d3741a25a7893e59c1b7d1b20aee48eef1.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/d1c4a0d3741a25a7893e59c1b7d1b20aee48eef1.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/3546687211572101"
   },
   {
@@ -31,7 +31,7 @@
     "id": "bhsydjb",
     "name": "不会沙鹰的珏宝、",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/33268daa4a52c86a78e7a43173da6c097f40688d.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/33268daa4a52c86a78e7a43173da6c097f40688d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/230240655"
   },
   {
@@ -59,14 +59,14 @@
     "id": "biliwang",
     "name": "比利王",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/e73afde8bfee997e56805f44478d937108a6e09c.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/e73afde8bfee997e56805f44478d937108a6e09c.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/1263468216"
   },
   {
     "id": "xvduoyu",
     "name": "许多鱼 x",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/be90a02f2e8098a7c3bd252c999f384865032a67.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/be90a02f2e8098a7c3bd252c999f384865032a67.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/30491919"
   },
   {
@@ -87,7 +87,7 @@
     "id": "xhcmdjzk",
     "name": "喜欢草莓的橘子可",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/0326690e5e64912ef0739842c26fdbe629a76d45.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/0326690e5e64912ef0739842c26fdbe629a76d45.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/22871593"
   },
   {
@@ -96,6 +96,20 @@
     "platform": "FURIA 指挥",
     "avatar": "https://liquipedia.net/commons/images/thumb/1/14/FalleN_at_BLAST_Open_Spring_2026.jpg/900px-FalleN_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/2023/fallen"
+  },
+  {
+    "id": "hltv",
+    "name": "HLTV",
+    "platform": "HLTV 官方",
+    "avatar": "https://storage.moegirl.org.cn/moegirl/commons/3/35/HLTV_Logo.jpg",
+    "link": "https://www.hltv.org/"
+  },
+  {
+    "id": "heaton",
+    "name": "HeatoN",
+    "platform": "GODSENT 经理",
+    "avatar": "https://liquipedia.net/commons/images/4/4b/HeatoN.jpg",
+    "link": "https://liquipedia.net/counterstrike/HeatoN"
   },
   {
     "id": "overdrive",
@@ -122,147 +136,147 @@
     "id": "k4mi",
     "name": "k4Mi",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/1b1c1d725d22168b4e6ca3e37e81df6eb4106cca.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/1b1c1d725d22168b4e6ca3e37e81df6eb4106cca.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/97480905"
   },
   {
     "id": "xiaotian",
     "name": "小天 FreeZing",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/e8aa3925d131dd03cc5e7fe5189980f41ac020a8.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/e8aa3925d131dd03cc5e7fe5189980f41ac020a8.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/1979685"
   },
   {
     "id": "laojiao",
     "name": "老蕉 Banous",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/59fb1b50150bbda4bf2a1eab1736780a084bb33a.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/59fb1b50150bbda4bf2a1eab1736780a084bb33a.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/10999014"
   },
   {
     "id": "ban-ga",
     "name": "CS2-BanGa",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/21c59437b051d95aac0479dda0aaef0bb6d5d67d.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/21c59437b051d95aac0479dda0aaef0bb6d5d67d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/8498990"
   },
   {
     "id": "boshiyk",
     "name": "BOSHIYK（制图作者）",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/159571acf4f054802cbb93584148b3b873d695ff.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/159571acf4f054802cbb93584148b3b873d695ff.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/65822877"
   },
   {
     "id": "xieshaonian",
     "name": "邪少年、",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/f7a8cb6818a31566ecb686c334b79c7251385e7d.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/f7a8cb6818a31566ecb686c334b79c7251385e7d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/69185991"
   },
   {
     "id": "yinxing",
     "name": "银杏就是 YINXING",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/4e455a4ac3f4c1e7c3e9f6883d7722e9b5fe5806.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/4e455a4ac3f4c1e7c3e9f6883d7722e9b5fe5806.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/283051605"
   },
   {
     "id": "cs2-dq",
     "name": "CS2-dq",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/0fe463b0a8c163980018358e5f0b9df7e867f78f.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/0fe463b0a8c163980018358e5f0b9df7e867f78f.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/25912175"
   },
   {
     "id": "fga",
     "name": "FGA 字幕组",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/f5d4f87302dd754ed521a5967d7cf5d7055734c4.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/f5d4f87302dd754ed521a5967d7cf5d7055734c4.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/398592369"
   },
   {
     "id": "sam-cs2",
     "name": "Sam-CS2",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/a9245b1efeeb406ed43204d53421ea6fcc39cea9.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/a9245b1efeeb406ed43204d53421ea6fcc39cea9.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/2971435"
   },
   {
     "id": "cs2-jjg",
     "name": "CS2 将军鸽",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/499978ed1208979898d5f79f3e09f2395a85c318.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/499978ed1208979898d5f79f3e09f2395a85c318.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/496798834"
   },
   {
     "id": "ounijiang",
     "name": "瓜鱼欧尼酱",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/f89ef253fdb2fdce40f15b61123a8b19517093db.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/f89ef253fdb2fdce40f15b61123a8b19517093db.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/1448301"
   },
   {
     "id": "tatukunn",
     "name": "Tatukunn",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/ca8294f7c8ec4229b7e4f67dbfaa6ceddea0b987.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/ca8294f7c8ec4229b7e4f67dbfaa6ceddea0b987.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/272421703"
   },
   {
     "id": "cs-laozhang",
     "name": "CS 解说老张",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/c1c083e1f9cb7f0116c98bb7acd2db8688f96f68.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/c1c083e1f9cb7f0116c98bb7acd2db8688f96f68.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/3461579393731313"
   },
   {
     "id": "winning",
     "name": "温宁winningOvO",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/1c546e78ae80cd9f29c210ec38c91ecbb786e9a5.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/1c546e78ae80cd9f29c210ec38c91ecbb786e9a5.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/40093819"
   },
   {
     "id": "cs-rw",
     "name": "CS-RW",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/d871af25c12cd6b345bdff9270b379381e6ea1c9.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/d871af25c12cd6b345bdff9270b379381e6ea1c9.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/37012016"
   },
   {
     "id": "xiaoliuyu",
     "name": "小刘鱼",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/ba25812b57a51bee4b6e81d93a6fbe15dd6af936.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/ba25812b57a51bee4b6e81d93a6fbe15dd6af936.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/5174692"
   },
   {
     "id": "yezi-c",
     "name": "椰子 c",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/7c93acf65adbb7f6ca254e9f520ace639c287b5f.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/7c93acf65adbb7f6ca254e9f520ace639c287b5f.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/21994094"
   },
   {
     "id": "rose",
     "name": "-玫瑰予乐-",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/a5807450b3e0ba8e89e91f7125529a0b5fb9a51c.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/a5807450b3e0ba8e89e91f7125529a0b5fb9a51c.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/485759425"
   },
   {
     "id": "elysia-cs2",
     "name": "ElysiaCS2",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/e9d17b642c721dec5550a5bf239776425eeaa088.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/e9d17b642c721dec5550a5bf239776425eeaa088.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/178467085"
   },
   {
     "id": "lancerrr",
     "name": "幸运的 LANCERRR",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/76a81dad993f71c1551510e19c92278865b1488c.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/76a81dad993f71c1551510e19c92278865b1488c.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/9038639"
   },
   {
@@ -276,7 +290,7 @@
     "id": "david-tao",
     "name": "陶喆的音乐难产房",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/ef9cff097671ad0591eb1a195552b353d3eb8cec.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/ef9cff097671ad0591eb1a195552b353d3eb8cec.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/544173861"
   },
   {
@@ -619,7 +633,7 @@
     "id": "nuko",
     "name": "Nuko 丶",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/72fafe063819f7ebc77d37353c8aa12e085e488b.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/72fafe063819f7ebc77d37353c8aa12e085e488b.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/39253279"
   },
   {
@@ -675,21 +689,21 @@
     "id": "m1chaeL",
     "name": "-m1chaeL-",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/37bcae511f61c42e72461e7441ce47db0abf7731.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/37bcae511f61c42e72461e7441ce47db0abf7731.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/560117518"
   },
   {
     "id": "qianzhihe-cs",
     "name": "千纸鹤 cs",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/68fe87a029d97bfc9901d6613b6e136b7a0e617d.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/68fe87a029d97bfc9901d6613b6e136b7a0e617d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/47209995"
   },
   {
     "id": "csgo-leien",
     "name": "CSGO 雷恩",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/d3e212514ebd66f4e391d44d50ddbd1e66dc2e41.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/d3e212514ebd66f4e391d44d50ddbd1e66dc2e41.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/228323941"
   },
   {
@@ -717,49 +731,49 @@
     "id": "momo",
     "name": "MoMo 侠",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/0e3c25dcd494840057f6db18d1bfbf95de34bc5d.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/0e3c25dcd494840057f6db18d1bfbf95de34bc5d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/403687607"
   },
   {
     "id": "niaozi",
     "name": "斋藤飛鸟子",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/8c5148d5cd58597713ef0754fff6d7f312d63482.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/8c5148d5cd58597713ef0754fff6d7f312d63482.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/15660608"
   },
   {
     "id": "jiayounuli",
     "name": "- 加油努力 Ovo-",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/bebba6148313d48d05f5b5719d2bd59ad95cf46f.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/bebba6148313d48d05f5b5719d2bd59ad95cf46f.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/406929044"
   },
   {
     "id": "cangshanxue",
     "name": "CS2 苍山雪",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/38d0630b98ec7c04e94d718b371eb696bc408eb8.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/38d0630b98ec7c04e94d718b371eb696bc408eb8.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/354745275"
   },
   {
     "id": "sishen",
     "name": "死神怪蜀黍",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/dd994995a8a7d00992871c21038ea5dc0dadb738.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/dd994995a8a7d00992871c21038ea5dc0dadb738.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/50094288"
   },
   {
     "id": "duckie",
     "name": "duckie__",
     "platform": "哔哩哔哩",
-    "avatar": "https://i2.hdslb.com/bfs/face/d27434d1cca259cb82dbcc48289c5d060ead9f91.jpg",
+    "avatar": "https://i2.hdslb.com/bfs/face/d27434d1cca259cb82dbcc48289c5d060ead9f91.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/322114568"
   },
   {
     "id": "ninjiajam",
     "name": "NinjaJam",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/198cda2ccd4639a159d7ba175f5995eca47c0e3e.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/198cda2ccd4639a159d7ba175f5995eca47c0e3e.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/12892504"
   },
   {
@@ -787,14 +801,14 @@
     "id": "xiaoyuan",
     "name": "-小鸢 w-",
     "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/640425b09390d12876ed22563cad7747d621742b.jpg",
+    "avatar": "https://i0.hdslb.com/bfs/face/640425b09390d12876ed22563cad7747d621742b.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/526848366"
   },
   {
     "id": "fenlegeli",
     "name": "CS2 芬了个黎",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/12599241b87a69983787ccb454168d267630a573.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/12599241b87a69983787ccb454168d267630a573.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/1312481647"
   },
   {
@@ -808,7 +822,7 @@
     "id": "zheguchenshi",
     "name": "折骨成诗的女人",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/fc51552a2562d6f8913c7c5bed9a64b9cd4d55c5.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/fc51552a2562d6f8913c7c5bed9a64b9cd4d55c5.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/7676887"
   },
   {
@@ -847,6 +861,76 @@
     "link": "https://x.com/Team__Spirit"
   },
   {
+    "id": "olofmeister",
+    "name": "olofmeister",
+    "platform": "前 Faze 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/f/fe/Olofmeister_%40_PGL_Major_Stockholm_2021.jpg/1200px-Olofmeister_%40_PGL_Major_Stockholm_2021.jpg",
+    "link": "https://www.hltv.org/hof/885/olofmeister"
+  },
+  {
+    "id": "xielo",
+    "name": "xiELO",
+    "platform": "PV 队员",
+    "avatar": "https://liquipedia.net/commons/images/9/90/XiELO_at_StarLadder_StarSeries_Fall_2025.jpg",
+    "link": "https://www.hltv.org/player/22471/xielo"
+  },
+  {
+    "id": "snax",
+    "name": "snax",
+    "platform": "GL 队员",
+    "avatar": "https://liquipedia.net/commons/images/3/37/Snax_at_BLAST_Bounty_Winter_2026.jpg",
+    "link": "https://www.hltv.org/player/2553/snax"
+  },
+  {
+    "id": "hooxi",
+    "name": "HooXi",
+    "platform": "Astralis 队员",
+    "avatar": "https://liquipedia.net/commons/images/thumb/2/20/HooXi_at_PGL_Astana_2025.jpg/900px-HooXi_at_PGL_Astana_2025.jpg",
+    "link": "https://www.hltv.org/player/10096/hooxi"
+  },
+  {
+    "id": "kustyd",
+    "name": "Kustyd_cs2",
+    "platform": "抖音",
+    "avatar": "https://p3-pc.douyinpic.com/img/aweme-avatar/tos-cn-avt-0015_6cb38aa78b09277d4ad28aaacf4d6128~c5_300x300.jpeg",
+    "link": "https://www.douyin.com/user/MS4wLjABAAAAKyDstA7olNQWezYDJaY_xbIyVcCxE3pMDS1kEw1y4HU8f_EWPvKfwKzOfHFdnoYZ"
+  },
+  {
+    "id": "yoke",
+    "name": "勤奋的 yoke",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/00fd26d75735a167a206536e056735f43d32d1e1.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/267298820"
+  },
+  {
+    "id": "zhengyilaodeng",
+    "name": "CS 正义老登",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/f52d98a846f0ded8bf62b7bb18a481b157cb213c.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/381104701"
+  },
+  {
+    "id": "gubaolongji",
+    "name": "古堡龙姬",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/d910b26c5229bac197b67ce5e4bb3464a671e9af.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/686201061"
+  },
+  {
+    "id": "navi-csgo",
+    "name": "NAVI-CSGO",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/303312fb628e0cc0a159ede7af26a94d9b9f9615.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/472514992"
+  },
+  {
+    "id": "weiwei",
+    "name": "解说伟伟",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/65251fbb3ac49677004bd6621a2cd1f469361206.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/85508942"
+  },
+  {
     "id": "viki",
     "name": "Viki（网站作者）",
     "platform": "GitHub",
@@ -857,14 +941,14 @@
     "id": "yjs",
     "name": "原劫色（制图作者）",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/620a44f683a0197757ce3381d30aa9c489cda46e.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/620a44f683a0197757ce3381d30aa9c489cda46e.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/472947493"
   },
   {
     "id": "qiqi",
     "name": "三米七七（制图作者）",
     "platform": "哔哩哔哩",
-    "avatar": "https://i1.hdslb.com/bfs/face/ffe2bcc0fc4fe81124b784e70b5b098c6a7c8f5d.jpg",
+    "avatar": "https://i1.hdslb.com/bfs/face/ffe2bcc0fc4fe81124b784e70b5b098c6a7c8f5d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/1428295"
   },
   {

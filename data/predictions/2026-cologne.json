@@ -1423,6 +1423,15 @@
         "0-3": ["FlyQuest", "Monte"]
       }
     },
+    {
+      "id": "little",
+      "name": "liTTle",
+      "stage-2": {
+        "3-0": ["Spirit", "FUT"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "B8", "M80", "B8"],
+        "0-3": ["FlyQuest", "TYLOO"]
+      }
+    },
 
     {
       "id": "viki",

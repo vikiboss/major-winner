@@ -993,6 +993,20 @@
     "avatar": "https://i1.hdslb.com/bfs/face/4db4a282f7053c1011c3d91e655945af7f512eeb.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/9852159"
   },
+  {
+    "id": "little",
+    "name": "liTTle",
+    "platform": "LEON 教练",
+    "avatar": "https://liquipedia.net/commons/images/thumb/5/5b/LiTTle_%40_DHANA20.jpg/900px-LiTTle_%40_DHANA20.jpg",
+    "link": "https://liquipedia.net/counterstrike/LiTTle"
+  },
+  {
+    "id": "btrams",
+    "name": "btrams",
+    "platform": "分析师",
+    "avatar": "https://x-img.nioi.in/profile_images/2045484407683706880/Z8UPTVqH_400x400.jpg",
+    "link": "https://x.com/smartbackwards"
+  },
 
   {
     "id": "viki",

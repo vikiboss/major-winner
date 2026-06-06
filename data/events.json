@@ -2,6 +2,7 @@
   {
     "id": "2026-cologne",
     "name": "IEM 科隆 Major 2026",
+    "current": "stage-2",
     "teams": [
       {
         "name": "Team Vitality",
@@ -298,6 +299,7 @@
   {
     "id": "2025-budapest",
     "name": "SL 布达佩斯 Major 2025",
+    "current": "playoffs",
     "teams": [
       {
         "name": "FURIA",

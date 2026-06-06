@@ -80,6 +80,7 @@ export interface MajorEvent {
   id: string
   name: string
   teams: Team[]
+  current: MajorStageType
   'stage-1': SwissStage
   'stage-2': SwissStage
   'stage-3': SwissStage

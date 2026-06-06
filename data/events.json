@@ -241,8 +241,8 @@
       "teams": ["Spirit", "Astralis", "G2", "FUT", "Legacy", "9z", "paiN", "Monte"],
       "teamsFromAdvanced": ["BB", "B8", "MIBR", "GL", "M80", "TYLOO", "FlyQuest", "BIG"],
       "result": {
-        "1-0": ["Astralis"],
-        "0-1": ["GL"],
+        "1-0": ["Astralis", "9z"],
+        "0-1": ["GL", "FlyQuest"],
         "1-1": [],
         "2-0": [],
         "0-2": [],

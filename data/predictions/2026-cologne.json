@@ -475,6 +475,11 @@
         "3-0": ["TYLOO", "LVG"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "BB", "GL"],
         "0-3": ["FlyQuest", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Sprit", "TYLOO"],
+        "3-1-or-3-2": ["Legacy", "B8", "G2", "GL", "FUT", "9z"],
+        "0-3": ["FlyQuest", "Monte"]
       }
     },
     {
@@ -484,6 +489,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "TYLOO", "BIG"],
         "0-3": ["GG", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Astralis", "Legacy"],
+        "3-1-or-3-2": ["Spirit", "BB", "G2", "paiN", "FUT", "9z"],
+        "0-3": ["FlyQuest", "BIG"]
       }
     },
     {

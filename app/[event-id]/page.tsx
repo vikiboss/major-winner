@@ -141,9 +141,9 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
                 <div
                   className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`}
                 />
-                <span className="text-secondary">
+                {/* <span className="text-secondary">
                   {getEventStatusText(eventProgress.eventStatus)}
-                </span>
+                </span> */}
               </div>
             </div>
           </div>

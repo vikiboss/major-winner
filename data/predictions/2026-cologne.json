@@ -291,7 +291,7 @@
         "0-3": ["GG", "TD"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "Legacy"],
+        "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "BB", "G2", "GL", "FUT", "MIBR"],
         "0-3": ["TYLOO", "Monte"]
       }
@@ -359,7 +359,7 @@
         "0-3": ["Sharks", "TD"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "Legacy"],
+        "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["BB", "Astralis", "G2", "GL", "FUT", "9z"],
         "0-3": ["BIG", "MIBR"]
       }
@@ -423,7 +423,7 @@
         "0-3": ["Sharks", "TD"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "FUT"],
+        "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "BB", "TYLOO", "MIBR"],
         "0-3": ["FlyQuest", "Monte"]
       }
@@ -654,7 +654,7 @@
         "0-3": ["TD", "NRG"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "FUT"],
+        "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "FlyQuest", "G2", "GL", "TYLOO", "Monte"],
         "0-3": ["9z", "paiN"]
       }
@@ -749,7 +749,7 @@
         "0-3": ["TD", "Sharks"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "Legacy"],
+        "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
         "0-3": ["M80", "BIG"]
       }
@@ -894,7 +894,7 @@
         "0-3": ["TD", "GG"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "G2"],
+        "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "BB", "GL", "FUT", "MIBR"],
         "0-3": ["FlyQuest", "BIG"]
       }
@@ -940,7 +940,7 @@
         "0-3": ["TD", "GG"]
       },
       "stage-2": {
-        "3-0": ["Sprit", "G2"],
+        "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "BB", "GL", "FUT", "B8"],
         "0-3": ["FlyQuest", "M80"]
       }

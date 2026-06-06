@@ -289,6 +289,11 @@
         "3-0": ["GL", "HEROIC"],
         "3-1-or-3-2": ["Liquid", "BB", "BIG", "B8", "MIBR", "M80"],
         "0-3": ["GG", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Sprit", "Legacy"],
+        "3-1-or-3-2": ["B8", "BB", "G2", "GL", "FUT", "MIBR"],
+        "0-3": ["TYLOO", "Monte"]
       }
     },
     {

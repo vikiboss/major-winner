@@ -1279,6 +1279,15 @@
         "0-3": ["FlyQuest", "BIG"]
       }
     },
+    {
+      "id": "neeko",
+      "name": "Vitality-Neeko",
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "9z"],
+        "0-3": ["FlyQuest", "BIG"]
+      }
+    },
 
     {
       "id": "viki",

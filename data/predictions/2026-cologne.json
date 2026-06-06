@@ -156,6 +156,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
         "0-3": ["TD", "LVG"]
+      },
+      "stage-2": {
+        "3-0": ["Legacy", "G2"],
+        "3-1-or-3-2": ["B8", "Astralis", "Spirit", "paiN", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -485,6 +490,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["B8", "M80", "BIG", "Liquid", "HEROIC", "MIBR"],
         "0-3": ["GG", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "paiN", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "M80"]
       }
     },
     {
@@ -522,6 +532,11 @@
         "3-0": ["MIBR", "FlyQuest"],
         "3-1-or-3-2": ["HEROIC", "GL", "B8", "M80", "Liquid", "TYLOO"],
         "0-3": ["SINNERS", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["BIG", "Astralis"],
+        "3-1-or-3-2": ["Legacy", "TYLOO", "G2", "Spirit", "FUT", "FlyQuest"],
+        "0-3": ["BB", "M80"]
       }
     },
     {
@@ -744,6 +759,11 @@
         "3-0": ["GL", "MIBR"],
         "3-1-or-3-2": ["HEROIC", "BB", "B8", "Liquid", "M80", "BIG"],
         "0-3": ["TD", "Sharks"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "FUT"],
+        "3-1-or-3-2": ["Legacy", "BB", "G2", "B8", "paiN", "9z"],
+        "0-3": ["M80", "TYLOO"]
       }
     },
     {
@@ -832,6 +852,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
         "0-3": ["TD", "Sharks"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -1221,6 +1246,11 @@
         "3-0": ["GL", "B8"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "BB", "LVG", "Liquid", "TYLOO"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "FUT"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "BB", "B8"],
+        "0-3": ["FlyQuest", "Monte"]
       }
     },
     {

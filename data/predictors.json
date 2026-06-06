@@ -968,43 +968,43 @@
 
   {
     "id": "viki",
-    "name": "Viki（网站作者）",
-    "platform": "GitHub",
+    "name": "Viki",
+    "platform": "网站作者",
     "avatar": "https://blog.viki.moe/avatar.png",
     "link": "https://github.com/vikiboss"
   },
   {
     "id": "yuanjiese",
-    "name": "原劫色（制图作者）",
-    "platform": "哔哩哔哩",
+    "name": "原劫色",
+    "platform": "制图作者",
     "avatar": "https://i1.hdslb.com/bfs/face/620a44f683a0197757ce3381d30aa9c489cda46e.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/472947493"
   },
   {
     "id": "qiqi",
-    "name": "三米七七（制图作者）",
-    "platform": "哔哩哔哩",
+    "name": "三米七七",
+    "platform": "制图作者",
     "avatar": "https://i1.hdslb.com/bfs/face/ffe2bcc0fc4fe81124b784e70b5b098c6a7c8f5d.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/1428295"
   },
   {
     "id": "14k",
-    "name": "14K（网站贡献者）",
-    "platform": "GitHub",
+    "name": "14K",
+    "platform": "网站贡献",
     "avatar": "https://avatars.githubusercontent.com/u/34759162?v=4",
     "link": "https://github.com/14kay"
   },
   {
     "id": "mio",
-    "name": "Mio（网站贡献者）",
-    "platform": "Blog",
+    "name": "Mio",
+    "platform": "网站贡献",
     "avatar": "https://s2.loli.net/2025/11/21/CcTp4FnkGH6dO1g.png",
     "link": "https://blog.viki.moe/mio-says"
   },
   {
     "id": "logic",
-    "name": "罗辑（群友）",
-    "platform": "Blog",
+    "name": "罗辑",
+    "platform": "群友",
     "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
     "link": "https://blog.shiro.team"
   }

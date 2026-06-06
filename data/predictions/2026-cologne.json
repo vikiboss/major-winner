@@ -240,6 +240,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "TYLOO", "B8", "FlyQuest", "Liquid", "BIG"],
         "0-3": ["NRG", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Sprit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "paiN", "GL", "FUT", "B8"],
+        "0-3": ["TYLOO", "M80"]
       }
     },
     {

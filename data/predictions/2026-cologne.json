@@ -870,6 +870,11 @@
         "3-0": ["BB", "B8"],
         "3-1-or-3-2": ["GL", "MIBR", "LVG", "M80", "Liquid", "TYLOO"],
         "0-3": ["TD", "Sharks"]
+      },
+      "stage-2": {
+        "3-0": ["FUT", "Astralis"],
+        "3-1-or-3-2": ["Legacy", "Sprit", "G2", "BB", "B8", "9z"],
+        "0-3": ["FlyQuest", "Monte"]
       }
     },
     {

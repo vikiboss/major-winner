@@ -358,6 +358,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["B8", "SINNERS", "BIG", "HEROIC", "MIBR", "M80"],
         "0-3": ["FlyQuest", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -574,6 +579,11 @@
         "3-0": ["GL", "HEROIC"],
         "3-1-or-3-2": ["BB", "MIBR", "B8", "M80", "Liquid", "BIG"],
         "0-3": ["Sharks", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
+        "0-3": ["paiN", "9z"]
       }
     },
     {
@@ -583,6 +593,11 @@
         "3-0": ["GL", "MIBR"],
         "3-1-or-3-2": ["BB", "HEROIC", "B8", "SINNERS", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
+        "0-3": ["BIG", "TYLOO"]
       }
     },
     {
@@ -794,6 +809,11 @@
         "3-0": ["GL", "B8"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "BIG"],
         "0-3": ["TD", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "B8"],
+        "3-1-or-3-2": ["Legacy", "BB", "G2", "M80", "FUT", "9z"],
+        "0-3": ["paiN", "BIG"]
       }
     },
     {
@@ -945,6 +965,11 @@
         "3-0": ["GL", "B8"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "BB", "TYLOO", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "BIG"]
       }
     },
     {
@@ -954,6 +979,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "TYLOO", "M80", "BIG"],
         "0-3": ["TD", "Sharks"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "FUT"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "B8", "BIG", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {

@@ -1395,6 +1395,15 @@
         "0-3": ["FlyQuest", "TYLOO"]
       }
     },
+    {
+      "id": "tie",
+      "name": "懂哥 Tie",
+      "stage-2": {
+        "3-0": ["Spirit", "Astralis"],
+        "3-1-or-3-2": ["Legacy", "BB", "G2", "GL", "FUT", "B8"],
+        "0-3": ["FlyQuest", "BIG"]
+      }
+    },
 
     {
       "id": "viki",

@@ -931,6 +931,28 @@
     "link": "https://space.bilibili.com/85508942"
   },
   {
+    "id": "suke",
+    "name": "苏可槑",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/d68c3ef98b512951e5103ff5384b19a1f27208dd.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/23271372"
+  },
+  {
+    "id": "flamejz",
+    "name": "FlameJZ",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/82d53f27fd47c092f0cebd142125f0cf19ec0aea.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/280668682"
+  },
+  {
+    "id": "shenmimaotouying",
+    "name": "神秘猫头鹰",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/a9429bc953851082df09b15691d56bca0dc60de5.jpg@128w_128h_1c_1s.webp",
+    "link": "https://space.bilibili.com/270622470"
+  },
+
+  {
     "id": "viki",
     "name": "Viki（网站作者）",
     "platform": "GitHub",

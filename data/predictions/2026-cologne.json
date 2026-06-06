@@ -1252,6 +1252,33 @@
         "0-3": ["M80", "BIG"]
       }
     },
+    {
+      "id": "suke",
+      "name": "苏可槑",
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["BB", "Astralis", "G2", "B8", "FUT", "9z"],
+        "0-3": ["FlyQuest", "TYLOO"]
+      }
+    },
+    {
+      "id": "flamejz",
+      "name": "FlameJZ",
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["BB", "Astralis", "G2", "B8", "FUT", "MIBR"],
+        "0-3": ["FlyQuest", "TYLOO"]
+      }
+    },
+    {
+      "id": "shenmimaotouying",
+      "name": "神秘猫头鹰",
+      "stage-2": {
+        "3-0": ["Spirit", "9z"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "BIG"]
+      }
+    },
 
     {
       "id": "viki",

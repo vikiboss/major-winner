@@ -1432,6 +1432,15 @@
         "0-3": ["FlyQuest", "TYLOO"]
       }
     },
+    {
+      "id": "btrams",
+      "name": "btrams",
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "BB", "GL", "FUT", "9z"],
+        "0-3": ["TYLOO", "Monte"]
+      }
+    },
 
     {
       "id": "viki",

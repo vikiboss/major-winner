@@ -372,6 +372,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["B8", "Liquid", "BIG", "HEROIC", "MIBR", "M80"],
         "0-3": ["GG", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "M80", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -823,6 +828,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "SINNERS", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -832,6 +842,15 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      }
+    },
+    {
+      "id": "heaton",
+      "name": "HeatoN",
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -993,6 +1012,11 @@
         "3-0": ["GL", "MIBR"],
         "3-1-or-3-2": ["HEROIC", "B8", "BB", "M80", "SINNERS", "BIG"],
         "0-3": ["TD", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["BB", "Astralis", "G2", "Monte", "FUT", "9z"],
+        "0-3": ["BIG", "TYLOO"]
       }
     },
     {
@@ -1011,6 +1035,11 @@
         "3-0": ["GL", "B8"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "BB", "SINNERS", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "MIBR", "GL", "FUT", "BB"],
+        "0-3": ["paiN", "Monte"]
       }
     },
     {
@@ -1047,6 +1076,11 @@
         "3-0": ["GL", "FlyQuest"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "BB", "TYLOO", "BIG"],
         "0-3": ["Sharks", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["FlyQuest", "TYLOO", "G2", "GL", "FUT", "BB"],
+        "0-3": ["BIG", "MIBR"]
       }
     },
     {

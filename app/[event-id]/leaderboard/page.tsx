@@ -50,7 +50,7 @@ export default async function PredictorsPage({
       <div className="mb-6">
         <h1 className="text-primary text-2xl font-bold sm:text-3xl">竞猜排行</h1>
         <p className="text-muted mt-1 text-sm">
-          {`按猜对数排名，共${stats.length} 位竞猜者。通过规则：瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军`}
+          {`按猜对数排名，共${stats.length} 位竞猜者，Ctrl + F 快速搜索。通过规则：瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军`}
         </p>
       </div>
 

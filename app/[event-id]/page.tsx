@@ -136,7 +136,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
             </h1>
             <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:text-base">
               <p className="text-muted">竞猜追踪 · {stats.length} 位竞猜者</p>
-              <span className="text-muted hidden sm:inline">·</span>
+              {/* <span className="text-muted hidden sm:inline">·</span> */}
               {/* <div className="flex items-center gap-2">
                 <div
                   className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`}

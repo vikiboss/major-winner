@@ -386,6 +386,20 @@
         "3-0": ["B8", "BB"],
         "3-1-or-3-2": ["TYLOO", "GL", "BIG", "HEROIC", "MIBR", "M80"],
         "0-3": ["FlyQuest", "TD"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "MIBR", "paiN", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
+      }
+    },
+    {
+      "id": "gaules",
+      "name": "Gaules",
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "BB", "MIBR", "paiN", "FUT", "9z"],
+        "0-3": ["FlyQuest", "Monte"]
       }
     },
     {
@@ -612,6 +626,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "NRG", "B8", "M80", "SINNERS", "BIG"],
         "0-3": ["FlyQuest", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "G2", "M80", "FUT", "BB"],
+        "0-3": ["9z", "TYLOO"]
       }
     },
     {
@@ -621,6 +640,20 @@
         "3-0": ["GL", "B8"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
+      }
+    },
+    {
+      "id": "mac-mate",
+      "name": "MacMate",
+      "stage-2": {
+        "3-0": ["Spirit", "FlyQuest"],
+        "3-1-or-3-2": ["Legacy", "TYLOO", "Monte", "GL", "paiN", "BB"],
+        "0-3": ["M80", "MIBR"]
       }
     },
     {
@@ -630,6 +663,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "SINNERS", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "G2"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "MIBR", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {
@@ -869,6 +907,11 @@
         "3-0": ["MIBR", "BB"],
         "3-1-or-3-2": ["HEROIC", "GL", "B8", "M80", "SINNERS", "LVG"],
         "0-3": ["TD", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "B8"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "FUT", "M80"],
+        "0-3": ["FlyQuest", "Monte"]
       }
     },
     {
@@ -1090,6 +1133,11 @@
         "3-0": ["GL", "BB"],
         "3-1-or-3-2": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
         "0-3": ["TD", "GG"]
+      },
+      "stage-2": {
+        "3-0": ["Spirit", "Legacy"],
+        "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
+        "0-3": ["FlyQuest", "TYLOO"]
       }
     },
     {

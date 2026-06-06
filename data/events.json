@@ -241,10 +241,10 @@
       "teams": ["Spirit", "Astralis", "G2", "FUT", "Legacy", "9z", "paiN", "Monte"],
       "teamsFromAdvanced": ["BB", "B8", "MIBR", "GL", "M80", "TYLOO", "FlyQuest", "BIG"],
       "result": {
-        "1-0": ["G2", "Monte", "Spirit", "MIBR"],
+        "1-0": ["Spirit", "MIBR"],
         "0-1": ["GL", "FlyQuest", "B8", "M80", "BB", "Legacy"],
-        "1-1": ["TYLOO", "Astralis", "BIG"],
-        "2-0": ["FUT", "9z"],
+        "1-1": ["TYLOO", "Astralis", "BIG", "Monte"],
+        "2-0": ["FUT", "9z", "G2"],
         "0-2": ["paiN"],
         "2-1": [],
         "1-2": [],

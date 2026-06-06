@@ -48,8 +48,8 @@
       },
       "stage-2": {
         "3-0": ["BB", "FUT"],
-        "3-1-or-3-2": ["Legacy", "Astralis", "MIBR", "G2", "Spirit", "B8"],
-        "0-3": ["Monte", "FlyQuest"]
+        "3-1-or-3-2": ["Legacy", "paiN", "MIBR", "G2", "Spirit", "GL"],
+        "0-3": ["TYLOO", "BIG"]
       }
     },
     {
@@ -325,7 +325,7 @@
       },
       "stage-2": {
         "3-0": ["Spirit", "G2"],
-        "3-1-or-3-2": ["Legacy", "Astralis", "TYLOO", "B8", "FUT", "9z"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "paiN", "B8", "FUT", "9z"],
         "0-3": ["FlyQuest", "M80"]
       }
     },

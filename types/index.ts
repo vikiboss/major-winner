@@ -79,6 +79,7 @@ export interface PlayoffsStage {
 export interface MajorEvent {
   id: string
   name: string
+  shortName: string
   teams: Team[]
   current: MajorStageType
   'stage-1': SwissStage

@@ -1,8 +1,8 @@
 [
   {
     "id": "2026-cologne",
-    "name": "IEM 科隆 Major 2026",
-    "shortName": "科隆 2026",
+    "name": "IEM 科隆 Major 2026-1",
+    "shortName": "2026-1 科隆",
     "current": "stage-2",
     "teams": [
       {
@@ -299,8 +299,8 @@
   },
   {
     "id": "2025-budapest",
-    "name": "SL 布达佩斯 Major 2025",
-    "shortName": "布达佩斯 2025",
+    "name": "SL 布达佩斯 Major 2025-2",
+    "shortName": "2025-2 布达佩斯",
     "current": "playoffs",
     "teams": [
       {

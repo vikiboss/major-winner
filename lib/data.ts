@@ -46,7 +46,7 @@ export const evt = {
   },
 
   /** 获取所有赛事名称列表 */
-  eventNames: events.map((e) => ({ id: e.id, name: e.name })),
+  eventNames: events.map((e) => ({ id: e.id, name: e.name, shortName: e.shortName })),
 
   /** 获取指定赛事的竞猜数据 */
   getPredictions(eventId: string): PredictorPrediction[] {

@@ -166,7 +166,7 @@ export default async function PredictorsPage({
 
       {/* Desktop Table Layout */}
       <div className="bg-surface-1 border-border hidden overflow-x-auto rounded-lg border md:block">
-        <table className="w-full min-w-[600px]">
+        <table className="w-full min-w-150">
           <thead className="bg-surface-2 border-border border-b">
             <tr className="border-border text-muted border-b text-left text-xs">
               <th className="w-12 px-4 py-3">#</th>
@@ -218,7 +218,9 @@ export default async function PredictorsPage({
                         {stat.name}
                       </a>
                       {stat.platform && (
-                        <span className="text-primary-400 text-xs text-nowrap">@{stat.platform}</span>
+                        <span className="text-primary-400 text-xs text-nowrap">
+                          @{stat.platform}
+                        </span>
                       )}
                     </div>
                   </td>

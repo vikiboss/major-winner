@@ -8,6 +8,11 @@
         "3-0": ["BB", "B8"],
         "3-1-or-3-2": ["TYLOO", "GL", "MIBR", "BIG", "FlyQuest", "M80"],
         "0-3": ["GG", "SINNERS"]
+      },
+      "stage-2": {
+        "3-0": [],
+        "3-1-or-3-2": [],
+        "0-3": ["FlyQuest"]
       }
     },
     {
@@ -1483,7 +1488,7 @@
       "name": "liTTle",
       "stage-2": {
         "3-0": ["Spirit", "FUT"],
-        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "B8", "M80", "B8"],
+        "3-1-or-3-2": ["Legacy", "Astralis", "G2", "B8", "M80", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
       }
     },

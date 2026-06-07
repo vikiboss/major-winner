@@ -27,7 +27,10 @@ export default async function PredictionsLayout({
       {/* 页面标题 */}
       <div className="mb-6">
         <h1 className="text-primary text-2xl font-bold sm:text-3xl">竞猜情况</h1>
-        <p className="text-muted mt-1 text-sm">查看所有竞猜者在各阶段的竞猜情况，Ctrl + F 快速搜索</p>
+        <p className="text-muted mt-1 text-sm">
+          查看所有竞猜者在各阶段的竞猜情况。Ctrl + F 快速搜索。最后更新
+          <time className="mx-1">{new Date(parseInt(BUILD_AT)).toLocaleString("zh-CN")}。</time>
+        </p>
       </div>
 
       {/* 阶段切换标签 */}

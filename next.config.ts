@@ -9,6 +9,11 @@ const nextConfig: NextConfig = {
   reactCompiler: {
     compilationMode: 'all',
   },
+  compiler: {
+    define: {
+      BUILD_AT: Date.now().toString(),
+    },
+  },
 }
 
 export default nextConfig

@@ -154,7 +154,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
       <div className="bg-surface-0 border-border stage-nav sticky top-12 z-40 border-b sm:top-16">
         <div className="mx-auto max-w-5xl">
           <nav
-            className="stage-nav flex gap-2 overflow-x-auto px-4 py-2 [scrollbar-width:thin] sm:px-4 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"
+            className="stage-nav flex scrollbar-thin gap-2 overflow-x-auto px-4 py-2 sm:px-4 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"
             role="navigation"
             style={{ scrollSnapType: 'x mandatory' }}
           >
@@ -175,7 +175,7 @@ export default async function Event({ params }: { params: Promise<{ 'event-id': 
       {/* 内容区适配，表格/卡片横向滚动优化 */}
       <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 sm:space-y-12 sm:py-8 lg:space-y-16">
         {stages.length === 0 ? (
-          <div className="flex min-h-[400px] items-center justify-center">
+          <div className="flex min-h-100 items-center justify-center">
             <div className="text-center">
               <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
                 <span className="text-muted text-2xl">📅</span>

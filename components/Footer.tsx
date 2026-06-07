@@ -8,7 +8,13 @@ export function Footer() {
           {/* Left Side: Brand & Copyright */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <Image src="https://image.viki.moe/cs/i/icon.png" alt="Logo" width={32} height={32} className="size-8" />
+              <Image
+                src="https://image.viki.moe/cs/i/icon.png"
+                alt="Logo"
+                width={32}
+                height={32}
+                className="size-8"
+              />
               <span className="text-lg font-bold tracking-tight">Major Winner</span>
             </div>
             <div className="text-muted space-y-2 text-sm leading-relaxed">
@@ -45,8 +51,7 @@ export function Footer() {
                 网站将及时更新竞猜情况，助你轻松完成竞猜任务。
               </p>
               <p className="text-xs opacity-60">
-                © 2025-{new Date().getFullYear()} Major Winner, Viki.
-                数据仅供娱乐参考。
+                © 2025-{new Date().getFullYear()} Major Winner, Viki. 数据仅供娱乐参考。
               </p>
             </div>
           </div>

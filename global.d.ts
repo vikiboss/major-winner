@@ -11,3 +11,6 @@ declare module '*.css' {
   const content: unknown
   export = content
 }
+
+// 全局 define 类型声明
+declare const BUILD_AT: string

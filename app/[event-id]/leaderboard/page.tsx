@@ -57,7 +57,7 @@ export default async function PredictorsPage({
       {/* Mobile Card Layout */}
       <div className="space-y-3 md:hidden">
         {stats
-          .filter((e) => e.name !== '赛果')
+          .filter((e) => e.id !== 'cs')
           .map((stat, index) => (
             <div key={stat.name} className="bg-surface-1 border-border rounded-lg border p-4">
               <div className="mb-3 flex items-center justify-between">
@@ -183,7 +183,7 @@ export default async function PredictorsPage({
           </thead>
           <tbody className="divide-border divide-y">
             {stats
-              .filter((e) => e.name !== '赛果')
+              .filter((e) => e.name !== '比赛结果')
               .map((stat, index) => (
                 <tr key={stat.name} className="hover:bg-surface-2 transition-colors">
                   <td className="px-4 py-3">

@@ -20,7 +20,7 @@ export function EventSelector({ eventId }: { eventId: string }) {
     >
       {evt.eventNames.map((event) => (
         <option key={event.id} value={event.id} className="bg-surface-1 text-primary text-left">
-          {event.name}
+          {event.shortName}
         </option>
       ))}
     </select>

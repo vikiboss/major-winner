@@ -1,14 +1,14 @@
 [
   {
     "id": "result",
-    "name": "赛果",
+    "name": "比赛结果",
     "platform": "CS2 官方",
     "avatar": "https://www.counter-strike.net/favicon.ico",
     "link": "https://www.counter-strike.net"
   },
   {
     "id": "cs-advent",
-    "name": "CS-advent/259/老九",
+    "name": "CS-advent/259",
     "platform": "前 TYLOO 指挥",
     "avatar": "https://i2.hdslb.com/bfs/face/d1c4a0d3741a25a7893e59c1b7d1b20aee48eef1.jpg@128w_128h_1c_1s.webp",
     "link": "https://space.bilibili.com/3546687211572101"
@@ -38,7 +38,7 @@
     "id": "sunxiaochuan",
     "name": "川臊258/孙笑川",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/3e8e1419-ab3e-4975-8352-8b123f33a8ff-profile_image-300x300.jpg",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/3e8e1419-ab3e-4975-8352-8b123f33a8ff-profile_image-70x70.jpg",
     "link": "https://www.twitch.tv/chuansao258"
   },
   {
@@ -318,7 +318,7 @@
     "id": "poloolpp",
     "name": "Poloolpp",
     "platform": "X",
-    "avatar": "https://x-img.nioi.in/profile_images/2041177026183540736/oxrPfNsz_400x400.jpg",
+    "avatar": "https://x-img.nioi.in/profile_images/2041177026183540736/oxrPfNsz_80x80.jpg",
     "link": "https://x.com/Poloolpp"
   },
   {
@@ -493,7 +493,7 @@
     "id": "ohne-pixel",
     "name": "ohnePixel",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/5742b015-e6ed-4f7c-a1dd-87cd88fe1eb9-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/5742b015-e6ed-4f7c-a1dd-87cd88fe1eb9-profile_image-70x70.png",
     "link": "https://www.twitch.tv/ohnepixel"
   },
   {
@@ -528,21 +528,21 @@
     "id": "nip-cs",
     "name": "NIP CS",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/27ce029c-3b5f-4909-85ba-73b08d618d5f-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/27ce029c-3b5f-4909-85ba-73b08d618d5f-profile_image-70x70.png",
     "link": "https://www.twitch.tv/nipgamingtv"
   },
   {
     "id": "fly-quest-cs",
     "name": "FlyQuest CS",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/d899abcf-0102-4eca-9c2c-ea8d603f1616-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/d899abcf-0102-4eca-9c2c-ea8d603f1616-profile_image-70x70.png",
     "link": "https://www.twitch.tv/flyquest"
   },
   {
     "id": "root-the-gamer",
     "name": "rootthegamer",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/fd13408a-ae9b-4437-ab62-87ff5b8eae09-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/fd13408a-ae9b-4437-ab62-87ff5b8eae09-profile_image-70x70.png",
     "link": "https://www.twitch.tv/rootthegamer"
   },
   {
@@ -556,7 +556,7 @@
     "id": "alfonsina",
     "name": "Alfonsina",
     "platform": "X",
-    "avatar": "https://x-img.nioi.in/profile_images/2024477168839921664/ZdDyc2Z6_400x400.jpg",
+    "avatar": "https://x-img.nioi.in/profile_images/2024477168839921664/ZdDyc2Z6_80x80.jpg",
     "link": "https://x.com/alfonavellaneda"
   },
   {
@@ -570,7 +570,7 @@
     "id": "gaules",
     "name": "Gaules",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/ea0fe422-84bd-4aee-9d10-fd4b0b3a7054-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/ea0fe422-84bd-4aee-9d10-fd4b0b3a7054-profile_image-70x70.png",
     "link": "https://www.twitch.tv/gaules"
   },
   {
@@ -619,7 +619,7 @@
     "id": "solution00",
     "name": "solution00",
     "platform": "独立爆料人",
-    "avatar": "https://x-img.nioi.in/profile_images/1707797024232427524/mZVpZC7j_400x400.jpg",
+    "avatar": "https://x-img.nioi.in/profile_images/1707797024232427524/mZVpZC7j_80x80.jpg",
     "link": "https://t.me/s/solution00page?before=1313"
   },
   {
@@ -640,7 +640,7 @@
     "id": "beimingyouyu",
     "name": "北冥忧郁",
     "platform": "小黑盒",
-    "avatar": "https://imgheybox.max-c.com/avatar/2025/04/09/447ebaf7bc7430064d422994bd2c1f16.jpeg?imageMogr2/thumbnail/100x100",
+    "avatar": "https://imgheybox.max-c.com/avatar/2025/04/09/447ebaf7bc7430064d422994bd2c1f16.jpeg?imageMogr2/thumbnail/70x70",
     "link": "https://www.xiaoheihe.cn/app/user/profile/65336ad56eb0"
   },
   {
@@ -654,7 +654,7 @@
     "id": "officialhyper",
     "name": "Officialhyper",
     "platform": "Twitch",
-    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/afd9b1c2-dcd3-46a2-8ff0-2dce9fdfee9e-profile_image-300x300.png",
+    "avatar": "https://static-cdn.jtvnw.net/jtv_user_pictures/afd9b1c2-dcd3-46a2-8ff0-2dce9fdfee9e-profile_image-70x70.png",
     "link": "https://www.twitch.tv/officialhyper"
   },
   {
@@ -710,7 +710,7 @@
     "id": "ozzny",
     "name": "Ozzny",
     "platform": "X",
-    "avatar": "https://x-img.nioi.in/profile_images/1636790512202940417/GCN_JgEz_400x400.jpg",
+    "avatar": "https://x-img.nioi.in/profile_images/1636790512202940417/GCN_JgEz_80x80.jpg",
     "link": "https://x.com/Ozzny_CS2"
   },
   {
@@ -815,7 +815,7 @@
     "id": "xiaowo",
     "name": "小蜗 Snail",
     "platform": "小黑盒",
-    "avatar": "https://cdn.max-c.com/avatar/2021/04/16/fc250cc17df44edb974fa349c61777f2?imageMogr2/thumbnail/100x100",
+    "avatar": "https://cdn.max-c.com/avatar/2021/04/16/fc250cc17df44edb974fa349c61777f2?imageMogr2/thumbnail/70x70",
     "link": "https://www.xiaoheihe.cn/app/user/profile/24915352"
   },
   {
@@ -850,14 +850,14 @@
     "id": "mouz",
     "name": "MOUZ",
     "platform": "MOUZ 官方 X",
-    "avatar": "https://x-img.nioi.in/profile_images/2001671801038893056/j00S5EAt_400x400.png",
+    "avatar": "https://x-img.nioi.in/profile_images/2001671801038893056/j00S5EAt_80x80.png",
     "link": "https://x.com/mousesports"
   },
   {
     "id": "spirit",
     "name": "Team Spirit",
     "platform": "Spirit 官方 X",
-    "avatar": "https://x-img.nioi.in/profile_images/2028012232794116096/HHZ5WVgn_400x400.jpg",
+    "avatar": "https://x-img.nioi.in/profile_images/2028012232794116096/HHZ5WVgn_80x80.jpg",
     "link": "https://x.com/Team__Spirit"
   },
   {
@@ -892,7 +892,7 @@
     "id": "kustyd",
     "name": "Kustyd_cs2",
     "platform": "抖音",
-    "avatar": "https://p3-pc.douyinpic.com/img/aweme-avatar/tos-cn-avt-0015_6cb38aa78b09277d4ad28aaacf4d6128~c5_300x300.jpeg",
+    "avatar": "https://p3-pc.douyinpic.com/img/aweme-avatar/tos-cn-avt-0015_6cb38aa78b09277d4ad28aaacf4d6128~c5_70x70.jpeg",
     "link": "https://www.douyin.com/user/MS4wLjABAAAAKyDstA7olNQWezYDJaY_xbIyVcCxE3pMDS1kEw1y4HU8f_EWPvKfwKzOfHFdnoYZ"
   },
   {
@@ -1004,7 +1004,7 @@
     "id": "btrams",
     "name": "btrams",
     "platform": "分析师",
-    "avatar": "https://x-img.nioi.in/profile_images/2045484407683706880/Z8UPTVqH_400x400.jpg",
+    "avatar": "https://x-img.nioi.in/profile_images/2045484407683706880/Z8UPTVqH_80x80.jpg",
     "link": "https://x.com/smartbackwards"
   },
 

@@ -52,7 +52,7 @@ export default async function PredictorsPage({
         <p className="text-muted mt-1 text-sm">
           {`按猜对数排名，共${stats.length} 位竞猜者。通过规则：瑞士轮 5/10，八进四 2/4，半决赛 1/2，决赛猜中冠军。`}
           Ctrl + F 快速搜索。最后更新
-          <time className="mx-1">{new Date(parseInt(BUILD_AT)).toLocaleString("zh-CN")}。</time>
+          <time className="mx-1">{new Date(parseInt(BUILD_AT)).toLocaleString("zh-CN", { timeZone: "Asia/Shanghai" })}。</time>
         </p>
       </div>
 

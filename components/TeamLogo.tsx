@@ -52,7 +52,7 @@ export default function TeamLogo(props: TeamLogoProps) {
 
   const img = (
     <Image
-      src={teamMap.get(id) || `https://image.viki.moe/cs/t/${id}.png`}
+      src={teamMap.get(id)?.logo || `https://image.viki.moe/cs/t/${id}.png`}
       alt={`${id} logo`}
       width={pixelSize}
       height={pixelSize}

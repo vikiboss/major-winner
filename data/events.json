@@ -5,200 +5,40 @@
     "shortName": "科隆 2026",
     "current": "stage-3",
     "teams": [
-      {
-        "name": "Team Vitality",
-        "shortName": "Vitality",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/9565/vitality"
-      },
-      {
-        "name": "Natus Vincere",
-        "shortName": "NAVI",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/4608/natus-vincere"
-      },
-      {
-        "name": "Team Falcons",
-        "shortName": "Falcons",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/11283/falcons"
-      },
-      {
-        "name": "FURIA",
-        "shortName": "FURIA",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/8297/furia"
-      },
-      {
-        "name": "Aurora Gaming",
-        "shortName": "Aurora",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/11861/aurora"
-      },
-      {
-        "name": "PARIVISION",
-        "shortName": "PV",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/12467/parivision"
-      },
-      {
-        "name": "The MongolZ",
-        "shortName": "MongolZ",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/6248/the-mongolz"
-      },
-      {
-        "name": "MOUZ",
-        "shortName": "MOUZ",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/4494/mouz"
-      },
+      { "id": "Team Vitality", "stage": "stage-3" },
+      { "id": "Natus Vincere", "stage": "stage-3" },
+      { "id": "Team Falcons", "stage": "stage-3" },
+      { "id": "FURIA", "stage": "stage-3" },
+      { "id": "Aurora Gaming", "stage": "stage-3" },
+      { "id": "PARIVISION", "stage": "stage-3" },
+      { "id": "The MongolZ", "stage": "stage-3" },
+      { "id": "MOUZ", "stage": "stage-3" },
 
-      {
-        "name": "Team Spirit",
-        "shortName": "Spirit",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/7020/spirit"
-      },
-      {
-        "name": "Astralis",
-        "shortName": "Astralis",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/6665/astralis"
-      },
-      {
-        "name": "G2 Esports",
-        "shortName": "G2",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/5995/g2"
-      },
-      {
-        "name": "FUT Esports",
-        "shortName": "FUT",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/13286/fut"
-      },
-      {
-        "name": "Legacy",
-        "shortName": "Legacy",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/12468/legacy"
-      },
-      {
-        "name": "9z Team",
-        "shortName": "9z",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/9996/9z"
-      },
-      {
-        "name": "paiN Gaming",
-        "shortName": "paiN",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/4773/pain"
-      },
-      {
-        "name": "Monte",
-        "shortName": "Monte",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/11811/monte"
-      },
+      { "id": "Team Spirit", "stage": "stage-2" },
+      { "id": "Astralis", "stage": "stage-2" },
+      { "id": "G2 Esports", "stage": "stage-2" },
+      { "id": "FUT Esports", "stage": "stage-2" },
+      { "id": "Legacy", "stage": "stage-2" },
+      { "id": "9z Team", "stage": "stage-2" },
+      { "id": "paiN Gaming", "stage": "stage-2" },
+      { "id": "Monte", "stage": "stage-2" },
 
-      {
-        "name": "GamerLegion",
-        "shortName": "GL",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/9928/gamerlegion"
-      },
-      {
-        "name": "B8",
-        "shortName": "B8",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/11241/b8"
-      },
-      {
-        "name": "BedBoom Team",
-        "shortName": "BB",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12394/betboom"
-      },
-      {
-        "name": "HEROIC",
-        "shortName": "HEROIC",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/7175/heroic"
-      },
-      {
-        "name": "M80",
-        "shortName": "M80",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12376/m80"
-      },
-      {
-        "name": "Team Liquid",
-        "shortName": "Liquid",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/5973/liquid"
-      },
-      {
-        "name": "SINNERS",
-        "shortName": "SINNERS",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/10577/sinners"
-      },
-      {
-        "name": "MIBR",
-        "shortName": "MIBR",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/9215/mibr"
-      },
-      {
-        "name": "TYLOO",
-        "shortName": "TYLOO",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/4863/tyloo"
-      },
-      {
-        "name": "BIG",
-        "shortName": "BIG",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/7532/big"
-      },
-      {
-        "name": "NRG Esports",
-        "shortName": "NRG",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/6673/nrg"
-      },
-      {
-        "name": "Lynn Vision Gaming",
-        "shortName": "LVG",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/8840/lynn-vision"
-      },
-      {
-        "name": "Gaimin Gladiators",
-        "shortName": "GG",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/11571/gaimin-gladiators"
-      },
-      {
-        "name": "Sharks",
-        "shortName": "Sharks",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/8113/sharks"
-      },
-      {
-        "name": "FlyQuest",
-        "shortName": "FlyQuest",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12774/flyquest"
-      },
-      {
-        "name": "THUNDER dOWNUNDER",
-        "shortName": "TD",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/13486/thunder-downunder"
-      }
+      { "id": "GamerLegion", "stage": "stage-1" },
+      { "id": "B8", "stage": "stage-1" },
+      { "id": "BedBoom Team", "stage": "stage-1" },
+      { "id": "HEROIC", "stage": "stage-1" },
+      { "id": "M80", "stage": "stage-1" },
+      { "id": "Team Liquid", "stage": "stage-1" },
+      { "id": "SINNERS", "stage": "stage-1" },
+      { "id": "MIBR", "stage": "stage-1" },
+      { "id": "TYLOO", "stage": "stage-1" },
+      { "id": "BIG", "stage": "stage-1" },
+      { "id": "NRG Esports", "stage": "stage-1" },
+      { "id": "Lynn Vision Gaming", "stage": "stage-1" },
+      { "id": "Gaimin Gladiators", "stage": "stage-1" },
+      { "id": "Sharks", "stage": "stage-1" },
+      { "id": "FlyQuest", "stage": "stage-1" },
+      { "id": "THUNDER dOWNUNDER", "stage": "stage-1" }
     ],
     "stage-1": {
       "name": "第一阶段",
@@ -303,198 +143,40 @@
     "shortName": "布达佩斯 2025",
     "current": "playoffs",
     "teams": [
-      {
-        "name": "FURIA",
-        "shortName": "FURIA",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/8297/furia"
-      },
-      {
-        "name": "Team Vitality",
-        "shortName": "Vitality",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/9565/vitality"
-      },
-      {
-        "name": "Team Falcons",
-        "shortName": "Falcons",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/11283/falcons"
-      },
-      {
-        "name": "The MongolZ",
-        "shortName": "MongolZ",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/6248/the-mongolz"
-      },
-      {
-        "name": "MOUZ",
-        "shortName": "MOUZ",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/4494/mouz"
-      },
-      {
-        "name": "Team Spirit",
-        "shortName": "Spirit",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/7020/spirit"
-      },
-      {
-        "name": "G2 Esports",
-        "shortName": "G2",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/5995/g2"
-      },
-      {
-        "name": "paiN Gaming",
-        "shortName": "paiN",
-        "stage": "stage-3",
-        "link": "https://www.hltv.org/team/4773/pain"
-      },
-      {
-        "name": "Aurora Gaming",
-        "shortName": "Aurora",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/11861/aurora"
-      },
-      {
-        "name": "Natus Vincere",
-        "shortName": "NAVI",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/4608/natus-vincere"
-      },
-      {
-        "name": "Team Liquid",
-        "shortName": "Liquid",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/5973/liquid"
-      },
-      {
-        "name": "3DMAX",
-        "shortName": "3DMAX",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/4914/3dmax"
-      },
-      {
-        "name": "Astralis",
-        "shortName": "Astralis",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/6665/astralis"
-      },
-      {
-        "name": "TYLOO",
-        "shortName": "TYLOO",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/4863/tyloo"
-      },
-      {
-        "name": "MIBR",
-        "shortName": "MIBR",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/9215/mibr"
-      },
-      {
-        "name": "Passion UA",
-        "shortName": "PUA",
-        "stage": "stage-2",
-        "link": "https://www.hltv.org/team/12426/passion-ua"
-      },
-      {
-        "name": "Legacy",
-        "shortName": "Legacy",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12468/legacy"
-      },
-      {
-        "name": "FlyQuest",
-        "shortName": "FlyQuest",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12774/flyquest"
-      },
-      {
-        "name": "FaZe Clan",
-        "shortName": "FaZe",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/6667/faze"
-      },
-      {
-        "name": "Lynn Vision Gaming",
-        "shortName": "LVG",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/8840/lynn-vision"
-      },
-      {
-        "name": "B8",
-        "shortName": "B8",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/11241/b8"
-      },
-      {
-        "name": "M80",
-        "shortName": "M80",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12376/m80"
-      },
-      {
-        "name": "GamerLegion",
-        "shortName": "GL",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/9928/gamerlegion"
-      },
-      {
-        "name": "Fluxo",
-        "shortName": "Fluxo",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/11837/fluxo"
-      },
-      {
-        "name": "Fnatic",
-        "shortName": "Fnatic",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/4991/fnatic"
-      },
-      {
-        "name": "RED Canids",
-        "shortName": "RED",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/7176/red-canids"
-      },
-      {
-        "name": "PARIVISION",
-        "shortName": "PV",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12467/parivision"
-      },
-      {
-        "name": "The Huns Esports",
-        "shortName": "Huns",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/12510/the-huns"
-      },
-      {
-        "name": "Ninjas in Pyjamas",
-        "shortName": "NIP",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/4411/ninjas-in-pyjamas"
-      },
-      {
-        "name": "NRG",
-        "shortName": "NRG",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/6673/nrg"
-      },
-      {
-        "name": "Imperial Esports",
-        "shortName": "Imperial",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/9455/imperial"
-      },
-      {
-        "name": "Rare Atom",
-        "shortName": "RA",
-        "stage": "stage-1",
-        "link": "https://www.hltv.org/team/11514/rare-atom"
-      }
+      { "id": "FURIA", "stage": "stage-3" },
+      { "id": "Team Vitality", "stage": "stage-3" },
+      { "id": "Team Falcons", "stage": "stage-3" },
+      { "id": "The MongolZ", "stage": "stage-3" },
+      { "id": "MOUZ", "stage": "stage-3" },
+      { "id": "Team Spirit", "stage": "stage-3" },
+      { "id": "G2 Esports", "stage": "stage-3" },
+      { "id": "paiN Gaming", "stage": "stage-3" },
+
+      { "id": "Aurora Gaming", "stage": "stage-2" },
+      { "id": "Natus Vincere", "stage": "stage-2" },
+      { "id": "Team Liquid", "stage": "stage-2" },
+      { "id": "3DMAX", "stage": "stage-2" },
+      { "id": "Astralis", "stage": "stage-2" },
+      { "id": "TYLOO", "stage": "stage-2" },
+      { "id": "MIBR", "stage": "stage-2" },
+      { "id": "Passion UA", "stage": "stage-2" },
+
+      { "id": "Legacy", "stage": "stage-1" },
+      { "id": "FlyQuest", "stage": "stage-1" },
+      { "id": "FaZe Clan", "stage": "stage-1" },
+      { "id": "Lynn Vision Gaming", "stage": "stage-1" },
+      { "id": "B8", "stage": "stage-1" },
+      { "id": "M80", "stage": "stage-1" },
+      { "id": "GamerLegion", "stage": "stage-1" },
+      { "id": "Fluxo", "stage": "stage-1" },
+      { "id": "Fnatic", "stage": "stage-1" },
+      { "id": "RED Canids", "stage": "stage-1" },
+      { "id": "PARIVISION", "stage": "stage-1" },
+      { "id": "The Huns Esports", "stage": "stage-1" },
+      { "id": "Ninjas in Pyjamas", "stage": "stage-1" },
+      { "id": "NRG", "stage": "stage-1" },
+      { "id": "Imperial Esports", "stage": "stage-1" },
+      { "id": "Rare Atom", "stage": "stage-1" }
     ],
     "stage-1": {
       "name": "第一阶段",

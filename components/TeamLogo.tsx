@@ -1,7 +1,8 @@
 import Image from 'next/image'
+import { teamMap } from '@/lib/data'
 
 interface TeamLogoProps {
-  shortName: string
+  id: string
   size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   className?: string
   status?: 'normal' | 'win' | 'lose'
@@ -39,7 +40,7 @@ const iconStatusMap = {
 
 export default function TeamLogo(props: TeamLogoProps) {
   const {
-    shortName,
+    id,
     size = 'xs',
     className = '',
     wrapperClassName = '',
@@ -51,11 +52,11 @@ export default function TeamLogo(props: TeamLogoProps) {
 
   const img = (
     <Image
-      src={`https://image.viki.moe/cs/t/${shortName}.png`}
-      alt={`${shortName} logo`}
+      src={teamMap.get(id) || `https://image.viki.moe/cs/t/${id}.png`}
+      alt={`${id} logo`}
       width={pixelSize}
       height={pixelSize}
-      title={shortName}
+      title={id}
       className={`inline-block ${hideLabel ? iconStatusClass : ''} ${className}`}
       style={{
         width: pixelSize,
@@ -75,7 +76,7 @@ export default function TeamLogo(props: TeamLogoProps) {
   return (
     <span className={`${statusClass} ${sizeClass} ${wrapperClassName}`}>
       {img}
-      {shortName}
+      {id}
     </span>
   )
 }

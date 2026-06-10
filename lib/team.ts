@@ -197,7 +197,7 @@ export function getSortedTeamsByPerformance(event: MajorEvent) {
   // 4. 比赛状态: 晋级/赛程中 > 待赛 > 淘汰
   return event.teams
     .map((team) => {
-      const performance = getTeamPerformance(event, team.shortName)
+      const performance = getTeamPerformance(event, team.id)
       return {
         ...team,
         performance,

@@ -14,10 +14,8 @@ export type StageType = 'swiss' | 'playoffs'
 
 // 战队信息(包含所属阶段)
 export interface Team {
-  name: string
-  shortName: string
+  id: string
   stage: SwissStageType
-  link: string
 }
 
 // 瑞士轮结果(包含最终结果和进行中的战绩)

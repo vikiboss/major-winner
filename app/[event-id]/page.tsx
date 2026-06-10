@@ -344,7 +344,7 @@ function StageSection({
                                     </span>
                                     <div className="flex flex-wrap gap-1">
                                       {teams.map((t) => (
-                                        <TeamLogo key={t} shortName={t} />
+                                        <TeamLogo key={t} id={t} />
                                       ))}
                                     </div>
                                   </div>
@@ -374,7 +374,7 @@ function StageSection({
                                         </span>
                                         <div className="flex flex-wrap gap-1">
                                           {teams.map((t) => (
-                                            <TeamLogo key={t} shortName={t} status="win" />
+                                            <TeamLogo key={t} id={t} status="win" />
                                           ))}
                                         </div>
                                       </div>
@@ -401,7 +401,7 @@ function StageSection({
                                         </span>
                                         <div className="flex flex-wrap gap-1">
                                           {teams.map((t) => (
-                                            <TeamLogo key={t} shortName={t} status="lose" />
+                                            <TeamLogo key={t} id={t} status="lose" />
                                           ))}
                                         </div>
                                       </div>
@@ -466,7 +466,7 @@ function StageSection({
                               <p className="text-muted mb-1 font-medium">等待比赛</p>
                               <div className="flex flex-wrap gap-1">
                                 {waitingTeams.map((t) => (
-                                  <TeamLogo key={t} shortName={t} />
+                                  <TeamLogo key={t} id={t} />
                                 ))}
                               </div>
                             </div>
@@ -476,7 +476,7 @@ function StageSection({
                               <p className="text-win mb-1 font-medium">晋级</p>
                               <div className="flex flex-wrap gap-1">
                                 {playoffsData.result[round].winners.map((t) => (
-                                  <TeamLogo key={t} shortName={t} status="win" />
+                                  <TeamLogo key={t} id={t} status="win" />
                                 ))}
                               </div>
                             </div>
@@ -484,7 +484,7 @@ function StageSection({
                               <p className="text-lose mb-1 font-medium">淘汰</p>
                               <div className="flex flex-wrap gap-1">
                                 {playoffsData.result[round].losers.map((t) => (
-                                  <TeamLogo key={t} shortName={t} status="lose" />
+                                  <TeamLogo key={t} id={t} status="lose" />
                                 ))}
                               </div>
                             </div>
@@ -497,7 +497,7 @@ function StageSection({
                           <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
                           <div className="flex items-center gap-2">
                             <TeamLogo
-                              shortName={playoffsData.result['2-to-1'].winner}
+                              id={playoffsData.result['2-to-1'].winner}
                               size="lg"
                               hideLabel
                             />
@@ -508,7 +508,7 @@ function StageSection({
                           {playoffsData.result['2-to-1'].loser && (
                             <div className="text-muted mt-2 flex items-center gap-2 text-sm">
                               <TeamLogo
-                                shortName={playoffsData.result['2-to-1'].loser}
+                                id={playoffsData.result['2-to-1'].loser}
                                 size="sm"
                                 hideLabel
                               />
@@ -741,7 +741,7 @@ function PredictorPredictions({
                                 ? 'lose'
                                 : 'normal'
 
-                        return <TeamLogo key={team} shortName={team} status={status} />
+                        return <TeamLogo key={team} id={team} status={status} />
                       })}
                   </div>
                 </div>
@@ -772,7 +772,7 @@ function PredictorPredictions({
                                 ? 'lose'
                                 : 'normal'
 
-                        return <TeamLogo key={team} shortName={team} status={status} />
+                        return <TeamLogo key={team} id={team} status={status} />
                       })}
                   </div>
                 </div>
@@ -800,7 +800,7 @@ function PredictorPredictions({
                                 ? 'lose'
                                 : 'normal'
 
-                        return <TeamLogo key={team} shortName={team} status={status} />
+                        return <TeamLogo key={team} id={team} status={status} />
                       })}
                   </div>
                 </div>
@@ -832,7 +832,7 @@ function PredictorPredictions({
                                 ? 'lose'
                                 : 'normal'
 
-                        return <TeamLogo key={team} shortName={team} status={status} />
+                        return <TeamLogo key={team} id={team} status={status} />
                       },
                     )}
                   </div>
@@ -842,7 +842,7 @@ function PredictorPredictions({
                     <span className="text-muted">冠军竞猜: </span>
                     {(prediction as { '2-to-1': string | null })['2-to-1'] ? (
                       <TeamLogo
-                        shortName={(prediction as { '2-to-1': string | null })['2-to-1']!}
+                        id={(prediction as { '2-to-1': string | null })['2-to-1']!}
                         status={
                           stageStatus === 'waiting'
                             ? 'normal'

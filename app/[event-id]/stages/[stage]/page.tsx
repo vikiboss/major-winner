@@ -227,7 +227,7 @@ function SwissTable({
                           return (
                             <TeamLogo
                               hideLabel
-                              shortName={team}
+                              id={team}
                               size="xl"
                               key={team}
                               status={
@@ -254,7 +254,7 @@ function SwissTable({
                           return (
                             <TeamLogo
                               hideLabel
-                              shortName={team}
+                              id={team}
                               size="xl"
                               key={team}
                               status={
@@ -275,7 +275,7 @@ function SwissTable({
                           return (
                             <TeamLogo
                               hideLabel
-                              shortName={team}
+                              id={team}
                               size="xl"
                               key={team}
                               status={
@@ -424,7 +424,7 @@ function SwissTable({
                         return (
                           <TeamLogo
                             hideLabel
-                            shortName={team}
+                            id={team}
                             size="xl"
                             key={team}
                             status={
@@ -450,7 +450,7 @@ function SwissTable({
                         return (
                           <TeamLogo
                             hideLabel
-                            shortName={team}
+                            id={team}
                             size="xl"
                             key={team}
                             status={
@@ -474,7 +474,7 @@ function SwissTable({
                         return (
                           <TeamLogo
                             hideLabel
-                            shortName={team}
+                            id={team}
                             size="xl"
                             key={team}
                             status={
@@ -625,7 +625,7 @@ function PlayoffsTable({
                         return (
                           <TeamLogo
                             hideLabel
-                            shortName={team}
+                            id={team}
                             size="xl"
                             key={team}
                             status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
@@ -647,7 +647,7 @@ function PlayoffsTable({
                         return (
                           <TeamLogo
                             hideLabel
-                            shortName={team}
+                            id={team}
                             size="xl"
                             key={team}
                             status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
@@ -663,7 +663,7 @@ function PlayoffsTable({
                       {prediction['2-to-1'] ? (
                         <TeamLogo
                           hideLabel
-                          shortName={prediction['2-to-1']}
+                          id={prediction['2-to-1']}
                           size="xl"
                           status={
                             playoffsResult?.['2-to-1'].winner === prediction['2-to-1']
@@ -816,7 +816,7 @@ function PlayoffsTable({
                       return (
                         <TeamLogo
                           hideLabel
-                          shortName={team}
+                          id={team}
                           size="xl"
                           key={team}
                           status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
@@ -850,7 +850,7 @@ function PlayoffsTable({
                       return (
                         <TeamLogo
                           hideLabel
-                          shortName={team}
+                          id={team}
                           size="xl"
                           key={team}
                           status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
@@ -878,7 +878,7 @@ function PlayoffsTable({
                     {prediction['2-to-1'] ? (
                       <TeamLogo
                         hideLabel
-                        shortName={prediction['2-to-1']}
+                        id={prediction['2-to-1']}
                         size="xl"
                         status={
                           playoffsResult?.['2-to-1'].winner === prediction['2-to-1']

@@ -521,6 +521,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "BB", "MIBR", "paiN", "FUT", "9z"],
         "0-3": ["FlyQuest", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "Legacy", "9z"],
+        "0-3": ["PV", "B8"]
       }
     },
     {
@@ -535,6 +540,11 @@
         "3-0": ["BB", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "M80", "Spirit"],
         "0-3": ["MIBR", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "PV"],
+        "0-3": ["Legacy", "9z"]
       }
     },
     {
@@ -549,6 +559,11 @@
         "3-0": ["Legacy", "FUT"],
         "3-1-or-3-2": ["B8", "BB", "G2", "GL", "Spirit", "9z"],
         "0-3": ["FlyQuest", "paiN"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "NAVI"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "Spirit", "Aurora", "9z"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1177,6 +1192,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "BIG", "GL", "FUT", "BB"],
         "0-3": ["TYLOO", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "Aurora", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1392,6 +1412,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "M80", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1743,6 +1768,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "B8", "paiN", "BB"],
         "0-3": ["FlyQuest", "BIG"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "BB"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {

@@ -183,7 +183,7 @@ export function getTeamStatus(performances: TeamPerformanceRecord[]) {
   if (lastPerf.status === 'advanced' && lastPerf.result === '亚军')
     return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
   if (lastPerf.status === 'eliminated')
-    return { text: `❌ 已淘汰 (${lastPerf.stageName})`, className: 'text-lose' }
+    return { text: `❌ 已淘汰`, className: 'text-lose' }
   if (lastPerf.status === 'advanced') return { text: '已晋级', className: 'text-win' }
 
   return { text: '赛程中', className: 'text-muted' }

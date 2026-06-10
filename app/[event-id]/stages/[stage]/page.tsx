@@ -511,8 +511,6 @@ function PlayoffsTable({
   const playoffsResult = stageData.result
   const { currentStage } = getEventProgress(event)
 
-  console.log('Current stage:', currentStage)
-
   const stageProgress = currentStage ? getStageProgressInfo(event, currentStage) : null
 
   const isNotStarted = currentStage === 'playoffs' && stageProgress?.status === 'not_started'

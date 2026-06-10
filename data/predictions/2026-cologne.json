@@ -2010,6 +2010,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["BB", "G2", "Astralis", "9z", "GL", "Legacy"],
         "0-3": ["M80", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "NAVI"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "PV", "G2", "Spirit"],
+        "0-3": ["Legacy", "B8"]
       }
     },
     {
@@ -2024,6 +2029,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["BB", "G2", "paiN", "FUT", "GL", "B8"],
         "0-3": ["FlyQuest", "BIG"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "MOUZ"],
+        "0-3": ["Monte", "B8"]
       }
     }
   ]

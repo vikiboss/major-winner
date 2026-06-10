@@ -83,6 +83,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "B8", "9z"],
         "0-3": ["FlyQuest", "M80"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {

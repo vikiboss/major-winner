@@ -261,7 +261,7 @@
     "stage-3": {
       "name": "第三阶段",
       "teams": ["Vitality", "NAVI", "Falcons", "FURIA", "Aurora", "PV", "MongolZ", "MOUZ"],
-      "teamsFromAdvanced": [],
+      "teamsFromAdvanced": ["Spirit", "FUT", "9z", "BB", "G2", "Monte", "Legacy", "B8"],
       "result": {
         "1-0": [],
         "0-1": [],

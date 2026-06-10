@@ -15,7 +15,7 @@ export function NavItems({ eventId }: { eventId: string }) {
   const homeHref = `/${eventId}`
 
   return (
-    <nav className="flex flex-1 items-center justify-end gap-2" role="navigation">
+    <nav className="flex flex-1 items-center justify-end gap-1 sm:gap-2" role="navigation">
       {navItems(eventId).map((item) => {
         const isExactMatch = pathname === item.href
         const isSubPathMatch = item.href !== homeHref && pathname.startsWith(item.href)

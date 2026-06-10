@@ -126,6 +126,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "paiN", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -140,6 +145,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "B8", "BB"],
         "0-3": ["M80", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MOUZ", "BB"],
+        "0-3": ["9z", "B8"]
       }
     },
     {
@@ -249,6 +259,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "TYLOO", "B8", "BIG", "FUT", "9z"],
         "0-3": ["FlyQuest", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Aurora"],
+        "0-3": ["Monte", "PV"]
       }
     },
     {
@@ -493,6 +508,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "M80", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MOUZ", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -507,6 +527,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "MIBR", "paiN", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Aurora"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -687,6 +712,11 @@
         "3-0": ["Spirit", "TYLOO"],
         "3-1-or-3-2": ["Legacy", "BB", "G2", "GL", "FUT", "B8"],
         "0-3": ["FlyQuest", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "MOUZ"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -720,6 +750,11 @@
         "3-0": ["Spirit", "TYLOO"],
         "3-1-or-3-2": ["Legacy", "B8", "G2", "GL", "FUT", "9z"],
         "0-3": ["FlyQuest", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "Legacy", "NAVI", "MongolZ", "9z"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -771,6 +806,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "MIBR"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "PV", "NAVI", "MOUZ", "G2"],
+        "0-3": ["Legacy", "9z"]
       }
     },
     {
@@ -794,6 +834,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
         "0-3": ["paiN", "9z"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "BB", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -808,6 +853,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
         "0-3": ["BIG", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Falcons"],
+        "3-1-or-3-2": ["FURIA", "Spirit", "FUT", "NAVI", "MongolZ", "9z"],
+        "0-3": ["Monte", "PV"]
       }
     },
     {
@@ -822,6 +872,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "G2", "M80", "FUT", "BB"],
         "0-3": ["9z", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Falcons"],
+        "3-1-or-3-2": ["FURIA", "Spirit", "FUT", "NAVI", "MongolZ", "Legacy"],
+        "0-3": ["PV", "B8"]
       }
     },
     {
@@ -836,6 +891,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Aurora"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -864,6 +924,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "MIBR", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Aurora"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1090,6 +1155,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "BB", "9z"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "MOUZ", "NAVI", "BB", "G2"],
+        "0-3": ["Aurora", "B8"]
       }
     },
     {
@@ -1132,6 +1202,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MOUZ", "Aurora"],
+        "0-3": ["Monte", "PV"]
       }
     },
     {
@@ -1155,6 +1230,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "PV"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1178,6 +1258,11 @@
         "3-0": ["Spirit", "B8"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "FUT", "M80"],
         "0-3": ["FlyQuest", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Falcons"],
+        "3-1-or-3-2": ["FURIA", "Spirit", "FUT", "NAVI", "MOUZ", "PV"],
+        "0-3": ["Legacy", "B8"]
       }
     },
     {
@@ -1287,6 +1372,11 @@
         "3-0": ["BB", "Legacy"],
         "3-1-or-3-2": ["FUT", "B8", "Spirit", "G2", "GL", "Astralis"],
         "0-3": ["TYLOO", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["MOUZ", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Vitality", "Aurora", "NAVI", "PV", "9z"],
+        "0-3": ["MongolZ", "B8"]
       }
     },
     {
@@ -1310,6 +1400,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "paiN", "G2", "GL", "B8", "BB"],
         "0-3": ["9z", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
+        "0-3": ["Monte", "MOUZ"]
       }
     },
     {
@@ -1319,6 +1414,11 @@
         "3-0": ["Spirit", "FUT"],
         "3-1-or-3-2": ["Legacy", "Astralis", "G2", "GL", "B8", "BB"],
         "0-3": ["M80", "MIBR"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "BB", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1333,6 +1433,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "B8", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "BIG"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "Legacy", "G2"],
+        "0-3": ["PV", "Aurora"]
       }
     },
     {
@@ -1389,6 +1494,11 @@
         "3-0": ["Spirit", "G2"],
         "3-1-or-3-2": ["Legacy", "Astralis", "MIBR", "GL", "FUT", "BB"],
         "0-3": ["paiN", "Monte"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Falcons"],
+        "3-1-or-3-2": ["FURIA", "Spirit", "FUT", "NAVI", "MOUZ", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1431,6 +1541,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "paiN", "G2", "GL", "FUT", "M80"],
         "0-3": ["TYLOO", "MIBR"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "B8", "Monte"],
+        "0-3": ["MongolZ", "PV"]
       }
     },
     {
@@ -1445,6 +1560,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["FlyQuest", "TYLOO", "G2", "GL", "FUT", "BB"],
         "0-3": ["BIG", "MIBR"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "MongolZ"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "NAVI", "Spirit", "Aurora"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {
@@ -1459,6 +1579,11 @@
         "3-0": ["Spirit", "Legacy"],
         "3-1-or-3-2": ["B8", "Astralis", "G2", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "TYLOO"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "NAVI"],
+        "3-1-or-3-2": ["FURIA", "Falcons", "FUT", "Spirit", "MongolZ", "Aurora"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {

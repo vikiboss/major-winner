@@ -6,7 +6,7 @@ import {
   SWISS_STAGES,
 } from './constants'
 
-import type { MajorEvent } from '@/types'
+import type { MajorEvent, Team } from '@/types'
 
 export type TeamPerformanceStatus =
   | 'advanced'
@@ -196,7 +196,7 @@ export function getSortedTeamsByPerformance(event: MajorEvent) {
   // 3. 同阶段内比较战绩: 3-0 > 3-1 > 3-2 > 2-3 > 1-3 > 0-3
   // 4. 比赛状态: 晋级/赛程中 > 待赛 > 淘汰
   return event.teams
-    .map((team) => {
+    .map((team: Team) => {
       const performance = getTeamPerformance(event, team.id)
       return {
         ...team,
@@ -216,8 +216,8 @@ export function getSortedTeamsByPerformance(event: MajorEvent) {
       if (aStatus !== 'eliminated' && bStatus === 'eliminated') return -1
 
       // 1. 决赛成绩 - 最强的证明
-      const aPlayoffs = a.performance.find((p) => p.stage === 'playoffs')
-      const bPlayoffs = b.performance.find((p) => p.stage === 'playoffs')
+      const aPlayoffs = a.performance.find(p => p.stage === 'playoffs')
+      const bPlayoffs = b.performance.find(p => p.stage === 'playoffs')
 
       // 进决赛的队伍一定强于未进决赛的
       if (aPlayoffs && !bPlayoffs) return -1
@@ -242,7 +242,7 @@ export function getSortedTeamsByPerformance(event: MajorEvent) {
       // 2. 找到每支队伍实际达到的最高瑞士轮阶段
       const getHighestSwissStage = (perf: typeof a.performance) => {
         const swissPerfs = perf.filter(
-          (p) => p.stage === 'stage-1' || p.stage === 'stage-2' || p.stage === 'stage-3',
+          p => p.stage === 'stage-1' || p.stage === 'stage-2' || p.stage === 'stage-3',
         )
         if (swissPerfs.length === 0) return null
         // 返回最后一个瑞士轮阶段（即最高阶段）

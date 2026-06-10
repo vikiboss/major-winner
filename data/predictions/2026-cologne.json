@@ -1847,6 +1847,15 @@
         "0-3": ["TYLOO", "Monte"]
       }
     },
+    {
+      "id": "hikari",
+      "name": "希卡利 Hikari4ever",
+      "stage-3": {
+        "3-0": ["Vitality", "NAVI"],
+        "3-1-or-3-2": ["MOUZ", "Falcons", "FUT", "Spirit", "MongolZ", "G2"],
+        "0-3": ["Monte", "BB"]
+      }
+    },
 
     {
       "id": "viki",

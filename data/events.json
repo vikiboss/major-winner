@@ -103,8 +103,8 @@
       "teams": ["Vitality", "NAVI", "Falcons", "FURIA", "Aurora", "PV", "MongolZ", "MOUZ"],
       "teamsFromAdvanced": ["Spirit", "FUT", "9z", "BB", "G2", "Monte", "Legacy", "B8"],
       "result": {
-        "1-0": [],
-        "0-1": [],
+        "1-0": ["9z"],
+        "0-1": ["PV"],
         "1-1": [],
         "2-0": [],
         "0-2": [],

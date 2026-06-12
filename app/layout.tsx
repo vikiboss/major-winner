@@ -76,7 +76,7 @@ export const metadata: Metadata = {
     telephone: false,
   },
   icons: {
-    icon: '/favicon.ico',
+    icon: 'https://image.viki.moe/cs/i/favicon.ico',
     apple: 'https://image.viki.moe/cs/i/icon.png',
   },
 }

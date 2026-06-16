@@ -117,31 +117,33 @@ function SwissTable({
   // 排序逻辑：
   // - 有猜对数：按猜对数降序
   // - 无猜对数：按已知错误数升序（错误少的排前面）
-  const sortedPredictors = predictors.toSorted((a, b) => {
-    const statsA = calculatePredictorStats(event.id, a.id)
-    const statsB = calculatePredictorStats(event.id, b.id)
+  const sortedPredictors = predictors
+    .map((e) => ({ ...e, stats: calculatePredictorStats(event.id, e.id) }))
+    .toSorted((a, b) => {
+      const statsA = a.stats
+      const statsB = b.stats
 
-    if (isNotStarted && statsA && statsB) {
-      return statsB.totalCorrect - statsA.totalCorrect
-    }
+      if (isNotStarted && statsA && statsB) {
+        return statsB.totalPassed - statsA.totalPassed || statsB.totalCorrect - statsA.totalCorrect
+      }
 
-    const resultA = statsA?.stageResults.find((s) => s.stageId === stageId)
-    const resultB = statsB?.stageResults.find((s) => s.stageId === stageId)
+      const resultA = statsA?.stageResults.find((s) => s.stageId === stageId)
+      const resultB = statsB?.stageResults.find((s) => s.stageId === stageId)
 
-    const correctA = resultA?.correctCount ?? -1
-    const correctB = resultB?.correctCount ?? -1
+      const correctA = resultA?.correctCount ?? -1
+      const correctB = resultB?.correctCount ?? -1
 
-    // 如果都未完成（进行中），按已知错误数升序
-    const impossibleA = resultA?.impossibleCount ?? 0
-    const impossibleB = resultB?.impossibleCount ?? 0
+      // 如果都未完成（进行中），按已知错误数升序
+      const impossibleA = resultA?.impossibleCount ?? 0
+      const impossibleB = resultB?.impossibleCount ?? 0
 
-    // 如果有猜对数，优先按猜对数排序
-    if (correctB || correctA) {
-      return correctB - correctA || impossibleA - impossibleB
-    }
+      // 如果有猜对数，优先按猜对数排序
+      if (correctB || correctA) {
+        return correctB - correctA || impossibleA - impossibleB
+      }
 
-    return impossibleA - impossibleB // 错误少的排前面
-  })
+      return impossibleA - impossibleB // 错误少的排前面
+    })
 
   return (
     <div className="bg-surface-1 border-border overflow-hidden rounded-lg border">
@@ -152,9 +154,7 @@ function SwissTable({
             <tr>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">3-0 预测</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">
-                3-X 预测
-              </th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">3-X 预测</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">0-3 预测</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
                 猜对数
@@ -244,11 +244,7 @@ function SwissTable({
                           const isCorrect =
                             actualResult?.['3-1']?.includes(team) ||
                             actualResult?.['3-2']?.includes(team)
-                          const possible = isSwissPredictionPossible(
-                            team,
-                            '3-X',
-                            actualResult,
-                          )
+                          const possible = isSwissPredictionPossible(team, '3-X', actualResult)
                           return (
                             <TeamLogo
                               hideLabel
@@ -370,7 +366,7 @@ function SwissTable({
                   </div>
                 </div>
                 {stageResult && (
-                  <div className="flex flex-col justify-center gap-2 items-end sm:gap-1">
+                  <div className="flex flex-col items-end justify-center gap-2 sm:gap-1">
                     <div className="flex items-center gap-2">
                       <span
                         className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
@@ -631,42 +627,46 @@ function PlayoffsTable({
                   {/* 四强 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
-                      {prediction['8-to-4'].map((team) => {
-                        const isMatch = playoffsResult?.['8-to-4'].winners.includes(team)
-                        const isMismatch = playoffsResult?.['8-to-4'].losers.includes(team)
+                      {prediction['8-to-4']
+                        .toSorted((p, n) => p.localeCompare(n))
+                        .map((team) => {
+                          const isMatch = playoffsResult?.['8-to-4'].winners.includes(team)
+                          const isMismatch = playoffsResult?.['8-to-4'].losers.includes(team)
 
-                        return (
-                          <TeamLogo
-                            hideLabel
-                            id={team}
-                            size="xl"
-                            key={team}
-                            status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
-                          />
-                        )
-                      }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                          return (
+                            <TeamLogo
+                              hideLabel
+                              id={team}
+                              size="xl"
+                              key={team}
+                              status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
+                            />
+                          )
+                        }) || <span className="text-tertiary text-xs">未竞猜</span>}
                     </div>
                   </td>
 
                   {/* 二强 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
-                      {prediction['4-to-2']?.map((team) => {
-                        const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
-                        const isMismatch =
-                          playoffsResult?.['4-to-2'].losers.includes(team) ||
-                          playoffsResult?.['8-to-4'].losers.includes(team)
+                      {prediction['4-to-2']
+                        .toSorted((p, n) => p.localeCompare(n))
+                        .map((team) => {
+                          const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
+                          const isMismatch =
+                            playoffsResult?.['4-to-2'].losers.includes(team) ||
+                            playoffsResult?.['8-to-4'].losers.includes(team)
 
-                        return (
-                          <TeamLogo
-                            hideLabel
-                            id={team}
-                            size="xl"
-                            key={team}
-                            status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
-                          />
-                        )
-                      }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                          return (
+                            <TeamLogo
+                              hideLabel
+                              id={team}
+                              size="xl"
+                              key={team}
+                              status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
+                            />
+                          )
+                        }) || <span className="text-tertiary text-xs">未竞猜</span>}
                     </div>
                   </td>
 
@@ -854,20 +854,22 @@ function PlayoffsTable({
                     )}
                   </div>
                   <div className="flex flex-wrap gap-1">
-                    {prediction['8-to-4']?.map((team) => {
-                      const isMatch = playoffsResult?.['8-to-4'].winners.includes(team)
-                      const isMismatch = playoffsResult?.['8-to-4'].losers.includes(team)
+                    {prediction['8-to-4']
+                      .toSorted((p, n) => p.localeCompare(n))
+                      .map((team) => {
+                        const isMatch = playoffsResult?.['8-to-4'].winners.includes(team)
+                        const isMismatch = playoffsResult?.['8-to-4'].losers.includes(team)
 
-                      return (
-                        <TeamLogo
-                          hideLabel
-                          id={team}
-                          size="xl"
-                          key={team}
-                          status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
-                        />
-                      )
-                    }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                        return (
+                          <TeamLogo
+                            hideLabel
+                            id={team}
+                            size="xl"
+                            key={team}
+                            status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
+                          />
+                        )
+                      }) || <span className="text-tertiary text-xs">未竞猜</span>}
                   </div>
                 </div>
 
@@ -886,22 +888,24 @@ function PlayoffsTable({
                     )}
                   </div>
                   <div className="flex flex-wrap gap-1">
-                    {prediction['4-to-2']?.map((team) => {
-                      const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
-                      const isMismatch =
-                        playoffsResult?.['4-to-2'].losers.includes(team) ||
-                        playoffsResult?.['8-to-4'].losers.includes(team)
+                    {prediction['4-to-2']
+                      .toSorted((p, n) => p.localeCompare(n))
+                      .map((team) => {
+                        const isMatch = playoffsResult?.['4-to-2'].winners.includes(team)
+                        const isMismatch =
+                          playoffsResult?.['4-to-2'].losers.includes(team) ||
+                          playoffsResult?.['8-to-4'].losers.includes(team)
 
-                      return (
-                        <TeamLogo
-                          hideLabel
-                          id={team}
-                          size="xl"
-                          key={team}
-                          status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
-                        />
-                      )
-                    }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                        return (
+                          <TeamLogo
+                            hideLabel
+                            id={team}
+                            size="xl"
+                            key={team}
+                            status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
+                          />
+                        )
+                      }) || <span className="text-tertiary text-xs">未竞猜</span>}
                   </div>
                 </div>
 

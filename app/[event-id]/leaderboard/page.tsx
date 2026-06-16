@@ -121,10 +121,10 @@ export default async function PredictorsPage({
                         : stage.id === 'stage-3'
                           ? '第三阶段'
                           : stage.id === '8-to-4'
-                            ? '八进四'
+                            ? '四强'
                             : stage.id === '4-to-2'
-                              ? '半决赛'
-                              : '决赛'
+                              ? '二强'
+                              : '冠军'
                   return (
                     <div
                       key={stage.id}
@@ -178,9 +178,9 @@ export default async function PredictorsPage({
               <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">第一阶段</th>
               <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">第二阶段</th>
               <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">第三阶段</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">八进四</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">半决赛</th>
-              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">决赛</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">四强</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">二强</th>
+              <th className="hidden px-4 py-3 text-center text-nowrap sm:table-cell">冠军</th>
             </tr>
           </thead>
           <tbody className="divide-border divide-y">

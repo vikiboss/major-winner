@@ -153,7 +153,7 @@ function SwissTable({
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">3-0 预测</th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">
-                3-1/3-2 预测
+                3-X 预测
               </th>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">0-3 预测</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
@@ -238,7 +238,7 @@ function SwissTable({
                   </td>
                   <td className="px-4 py-3">
                     <div className="flex gap-1">
-                      {prediction['3-1-or-3-2']
+                      {prediction['3-X']
                         .toSorted((p, n) => p.localeCompare(n))
                         .map((team) => {
                           const isCorrect =
@@ -246,7 +246,7 @@ function SwissTable({
                             actualResult?.['3-2']?.includes(team)
                           const possible = isSwissPredictionPossible(
                             team,
-                            '3-1-or-3-2',
+                            '3-X',
                             actualResult,
                           )
                           return (
@@ -432,17 +432,17 @@ function SwissTable({
                   </div>
                 </div>
 
-                {/* 3-1/3-2 */}
+                {/* 3-X */}
                 <div>
-                  <p className="text-muted mb-1 text-xs">3-1/3-2 预测</p>
+                  <p className="text-muted mb-1 text-xs">3-X 预测</p>
                   <div className="flex flex-wrap gap-1">
-                    {prediction['3-1-or-3-2']
+                    {prediction['3-X']
                       .toSorted((p, n) => p.localeCompare(n))
                       .map((team) => {
                         const isCorrect =
                           actualResult?.['3-1']?.includes(team) ||
                           actualResult?.['3-2']?.includes(team)
-                        const possible = isSwissPredictionPossible(team, '3-1-or-3-2', actualResult)
+                        const possible = isSwissPredictionPossible(team, '3-X', actualResult)
                         return (
                           <TeamLogo
                             hideLabel
@@ -562,9 +562,9 @@ function PlayoffsTable({
           <thead className="bg-surface-2 border-border border-b">
             <tr>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">八进四</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">半决赛</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">决赛</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">四强</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">二强</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">冠军</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
                 猜对数
               </th>
@@ -628,7 +628,7 @@ function PlayoffsTable({
                     </div>
                   </td>
 
-                  {/* 八进四 */}
+                  {/* 四强 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['8-to-4'].map((team) => {
@@ -648,7 +648,7 @@ function PlayoffsTable({
                     </div>
                   </td>
 
-                  {/* 半决赛 */}
+                  {/* 二强 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['4-to-2']?.map((team) => {
@@ -670,7 +670,7 @@ function PlayoffsTable({
                     </div>
                   </td>
 
-                  {/* 决赛 */}
+                  {/* 冠军 */}
                   <td className="px-4 py-3">
                     <div className="flex flex-wrap gap-1">
                       {prediction['2-to-1'] ? (
@@ -709,10 +709,10 @@ function PlayoffsTable({
                         {playoffsStats.map((s) => {
                           const stageName =
                             s.stageId === '8-to-4'
-                              ? '八进四'
+                              ? '四强'
                               : s.stageId === '4-to-2'
-                                ? '半决赛'
-                                : '决赛'
+                                ? '二强'
+                                : '冠军'
 
                           return (
                             <div key={s.stageId} className="flex items-center gap-1">
@@ -839,7 +839,7 @@ function PlayoffsTable({
               </div>
 
               <div className="space-y-3">
-                {/* 八进四 */}
+                {/* 四强 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
                     <p className="text-muted text-xs">八进四</p>
@@ -871,10 +871,10 @@ function PlayoffsTable({
                   </div>
                 </div>
 
-                {/* 半决赛 */}
+                {/* 二强 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">半决赛</p>
+                    <p className="text-muted text-xs">二强</p>
                     {f2t && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${
@@ -905,10 +905,10 @@ function PlayoffsTable({
                   </div>
                 </div>
 
-                {/* 决赛 */}
+                {/* 冠军 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">决赛</p>
+                    <p className="text-muted text-xs">冠军</p>
                     {t2o && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${

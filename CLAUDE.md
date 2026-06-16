@@ -56,7 +56,7 @@ The app uses a **static data-driven architecture** with no backend:
 
 **Swiss Stages** (瑞士轮):
 
-- Predictors forecast 10 teams: 2×3-0, 6×3-1-or-3-2, 2×0-3
+- Predictors forecast 10 teams: 2×3-0, 6×3-X, 2×0-3
 - Pass threshold: 5/10 correct predictions
 - Exact match required (3-0 prediction must be 3-0 actual, not 3-1)
 
@@ -246,7 +246,7 @@ To update tournament results:
   "id": "stage-1",
   "result": {
     "3-0": ["team1", "team2"],
-    "3-1-or-3-2": ["team3", "team4", "team5", "team6", "team7", "team8"],
+    "3-X": ["team3", "team4", "team5", "team6", "team7", "team8"],
     "0-3": ["team9", "team10"]
   }
 }

@@ -5,8 +5,8 @@ import cologne20236 from '@/data/predictions/2026-cologne.json' with { type: 'js
 import { EventStatus } from '../types/index.ts'
 import teams from '@/data/teams.json' with { type: 'json' }
 
-export const teamMap = new Map(teams.map(e => [e.id, e]))
-export const predictorsMap = new Map(predictors.map(p => [p.id, p]))
+export const teamMap = new Map(teams.map((e) => [e.id, e]))
+export const predictorsMap = new Map(predictors.map((p) => [p.id, p]))
 
 import type {
   MajorEvent,
@@ -38,20 +38,20 @@ export const firstEvent = events.at(0) as MajorEvent
 export const evt = {
   /** 存在指定赛事 ID */
   hasEvent(eventId: string): boolean {
-    return events.some(e => e.id === eventId)
+    return events.some((e) => e.id === eventId)
   },
 
   /** 获取指定赛事  */
   getEvent(eventId?: string): MajorEvent {
-    return eventId ? events.find(e => e.id === eventId) || firstEvent : firstEvent
+    return eventId ? events.find((e) => e.id === eventId) || firstEvent : firstEvent
   },
 
   /** 获取所有赛事名称列表 */
-  eventNames: events.map(e => ({ id: e.id, name: e.name, shortName: e.shortName })),
+  eventNames: events.map((e) => ({ id: e.id, name: e.name, shortName: e.shortName })),
 
   /** 获取指定赛事的竞猜数据 */
   getPredictions(eventId: string): PredictorPrediction[] {
-    return (predictions.find(p => p.id === eventId)?.predictions || []).map(e => {
+    return (predictions.find((p) => p.id === eventId)?.predictions || []).map((e) => {
       const predictor = predictorsMap.get(e.id)!
       return { ...e, ...predictor }
     })
@@ -61,7 +61,7 @@ export const evt = {
 /**
  * 检查竞猜是否仍有可能成真（基于当前进度）
  * @param teamName 队伍名称
- * @param swissPredictionBucket 竞猜类型：3-0 / 3-1-or-3-2 / 0-3
+ * @param swissPredictionBucket 竞猜类型：3-0 / 3-X / 0-3
  * @param result 瑞士轮结果（包含进行中的战绩和最终结果）
  * @returns true 表示竞猜仍有可能，false 表示已不可能
  */
@@ -83,7 +83,7 @@ export function isSwissPredictionPossible(
       if (swissPredictionBucket === '0-3') {
         return record === '0-3'
       }
-      if (swissPredictionBucket === '3-1-or-3-2') {
+      if (swissPredictionBucket === '3-X') {
         return record === '3-1' || record === '3-2'
       }
     }
@@ -106,7 +106,7 @@ export function isSwissPredictionPossible(
         return wins === 0
       }
 
-      // 3-1-or-3-2 竞猜：只要还在比赛中，都有可能
+      // 3-X 竞猜：只要还在比赛中，都有可能
       return true
     }
   }
@@ -119,7 +119,7 @@ export function isSwissPredictionPossible(
  * 计算瑞士轮阶段是否通过
  * 规则：竞猜的 10 支队伍中，有 5 支符合实际结果即通过
  * - 3-0 竞猜的队伍实际必须 3-0 晋级，算正确
- * - 3-1-or-3-2 竞猜的队伍实际必须 3-1 或 3-2 晋级，算正确
+ * - 3-X 竞猜的队伍实际必须 3-X 晋级，算正确
  * - 0-3 竞猜的队伍实际必须 0-3 淘汰，算正确
  */
 function checkSwissStagePass(
@@ -160,12 +160,12 @@ function checkSwissStagePass(
     }
   }
 
-  // 检查 3-1-or-3-2 竞猜（必须实际 3-1 或 3-2 才算对）
-  for (const team of prediction['3-1-or-3-2']) {
+  // 检查 3-X 竞猜（必须实际 3-X 才算对）
+  for (const team of prediction['3-X']) {
     if (result['3-1'].includes(team) || result['3-2'].includes(team)) {
       correctCount++
       correctTeams.push(team)
-    } else if (!isSwissPredictionPossible(team, '3-1-or-3-2', result)) {
+    } else if (!isSwissPredictionPossible(team, '3-X', result)) {
       impossibleCount++
     }
   }
@@ -181,7 +181,7 @@ function checkSwissStagePass(
   }
 
   // 检查是否还有结果未确定（存在进行中的战绩）
-  const hasProgressData = SWISS_PROGRESS_RECORDS.some(e => result[e].length)
+  const hasProgressData = SWISS_PROGRESS_RECORDS.some((e) => result[e].length)
 
   let details = `${correctCount}/10 正确`
   if (hasProgressData && impossibleCount > 0) {
@@ -373,7 +373,7 @@ export function calculatePredictorStats(
 
   if (!targetEvent) return null
 
-  const predictor = predictions.find(p => p.id === predictorId)
+  const predictor = predictions.find((p) => p.id === predictorId)
 
   if (!predictor) return null
 
@@ -392,7 +392,7 @@ export function calculatePredictorStats(
       stageResults.push(result)
       totalStages++
       totalCorrect += result.correctCount
-      totalPredictions += pred['3-0'].length + pred['3-1-or-3-2'].length + pred['0-3'].length
+      totalPredictions += pred['3-0'].length + pred['3-X'].length + pred['0-3'].length
       if (result.passed) totalPassed++
     }
   }
@@ -490,7 +490,7 @@ export function getPredictorPrediction(
   const predictions = evt.getPredictions(eventId)
   if (!predictions.length) return null
 
-  return predictions.find(p => p.id === predictorId) || null
+  return predictions.find((p) => p.id === predictorId) || null
 }
 
 /**
@@ -500,8 +500,8 @@ export function getPredictorPrediction(
 function isSwissResultComplete(result?: SwissResult): boolean {
   if (!result) return false
 
-  const isTwoMatch = (['3-0', '0-3'] as const).every(e => result[e].length === 2)
-  const isThreeMatch = (['3-1', '3-2', '2-3', '1-3'] as const).every(e => result[e].length === 3)
+  const isTwoMatch = (['3-0', '0-3'] as const).every((e) => result[e].length === 2)
+  const isThreeMatch = (['3-1', '3-2', '2-3', '1-3'] as const).every((e) => result[e].length === 3)
 
   return isTwoMatch && isThreeMatch
 }
@@ -512,7 +512,7 @@ function isSwissResultComplete(result?: SwissResult): boolean {
 function hasSwissResults(result: SwissResult | undefined): boolean {
   if (!result) return false
   const allGroups = [...SWISS_PROGRESS_RECORDS, ...SWISS_RESULT_RECORDS]
-  return allGroups.some(group => result[group] && result[group].length > 0)
+  return allGroups.some((group) => result[group] && result[group].length > 0)
 }
 
 /**
@@ -534,7 +534,7 @@ export function getStageProgressInfo(event: MajorEvent, stageId: MajorStageType)
     data: stageData,
     name: stageName,
     type: stageType,
-  } = getStageConfig(event).find(e => e.id === stageId)!
+  } = getStageConfig(event).find((e) => e.id === stageId)!
 
   if (!stageData) {
     return {
@@ -604,17 +604,19 @@ export const getStageConfig = (event: MajorEvent) => {
 export function getEventProgress(event: MajorEvent): EventProgress {
   const stagesConfig = getStageConfig(event)
 
-  const stagesProgress: StageProgress[] = stagesConfig.map(stage =>
+  const stagesProgress: StageProgress[] = stagesConfig.map((stage) =>
     getStageProgressInfo(event, stage.id),
   )
 
   // 找到所有已完成和进行中的阶段
-  const completedStages = stagesProgress.filter(s => s.status === 'completed').map(s => s.stageId)
+  const completedStages = stagesProgress
+    .filter((s) => s.status === 'completed')
+    .map((s) => s.stageId)
   const notStartedStages = stagesProgress
-    .filter(s => s.status === 'not_started')
-    .map(s => s.stageId)
-  const inProgressStage = stagesProgress.find(s => s.status === 'in_progress')
-  const hasAnyResults = stagesProgress.some(s => s.hasResults)
+    .filter((s) => s.status === 'not_started')
+    .map((s) => s.stageId)
+  const inProgressStage = stagesProgress.find((s) => s.status === 'in_progress')
+  const hasAnyResults = stagesProgress.some((s) => s.hasResults)
 
   // 抽离关键布尔变量
   const hasInProgressStage = !!inProgressStage
@@ -733,19 +735,19 @@ export function getActiveStages(event: MajorEvent): {
   // 检查某阶段是否有竞猜
   const hasPredictionsForStage = (stageId: string): boolean => {
     if (!predictions.length) return false
-    return predictions.some(p => {
+    return predictions.some((p) => {
       if (stageId === 'playoffs') return p.playoffs && p.playoffs['2-to-1']
       const stage = p[stageId as 'stage-1' | 'stage-2' | 'stage-3']
-      return stage && stage['3-0'].length && stage['3-1-or-3-2'].length && stage['0-3'].length
+      return stage && stage['3-0'].length && stage['3-X'].length && stage['0-3'].length
     })
   }
 
   return progress.stagesProgress
-    .filter(s => {
+    .filter((s) => {
       // 显示: 有结果的阶段 或 有竞猜的阶段
       return s.hasResults || hasPredictionsForStage(s.stageId)
     })
-    .map(s => ({
+    .map((s) => ({
       id: s.stageId,
       name: s.stageName,
       status:
@@ -762,7 +764,7 @@ export function getActiveStages(event: MajorEvent): {
  */
 export function shouldShowStage(event: MajorEvent, stageId: string): boolean {
   const progress = getEventProgress(event)
-  const stageProgress = progress.stagesProgress.find(s => s.stageId === stageId)
+  const stageProgress = progress.stagesProgress.find((s) => s.stageId === stageId)
   return stageProgress ? stageProgress.hasResults : false
 }
 
@@ -836,7 +838,7 @@ export function hasSwissInProgressResults(result: SwissResult | undefined): bool
 
   const inProgressRecords = ['1-0', '0-1', '1-1', '2-0', '0-2', '2-1', '1-2', '2-2'] as const
 
-  return inProgressRecords.some(record => result[record] && result[record]!.length > 0)
+  return inProgressRecords.some((record) => result[record] && result[record]!.length > 0)
 }
 
 /**
@@ -847,5 +849,5 @@ export function hasSwissPlayoffResults(result: SwissResult | undefined): boolean
 
   const playoffRecords = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3'] as const
 
-  return playoffRecords.some(record => result[record] && result[record].length > 0)
+  return playoffRecords.some((record) => result[record] && result[record].length > 0)
 }

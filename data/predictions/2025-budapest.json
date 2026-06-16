@@ -6,17 +6,17 @@
       "name": "比赛结果",
       "stage-1": {
         "3-0": ["M80", "FlyQuest"],
-        "3-1-or-3-2": ["B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
+        "3-X": ["B8", "Fnatic", "NIP", "PV", "Imperial", "FaZe"],
         "0-3": ["LVG", "RA"]
       },
       "stage-2": {
         "3-0": ["NAVI", "FaZe"],
-        "3-1-or-3-2": ["B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
+        "3-X": ["B8", "Imperial", "PV", "Liquid", "PUA", "3DMAX"],
         "0-3": ["MIBR", "FlyQuest"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Spirit"],
-        "3-1-or-3-2": ["Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
+        "3-X": ["Vitality", "MongolZ", "MOUZ", "NAVI", "FaZe", "Falcons"],
         "0-3": ["PV", "Liquid"]
       },
       "playoffs": {
@@ -30,17 +30,17 @@
       "name": "Viki（网站作者）",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "GL", "B8", "LVG", "Fnatic", "NIP"],
+        "3-X": ["PV", "GL", "B8", "LVG", "Fnatic", "NIP"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["NAVI", "Astralis"],
-        "3-1-or-3-2": ["TYLOO", "Liquid", "Aurora", "FlyQuest", "3DMAX", "FaZe"],
+        "3-X": ["TYLOO", "Liquid", "Aurora", "FlyQuest", "3DMAX", "FaZe"],
         "0-3": ["Imperial", "PUA"]
       },
       "stage-3": {
         "3-0": ["FURIA", "FaZe"],
-        "3-1-or-3-2": ["Spirit", "Falcons", "MongolZ", "Vitality", "MOUZ", "NAVI"],
+        "3-X": ["Spirit", "Falcons", "MongolZ", "Vitality", "MOUZ", "NAVI"],
         "0-3": ["Imperial", "PUA"]
       },
       "playoffs": {
@@ -72,17 +72,17 @@
       "name": "14K（网站贡献者）",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "NIP", "M80", "B8", "GL"],
+        "3-X": ["PV", "LVG", "NIP", "M80", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "TYLOO", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NIP", "TYLOO", "Aurora"],
         "0-3": ["Imperial", "B8"]
       },
       "stage-3": {
         "3-0": ["Falcons", "Spirit"],
-        "3-1-or-3-2": ["G2", "MongolZ", "MOUZ", "NAVI", "Vitality", "FURIA"],
+        "3-X": ["G2", "MongolZ", "MOUZ", "NAVI", "Vitality", "FURIA"],
         "0-3": ["B8", "FaZe"]
       },
       "playoffs": {
@@ -96,17 +96,17 @@
       "name": "罗辑",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["NIP", "Fnatic", "PV", "FlyQuest", "FaZe", "B8"],
+        "3-X": ["NIP", "Fnatic", "PV", "FlyQuest", "FaZe", "B8"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["M80", "MIBR", "Liquid", "3DMAX", "Astralis", "PUA"],
+        "3-X": ["M80", "MIBR", "Liquid", "3DMAX", "Astralis", "PUA"],
         "0-3": ["Imperial", "Fnatic"]
       },
       "stage-3": {
         "3-0": ["Falcons", "Vitality"],
-        "3-1-or-3-2": ["MOUZ", "Spirit", "FURIA", "NAVI", "G2", "MongolZ"],
+        "3-X": ["MOUZ", "Spirit", "FURIA", "NAVI", "G2", "MongolZ"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -120,17 +120,17 @@
       "name": "CS-advent",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "NIP", "M80", "B8", "GL"],
+        "3-X": ["PV", "LVG", "NIP", "M80", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "TYLOO", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NIP", "TYLOO", "Aurora"],
         "0-3": ["Imperial", "B8"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -144,17 +144,17 @@
       "name": "玩机器丶Machine",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["NRG", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "TYLOO", "FlyQuest"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "3DMAX", "TYLOO", "FlyQuest"],
         "0-3": ["Imperial", "Fnatic"]
       },
       "stage-3": {
         "3-0": ["MOUZ", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "Vitality", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "Vitality", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -168,17 +168,17 @@
       "name": "CSBOY-马西西",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["NRG", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "PV", "FlyQuest"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "3DMAX", "PV", "FlyQuest"],
         "0-3": ["MIBR", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["Spirit", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Falcons", "MongolZ"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Falcons", "MongolZ"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -192,12 +192,12 @@
       "name": "CSBOY-MO",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["NRG", "Huns"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -211,17 +211,17 @@
       "name": "不会沙鹰的珏宝、",
       "stage-1": {
         "3-0": ["PV", "FaZe"],
-        "3-1-or-3-2": ["Legacy", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["Legacy", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["NIP", "TYLOO"],
-        "3-1-or-3-2": ["FaZe", "3DMAX", "Liquid", "NAVI", "Astralis", "Aurora"],
+        "3-X": ["FaZe", "3DMAX", "Liquid", "NAVI", "Astralis", "Aurora"],
         "0-3": ["B8", "MIBR"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
         "0-3": ["PUA", "B8"]
       },
       "playoffs": {
@@ -235,17 +235,17 @@
       "name": "比利王",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "FlyQuest"],
+        "3-X": ["FaZe", "PV", "NIP", "Fnatic", "B8", "FlyQuest"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["PV", "B8"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "3DMAX", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "3DMAX", "Aurora"],
         "0-3": ["Imperial", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
         "0-3": ["PUA", "B8"]
       },
       "playoffs": {
@@ -259,17 +259,17 @@
       "name": "川臊258/孙笑川258",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "PV", "NRG", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "PV", "NRG", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "FlyQuest", "MIBR"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "3DMAX", "FlyQuest", "MIBR"],
         "0-3": ["Imperial", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["Spirit", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "G2"],
         "0-3": ["B8", "Imperial"]
       },
       "playoffs": {
@@ -283,17 +283,17 @@
       "name": "许多鱼 x",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "PV"],
+        "3-X": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "PV"],
         "0-3": ["NRG", "Huns"]
       },
       "stage-2": {
         "3-0": ["Astralis", "NAVI"],
-        "3-1-or-3-2": ["B8", "3DMAX", "Liquid", "NIP", "M80", "Aurora"],
+        "3-X": ["B8", "3DMAX", "Liquid", "NIP", "M80", "Aurora"],
         "0-3": ["FlyQuest", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "B8", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "B8", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "PV"]
       },
       "playoffs": {
@@ -307,7 +307,7 @@
       "name": "DANKING",
       "stage-1": {
         "3-0": ["GL", "FaZe"],
-        "3-1-or-3-2": ["Legacy", "NRG", "NIP", "PV", "B8", "RED"],
+        "3-X": ["Legacy", "NRG", "NIP", "PV", "B8", "RED"],
         "0-3": ["RA", "Huns"]
       }
     },
@@ -316,17 +316,17 @@
       "name": "QUQU 太不常规",
       "stage-1": {
         "3-0": ["Legacy", "PV"],
-        "3-1-or-3-2": ["FaZe", "LVG", "FlyQuest", "Fnatic", "B8", "Imperial"],
+        "3-X": ["FaZe", "LVG", "FlyQuest", "Fnatic", "B8", "Imperial"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Astralis", "3DMAX"],
-        "3-1-or-3-2": ["FaZe", "M80", "Liquid", "NAVI", "FlyQuest", "Aurora"],
+        "3-X": ["FaZe", "M80", "Liquid", "NAVI", "FlyQuest", "Aurora"],
         "0-3": ["NIP", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Spirit"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "paiN", "Falcons", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "paiN", "Falcons", "G2"],
         "0-3": ["FaZe", "B8"]
       },
       "playoffs": {
@@ -340,17 +340,17 @@
       "name": "CS2-德云两鬼",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["M80", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["M80", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "3DMAX"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "B8", "FlyQuest"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "B8", "FlyQuest"],
         "0-3": ["Imperial", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -364,7 +364,7 @@
       "name": "喜欢草莓的橘子可",
       "stage-3": {
         "3-0": ["MOUZ", "Spirit"],
-        "3-1-or-3-2": ["NAVI", "FURIA", "FaZe", "Vitality", "Falcons", "G2"],
+        "3-X": ["NAVI", "FURIA", "FaZe", "Vitality", "Falcons", "G2"],
         "0-3": ["PUA", "B8"]
       }
     },
@@ -373,7 +373,7 @@
       "name": "FalleN",
       "stage-2": {
         "3-0": ["3DMAX", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "Imperial", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NIP", "Imperial", "Aurora"],
         "0-3": ["B8", "M80"]
       }
     },
@@ -382,17 +382,17 @@
       "name": "OverDrive",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "PV", "Imperial", "Fnatic", "M80", "GL"],
+        "3-X": ["FaZe", "PV", "Imperial", "Fnatic", "M80", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["FlyQuest", "Liquid"],
-        "3-1-or-3-2": ["TYLOO", "Astralis", "M80", "NAVI", "PV", "Aurora"],
+        "3-X": ["TYLOO", "Astralis", "M80", "NAVI", "PV", "Aurora"],
         "0-3": ["MIBR", "PUA"]
       },
       "stage-3": {
         "3-0": ["Spirit", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "Vitality", "MongolZ", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "Vitality", "MongolZ", "G2"],
         "0-3": ["FaZe", "B8"]
       },
       "playoffs": {
@@ -406,17 +406,17 @@
       "name": "莱昂凯 shyeark",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["FaZe", "Aurora"],
-        "3-1-or-3-2": ["NAVI", "Liquid", "3DMAX", "Astralis", "FlyQuest", "TYLOO"],
+        "3-X": ["NAVI", "Liquid", "3DMAX", "Astralis", "FlyQuest", "TYLOO"],
         "0-3": ["Imperial", "Fnatic"]
       },
       "stage-3": {
         "3-0": ["MOUZ", "FURIA"],
-        "3-1-or-3-2": ["Vitality", "paiN", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["Vitality", "paiN", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "3DMAX"]
       },
       "playoffs": {
@@ -430,7 +430,7 @@
       "name": "椰汁糕冬瓜强",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["FaZe", "PV", "FlyQuest", "Fnatic", "B8", "Fluxo"],
+        "3-X": ["FaZe", "PV", "FlyQuest", "Fnatic", "B8", "Fluxo"],
         "0-3": ["RA", "Huns"]
       }
     },
@@ -439,17 +439,17 @@
       "name": "k4Mi",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["FlyQuest", "TYLOO"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "3DMAX", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "3DMAX", "Aurora"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -463,17 +463,17 @@
       "name": "小天 FreeZing",
       "stage-1": {
         "3-0": ["Legacy", "LVG"],
-        "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["FaZe", "PV", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "RED"]
       },
       "stage-2": {
         "3-0": ["Liquid", "3DMAX"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "PV", "NAVI", "TYLOO", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "PV", "NAVI", "TYLOO", "Aurora"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["MOUZ", "G2"],
-        "3-1-or-3-2": ["FURIA", "PV", "FaZe", "Vitality", "Spirit", "Falcons"],
+        "3-X": ["FURIA", "PV", "FaZe", "Vitality", "Spirit", "Falcons"],
         "0-3": ["Liquid", "Imperial"]
       },
       "playoffs": {
@@ -487,17 +487,17 @@
       "name": "老蕉 Banous",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "Astralis"],
-        "3-1-or-3-2": ["FaZe", "3DMAX", "Liquid", "NAVI", "M80", "FlyQuest"],
+        "3-X": ["FaZe", "3DMAX", "Liquid", "NAVI", "M80", "FlyQuest"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -511,7 +511,7 @@
       "name": "CS2-BanGa",
       "stage-2": {
         "3-0": ["Aurora", "Astralis"],
-        "3-1-or-3-2": ["M80", "3DMAX", "Liquid", "NAVI", "B8", "FlyQuest"],
+        "3-X": ["M80", "3DMAX", "Liquid", "NAVI", "B8", "FlyQuest"],
         "0-3": ["MIBR", "PUA"]
       }
     },
@@ -520,17 +520,17 @@
       "name": "BOSHIYK（制图作者）",
       "stage-1": {
         "3-0": ["Legacy", "PV"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "TYLOO", "NIP", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "TYLOO", "NIP", "Aurora"],
         "0-3": ["Imperial", "Fnatic"]
       },
       "stage-3": {
         "3-0": ["Spirit", "G2"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "paiN"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "paiN"],
         "0-3": ["B8", "Liquid"]
       },
       "playoffs": {
@@ -544,17 +544,17 @@
       "name": "邪少年、",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["B8", "Astralis", "Liquid", "NIP", "FlyQuest", "M80"],
+        "3-X": ["B8", "Astralis", "Liquid", "NIP", "FlyQuest", "M80"],
         "0-3": ["PUA", "MIBR"]
       },
       "stage-3": {
         "3-0": ["FURIA", "G2"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Vitality", "Falcons", "Spirit"],
+        "3-X": ["NAVI", "MOUZ", "MongolZ", "Vitality", "Falcons", "Spirit"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -568,17 +568,17 @@
       "name": "银杏就是 YINXING",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Imperial"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "TYLOO"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "FlyQuest", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "FlyQuest", "Aurora"],
         "0-3": ["Imperial", "Fnatic"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "paiN", "Falcons", "Spirit", "MongolZ"],
+        "3-X": ["NAVI", "MOUZ", "paiN", "Falcons", "Spirit", "MongolZ"],
         "0-3": ["PUA", "G2"]
       },
       "playoffs": {
@@ -592,17 +592,17 @@
       "name": "CS2-dq",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "TYLOO", "B8"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "3DMAX", "TYLOO", "B8"],
         "0-3": ["Imperial", "PV"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "FURIA", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "MongolZ", "FURIA", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -616,17 +616,17 @@
       "name": "FGA 字幕组",
       "stage-1": {
         "3-0": ["PV", "FaZe"],
-        "3-1-or-3-2": ["Legacy", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
+        "3-X": ["Legacy", "LVG", "FlyQuest", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["FaZe", "Liquid"],
-        "3-1-or-3-2": ["3DMAX", "Astralis", "PV", "NAVI", "FlyQuest", "Aurora"],
+        "3-X": ["3DMAX", "Astralis", "PV", "NAVI", "FlyQuest", "Aurora"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FaZe"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "PV", "Falcons", "Liquid"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "PV", "Falcons", "Liquid"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -640,7 +640,7 @@
       "name": "Sam-CS2",
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "3DMAX"]
       },
       "playoffs": {
@@ -654,17 +654,17 @@
       "name": "CS2 将军鸽",
       "stage-1": {
         "3-0": ["Legacy", "M80"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "FlyQuest", "B8", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "FlyQuest", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "Liquid"],
-        "3-1-or-3-2": ["FaZe", "3DMAX", "Astralis", "NAVI", "TYLOO", "MIBR"],
+        "3-X": ["FaZe", "3DMAX", "Astralis", "NAVI", "TYLOO", "MIBR"],
         "0-3": ["Imperial", "PV"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -678,17 +678,17 @@
       "name": "瓜鱼欧尼酱",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "RA", "FlyQuest", "B8", "Huns"],
+        "3-X": ["PV", "LVG", "RA", "FlyQuest", "B8", "Huns"],
         "0-3": ["M80", "Fluxo"]
       },
       "stage-2": {
         "3-0": ["Astralis", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "TYLOO", "Liquid", "PV", "PUA", "Aurora"],
+        "3-X": ["FaZe", "TYLOO", "Liquid", "PV", "PUA", "Aurora"],
         "0-3": ["3DMAX", "M80"]
       },
       "stage-3": {
         "3-0": ["FURIA", "G2"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "Falcons"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "Falcons"],
         "0-3": ["paiN", "Imperial"]
       },
       "playoffs": {
@@ -702,17 +702,17 @@
       "name": "Tatukunn",
       "stage-1": {
         "3-0": ["Legacy", "PV"],
-        "3-1-or-3-2": ["FaZe", "Fnatic", "B8", "LVG", "GL", "NIP"],
+        "3-X": ["FaZe", "Fnatic", "B8", "LVG", "GL", "NIP"],
         "0-3": ["Huns", "Fluxo"]
       },
       "stage-2": {
         "3-0": ["Astralis", "NAVI"],
-        "3-1-or-3-2": ["B8", "FaZe", "Liquid", "PV", "Fnatic", "Aurora"],
+        "3-X": ["B8", "FaZe", "Liquid", "PV", "Fnatic", "Aurora"],
         "0-3": ["PUA", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["G2", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Vitality", "PV"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Vitality", "PV"],
         "0-3": ["PUA", "B8"]
       },
       "playoffs": {
@@ -726,17 +726,17 @@
       "name": "CS 解说老张",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "FlyQuest", "Imperial", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "FlyQuest", "Imperial", "GL"],
         "0-3": ["RA", "Fnatic"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "B8", "TYLOO", "3DMAX", "PUA"],
+        "3-X": ["FaZe", "Astralis", "B8", "TYLOO", "3DMAX", "PUA"],
         "0-3": ["Fnatic", "MIBR"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "MongolZ", "Vitality", "Spirit"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "MongolZ", "Vitality", "Spirit"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -750,17 +750,17 @@
       "name": "温宁winningOvO",
       "stage-1": {
         "3-0": ["FaZe", "Legacy"],
-        "3-1-or-3-2": ["GL", "B8", "PV", "NIP", "FlyQuest", "LVG"],
+        "3-X": ["GL", "B8", "PV", "NIP", "FlyQuest", "LVG"],
         "0-3": ["Huns", "RED"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "TYLOO", "FlyQuest", "M80"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "TYLOO", "FlyQuest", "M80"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -774,17 +774,17 @@
       "name": "CS-RW",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "LVG", "Imperial", "FlyQuest", "B8", "GL"],
+        "3-X": ["PV", "LVG", "Imperial", "FlyQuest", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Astralis", "NIP"],
-        "3-1-or-3-2": ["Aurora", "3DMAX", "FlyQuest", "FaZe", "Liquid", "NAVI"],
+        "3-X": ["Aurora", "3DMAX", "FlyQuest", "FaZe", "Liquid", "NAVI"],
         "0-3": ["Imperial", "B8"]
       },
       "stage-3": {
         "3-0": ["NAVI", "Spirit"],
-        "3-1-or-3-2": ["FURIA", "MOUZ", "FaZe", "Falcons", "Vitality", "G2"],
+        "3-X": ["FURIA", "MOUZ", "FaZe", "Falcons", "Vitality", "G2"],
         "0-3": ["B8", "Liquid"]
       },
       "playoffs": {
@@ -798,7 +798,7 @@
       "name": "小刘鱼",
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -812,17 +812,17 @@
       "name": "椰子 c",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["Fnatic", "LVG", "NIP", "FlyQuest", "B8", "GL"],
+        "3-X": ["Fnatic", "LVG", "NIP", "FlyQuest", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["B8", "PV"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "3DMAX", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "3DMAX", "Aurora"],
         "0-3": ["Imperial", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -836,17 +836,17 @@
       "name": "-玫瑰予乐-",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "PV", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "Fnatic", "PV", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "Liquid"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "TYLOO", "NAVI", "PV", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "TYLOO", "NAVI", "PV", "Aurora"],
         "0-3": ["Imperial", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
         "0-3": ["PUA", "MongolZ"]
       },
       "playoffs": {
@@ -860,17 +860,17 @@
       "name": "ElysiaCS2",
       "stage-1": {
         "3-0": ["Legacy", "LVG"],
-        "3-1-or-3-2": ["FaZe", "PV", "NIP", "Fnatic", "B8", "M80"],
+        "3-X": ["FaZe", "PV", "NIP", "Fnatic", "B8", "M80"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["M80", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "3DMAX", "Liquid", "Astralis", "FlyQuest", "Aurora"],
+        "3-X": ["FaZe", "3DMAX", "Liquid", "Astralis", "FlyQuest", "Aurora"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "paiN"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "paiN"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -884,17 +884,17 @@
       "name": "幸运的 LANCERRR",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "NIP", "Fnatic", "PV", "Imperial", "GL"],
+        "3-X": ["FaZe", "NIP", "Fnatic", "PV", "Imperial", "GL"],
         "0-3": ["RA", "RED"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["3DMAX", "Astralis", "Liquid", "MIBR", "FlyQuest", "PUA"],
+        "3-X": ["3DMAX", "Astralis", "Liquid", "MIBR", "FlyQuest", "PUA"],
         "0-3": ["Imperial", "NIP"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -908,7 +908,7 @@
       "name": "李文哲/哲易直胡说",
       "stage-2": {
         "3-0": ["FlyQuest", "Aurora"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "M80", "Fnatic"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "M80", "Fnatic"],
         "0-3": ["Imperial", "TYLOO"]
       }
     },
@@ -917,12 +917,12 @@
       "name": "陶喆的音乐难产房",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["LVG", "PV", "M80", "Fnatic", "B8", "GL"],
+        "3-X": ["LVG", "PV", "M80", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "MongolZ", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -936,17 +936,17 @@
       "name": "Vince",
       "stage-1": {
         "3-0": ["Legacy", "PV"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "3DMAX", "PV"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NIP", "3DMAX", "PV"],
         "0-3": ["Imperial", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "MongolZ"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "Falcons"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "Falcons"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -960,17 +960,17 @@
       "name": "MacMate",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["GL", "B8", "Fnatic", "FlyQuest", "M80", "PV"],
+        "3-X": ["GL", "B8", "Fnatic", "FlyQuest", "M80", "PV"],
         "0-3": ["RA", "Fluxo"]
       },
       "stage-2": {
         "3-0": ["PUA", "FlyQuest"],
-        "3-1-or-3-2": ["Aurora", "NAVI", "3DMAX", "Astralis", "M80", "B8"],
+        "3-X": ["Aurora", "NAVI", "3DMAX", "Astralis", "M80", "B8"],
         "0-3": ["TYLOO", "Imperial"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -984,7 +984,7 @@
       "name": "voo",
       "stage-3": {
         "3-0": ["NAVI", "Falcons"],
-        "3-1-or-3-2": ["Vitality", "MOUZ", "paiN", "FURIA", "Spirit", "Liquid"],
+        "3-X": ["Vitality", "MOUZ", "paiN", "FURIA", "Spirit", "Liquid"],
         "0-3": ["PUA", "Imperial"]
       }
     },
@@ -993,17 +993,17 @@
       "name": "Poloolpp",
       "stage-1": {
         "3-0": ["Legacy", "NIP"],
-        "3-1-or-3-2": ["FaZe", "LVG", "RA", "Fnatic", "Huns", "GL"],
+        "3-X": ["FaZe", "LVG", "RA", "Fnatic", "Huns", "GL"],
         "0-3": ["Imperial", "Fluxo"]
       },
       "stage-2": {
         "3-0": ["Astralis", "MIBR"],
-        "3-1-or-3-2": ["FaZe", "3DMAX", "Liquid", "NIP", "B8", "Aurora"],
+        "3-X": ["FaZe", "3DMAX", "Liquid", "NIP", "B8", "Aurora"],
         "0-3": ["Fnatic", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Spirit"],
-        "3-1-or-3-2": ["NAVI", "3DMAX", "FaZe", "FURIA", "Falcons", "Liquid"],
+        "3-X": ["NAVI", "3DMAX", "FaZe", "FURIA", "Falcons", "Liquid"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1017,7 +1017,7 @@
       "name": "Ash",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["GL", "B8", "Fnatic", "FlyQuest", "PV", "LVG"],
+        "3-X": ["GL", "B8", "Fnatic", "FlyQuest", "PV", "LVG"],
         "0-3": ["Huns", "RED"]
       }
     },
@@ -1026,17 +1026,17 @@
       "name": "BanKs",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["GL", "B8", "Fnatic", "NIP", "FlyQuest", "PV"],
+        "3-X": ["GL", "B8", "Fnatic", "NIP", "FlyQuest", "PV"],
         "0-3": ["Huns", "RED"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["TYLOO", "Astralis", "Liquid", "B8", "FlyQuest", "PUA"],
+        "3-X": ["TYLOO", "Astralis", "Liquid", "B8", "FlyQuest", "PUA"],
         "0-3": ["Imperial", "3DMAX"]
       },
       "stage-3": {
         "3-0": ["Spirit", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "paiN", "FURIA", "Vitality", "G2"],
+        "3-X": ["NAVI", "MOUZ", "paiN", "FURIA", "Vitality", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -1050,17 +1050,17 @@
       "name": "STYKO",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["GL", "FaZe", "Fnatic", "NIP", "FlyQuest", "M80"],
+        "3-X": ["GL", "FaZe", "Fnatic", "NIP", "FlyQuest", "M80"],
         "0-3": ["RA", "Fluxo"]
       },
       "stage-2": {
         "3-0": ["NIP", "FaZe"],
-        "3-1-or-3-2": ["M80", "B8", "Liquid", "NAVI", "FlyQuest", "Aurora"],
+        "3-X": ["M80", "B8", "Liquid", "NAVI", "FlyQuest", "Aurora"],
         "0-3": ["PUA", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "3DMAX", "FURIA", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "3DMAX", "FURIA", "Spirit", "G2"],
         "0-3": ["PUA", "PV"]
       },
       "playoffs": {
@@ -1074,7 +1074,7 @@
       "name": "TACO",
       "stage-3": {
         "3-0": ["MOUZ", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "paiN", "Falcons", "Vitality", "Spirit", "Imperial"],
+        "3-X": ["NAVI", "paiN", "Falcons", "Vitality", "Spirit", "Imperial"],
         "0-3": ["PUA", "Liquid"]
       }
     },
@@ -1083,17 +1083,17 @@
       "name": "Hawka",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["B8", "FaZe", "Fnatic", "NIP", "FlyQuest", "PV"],
+        "3-X": ["B8", "FaZe", "Fnatic", "NIP", "FlyQuest", "PV"],
         "0-3": ["Huns", "RED"]
       },
       "stage-2": {
         "3-0": ["B8", "3DMAX"],
-        "3-1-or-3-2": ["M80", "Astralis", "Liquid", "NAVI", "FlyQuest", "Aurora"],
+        "3-X": ["M80", "Astralis", "Liquid", "NAVI", "FlyQuest", "Aurora"],
         "0-3": ["Imperial", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "Falcons", "B8", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "Falcons", "B8", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1107,12 +1107,12 @@
       "name": "launders",
       "stage-1": {
         "3-0": ["Legacy", "PV"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "M80", "B8", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "M80", "B8", "GL"],
         "0-3": ["Fnatic", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "PUA"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "PV", "3DMAX"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "PV", "3DMAX"],
         "0-3": ["Fnatic", "TYLOO"]
       },
       "playoffs": {
@@ -1126,17 +1126,17 @@
       "name": "Pimp",
       "stage-1": {
         "3-0": ["FaZe", "GL"],
-        "3-1-or-3-2": ["B8", "Legacy", "Fnatic", "NIP", "FlyQuest", "PV"],
+        "3-X": ["B8", "Legacy", "Fnatic", "NIP", "FlyQuest", "PV"],
         "0-3": ["RA", "RED"]
       },
       "stage-2": {
         "3-0": ["Aurora", "Liquid"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "TYLOO", "NAVI", "NIP", "3DMAX"],
+        "3-X": ["FaZe", "Astralis", "TYLOO", "NAVI", "NIP", "3DMAX"],
         "0-3": ["Imperial", "PV"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "3DMAX", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "3DMAX", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1150,17 +1150,17 @@
       "name": "Thorin",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["PV", "FlyQuest", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "FlyQuest", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["Liquid", "3DMAX", "NIP", "Fnatic", "Astralis", "FaZe"],
+        "3-X": ["Liquid", "3DMAX", "NIP", "Fnatic", "Astralis", "FaZe"],
         "0-3": ["Imperial", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "Liquid", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "Liquid", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1174,7 +1174,7 @@
       "name": "dusT",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["GL", "B8", "Fnatic", "NIP", "PV", "LVG"],
+        "3-X": ["GL", "B8", "Fnatic", "NIP", "PV", "LVG"],
         "0-3": ["Fluxo", "RED"]
       },
       "playoffs": {
@@ -1188,17 +1188,17 @@
       "name": "kassad",
       "stage-1": {
         "3-0": ["PV", "FaZe"],
-        "3-1-or-3-2": ["Legacy", "FlyQuest", "NIP", "Fnatic", "B8", "M80"],
+        "3-X": ["Legacy", "FlyQuest", "NIP", "Fnatic", "B8", "M80"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["TYLOO", "Astralis", "Liquid", "M80", "B8", "3DMAX"],
+        "3-X": ["TYLOO", "Astralis", "Liquid", "M80", "B8", "3DMAX"],
         "0-3": ["Fnatic", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "MOUZ"],
-        "3-1-or-3-2": ["NAVI", "3DMAX", "Falcons", "B8", "Spirit", "G2"],
+        "3-X": ["NAVI", "3DMAX", "Falcons", "B8", "Spirit", "G2"],
         "0-3": ["paiN", "PV"]
       },
       "playoffs": {
@@ -1212,12 +1212,12 @@
       "name": "Mauisnake",
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "M80", "NIP", "B8", "PV"],
+        "3-X": ["FaZe", "Astralis", "M80", "NIP", "B8", "PV"],
         "0-3": ["MIBR", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "G2"],
         "0-3": ["paiN", "Imperial"]
       },
       "playoffs": {
@@ -1231,12 +1231,12 @@
       "name": "ceh9",
       "stage-1": {
         "3-0": ["Legacy", "Fnatic"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "FlyQuest", "B8", "M80"],
+        "3-X": ["FaZe", "LVG", "NIP", "FlyQuest", "B8", "M80"],
         "0-3": ["RA", "RED"]
       },
       "stage-2": {
         "3-0": ["Astralis", "PUA"],
-        "3-1-or-3-2": ["FaZe", "3DMAX", "Liquid", "M80", "Fnatic", "Aurora"],
+        "3-X": ["FaZe", "3DMAX", "Liquid", "M80", "Fnatic", "Aurora"],
         "0-3": ["MIBR", "TYLOO"]
       },
       "playoffs": {
@@ -1250,17 +1250,17 @@
       "name": "Cooper",
       "stage-1": {
         "3-0": ["FaZe", "PV"],
-        "3-1-or-3-2": ["Legacy", "M80", "NRG", "FlyQuest", "B8", "GL"],
+        "3-X": ["Legacy", "M80", "NRG", "FlyQuest", "B8", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "B8", "M80"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "3DMAX", "B8", "M80"],
         "0-3": ["MIBR", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "B8", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "B8", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1274,17 +1274,17 @@
       "name": "NartOut",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["GL", "FaZe", "FlyQuest", "NIP", "PV", "LVG"],
+        "3-X": ["GL", "FaZe", "FlyQuest", "NIP", "PV", "LVG"],
         "0-3": ["Huns", "RED"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "M80", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NIP", "M80", "Aurora"],
         "0-3": ["MIBR", "PUA"]
       },
       "stage-3": {
         "3-0": ["Spirit", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "FURIA", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1298,17 +1298,17 @@
       "name": "TrilluXe",
       "stage-1": {
         "3-0": ["FaZe", "Fnatic"],
-        "3-1-or-3-2": ["Legacy", "RED", "Imperial", "FlyQuest", "Fluxo", "GL"],
+        "3-X": ["Legacy", "RED", "Imperial", "FlyQuest", "Fluxo", "GL"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "3DMAX", "FlyQuest", "Fnatic"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "3DMAX", "FlyQuest", "Fnatic"],
         "0-3": ["Imperial", "PV"]
       },
       "stage-3": {
         "3-0": ["Vitality", "MongolZ"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "Falcons"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "Falcons"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1322,17 +1322,17 @@
       "name": "MrMaxim",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["FaZe", "LVG", "FlyQuest", "Fnatic", "B8", "M80"],
+        "3-X": ["FaZe", "LVG", "FlyQuest", "Fnatic", "B8", "M80"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["3DMAX", "M80"],
-        "3-1-or-3-2": ["PV", "Astralis", "Liquid", "NAVI", "B8", "Aurora"],
+        "3-X": ["PV", "Astralis", "Liquid", "NAVI", "B8", "Aurora"],
         "0-3": ["Imperial", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "PV"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "PV"],
         "0-3": ["paiN", "Liquid"]
       },
       "playoffs": {
@@ -1346,7 +1346,7 @@
       "name": "clife",
       "stage-1": {
         "3-0": ["FaZe", "B8"],
-        "3-1-or-3-2": ["PV", "LVG", "NIP", "Fnatic", "FlyQuest", "Legacy"],
+        "3-X": ["PV", "LVG", "NIP", "Fnatic", "FlyQuest", "Legacy"],
         "0-3": ["RA", "Huns"]
       },
       "playoffs": {
@@ -1360,12 +1360,12 @@
       "name": "degster",
       "stage-1": {
         "3-0": ["FaZe", "M80"],
-        "3-1-or-3-2": ["PV", "Imperial", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["PV", "Imperial", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["FlyQuest", "Huns"]
       },
       "stage-2": {
         "3-0": ["B8", "3DMAX"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "NIP", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "NIP", "Aurora"],
         "0-3": ["Imperial", "TYLOO"]
       }
     },
@@ -1374,7 +1374,7 @@
       "name": "GeT_RiGhT",
       "stage-2": {
         "3-0": ["FaZe", "M80"],
-        "3-1-or-3-2": ["TYLOO", "Astralis", "Liquid", "NIP", "Fnatic", "Aurora"],
+        "3-X": ["TYLOO", "Astralis", "Liquid", "NIP", "Fnatic", "Aurora"],
         "0-3": ["Imperial", "PV"]
       }
     },
@@ -1383,17 +1383,17 @@
       "name": "hades",
       "stage-1": {
         "3-0": ["M80", "PV"],
-        "3-1-or-3-2": ["GL", "FaZe", "Legacy", "NIP", "FlyQuest", "B8"],
+        "3-X": ["GL", "FaZe", "Legacy", "NIP", "FlyQuest", "B8"],
         "0-3": ["Huns", "RA"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NIP", "M80", "3DMAX"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NIP", "M80", "3DMAX"],
         "0-3": ["PUA", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["MOUZ", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "FURIA", "FaZe", "Vitality", "Spirit", "G2"],
+        "3-X": ["NAVI", "FURIA", "FaZe", "Vitality", "Spirit", "G2"],
         "0-3": ["PUA", "PV"]
       },
       "playoffs": {
@@ -1407,7 +1407,7 @@
       "name": "r3salt",
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["Vitality", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
+        "3-X": ["Vitality", "MOUZ", "FaZe", "MongolZ", "Spirit", "G2"],
         "0-3": ["PUA", "B8"]
       },
       "playoffs": {
@@ -1421,7 +1421,7 @@
       "name": "Magnojez",
       "stage-3": {
         "3-0": ["MOUZ", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "3DMAX", "FURIA", "Vitality", "Spirit", "G2"],
+        "3-X": ["NAVI", "3DMAX", "FURIA", "Vitality", "Spirit", "G2"],
         "0-3": ["PUA", "B8"]
       },
       "playoffs": {
@@ -1435,17 +1435,17 @@
       "name": "CS Tactics",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["GL", "B8", "Fnatic", "M80", "PV", "LVG"],
+        "3-X": ["GL", "B8", "Fnatic", "M80", "PV", "LVG"],
         "0-3": ["NRG", "RA"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["Liquid", "3DMAX", "FlyQuest", "Astralis", "M80", "FaZe"],
+        "3-X": ["Liquid", "3DMAX", "FlyQuest", "Astralis", "M80", "FaZe"],
         "0-3": ["Imperial", "Fnatic"]
       },
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Falcons", "Spirit", "G2"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1459,7 +1459,7 @@
       "name": "CoJoMo",
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "MongolZ", "Falcons", "Spirit", "G2"],
         "0-3": ["PV", "Imperial"]
       },
       "playoffs": {
@@ -1473,7 +1473,7 @@
       "name": "ohnePixel",
       "stage-1": {
         "3-0": ["FaZe", "GL"],
-        "3-1-or-3-2": ["Legacy", "NRG", "NIP", "Fnatic", "B8", "M80"],
+        "3-X": ["Legacy", "NRG", "NIP", "Fnatic", "B8", "M80"],
         "0-3": ["RED", "Huns"]
       }
     },
@@ -1482,12 +1482,12 @@
       "name": "r1nkle",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "LVG", "Imperial", "Fnatic", "M80", "GL"],
+        "3-X": ["FaZe", "LVG", "Imperial", "Fnatic", "M80", "GL"],
         "0-3": ["RED", "NIP"]
       },
       "stage-2": {
         "3-0": ["B8", "NAVI"],
-        "3-1-or-3-2": ["TYLOO", "3DMAX", "PUA", "M80", "Fnatic", "Aurora"],
+        "3-X": ["TYLOO", "3DMAX", "PUA", "M80", "Fnatic", "Aurora"],
         "0-3": ["Imperial", "NIP"]
       }
     },
@@ -1496,7 +1496,7 @@
       "name": "shox",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "FlyQuest", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "Fnatic", "FlyQuest", "GL"],
         "0-3": ["RED", "Huns"]
       }
     },
@@ -1505,7 +1505,7 @@
       "name": "magixx",
       "stage-1": {
         "3-0": ["Legacy", "Fnatic"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "M80", "B8", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "M80", "B8", "GL"],
         "0-3": ["RED", "FlyQuest"]
       }
     },
@@ -1514,17 +1514,17 @@
       "name": "FL4MUS",
       "stage-1": {
         "3-0": ["Legacy", "PV"],
-        "3-1-or-3-2": ["FaZe", "Imperial", "NIP", "Fnatic", "B8", "GL"],
+        "3-X": ["FaZe", "Imperial", "NIP", "Fnatic", "B8", "GL"],
         "0-3": ["M80", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "3DMAX"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "NAVI", "FlyQuest", "PV"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "NAVI", "FlyQuest", "PV"],
         "0-3": ["M80", "PUA"]
       },
       "stage-3": {
         "3-0": ["Vitality", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "MongolZ"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "FURIA", "Spirit", "MongolZ"],
         "0-3": ["PUA", "3DMAX"]
       },
       "playoffs": {
@@ -1538,7 +1538,7 @@
       "name": "NIP CS",
       "stage-1": {
         "3-0": ["Legacy", "NIP"],
-        "3-1-or-3-2": ["FaZe", "LVG", "M80", "Fnatic", "B8", "GL"],
+        "3-X": ["FaZe", "LVG", "M80", "Fnatic", "B8", "GL"],
         "0-3": ["RED", "Huns"]
       }
     },
@@ -1547,7 +1547,7 @@
       "name": "FlyQuest CS",
       "stage-1": {
         "3-0": ["GL", "PV"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "M80", "Legacy", "FlyQuest"],
+        "3-X": ["FaZe", "LVG", "NIP", "M80", "Legacy", "FlyQuest"],
         "0-3": ["Fluxo", "Huns"]
       }
     },
@@ -1556,17 +1556,17 @@
       "name": "rootthegamer",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["FaZe", "PV", "M80", "Fnatic", "B8", "FlyQuest"],
+        "3-X": ["FaZe", "PV", "M80", "Fnatic", "B8", "FlyQuest"],
         "0-3": ["RA", "Huns"]
       },
       "stage-2": {
         "3-0": ["Astralis", "NAVI"],
-        "3-1-or-3-2": ["B8", "PV", "Liquid", "M80", "FlyQuest", "Aurora"],
+        "3-X": ["B8", "PV", "Liquid", "M80", "FlyQuest", "Aurora"],
         "0-3": ["Imperial", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "MongolZ"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "MongolZ"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1580,7 +1580,7 @@
       "name": "statsmeister",
       "stage-3": {
         "3-0": ["Vitality", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "PV", "B8", "Spirit", "G2"],
+        "3-X": ["NAVI", "MOUZ", "PV", "B8", "Spirit", "G2"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -1594,12 +1594,12 @@
       "name": "Alfonsina",
       "stage-2": {
         "3-0": ["Liquid", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "3DMAX", "NIP", "Imperial", "Aurora"],
+        "3-X": ["FaZe", "Astralis", "3DMAX", "NIP", "Imperial", "Aurora"],
         "0-3": ["PUA", "TYLOO"]
       },
       "stage-3": {
         "3-0": ["MOUZ", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "paiN", "FaZe", "Vitality", "Falcons", "Imperial"],
+        "3-X": ["NAVI", "paiN", "FaZe", "Vitality", "Falcons", "Imperial"],
         "0-3": ["PUA", "PV"]
       },
       "playoffs": {
@@ -1613,17 +1613,17 @@
       "name": "Elfishguy",
       "stage-1": {
         "3-0": ["Legacy", "GL"],
-        "3-1-or-3-2": ["FaZe", "B8", "Fnatic", "FlyQuest", "PV", "LVG"],
+        "3-X": ["FaZe", "B8", "Fnatic", "FlyQuest", "PV", "LVG"],
         "0-3": ["RA", "RED"]
       },
       "stage-2": {
         "3-0": ["Aurora", "FlyQuest"],
-        "3-1-or-3-2": ["TYLOO", "Astralis", "Liquid", "NAVI", "B8", "PUA"],
+        "3-X": ["TYLOO", "Astralis", "Liquid", "NAVI", "B8", "PUA"],
         "0-3": ["Imperial", "MIBR"]
       },
       "stage-3": {
         "3-0": ["Vitality", "G2"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FURIA", "Falcons", "Spirit", "MongolZ"],
+        "3-X": ["NAVI", "MOUZ", "FURIA", "Falcons", "Spirit", "MongolZ"],
         "0-3": ["PUA", "Imperial"]
       },
       "playoffs": {
@@ -1637,12 +1637,12 @@
       "name": "Gaules",
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["FaZe", "Astralis", "Liquid", "M80", "PV", "3DMAX"],
+        "3-X": ["FaZe", "Astralis", "Liquid", "M80", "PV", "3DMAX"],
         "0-3": ["Fnatic", "PUA"]
       },
       "stage-3": {
         "3-0": ["MOUZ", "FURIA"],
-        "3-1-or-3-2": ["NAVI", "Imperial", "paiN", "Vitality", "Spirit", "Falcons"],
+        "3-X": ["NAVI", "Imperial", "paiN", "Vitality", "Spirit", "Falcons"],
         "0-3": ["PUA", "Liquid"]
       },
       "playoffs": {
@@ -1656,12 +1656,12 @@
       "name": "fl0m",
       "stage-1": {
         "3-0": ["Legacy", "FaZe"],
-        "3-1-or-3-2": ["GL", "B8", "Fnatic", "M80", "PV", "NRG"],
+        "3-X": ["GL", "B8", "Fnatic", "M80", "PV", "NRG"],
         "0-3": ["Huns", "RA"]
       },
       "stage-2": {
         "3-0": ["M80", "Liquid"],
-        "3-1-or-3-2": ["FaZe", "PV", "PUA", "NAVI", "B8", "Aurora"],
+        "3-X": ["FaZe", "PV", "PUA", "NAVI", "B8", "Aurora"],
         "0-3": ["Imperial", "TYLOO"]
       }
     },
@@ -1670,17 +1670,17 @@
       "name": "austincs",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["FaZe", "LVG", "NIP", "Fnatic", "FlyQuest", "GL"],
+        "3-X": ["FaZe", "LVG", "NIP", "Fnatic", "FlyQuest", "GL"],
         "0-3": ["RED", "Huns"]
       },
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["MIBR", "Astralis", "Liquid", "TYLOO", "FlyQuest", "PUA"],
+        "3-X": ["MIBR", "Astralis", "Liquid", "TYLOO", "FlyQuest", "PUA"],
         "0-3": ["Imperial", "B8"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "paiN"],
+        "3-X": ["NAVI", "MOUZ", "FaZe", "Vitality", "Spirit", "paiN"],
         "0-3": ["3DMAX", "Imperial"]
       },
       "playoffs": {
@@ -1748,12 +1748,12 @@
       "name": "Nuko 丶",
       "stage-2": {
         "3-0": ["Aurora", "NAVI"],
-        "3-1-or-3-2": ["Liquid", "FaZe", "PUA", "PV", "3DMAX", "Astralis"],
+        "3-X": ["Liquid", "FaZe", "PUA", "PV", "3DMAX", "Astralis"],
         "0-3": ["Imperial", "B8"]
       },
       "stage-3": {
         "3-0": ["FURIA", "Falcons"],
-        "3-1-or-3-2": ["Vitality", "Spirit", "FaZe", "MOUZ", "NAVI", "paiN"],
+        "3-X": ["Vitality", "Spirit", "FaZe", "MOUZ", "NAVI", "paiN"],
         "0-3": ["Imperial", "Liquid"]
       },
       "playoffs": {
@@ -1794,7 +1794,7 @@
       "name": "flameZ",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["GL", "FaZe", "Fnatic", "NIP", "FlyQuest", "PV"],
+        "3-X": ["GL", "FaZe", "Fnatic", "NIP", "FlyQuest", "PV"],
         "0-3": ["M80", "RED"]
       }
     },
@@ -1803,7 +1803,7 @@
       "name": "Angelka",
       "stage-1": {
         "3-0": ["Legacy", "B8"],
-        "3-1-or-3-2": ["GL", "FaZe", "Fnatic", "NIP", "Imperial", "LVG"],
+        "3-X": ["GL", "FaZe", "Fnatic", "NIP", "Imperial", "LVG"],
         "0-3": ["RA", "RED"]
       }
     },

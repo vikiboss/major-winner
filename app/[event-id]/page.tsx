@@ -14,7 +14,7 @@ import { STAGE_TYPE } from '@/lib/constants'
 import TeamLogo from '@/components/TeamLogo'
 import { calculatePredictorStats } from '@/lib/data'
 
-import type { StagePrediction, StageType } from '@/types'
+import type { PlayoffsPrediction, StagePrediction, StageType } from '@/types'
 import type {
   PlayoffsStage,
   PlayoffStageType,
@@ -601,9 +601,9 @@ function PredictorPredictions({
               impossibleCount++
             }
           }
-          for (const team of prediction['3-1-or-3-2']) {
+          for (const team of prediction['3-X']) {
             if (
-              !isSwissPredictionPossible(team, '3-1-or-3-2', actualResult) &&
+              !isSwissPredictionPossible(team, '3-X', actualResult) &&
               !actualResult['3-1']?.includes(team) &&
               !actualResult['3-2']?.includes(team)
             ) {
@@ -719,7 +719,7 @@ function PredictorPredictions({
               <div className="space-y-2 text-xs">
                 {/* 3-0 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-12 shrink-0">3-0</span>
+                  <span className="text-muted w-8 shrink-0">3-0</span>
                   <div className="flex flex-wrap gap-1">
                     {(prediction as StagePrediction)['3-0']
                       .toSorted((p, n) => p.localeCompare(n))
@@ -746,17 +746,17 @@ function PredictorPredictions({
                   </div>
                 </div>
 
-                {/* 3-1/2 预测 */}
+                {/* 3-X 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-12 shrink-0">3-1/2</span>
+                  <span className="text-muted w-8 shrink-0">3-X</span>
                   <div className="flex flex-wrap gap-1">
-                    {(prediction as StagePrediction)['3-1-or-3-2']
+                    {(prediction as StagePrediction)['3-X']
                       .toSorted((p, n) => p.localeCompare(n))
                       .map((team) => {
                         const possible =
                           stageStatus === 'waiting'
                             ? true
-                            : isSwissPredictionPossible(team, '3-1-or-3-2', actualResult)
+                            : isSwissPredictionPossible(team, '3-X', actualResult)
                         const isCorrect =
                           stageStatus === 'waiting'
                             ? false
@@ -779,7 +779,7 @@ function PredictorPredictions({
 
                 {/* 0-3 预测 */}
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-12 shrink-0">0-3</span>
+                  <span className="text-muted w-8 shrink-0">0-3</span>
                   <div className="flex flex-wrap gap-1">
                     {(prediction as StagePrediction)['0-3']
                       .toSorted((p, n) => p.localeCompare(n))
@@ -810,37 +810,85 @@ function PredictorPredictions({
             {prediction && stageType === STAGE_TYPE.PLAYOFFS && round && (
               <div className="text-xs">
                 {(round === '8-to-4' || round === '4-to-2') && (
-                  <div className="flex flex-wrap items-center gap-1">
-                    <span className="text-muted">竞猜晋级: </span>
-                    {(prediction as { '8-to-4': string[]; '4-to-2': string[] })[round].map(
-                      (team) => {
-                        const roundResult = event.playoffs?.result[round]
-                        const hasResult = roundResult && roundResult.winners.length > 0
-                        const isCorrect = hasResult && roundResult.winners.includes(team)
+                  <div className="space-y-2 text-xs">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                      <span className="text-muted w-8 shrink-0">四强</span>
+                      <div className="flex flex-wrap gap-1">
+                        {(prediction as PlayoffsPrediction)['8-to-4'].map((team) => {
+                          const roundResult = event.playoffs?.result[round]
+                          const hasResult = roundResult && roundResult.winners.length > 0
+                          const isCorrect = hasResult && roundResult.winners.includes(team)
 
-                        const isWrong =
-                          (hasResult && roundResult.losers.includes(team)) ||
-                          (round === '4-to-2' &&
-                            event.playoffs?.result['8-to-4'].losers.includes(team)) // 八进四已淘汰
+                          const isWrong =
+                            (hasResult && roundResult.losers.includes(team)) ||
+                            (round === '4-to-2' &&
+                              event.playoffs?.result['8-to-4'].losers.includes(team)) // 八进四已淘汰
 
-                        const status =
-                          stageStatus === 'waiting' && !isWrong
-                            ? 'normal'
-                            : isCorrect
-                              ? 'win'
-                              : isWrong
-                                ? 'lose'
+                          const status =
+                            stageStatus === 'waiting' && !isWrong
+                              ? 'normal'
+                              : isCorrect
+                                ? 'win'
+                                : isWrong
+                                  ? 'lose'
+                                  : 'normal'
+
+                          return <TeamLogo key={team} id={team} status={status} />
+                        })}
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                      <span className="text-muted w-8 shrink-0">二强</span>
+                      <div className="flex flex-wrap gap-1">
+                        {(prediction as PlayoffsPrediction)['4-to-2'].map((team) => {
+                          const roundResult = event.playoffs?.result[round]
+                          const hasResult = roundResult && roundResult.winners.length > 0
+                          const isCorrect = hasResult && roundResult.winners.includes(team)
+
+                          const isWrong =
+                            (hasResult && roundResult.losers.includes(team)) ||
+                            (round === '4-to-2' &&
+                              event.playoffs?.result['8-to-4'].losers.includes(team)) // 八进四已淘汰
+
+                          const status =
+                            stageStatus === 'waiting' && !isWrong
+                              ? 'normal'
+                              : isCorrect
+                                ? 'win'
+                                : isWrong
+                                  ? 'lose'
+                                  : 'normal'
+
+                          return <TeamLogo key={team} id={team} status={status} />
+                        })}
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                      <span className="text-muted w-8 shrink-0">冠军</span>
+                      {(prediction as PlayoffsPrediction)['2-to-1'] ? (
+                        <TeamLogo
+                          id={(prediction as { '2-to-1': string | null })['2-to-1']!}
+                          status={
+                            stageStatus === 'waiting'
+                              ? 'normal'
+                              : event.playoffs?.result['2-to-1'].winner
+                                ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
+                                  event.playoffs.result['2-to-1'].winner
+                                  ? 'win'
+                                  : 'lose'
                                 : 'normal'
-
-                        return <TeamLogo key={team} id={team} status={status} />
-                      },
-                    )}
+                          }
+                        />
+                      ) : (
+                        <span className="text-tertiary text-xs">未竞猜</span>
+                      )}
+                    </div>
                   </div>
                 )}
                 {round === '2-to-1' && (
-                  <div className="flex flex-wrap items-center gap-1">
-                    <span className="text-muted">冠军竞猜: </span>
-                    {(prediction as { '2-to-1': string | null })['2-to-1'] ? (
+                  <div className="space-y-2 text-xs">
+                    <span className="text-muted">冠军</span>
+                    {(prediction as PlayoffsPrediction)['2-to-1'] ? (
                       <TeamLogo
                         id={(prediction as { '2-to-1': string | null })['2-to-1']!}
                         status={

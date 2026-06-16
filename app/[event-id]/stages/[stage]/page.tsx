@@ -549,9 +549,9 @@ function PlayoffsTable({
           <thead className="bg-surface-2 border-border border-b">
             <tr>
               <th className="text-secondary px-4 py-3 text-left text-sm font-medium">竞猜者</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">四强</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">二强</th>
-              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">冠军</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">四强预测</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">二强预测</th>
+              <th className="text-secondary px-4 py-3 text-left text-sm font-medium">冠军预测</th>
               <th className="text-secondary px-4 py-3 text-center text-sm font-medium text-nowrap">
                 猜对数
               </th>
@@ -829,7 +829,7 @@ function PlayoffsTable({
                 {/* 四强 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">八进四</p>
+                    <p className="text-muted text-xs">四强预测</p>
                     {e2f && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${
@@ -861,7 +861,7 @@ function PlayoffsTable({
                 {/* 二强 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">二强</p>
+                    <p className="text-muted text-xs">二强预测</p>
                     {f2t && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${
@@ -895,7 +895,7 @@ function PlayoffsTable({
                 {/* 冠军 */}
                 <div>
                   <div className="mb-1 flex items-center justify-between">
-                    <p className="text-muted text-xs">冠军</p>
+                    <p className="text-muted text-xs">冠军预测</p>
                     {t2o && !isNotStarted && (
                       <span
                         className={`text-xs font-medium ${

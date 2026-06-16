@@ -1,6 +1,6 @@
 export function GitHubIcon({ link }: { link: string }) {
   return (
-    <div className="inline-flex shrink-0 items-center p-1 opacity-80 transition-all hover:opacity-60">
+    <div className="inline-flex shrink-0 items-center p-1 opacity-80 transition-all hover:opacity-60" title="GitHub">
       <a href={link} target="_blank" className="size-5" rel="noopener noreferrer">
         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24">
           <g fill="none">

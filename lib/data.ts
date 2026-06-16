@@ -526,6 +526,31 @@ function isPlayoffsRoundComplete(
   return winners.length === expectedWinners && losers.length > 0
 }
 
+/** 获取各个阶段精彩数最多的队伍顺序 */
+export function getSortedOrder(teamsGroup: string[][], type: 'asc' | 'desc' = 'desc'): string[] {
+  const map = new Map<string, number>()
+
+  for (const teams of teamsGroup) {
+    for (const team of teams) {
+      map.set(team, (map.get(team) || 0) + 1)
+    }
+  }
+
+  const order = [...map.entries()]
+    .toSorted((p, n) => (type ? n[1] - p[1] : p[1] - n[1]))
+    .map((e) => e[0])
+
+  console.log(map, order)
+
+  return order
+}
+
+/** 获取各个阶段精彩数最多的队伍顺序 */
+export function getSortedTeamsByOrder(teams: string[], ordered: string[]): string[] {
+  const map = new Map(ordered.map((e, i) => [e, i]))
+  return teams.toSorted((p, n) => (map.get(p) || 0) - (map.get(n) || 0))
+}
+
 /**
  * 获取单个阶段的进度信息
  */

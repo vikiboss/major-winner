@@ -110,17 +110,17 @@
         "0-2": [],
         "2-1": [],
         "1-2": [],
-        "2-2": ["NAVI", "G2"],
+        "2-2": [],
         "3-0": ["FURIA", "Spirit"],
         "3-1": ["Aurora", "Vitality", "Falcons"],
-        "3-2": ["9z", "BB"],
-        "2-3": ["MongolZ", "FUT"],
+        "3-2": ["9z", "BB", "G2"],
+        "2-3": ["MongolZ", "FUT", "NAVI"],
         "1-3": ["MOUZ", "Monte", "Legacy"],
         "0-3": ["B8", "PV"]
       }
     },
     "playoffs": {
-      "teams": [],
+      "teams": ["FURIA", "Spirit", "Aurora", "Vitality", "Falcons", "9z", "BB", "G2"],
       "result": {
         "8-to-4": {
           "winners": [],

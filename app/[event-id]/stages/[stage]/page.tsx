@@ -200,18 +200,16 @@ function SwissTable({
                           )}
                         </div>
                       </div>
-                      {isNotStarted && stats && (
+                      {stats && (
                         <span className="text-muted text-xs text-nowrap">
-                          <span className="mr-1 opacity-80">阶段</span>
+                          <span className="mr-1 opacity-80">竞猜任务</span>
                           <span className="font-medium">
-                            {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
-                            {stats.totalPassed}/{stats.totalStages - 1}
+                            {stats.totalPassed}/{stats.totalStages}
                           </span>
                           <span className="mx-1 opacity-60">|</span>
-                          <span className="mr-1 opacity-80">猜对</span>
+                          <span className="mr-1 opacity-80">猜对个数</span>
                           <span className="font-medium">
-                            {/* 移除当前瑞士轮未开始阶段的 10 个竞猜 */}
-                            {stats.totalCorrect}/{stats.totalPredictions - 10}
+                            {stats.totalCorrect}/{stats.totalPredictions}
                           </span>
                         </span>
                       )}
@@ -370,24 +368,9 @@ function SwissTable({
                       )}
                     </div>
                   </div>
-                  {isNotStarted && stats && (
-                    <span className="text-muted text-xs text-nowrap">
-                      <span className="mr-1 opacity-80">阶段</span>
-                      <span className="font-medium">
-                        {/* 移除当前瑞士轮未开始阶段的 1 个任务 */}
-                        {stats.totalPassed}/{stats.totalStages - 1}
-                      </span>
-                      <span className="mx-1 opacity-60">|</span>
-                      <span className="mr-1 opacity-80">猜对</span>
-                      <span className="font-medium">
-                        {/* 移除当前瑞士轮未开始阶段的 10 个竞猜 */}
-                        {stats.totalCorrect}/{stats.totalPredictions - 10}
-                      </span>
-                    </span>
-                  )}
                 </div>
                 {stageResult && (
-                  <div className="flex flex-row items-center gap-2 sm:flex-col sm:items-end sm:gap-1">
+                  <div className="flex flex-col justify-center gap-2 items-end sm:gap-1">
                     <div className="flex items-center gap-2">
                       <span
                         className={`rounded px-2 py-1 text-xs font-medium text-nowrap ${
@@ -407,6 +390,19 @@ function SwissTable({
                         <span className="text-muted text-xs">/{stageResult.requiredCount}</span>
                       </span>
                     </div>
+                    {stats && (
+                      <span className="text-muted text-xs text-nowrap">
+                        <span className="mr-1 opacity-80">任务</span>
+                        <span className="font-medium">
+                          {stats.totalPassed}/{stats.totalStages}
+                        </span>
+                        <span className="mx-1 opacity-60">|</span>
+                        <span className="mr-1 opacity-80">猜对</span>
+                        <span className="font-medium">
+                          {stats.totalCorrect}/{stats.totalPredictions}
+                        </span>
+                      </span>
+                    )}
                   </div>
                 )}
               </div>
@@ -591,22 +587,41 @@ function PlayoffsTable({
                 <tr key={predictor.id} className="hover:bg-surface-2">
                   <td className="px-4 py-3">
                     <div className="flex flex-col gap-0.5">
-                      <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
-                      {predictor.platform && (
-                        <span className="text-primary-400 text-xs">@{predictor.platform}</span>
-                      )}
-                      {isNotStarted && stats && (
+                      <div className="flex items-center gap-2">
+                        {predictor.avatar && (
+                          <img
+                            className="size-10 rounded-full object-cover"
+                            src={predictor.avatar}
+                            alt={`${predictor.name} logo`}
+                            referrerPolicy="no-referrer"
+                          />
+                        )}
+                        <div className="flex flex-col items-start">
+                          <a
+                            className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                            href={predictor.link || '#'}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {predictor.name}
+                          </a>
+                          {predictor.platform && (
+                            <span className="text-primary-400 text-xs text-nowrap">
+                              @{predictor.platform}
+                            </span>
+                          )}
+                        </div>
+                      </div>
+                      {stats && (
                         <span className="text-muted text-xs text-nowrap">
-                          <span className="mr-1 opacity-80">阶段</span>
+                          <span className="mr-1 opacity-80">竞猜任务</span>
                           <span className="font-medium">
-                            {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
-                            {stats.totalPassed}/{stats.totalStages - 3}
+                            {stats.totalPassed}/{stats.totalStages}
                           </span>
                           <span className="mx-1 opacity-60">|</span>
-                          <span className="mr-1 opacity-80">猜对</span>
+                          <span className="mr-1 opacity-80">猜对个数</span>
                           <span className="font-medium">
-                            {/* 移除当前瑞士轮未开始阶段的 7（4+2+1） 个竞猜 */}
-                            {stats.totalCorrect}/{stats.totalPredictions - 7}
+                            {stats.totalCorrect}/{stats.totalPredictions}
                           </span>
                         </span>
                       )}
@@ -758,35 +773,67 @@ function PlayoffsTable({
               <div className="mb-3 flex items-center justify-between">
                 <div className="flex flex-col gap-0.5">
                   <div className="flex items-center gap-2">
-                    <span className="text-primary text-sm text-nowrap">{predictor.name}</span>
-                    {predictor.platform && (
-                      <p className="text-primary-400 text-xs">@{predictor.platform}</p>
+                    {predictor.avatar && (
+                      <img
+                        className="size-8 rounded-full object-cover"
+                        src={predictor.avatar}
+                        alt={`${predictor.name} logo`}
+                        referrerPolicy="no-referrer"
+                      />
                     )}
+                    <div className="flex flex-col items-start">
+                      <a
+                        className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
+                        href={predictor.link || '#'}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {predictor.name}
+                      </a>
+                      {predictor.platform && (
+                        <span className="text-primary-400 text-xs text-nowrap">
+                          @{predictor.platform}
+                        </span>
+                      )}
+                    </div>
                   </div>
-                  {isNotStarted && stats && (
-                    <span className="text-muted text-xs text-nowrap">
-                      <span className="mr-1 opacity-80">阶段</span>
-                      <span className="font-medium">
-                        {/* 移除当前瑞士轮未开始阶段的 3 个任务 */}
-                        {stats.totalPassed}/{stats.totalStages - 3}
-                      </span>
-                      <span className="mx-1 opacity-60">|</span>
-                      <span className="mr-1 opacity-80">猜对</span>
-                      <span className="font-medium">
-                        {/* 移除当前瑞士轮未开始阶段的 7（4+2+1） 个竞猜 */}
-                        {stats.totalCorrect}/{stats.totalPredictions - 7}
-                      </span>
-                    </span>
-                  )}
                 </div>
                 {playoffsStats &&
                   playoffsStats.length > 0 &&
                   (isNotStarted ? (
-                    <span className="text-primary text-xs">等待中</span>
+                    <div className="flex flex-col items-end">
+                      <span className="text-primary text-xs">等待中</span>
+                      {stats && (
+                        <span className="text-muted text-xs text-nowrap">
+                          <span className="mr-1 opacity-80">任务</span>
+                          <span className="font-medium">
+                            {stats.totalPassed}/{stats.totalStages}
+                          </span>
+                          <span className="mx-1 opacity-60">|</span>
+                          <span className="mr-1 opacity-80">猜对</span>
+                          <span className="font-medium">
+                            {stats.totalCorrect}/{stats.totalPredictions}
+                          </span>
+                        </span>
+                      )}
+                    </div>
                   ) : (
                     <div className="flex flex-col items-end">
                       <span className="text-primary text-lg font-bold">{totalCorrect}</span>
                       <span className="text-muted text-xs text-nowrap">猜对数</span>
+                      {stats && (
+                        <span className="text-muted text-xs text-nowrap">
+                          <span className="mr-1 opacity-80">竞猜任务</span>
+                          <span className="font-medium">
+                            {stats.totalPassed}/{stats.totalStages}
+                          </span>
+                          <span className="mx-1 opacity-60">|</span>
+                          <span className="mr-1 opacity-80">猜对个数</span>
+                          <span className="font-medium">
+                            {stats.totalCorrect}/{stats.totalPredictions}
+                          </span>
+                        </span>
+                      )}
                     </div>
                   ))}
               </div>

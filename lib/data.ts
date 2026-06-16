@@ -540,8 +540,6 @@ export function getSortedOrder(teamsGroup: string[][], type: 'asc' | 'desc' = 'd
     .toSorted((p, n) => (type ? n[1] - p[1] : p[1] - n[1]))
     .map((e) => e[0])
 
-  console.log(map, order)
-
   return order
 }
 

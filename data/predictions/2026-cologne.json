@@ -496,6 +496,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Aurora"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Vitality", "FURIA"],
+        "2-to-1": "Vitality"
       }
     },
     {
@@ -515,6 +520,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MOUZ", "Aurora"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Spirit", "FURIA"],
+        "2-to-1": "Spirit"
       }
     },
     {
@@ -705,6 +715,11 @@
         "3-0": ["NAVI", "FUT"],
         "3-X": ["FURIA", "Falcons", "Spirit", "Vitality", "Legacy", "BB"],
         "0-3": ["PV", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "BB", "9z"],
+        "4-to-2": ["BB", "Falcons"],
+        "2-to-1": "BB"
       }
     },
     {
@@ -781,6 +796,11 @@
         "3-0": ["MOUZ", "Spirit"],
         "3-X": ["FURIA", "Falcons", "Vitality", "NAVI", "MongolZ", "Aurora"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Vitality", "FURIA"],
+        "2-to-1": "Vitality"
       }
     },
     {
@@ -1141,6 +1161,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Legacy"],
         "0-3": ["Monte", "MOUZ"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "BB", "9z"],
+        "4-to-2": ["9z", "Falcons"],
+        "2-to-1": "9z"
       }
     },
     {
@@ -1410,6 +1435,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["Legacy", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
         "0-3": ["Aurora", "MOUZ"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "BB", "9z"],
+        "4-to-2": ["Vitality", "BB"],
+        "2-to-1": "BB"
       }
     },
     {
@@ -1727,6 +1757,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "BB"],
         "0-3": ["Monte", "9z"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "BB", "FURIA"],
+        "4-to-2": ["BB", "Falcons"],
+        "2-to-1": "Falcons"
       }
     },
     {

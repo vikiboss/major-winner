@@ -61,6 +61,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "MOUZ"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
+        "4-to-2": ["Falcons", "FURIA"],
+        "2-to-1": "Falcons"
       }
     },
     {
@@ -502,6 +507,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
+        "4-to-2": ["Falcons", "FURIA"],
+        "2-to-1": "Falcons"
       }
     },
     {
@@ -751,6 +761,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Aurora"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Vitality", "FURIA"],
+        "2-to-1": "Vitality"
       }
     },
     {
@@ -813,6 +828,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["Aurora", "Falcons", "FUT", "NAVI", "MongolZ", "G2"],
         "0-3": ["Monte", "MOUZ"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "9z"],
+        "4-to-2": ["Falcons", "Aurora"],
+        "2-to-1": "Falcons"
       }
     },
     {
@@ -880,6 +900,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "Legacy", "NAVI", "MongolZ", "9z"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Vitality", "FURIA"],
+        "2-to-1": "Vitality"
       }
     },
     {
@@ -899,6 +924,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "MOUZ", "NAVI", "MongolZ", "Aurora"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "9z"],
+        "4-to-2": ["Spirit", "9z"],
+        "2-to-1": "Spirit"
       }
     },
     {
@@ -1275,6 +1305,11 @@
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Aurora", "FUT", "NAVI", "MongolZ", "G2"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Spirit", "FURIA"],
+        "2-to-1": "Spirit"
       }
     },
     {
@@ -2140,6 +2175,11 @@
         "3-0": ["Vitality", "Aurora"],
         "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "MongolZ", "Spirit"],
         "0-3": ["Monte", "PV"]
+      },
+      "playoffs": {
+        "8-to-4": ["Falcons", "G2", "BB", "9z"],
+        "4-to-2": ["G2", "9z"],
+        "2-to-1": "9z"
       }
     },
     {
@@ -2249,6 +2289,24 @@
         "0-3": ["Monte", "BB"]
       }
     },
+    {
+      "id": "malou",
+      "name": "解说吗喽公主",
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "9z"],
+        "4-to-2": ["Vitality", "9z"],
+        "2-to-1": "Vitality"
+      }
+    },
+    {
+      "id": "zhidudeyanhuo",
+      "name": "纸都的烟火",
+      "playoffs": {
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
+        "4-to-2": ["Falcons", "FURIA"],
+        "2-to-1": "Falcons"
+      }
+    },
 
     {
       "id": "viki",
@@ -2334,6 +2392,11 @@
         "3-0": ["Vitality", "NAVI"],
         "3-X": ["FURIA", "Falcons", "FUT", "Spirit", "MongolZ", "G2"],
         "0-3": ["Monte", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["G2", "Falcons", "Aurora", "FURIA"],
+        "4-to-2": ["Falcons", "FURIA"],
+        "2-to-1": "Falcons"
       }
     },
     {

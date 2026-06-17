@@ -1021,6 +1021,20 @@
     "avatar": "https://liquipedia.net/commons/images/2/2c/S1zzi_at_BLAST_Open_Spring_2026.jpg",
     "link": "https://www.hltv.org/player/25619/s1zzi"
   },
+  {
+    "id": "malou",
+    "name": "解说吗喽公主",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/94add9bcd423c92f803119f0767930d025bde2db.jpg@70w_70h_1c_1s.webp",
+    "link": "https://space.bilibili.com/3690979255126873"
+  },
+  {
+    "id": "zhidudeyanhuo",
+    "name": "纸都的烟火",
+    "platform": "哔哩哔哩",
+    "avatar": "https://i1.hdslb.com/bfs/face/6cb7a2e838bf2e3aa50c100f0eede1d38ae3ab0f.jpg@70w_70h_1c_1s.webp",
+    "link": "https://space.bilibili.com/312932032"
+  },
 
   {
     "id": "viki",

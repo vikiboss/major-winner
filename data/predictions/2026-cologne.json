@@ -18,6 +18,11 @@
         "3-0": ["Spirit", "FURIA"],
         "3-X": ["Aurora", "Vitality", "Falcons", "9z", "BB", "G2"],
         "0-3": ["B8", "PV"]
+      },
+      "playoffs": {
+        "8-to-4": ["Aurora"],
+        "4-to-2": [],
+        "2-to-1": null
       }
     },
     {

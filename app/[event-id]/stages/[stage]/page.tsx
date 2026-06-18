@@ -631,7 +631,7 @@ function PlayoffsTable({
                             status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                           />
                         )
-                      }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                      })}
                     </div>
                   </td>
 
@@ -653,7 +653,7 @@ function PlayoffsTable({
                             status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                           />
                         )
-                      }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                      })}
                     </div>
                   </td>
 
@@ -676,9 +676,7 @@ function PlayoffsTable({
                                 : 'normal'
                           }
                         />
-                      ) : (
-                        <span className="text-tertiary text-xs">未竞猜</span>
-                      )}
+                      ) : null}
                     </div>
                   </td>
 
@@ -854,7 +852,7 @@ function PlayoffsTable({
                           status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                         />
                       )
-                    }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                    })}
                   </div>
                 </div>
 
@@ -888,7 +886,7 @@ function PlayoffsTable({
                           status={isMatch ? 'win' : isMismatch ? 'lose' : 'normal'}
                         />
                       )
-                    }) || <span className="text-tertiary text-xs">未竞猜</span>}
+                    })}
                   </div>
                 </div>
 
@@ -923,9 +921,7 @@ function PlayoffsTable({
                               : 'normal'
                         }
                       />
-                    ) : (
-                      <span className="text-tertiary text-xs">未竞猜</span>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </div>

@@ -2118,6 +2118,11 @@
         "3-0": ["Spirit", "9z"],
         "3-X": ["Legacy", "Astralis", "G2", "GL", "FUT", "BB"],
         "0-3": ["FlyQuest", "BIG"]
+      },
+      "stage-3": {
+        "3-0": ["Vitality", "Spirit"],
+        "3-X": ["FURIA", "Falcons", "FUT", "NAVI", "Aurora", "G2"],
+        "0-3": ["Monte", "B8"]
       }
     },
     {

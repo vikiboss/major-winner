@@ -283,12 +283,12 @@ function StageSection({
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         {/* 左侧：比赛结果 */}
-        <div className="lg:col-span-5">
-          <div className="bg-surface-1 border-border rounded-lg border">
+        <div className="lg:col-span-5 flex">
+          <div className="flex-1 flex flex-col bg-surface-1 border-border rounded-lg border">
             <div className="border-border border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">比赛结果</h3>
             </div>
-            <div className="p-4">
+            <div className="p-4 flex-1 flex flex-col justify-center">
               {stageStatus === 'waiting' && (
                 <div className="text-muted py-8 text-center">
                   <div className="mb-2 text-2xl">⏳</div>

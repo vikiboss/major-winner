@@ -2190,6 +2190,11 @@
     {
       "id": "xieezhimao",
       "name": "CS2 邪恶之猫",
+      "stage-1": {
+        "3-0": ["G2", "BB"],
+        "3-X": ["SINNERS", "Liquid", "FlyQuest", "TYLOO", "MIBR", "HEROIC"],
+        "0-3": ["B8", "GG"]
+      },
       "stage-2": {
         "3-0": ["Spirit", "FUT"],
         "3-X": ["Legacy", "BB", "G2", "GL", "MIBR", "9z"],

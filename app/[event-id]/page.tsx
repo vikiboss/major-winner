@@ -481,7 +481,7 @@ function StageSection({
                               </div>
                             </div>
                             <div className="flex-1">
-                              <p className="text-lose mb-1 font-medium">淘汰</p>
+                              <p className="text-lose mb-2 font-medium">淘汰</p>
                               <div className="flex flex-wrap gap-1">
                                 {playoffsData.result[round].losers.map((t) => (
                                   <TeamLogo key={t} id={t} status="lose" />

@@ -23,7 +23,7 @@ https://major.viki.moe
 
 QQ 群: [902511365](https://qm.qq.com/q/oiHxyHNfl6) (Major Winner)
 
-<img src="https://image.viki.moe/cs/i/group-qrcode.png" alt="group-qrcode" style="width: 36%; border-radius: 3px;" />
+<img src="https://image.viki.moe/cs/image/group-qrcode.png" alt="group-qrcode" style="width: 36%; border-radius: 3px;" />
 
 ## 技术栈
 

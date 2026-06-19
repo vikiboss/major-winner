@@ -2598,6 +2598,11 @@
         "3-0": ["Vitality", "NAVI"],
         "3-X": ["FURIA", "Falcons", "FUT", "PV", "G2", "Spirit"],
         "0-3": ["Legacy", "B8"]
+      },
+      "playoffs": {
+        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "4-to-2": ["Vitality", "FURIA"],
+        "2-to-1": "Vitality"
       }
     },
     {

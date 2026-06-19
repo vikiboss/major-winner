@@ -123,8 +123,8 @@
       "teams": ["FURIA", "Spirit", "Aurora", "Vitality", "Falcons", "9z", "BB", "G2"],
       "result": {
         "8-to-4": {
-          "winners": ["Aurora", "FURIA", "G2"],
-          "losers": ["BB", "9z", "Spirit"]
+          "winners": ["Aurora", "FURIA", "Spirit"],
+          "losers": ["BB", "9z", "G2"]
         },
         "4-to-2": {
           "winners": [],

@@ -288,7 +288,7 @@ function StageSection({
             <div className="border-border border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">比赛结果</h3>
             </div>
-            <div className="p-4 flex-1 flex flex-col justify-center">
+            <div className="p-4 flex-1">
               {stageStatus === 'waiting' && (
                 <div className="text-muted py-8 text-center">
                   <div className="mb-2 text-2xl">⏳</div>
@@ -463,7 +463,7 @@ function StageSection({
                         <div className="flex flex-col gap-2 sm:gap-4">
                           {waitingTeams.length > 0 && (
                             <div className="flex-1">
-                              <p className="text-muted mb-1 font-medium">等待比赛</p>
+                              <p className="text-muted mb-2 font-medium">等待比赛</p>
                               <div className="flex flex-wrap gap-1">
                                 {waitingTeams.map((t) => (
                                   <TeamLogo key={t} id={t} />
@@ -473,7 +473,7 @@ function StageSection({
                           )}
                           <div className="flex gap-4">
                             <div className="flex-1">
-                              <p className="text-win mb-1 font-medium">晋级</p>
+                              <p className="text-win mb-2 font-medium">晋级</p>
                               <div className="flex flex-wrap gap-1">
                                 {playoffsData.result[round].winners.map((t) => (
                                   <TeamLogo key={t} id={t} status="win" />
@@ -815,7 +815,7 @@ function PredictorPredictions({
                       <span className="text-muted w-8 shrink-0">四强</span>
                       <div className="flex flex-wrap gap-1">
                         {(prediction as PlayoffsPrediction)['8-to-4'].map((team) => {
-                          const roundResult = event.playoffs?.result[round]
+                          const roundResult = event.playoffs?.result['8-to-4']
                           const hasResult = roundResult && roundResult.winners.length > 0
                           const isCorrect = hasResult && roundResult.winners.includes(team)
 
@@ -841,7 +841,7 @@ function PredictorPredictions({
                       <span className="text-muted w-8 shrink-0">二强</span>
                       <div className="flex flex-wrap gap-1">
                         {(prediction as PlayoffsPrediction)['4-to-2'].map((team) => {
-                          const roundResult = event.playoffs?.result[round]
+                          const roundResult = event.playoffs?.result['4-to-2']
                           const hasResult = roundResult && roundResult.winners.length > 0
                           const isCorrect = hasResult && roundResult.winners.includes(team)
 

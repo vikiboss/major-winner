@@ -127,8 +127,8 @@
           "losers": ["BB", "9z", "G2", "Vitality"]
         },
         "4-to-2": {
-          "winners": [],
-          "losers": []
+          "winners": ["FURIA"],
+          "losers": ["Aurora"]
         },
         "2-to-1": {
           "winner": null,

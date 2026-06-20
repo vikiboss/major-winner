@@ -283,12 +283,12 @@ function StageSection({
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
         {/* 左侧：比赛结果 */}
-        <div className="lg:col-span-5 flex">
-          <div className="flex-1 flex flex-col bg-surface-1 border-border rounded-lg border">
+        <div className="flex lg:col-span-5">
+          <div className="bg-surface-1 border-border flex flex-1 flex-col rounded-lg border">
             <div className="border-border border-b px-4 py-3">
               <h3 className="text-secondary text-sm font-medium">比赛结果</h3>
             </div>
-            <div className="p-4 flex-1">
+            <div className="flex-1 p-4">
               {stageStatus === 'waiting' && (
                 <div className="text-muted py-8 text-center">
                   <div className="mb-2 text-2xl">⏳</div>
@@ -809,63 +809,64 @@ function PredictorPredictions({
 
             {prediction && stageType === STAGE_TYPE.PLAYOFFS && round && (
               <div className="text-xs">
-                {(round === '8-to-4' || round === '4-to-2') && (
+                {round === '8-to-4' && (
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                    <span className="text-muted w-8 shrink-0">四强</span>
+                    <div className="flex flex-wrap gap-1">
+                      {(prediction as PlayoffsPrediction)['8-to-4'].map((team) => {
+                        const roundResult = event.playoffs?.result['8-to-4']
+                        const hasResult = roundResult && roundResult.winners.length > 0
+                        const isCorrect = hasResult && roundResult.winners.includes(team)
+                        const isWrong = hasResult && roundResult.losers.includes(team)
+
+                        const status =
+                          stageStatus === 'waiting' && !isWrong
+                            ? 'normal'
+                            : isCorrect
+                              ? 'win'
+                              : isWrong
+                                ? 'lose'
+                                : 'normal'
+
+                        return <TeamLogo key={team} id={team} status={status} />
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {round === '4-to-2' && (
+                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
+                    <span className="text-muted w-8 shrink-0">二强</span>
+                    <div className="flex flex-wrap gap-1">
+                      {(prediction as PlayoffsPrediction)['4-to-2'].map((team) => {
+                        const roundResult = event.playoffs?.result['4-to-2']
+                        const hasResult = roundResult && roundResult.winners.length > 0
+                        const isCorrect = hasResult && roundResult.winners.includes(team)
+
+                        const isWrong =
+                          (hasResult && roundResult.losers.includes(team)) ||
+                          event.playoffs?.result['8-to-4'].losers.includes(team) // 八进四已淘汰
+
+                        const status =
+                          stageStatus === 'waiting' && !isWrong
+                            ? 'normal'
+                            : isCorrect
+                              ? 'win'
+                              : isWrong
+                                ? 'lose'
+                                : 'normal'
+
+                        return <TeamLogo key={team} id={team} status={status} />
+                      })}
+                    </div>
+                  </div>
+                )}
+
+                {round === '2-to-1' && (
                   <div className="space-y-2 text-xs">
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                      <span className="text-muted w-8 shrink-0">四强</span>
-                      <div className="flex flex-wrap gap-1">
-                        {(prediction as PlayoffsPrediction)['8-to-4'].map((team) => {
-                          const roundResult = event.playoffs?.result['8-to-4']
-                          const hasResult = roundResult && roundResult.winners.length > 0
-                          const isCorrect = hasResult && roundResult.winners.includes(team)
-
-                          const isWrong =
-                            (hasResult && roundResult.losers.includes(team)) ||
-                            (round === '4-to-2' &&
-                              event.playoffs?.result['8-to-4'].losers.includes(team)) // 八进四已淘汰
-
-                          const status =
-                            stageStatus === 'waiting' && !isWrong
-                              ? 'normal'
-                              : isCorrect
-                                ? 'win'
-                                : isWrong
-                                  ? 'lose'
-                                  : 'normal'
-
-                          return <TeamLogo key={team} id={team} status={status} />
-                        })}
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                      <span className="text-muted w-8 shrink-0">二强</span>
-                      <div className="flex flex-wrap gap-1">
-                        {(prediction as PlayoffsPrediction)['4-to-2'].map((team) => {
-                          const roundResult = event.playoffs?.result['4-to-2']
-                          const hasResult = roundResult && roundResult.winners.length > 0
-                          const isCorrect = hasResult && roundResult.winners.includes(team)
-
-                          const isWrong =
-                            (hasResult && roundResult.losers.includes(team)) ||
-                            (round === '4-to-2' &&
-                              event.playoffs?.result['8-to-4'].losers.includes(team)) // 八进四已淘汰
-
-                          const status =
-                            stageStatus === 'waiting' && !isWrong
-                              ? 'normal'
-                              : isCorrect
-                                ? 'win'
-                                : isWrong
-                                  ? 'lose'
-                                  : 'normal'
-
-                          return <TeamLogo key={team} id={team} status={status} />
-                        })}
-                      </div>
-                    </div>
-                    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                      <span className="text-muted w-8 shrink-0">冠军</span>
-                      {(prediction as PlayoffsPrediction)['2-to-1'] ? (
+                    <span className="text-muted">冠军</span>
+                    {(prediction as PlayoffsPrediction)['2-to-1'] ? (
+                      <div className="flex">
                         <TeamLogo
                           id={(prediction as { '2-to-1': string | null })['2-to-1']!}
                           status={
@@ -879,32 +880,8 @@ function PredictorPredictions({
                                 : 'normal'
                           }
                         />
-                      ) : (
-                        <span className="text-tertiary text-xs">未竞猜</span>
-                      )}
-                    </div>
-                  </div>
-                )}
-                {round === '2-to-1' && (
-                  <div className="space-y-2 text-xs">
-                    <span className="text-muted">冠军</span>
-                    {(prediction as PlayoffsPrediction)['2-to-1'] ? (
-                      <TeamLogo
-                        id={(prediction as { '2-to-1': string | null })['2-to-1']!}
-                        status={
-                          stageStatus === 'waiting'
-                            ? 'normal'
-                            : event.playoffs?.result['2-to-1'].winner
-                              ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
-                                event.playoffs.result['2-to-1'].winner
-                                ? 'win'
-                                : 'lose'
-                              : 'normal'
-                        }
-                      />
-                    ) : (
-                      <span className="text-tertiary text-xs">未竞猜</span>
-                    )}
+                      </div>
+                    ) : null}
                   </div>
                 )}
               </div>

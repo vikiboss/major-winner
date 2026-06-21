@@ -161,13 +161,6 @@
     "link": "https://space.bilibili.com/8498990"
   },
   {
-    "id": "boshiyk",
-    "name": "BOSHIYK（制图作者）",
-    "platform": "哔哩哔哩",
-    "avatar": "https://i0.hdslb.com/bfs/face/159571acf4f054802cbb93584148b3b873d695ff.jpg@70w_70h_1c_1s.webp",
-    "link": "https://space.bilibili.com/65822877"
-  },
-  {
     "id": "xieshaonian",
     "name": "邪少年、",
     "platform": "哔哩哔哩",
@@ -1056,6 +1049,13 @@
     "platform": "制图作者",
     "avatar": "https://i1.hdslb.com/bfs/face/ffe2bcc0fc4fe81124b784e70b5b098c6a7c8f5d.jpg@70w_70h_1c_1s.webp",
     "link": "https://space.bilibili.com/1428295"
+  },
+  {
+    "id": "boshiyk",
+    "name": "BOSHIYK",
+    "platform": "制图作者",
+    "avatar": "https://i0.hdslb.com/bfs/face/159571acf4f054802cbb93584148b3b873d695ff.jpg@70w_70h_1c_1s.webp",
+    "link": "https://space.bilibili.com/65822877"
   },
   {
     "id": "14k",

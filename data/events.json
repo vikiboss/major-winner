@@ -131,8 +131,8 @@
           "losers": ["Aurora", "Spirit"]
         },
         "2-to-1": {
-          "winner": null,
-          "loser": null
+          "winner": "Falcons",
+          "loser": "FURIA"
         }
       }
     }

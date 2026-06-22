@@ -292,7 +292,7 @@
         "0-3": ["Monte", "B8"]
       },
       "playoffs": {
-        "8-to-4": ["Spirit", "Vitality", "BB", "FURIA"],
+        "8-to-4": ["Spirit", "Falcons", "BB", "FURIA"],
         "4-to-2": ["Falcons", "FURIA"],
         "2-to-1": "Falcons"
       }
@@ -740,7 +740,7 @@
         "0-3": ["Monte", "B8"]
       },
       "playoffs": {
-        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
         "4-to-2": ["Falcons", "FURIA"],
         "2-to-1": "Falcons"
       }
@@ -1385,7 +1385,7 @@
         "0-3": ["Monte", "B8"]
       },
       "playoffs": {
-        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
         "4-to-2": ["Falcons", "FURIA"],
         "2-to-1": "Falcons"
       }
@@ -1628,7 +1628,7 @@
         "0-3": ["PV", "MOUZ"]
       },
       "playoffs": {
-        "8-to-4": ["Spirit", "Vitality", "Aurora", "FURIA"],
+        "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
         "4-to-2": ["Falcons", "FURIA"],
         "2-to-1": "Falcons"
       }

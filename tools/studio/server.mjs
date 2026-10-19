@@ -336,7 +336,7 @@ function listen(port, remaining = 10) {
 
   const onListening = () => {
     server.off('error', onError)
-    console.log(`\n  数据台已启动  http://127.0.0.1:${port}\n`)
+    console.log(`  数据台已启动  http://127.0.0.1:${port}`)
     console.log(`  数据目录      ${DATA_DIR}`)
     console.log('  改动会直接写回 JSON，建议先 git commit 一次\n')
   }

@@ -59,15 +59,15 @@
         <h2 class="dialog-title">新建竞猜者</h2>
         <div class="field">
           <label class="label" for="new-id">ID（写入 JSON 的 key）</label>
-          <input id="new-id" name="id" required pattern="[\w.-]+" placeholder="例如 shroud" />
+          <input id="new-id" class="input" name="id" required pattern="[\w.-]+" placeholder="例如 shroud" />
         </div>
         <div class="field">
           <label class="label" for="new-name">昵称</label>
-          <input id="new-name" name="name" required placeholder="例如 shroud" />
+          <input id="new-name" class="input" name="name" required placeholder="例如 shroud" />
         </div>
         <div class="field">
           <label class="label" for="new-platform">平台</label>
-          <input id="new-platform" name="platform" placeholder="例如 Twitch / B 站" />
+          <input id="new-platform" class="input" name="platform" placeholder="例如 Twitch / B 站" />
         </div>
         <p class="dialog-error" data-error hidden></p>
         <div class="dialog-actions">
@@ -82,16 +82,16 @@
         <h2 class="dialog-title">新建赛事</h2>
         <div class="form-grid">
           <label class="field"
-            ><span class="label">赛事 ID</span>
-            <input name="id" required pattern="[\w.-]+" placeholder="例如 2027-katowice"
+            >            <span class="label">赛事 ID</span>
+            <input class="input" name="id" required pattern="[\w.-]+" placeholder="例如 2027-katowice"
           /></label>
           <label class="field"
-            ><span class="label">名称</span>
-            <input name="name" required placeholder="例如 IEM 卡托维兹 Major 2027"
+            >            <span class="label">名称</span>
+            <input class="input" name="name" required placeholder="例如 IEM 卡托维兹 Major 2027"
           /></label>
           <label class="field"
-            ><span class="label">简称</span>
-            <input name="shortName" required placeholder="例如 卡托维兹 2027"
+            >            <span class="label">简称</span>
+            <input class="input" name="shortName" required placeholder="例如 卡托维兹 2027"
           /></label>
         </div>
 
@@ -130,15 +130,15 @@
         <h2 class="dialog-title">新增队伍</h2>
         <div class="field">
           <label class="label" for="team-id">队伍 ID（与赛事数据一致）</label>
-          <input id="team-id" name="id" required pattern="[\w.-]+" placeholder="例如 Falcons" />
+          <input id="team-id" class="input" name="id" required pattern="[\w.-]+" placeholder="例如 Falcons" />
         </div>
         <div class="field">
           <label class="label" for="team-name">全名</label>
-          <input id="team-name" name="name" required placeholder="例如 Team Falcons" />
+          <input id="team-name" class="input" name="name" required placeholder="例如 Team Falcons" />
         </div>
         <div class="field">
           <label class="label" for="team-logo">队徽 URL</label>
-          <input id="team-logo" name="logo" placeholder="https://" />
+          <input id="team-logo" class="input" name="logo" placeholder="https://" />
         </div>
         <p class="dialog-error" data-error hidden></p>
         <div class="dialog-actions">

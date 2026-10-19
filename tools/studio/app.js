@@ -1182,7 +1182,7 @@ els.eventForm.addEventListener('submit', async (event) => {
 
   if (!teams.length) return showDialogError(error, '至少需要一支队伍')
 
-  state.events.push(buildEvent({ id, name, shortName, teams }))
+  state.events.unshift(buildEvent({ id, name, shortName, teams }))
   state.eventId = id
   state.dirty.events = true
 

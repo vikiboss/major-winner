@@ -46,7 +46,8 @@ body {
 
 button,
 input,
-select {
+select,
+textarea {
   font: inherit;
   color: inherit;
 }
@@ -717,6 +718,11 @@ select {
 
 .dialog .field + .field {
   margin-top: 10px;
+}
+
+.dialog .input,
+.dialog .select {
+  width: 100%;
 }
 
 .dialog-error {

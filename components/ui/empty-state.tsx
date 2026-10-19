@@ -17,7 +17,7 @@ export function EmptyState({
   children,
 }: EmptyStateProps) {
   return (
-    <div className={`text-muted py-8 text-center ${className}`}>
+    <div className={`flex flex-col text-muted py-8 text-center ${className}`}>
       <div className="mb-2 text-2xl">{icon}</div>
       <p className="text-sm">{title}</p>
       {description && <p className="text-muted mt-1 text-xs">{description}</p>}

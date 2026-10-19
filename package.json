@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "data:check": "node scripts/check-data.mjs",
     "format": "prettier --write ."
   },
   "keywords": [],

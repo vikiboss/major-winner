@@ -25,7 +25,7 @@ export function NavItems({ eventId }: { eventId: string }) {
           <Link
             key={item.href}
             href={item.href}
-            className={`rounded px-2 py-1 text-sm font-medium transition-all active:scale-95 sm:px-3 sm:py-1 sm:text-sm ${
+            className={`rounded px-2 py-1 text-sm font-medium whitespace-nowrap transition-all active:scale-95 sm:px-3 sm:py-1 sm:text-sm ${
               isActive
                 ? 'bg-primary-500/10 text-primary-400'
                 : 'text-secondary hover:bg-surface-1 hover:opacity-80'

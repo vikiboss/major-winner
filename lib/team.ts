@@ -1,5 +1,9 @@
+/**
+ * 战队表现推导：把赛事结果折算成「每支队伍走到哪一步」。
+ */
+
 import {
-  STAGE_GROUP_NAME_MAP,
+  STAGE_META,
   SWISS_PROGRESS_RECORDS,
   SWISS_RESULT_LOSE_RECORDS,
   SWISS_RESULT_WIN_RECORDS,
@@ -22,295 +26,251 @@ export interface TeamPerformanceRecord {
   status: TeamPerformanceStatus
 }
 
-export function getTeamPerformance(event: MajorEvent, shortName: string): TeamPerformanceRecord[] {
-  const performance: TeamPerformanceRecord[] = []
+/** 队伍状态文案的语义色调，具体样式由组件决定 */
+export type TeamTone =
+  | 'champion'
+  | 'runner-up'
+  | 'advanced'
+  | 'in-progress'
+  | 'waiting'
+  | 'eliminated'
+  | 'idle'
 
-  // 检查瑞士轮阶段
-  for (const stageKey of SWISS_STAGES) {
-    const stage = event[stageKey]
+export interface TeamStatus {
+  text: string
+  tone: TeamTone
+}
 
+/* -------------------------------------------------------------------------- */
+/*                                瑞士轮战绩                                   */
+/* -------------------------------------------------------------------------- */
+
+function getSwissPerformance(event: MajorEvent, shortName: string): TeamPerformanceRecord[] {
+  const records: TeamPerformanceRecord[] = []
+
+  for (const stageId of SWISS_STAGES) {
+    const stage = event[stageId]
     if (!stage) continue
 
-    const stageName = STAGE_GROUP_NAME_MAP[stageKey]
+    const participates =
+      stage.teams.includes(shortName) || !!stage.teamsFromAdvanced?.includes(shortName)
+    if (!participates) continue
 
     const { result } = stage
+    const stageName = STAGE_META[stageId].groupName ?? STAGE_META[stageId].label
 
-    // 检查该队伍是否在本阶段参赛
-    const isInStage =
-      stage.teams.includes(shortName) || stage.teamsFromAdvanced?.includes(shortName)
-
-    if (!isInStage) continue
-
-    // 检查赛程中的战绩
-    let foundInProgress = false
-    for (const record of SWISS_PROGRESS_RECORDS) {
-      if (result[record]?.includes(shortName)) {
-        performance.push({ stage: stageKey, stageName, result: record, status: 'in-progress' })
-        foundInProgress = true
-        break
-      }
+    const progressRecord = SWISS_PROGRESS_RECORDS.find((r) => result[r]?.includes(shortName))
+    if (progressRecord) {
+      records.push({ stage: stageId, stageName, result: progressRecord, status: 'in-progress' })
+      continue
     }
 
-    if (foundInProgress) continue
-
-    // 检查晋级结果
-    let foundResult = false
-    for (const record of SWISS_RESULT_WIN_RECORDS) {
-      if (result[record].includes(shortName)) {
-        performance.push({ stage: stageKey, stageName, result: record, status: 'advanced' })
-        foundResult = true
-        break
-      }
+    const winRecord = SWISS_RESULT_WIN_RECORDS.find((r) => result[r].includes(shortName))
+    if (winRecord) {
+      records.push({ stage: stageId, stageName, result: winRecord, status: 'advanced' })
+      continue
     }
 
-    if (foundResult) continue
-
-    // 检查淘汰结果
-    for (const record of SWISS_RESULT_LOSE_RECORDS) {
-      if (result[record].includes(shortName)) {
-        performance.push({ stage: stageKey, stageName, result: record, status: 'eliminated' })
-        foundResult = true
-        break
-      }
+    const loseRecord = SWISS_RESULT_LOSE_RECORDS.find((r) => result[r].includes(shortName))
+    if (loseRecord) {
+      records.push({ stage: stageId, stageName, result: loseRecord, status: 'eliminated' })
+      continue
     }
 
-    // 如果在本阶段但没有任何结果,说明等待比赛
-    if (!foundResult && !foundInProgress) {
-      performance.push({ stage: stageKey, stageName, result: '待赛', status: 'waiting' })
-    }
+    records.push({ stage: stageId, stageName, result: '待赛', status: 'waiting' })
   }
 
-  // 检查决胜阶段 - 只有真正在决赛名单中的队伍才显示决赛信息
-  if (
-    event.playoffs &&
-    event.playoffs.teams.length > 0 &&
-    event.playoffs.teams.includes(shortName)
-  ) {
-    const playoffs = event.playoffs
+  return records
+}
 
-    if (playoffs.result['2-to-1'].winner === shortName) {
-      performance.push({
-        stage: 'playoffs',
-        stageName: '决赛',
-        result: '冠军',
-        status: 'champion',
-      })
-    } else if (playoffs.result['2-to-1'].loser === shortName) {
-      performance.push({
-        stage: 'playoffs',
-        stageName: '决赛',
-        result: '亚军',
-        status: 'advanced',
-      })
-    } else if (playoffs.result['4-to-2'].winners.includes(shortName)) {
-      // 已经晋级决赛
-      performance.push({
-        stage: 'playoffs',
-        stageName: '半决赛',
-        result: '晋级决赛',
-        status: 'advanced',
-      })
+/* -------------------------------------------------------------------------- */
+/*                                决胜阶段战绩                                 */
+/* -------------------------------------------------------------------------- */
 
-      // 检查决赛是否已经开始(有队伍已经有决赛结果)
-      const playoffsStarted =
-        playoffs.result['2-to-1'].winner !== '' || playoffs.result['2-to-1'].loser !== ''
-      if (playoffsStarted) {
-        // 决赛已经开始,但没有这个队伍的结果,说明在等待比赛
-        performance.push({
-          stage: 'playoffs',
-          stageName: '决赛',
-          result: '待赛',
-          status: 'waiting',
-        })
-      }
-    } else if (playoffs.result['4-to-2'].losers.includes(shortName)) {
-      performance.push({
-        stage: 'playoffs',
-        stageName: '半决赛',
-        result: '四强',
-        status: 'eliminated',
-      })
-    } else if (playoffs.result['8-to-4'].losers.includes(shortName)) {
-      performance.push({
-        stage: 'playoffs',
-        stageName: '八进四',
-        result: '八强',
-        status: 'eliminated',
-      })
-    } else if (playoffs.result['8-to-4'].winners.includes(shortName)) {
-      // 已经晋级四强
-      performance.push({
-        stage: 'playoffs',
-        stageName: '八进四',
-        result: '晋级四强',
-        status: 'advanced',
-      })
+function getPlayoffsPerformance(event: MajorEvent, shortName: string): TeamPerformanceRecord[] {
+  const playoffs = event.playoffs
+  if (!playoffs?.teams.includes(shortName)) return []
 
-      // 检查四进二是否已经开始(有队伍已经有四进二结果)
-      const semiplayoffsStarted =
-        playoffs.result['4-to-2'].winners.length > 0 || playoffs.result['4-to-2'].losers.length > 0
-      if (semiplayoffsStarted) {
-        // 四进二已经开始,但没有这个队伍的结果,说明在等待比赛
-        performance.push({
-          stage: 'playoffs',
-          stageName: '半决赛',
-          result: '待赛',
-          status: 'waiting',
-        })
-      }
-    } else {
-      // 在决赛名单中但还没有结果,说明等待八进四
-      performance.push({
-        stage: 'playoffs',
-        stageName: '八进四',
-        result: '待赛',
-        status: 'waiting',
-      })
-    }
+  const { result } = playoffs
+  const final = result['2-to-1']
+
+  if (final.winner === shortName) {
+    return [{ stage: 'playoffs', stageName: '决赛', result: '冠军', status: 'champion' }]
   }
 
-  return performance
+  if (final.loser === shortName) {
+    return [{ stage: 'playoffs', stageName: '决赛', result: '亚军', status: 'advanced' }]
+  }
+
+  if (result['4-to-2'].winners.includes(shortName)) {
+    const records: TeamPerformanceRecord[] = [
+      { stage: 'playoffs', stageName: '半决赛', result: '晋级决赛', status: 'advanced' },
+    ]
+    if (final.winner || final.loser) {
+      records.push({ stage: 'playoffs', stageName: '决赛', result: '待赛', status: 'waiting' })
+    }
+    return records
+  }
+
+  if (result['4-to-2'].losers.includes(shortName)) {
+    return [{ stage: 'playoffs', stageName: '半决赛', result: '四强', status: 'eliminated' }]
+  }
+
+  if (result['8-to-4'].losers.includes(shortName)) {
+    return [{ stage: 'playoffs', stageName: '八进四', result: '八强', status: 'eliminated' }]
+  }
+
+  if (result['8-to-4'].winners.includes(shortName)) {
+    const records: TeamPerformanceRecord[] = [
+      { stage: 'playoffs', stageName: '八进四', result: '晋级四强', status: 'advanced' },
+    ]
+    const semifinalStarted =
+      result['4-to-2'].winners.length > 0 || result['4-to-2'].losers.length > 0
+    if (semifinalStarted) {
+      records.push({ stage: 'playoffs', stageName: '半决赛', result: '待赛', status: 'waiting' })
+    }
+    return records
+  }
+
+  return [{ stage: 'playoffs', stageName: '八进四', result: '待赛', status: 'waiting' }]
 }
 
-export function getTeamStatus(performances: TeamPerformanceRecord[]) {
-  const lastPerf = performances[performances.length - 1]
-
-  if (!lastPerf) return { text: '未开赛', className: 'text-muted' }
-  if (lastPerf.status === 'champion')
-    return { text: '🏆 冠军', className: 'text-primary-400 font-semibold' }
-  if (lastPerf.status === 'in-progress') return { text: '赛程中', className: 'text-primary-400' }
-  if (lastPerf.status === 'waiting') return { text: '等待中', className: 'text-muted' }
-  if (lastPerf.status === 'advanced' && lastPerf.result === '亚军')
-    return { text: '🥈 亚军', className: 'text-primary-300 font-semibold' }
-  if (lastPerf.status === 'eliminated')
-    return { text: `❌ 已淘汰`, className: 'text-lose' }
-  if (lastPerf.status === 'advanced') return { text: '已晋级', className: 'text-win' }
-
-  return { text: '赛程中', className: 'text-muted' }
+/** 队伍在整个赛事中的表现轨迹 */
+export function getTeamPerformance(event: MajorEvent, shortName: string): TeamPerformanceRecord[] {
+  return [...getSwissPerformance(event, shortName), ...getPlayoffsPerformance(event, shortName)]
 }
 
-export function getSortedTeamsByPerformance(event: MajorEvent) {
-  // 排序逻辑 - 实力越强越靠前:
-  // 1. 决赛成绩优先: 冠军 > 亚军 > 四强 > 八强 > 未进决赛
-  // 2. 实际达到的最高阶段: stage-3 > stage-2 > stage-1 (打入更高阶段 = 更强)
-  // 3. 同阶段内比较战绩: 3-0 > 3-1 > 3-2 > 2-3 > 1-3 > 0-3
-  // 4. 比赛状态: 晋级/赛程中 > 待赛 > 淘汰
+/* -------------------------------------------------------------------------- */
+/*                                  状态                                       */
+/* -------------------------------------------------------------------------- */
+
+/** 队伍当前状态（取表现轨迹的最后一条） */
+export function getTeamStatus(performances: TeamPerformanceRecord[]): TeamStatus {
+  const last = performances.at(-1)
+  if (!last) return { text: '未开赛', tone: 'idle' }
+
+  switch (last.status) {
+    case 'champion':
+      return { text: '🏆 冠军', tone: 'champion' }
+    case 'in-progress':
+      return { text: '赛程中', tone: 'in-progress' }
+    case 'waiting':
+      return { text: '等待中', tone: 'waiting' }
+    case 'eliminated':
+      return { text: '❌ 已淘汰', tone: 'eliminated' }
+    default:
+      return last.result === '亚军'
+        ? { text: '🥈 亚军', tone: 'runner-up' }
+        : { text: '已晋级', tone: 'advanced' }
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  排序                                       */
+/* -------------------------------------------------------------------------- */
+
+const PLAYOFF_RESULT_RANK: Record<string, number> = {
+  冠军: 1,
+  亚军: 2,
+  晋级决赛: 3,
+  四强: 4,
+  晋级四强: 5,
+  八强: 6,
+  待赛: 99,
+}
+
+const SWISS_STAGE_RANK: Record<string, number> = {
+  'stage-3': 1,
+  'stage-2': 2,
+  'stage-1': 3,
+}
+
+const SWISS_RESULT_RANK: Record<string, number> = {
+  '3-0': 1,
+  '3-1': 2,
+  '3-2': 3,
+  '2-3': 4,
+  '1-3': 5,
+  '0-3': 6,
+  '2-0': 10,
+  '2-1': 11,
+  '1-0': 12,
+  '2-2': 13,
+  '1-1': 14,
+  '0-1': 15,
+  '1-2': 16,
+  '0-2': 17,
+}
+
+const STATUS_RANK: Record<TeamPerformanceStatus, number> = {
+  champion: 1,
+  advanced: 2,
+  'in-progress': 3,
+  waiting: 4,
+  eliminated: 5,
+}
+
+/** 实力排序：冠军 > 亚军 > 四强 > 八强 > 淘汰，同层再看瑞士轮成绩 */
+function compareTeams(
+  a: { performance: TeamPerformanceRecord[]; stage: string },
+  b: { performance: TeamPerformanceRecord[]; stage: string },
+): number {
+  const lastA = a.performance.at(-1)
+  const lastB = b.performance.at(-1)
+
+  const statusA = lastA?.status ?? 'eliminated'
+  const statusB = lastB?.status ?? 'eliminated'
+
+  // 1. 未淘汰优先
+  if (statusA === 'eliminated' && statusB !== 'eliminated') return 1
+  if (statusA !== 'eliminated' && statusB === 'eliminated') return -1
+
+  // 2. 进入决胜阶段优先
+  const playoffsA = a.performance.find((p) => p.stage === 'playoffs')
+  const playoffsB = b.performance.find((p) => p.stage === 'playoffs')
+  if (playoffsA && !playoffsB) return -1
+  if (!playoffsA && playoffsB) return 1
+
+  // 3. 决胜阶段名次
+  if (playoffsA && playoffsB) {
+    const rankA = PLAYOFF_RESULT_RANK[playoffsA.result] ?? 99
+    const rankB = PLAYOFF_RESULT_RANK[playoffsB.result] ?? 99
+    if (rankA !== rankB) return rankA - rankB
+  }
+
+  // 4. 打到的最深瑞士轮阶段
+  const swissA = a.performance.filter((p) => p.stage.startsWith('stage-')).at(-1)
+  const swissB = b.performance.filter((p) => p.stage.startsWith('stage-')).at(-1)
+
+  const stageRankA = swissA ? (SWISS_STAGE_RANK[swissA.stage] ?? 99) : 99
+  const stageRankB = swissB ? (SWISS_STAGE_RANK[swissB.stage] ?? 99) : 99
+  if (stageRankA !== stageRankB) return stageRankA - stageRankB
+
+  // 5. 同阶段内的战绩
+  const resultRankA = swissA ? (SWISS_RESULT_RANK[swissA.result] ?? 99) : 99
+  const resultRankB = swissB ? (SWISS_RESULT_RANK[swissB.result] ?? 99) : 99
+  if (resultRankA !== resultRankB) return resultRankA - resultRankB
+
+  // 6. 当前状态
+  const statusRankA = STATUS_RANK[statusA] ?? 99
+  const statusRankB = STATUS_RANK[statusB] ?? 99
+  if (statusRankA !== statusRankB) return statusRankA - statusRankB
+
+  // 7. 起始组别（起点高说明种子实力强）
+  return (SWISS_STAGE_RANK[a.stage] ?? 99) - (SWISS_STAGE_RANK[b.stage] ?? 99)
+}
+
+export interface RankedTeam extends Team {
+  performance: TeamPerformanceRecord[]
+  status: TeamStatus
+}
+
+/** 按实力排序的参赛队伍 */
+export function getRankedTeams(event: MajorEvent): RankedTeam[] {
   return event.teams
-    .map((team: Team) => {
+    .map((team) => {
       const performance = getTeamPerformance(event, team.id)
-      return {
-        ...team,
-        performance,
-        status: getTeamStatus(performance),
-      }
+      return { ...team, performance, status: getTeamStatus(performance) }
     })
-    .toSorted((a, b) => {
-      const lastA = a.performance[a.performance.length - 1]
-      const lastB = b.performance[b.performance.length - 1]
-
-      const aStatus = lastA?.status || 'eliminated'
-      const bStatus = lastB?.status || 'eliminated'
-
-      // 优先考虑淘汰状态
-      if (aStatus === 'eliminated' && bStatus !== 'eliminated') return 1
-      if (aStatus !== 'eliminated' && bStatus === 'eliminated') return -1
-
-      // 1. 决赛成绩 - 最强的证明
-      const aPlayoffs = a.performance.find(p => p.stage === 'playoffs')
-      const bPlayoffs = b.performance.find(p => p.stage === 'playoffs')
-
-      // 进决赛的队伍一定强于未进决赛的
-      if (aPlayoffs && !bPlayoffs) return -1
-      if (!aPlayoffs && bPlayoffs) return 1
-
-      // 决赛内部排序
-      if (aPlayoffs && bPlayoffs) {
-        const playoffsRank = {
-          冠军: 1,
-          亚军: 2,
-          晋级决赛: 3,
-          四强: 4,
-          晋级四强: 5,
-          八强: 6,
-          待赛: 999,
-        }
-        const aRank = playoffsRank[aPlayoffs.result as keyof typeof playoffsRank] || 999
-        const bRank = playoffsRank[bPlayoffs.result as keyof typeof playoffsRank] || 999
-        if (aRank !== bRank) return aRank - bRank
-      }
-
-      // 2. 找到每支队伍实际达到的最高瑞士轮阶段
-      const getHighestSwissStage = (perf: typeof a.performance) => {
-        const swissPerfs = perf.filter(
-          p => p.stage === 'stage-1' || p.stage === 'stage-2' || p.stage === 'stage-3',
-        )
-        if (swissPerfs.length === 0) return null
-        // 返回最后一个瑞士轮阶段（即最高阶段）
-        return swissPerfs[swissPerfs.length - 1]
-      }
-
-      const aHighestSwiss = getHighestSwissStage(a.performance)
-      const bHighestSwiss = getHighestSwissStage(b.performance)
-
-      // 3. 比较实际达到的最高阶段（打入冠军组一定强于只在传奇组）
-      const stageStrength = {
-        'stage-3': 1, // 冠军组
-        'stage-2': 2, // 传奇组
-        'stage-1': 3, // 挑战组
-      }
-
-      const aStageRank = aHighestSwiss
-        ? stageStrength[aHighestSwiss.stage as keyof typeof stageStrength] || 999
-        : 999
-      const bStageRank = bHighestSwiss
-        ? stageStrength[bHighestSwiss.stage as keyof typeof stageStrength] || 999
-        : 999
-
-      if (aStageRank !== bStageRank) return aStageRank - bStageRank
-
-      // 4. 同阶段内比较战绩（同在冠军组时，3-0 > 1-3）
-      const getSwissStrength = (perf: typeof lastA) => {
-        if (!perf) return 999
-        // 最终成绩: 3-0 最强,0-3 最弱
-        const playoffScores = { '3-0': 1, '3-1': 2, '3-2': 3, '2-3': 4, '1-3': 5, '0-3': 6 }
-        // 赛程中成绩: 按胜率排序 (2-0 > 2-1 > 1-0 > 2-2 > 1-1 > 0-1 > 1-2 > 0-2)
-        // prettier-ignore
-        const inProgressScores = { '2-0': 10, '2-1': 11, '1-0': 12, '2-2': 13, '1-1': 14, '0-1': 15, '1-2': 16, '0-2': 17 }
-
-        const result = perf.result as string
-
-        return (
-          playoffScores[result as keyof typeof playoffScores] ||
-          inProgressScores[result as keyof typeof inProgressScores] ||
-          999
-        )
-      }
-
-      // 同阶段内，比较该阶段的战绩
-      if (aHighestSwiss && bHighestSwiss && aStageRank === bStageRank) {
-        const aSwiss = getSwissStrength(aHighestSwiss)
-        const bSwiss = getSwissStrength(bHighestSwiss)
-        if (aSwiss !== bSwiss) return aSwiss - bSwiss
-      }
-
-      const statusStrength = {
-        champion: 1, // 冠军最强
-        advanced: 2, // 已晋级
-        'in-progress': 3, // 赛程中 (可能晋级)
-        waiting: 4, // 待赛
-        eliminated: 5, // 已淘汰
-      }
-
-      // 5. 比赛状态 - 晋级/赛程中 > 待赛 > 淘汰
-      const aStatusRank = statusStrength[aStatus] || 999
-      const bStatusRank = statusStrength[bStatus] || 999
-
-      if (aStatusRank !== bStatusRank) return aStatusRank - bStatusRank
-
-      // 6. 默认按起始阶段排序 (高阶段起点 = 种子实力强)
-      const startStageRank = stageStrength[a.stage as keyof typeof stageStrength] || 999
-      const startStageRank2 = stageStrength[b.stage as keyof typeof stageStrength] || 999
-
-      return startStageRank - startStageRank2
-    })
+    .toSorted(compareTeams)
 }

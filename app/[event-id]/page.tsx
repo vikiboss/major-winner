@@ -1,894 +1,129 @@
 import Link from 'next/link'
-import {
-  evt,
-  getAllPredictorStats,
-  getStageName,
-  getEventProgress,
-  getActiveStages,
-  getEventStatusText,
-  isSwissPredictionPossible,
-  hasSwissInProgressResults,
-  hasSwissPlayoffResults,
-} from '@/lib/data'
-import { STAGE_TYPE } from '@/lib/constants'
-import TeamLogo from '@/components/TeamLogo'
-import { calculatePredictorStats } from '@/lib/data'
 
-import type { PlayoffsPrediction, StagePrediction, StageType } from '@/types'
-import type {
-  PlayoffsStage,
-  PlayoffStageType,
-  MajorEvent,
-  SwissStage,
-  SwissStageType,
-  TaskStageType,
-} from '@/types'
+import {
+  countParticipants,
+  eventSummaries,
+  getAllPredictorStats,
+  getEvent,
+  getVisibleStages,
+} from '@/lib/data'
+import { getStageMeta } from '@/lib/constants'
+import { Card } from '@/components/ui/card'
+import { EmptyState } from '@/components/ui/empty-state'
+import { StageHeader } from '@/components/stage/stage-header'
+import { StagePreview } from '@/components/stage/stage-preview'
+import { SwissResultPanel } from '@/components/stage/swiss-result-panel'
+import { PlayoffResultPanel } from '@/components/stage/playoff-result-panel'
+
+import type { PlayoffStageType, StageView, SwissStageType } from '@/types'
 
 export async function generateStaticParams() {
-  return evt.eventNames.map((e) => ({ 'event-id': e.id }))
+  return eventSummaries.map((event) => ({ 'event-id': event.id }))
 }
 
-// 只显示有结果的阶段（进行中或已完成）
-// 将 playoffs 拆分成三个独立阶段
-type TaskStageItem =
-  | {
-      id: PlayoffStageType
-      data: PlayoffsStage
-      type: 'playoffs'
-      status: 'completed' | 'in_progress' | 'waiting'
-      round: PlayoffStageType
-    }
-  | {
-      id: SwissStageType
-      data: SwissStage
-      type: 'swiss'
-      status: 'completed' | 'in_progress' | 'waiting'
-    }
-
-export default async function Event({ params }: { params: Promise<{ 'event-id': string }> }) {
+export default async function EventPage({ params }: { params: Promise<{ 'event-id': string }> }) {
   const { 'event-id': eventId } = await params
 
-  const event = evt.getEvent(eventId)
-  const stats = getAllPredictorStats(event.id)
-  const eventProgress = getEventProgress(event)
-  const activeStages = getActiveStages(event)
-
-  const stages: TaskStageItem[] = activeStages
-    .flatMap((stage): TaskStageItem | TaskStageItem[] => {
-      // 如果是 playoffs, 拆分成三个子阶段,但只显示有结果或进行中的子阶段
-      const hasPredictions = stage.hasPredictions
-
-      if (stage.id === 'playoffs') {
-        if (!event.playoffs) return []
-
-        const results = event.playoffs.result
-
-        const rounds: {
-          id: PlayoffStageType
-          status: 'not_started' | 'in_progress' | 'waiting' | 'completed'
-        }[] = [
-          {
-            id: '8-to-4',
-            status: hasPredictions
-              ? results['8-to-4'].winners.length > 0
-                ? results['8-to-4'].winners.length === 4
-                  ? 'completed'
-                  : 'in_progress'
-                : 'waiting'
-              : 'not_started',
-          },
-          {
-            id: '4-to-2',
-            status:
-              hasPredictions && results['8-to-4'].winners.length === 4
-                ? results['4-to-2'].winners.length > 0
-                  ? results['4-to-2'].winners.length === 2
-                    ? 'completed'
-                    : 'in_progress'
-                  : 'waiting'
-                : 'not_started',
-          },
-          {
-            id: '2-to-1',
-            status:
-              hasPredictions &&
-              results['8-to-4'].winners.length === 4 &&
-              results['4-to-2'].winners.length === 2
-                ? results['2-to-1'].winner
-                  ? 'completed'
-                  : 'waiting'
-                : 'not_started',
-          },
-        ]
-
-        return rounds
-          .filter((e) => e.status !== 'not_started')
-          .map((round) => ({
-            id: round.id,
-            data: event.playoffs!,
-            type: STAGE_TYPE.PLAYOFFS,
-            status: round.status as 'completed' | 'in_progress' | 'waiting',
-            round: round.id,
-          }))
-      }
-
-      // 瑞士轮阶段
-      const stageData = event[stage.id]
-
-      return {
-        id: stage.id as SwissStageType,
-        data: stageData! as SwissStage,
-        type: STAGE_TYPE.SWISS,
-        status: stage.status,
-      }
-    })
-    .filter((s): s is TaskStageItem => s.data !== null)
-    .toReversed()
+  const event = getEvent(eventId)
+  const stats = getAllPredictorStats(eventId)
+  const stages = getVisibleStages(eventId)
 
   return (
     <div className="min-h-screen">
       {/* 顶部标题栏 */}
       <div className="border-border bg-surface-1 border-b">
         <div className="mx-auto max-w-5xl px-4 py-4 sm:py-6">
-          <div className="min-w-0 flex-1">
-            <h1 className="text-primary mb-3 text-2xl font-semibold sm:mb-4 sm:text-4xl lg:text-5xl">
-              {event.name}
-            </h1>
-            <div className="flex flex-col gap-2 text-sm sm:flex-row sm:flex-wrap sm:items-center sm:gap-3 sm:text-base">
-              <p className="text-muted">竞猜追踪 · {stats.length} 位竞猜者</p>
-              {/* <span className="text-muted hidden sm:inline">·</span> */}
-              {/* <div className="flex items-center gap-2">
-                <div
-                  className={`h-2 w-2 rounded-full ${eventProgress.currentStage ? 'bg-primary-400 animate-pulse' : eventProgress.eventStatus === 'completed' ? 'bg-win' : 'bg-muted'}`}
-                />
-                <span className="text-secondary">
-                  {getEventStatusText(eventProgress.eventStatus)}
-                </span>
-              </div> */}
-            </div>
+          <h1 className="text-primary mb-3 text-2xl font-semibold sm:mb-4 sm:text-4xl lg:text-5xl">
+            {event.name}
+          </h1>
+          <p className="text-muted text-sm sm:text-base">竞猜追踪 · {stats.length} 位竞猜者</p>
+        </div>
+      </div>
+
+      {/* 阶段锚点导航 */}
+      {stages.length > 0 && (
+        <div className="bg-surface-0 border-border sticky top-12 z-40 border-b sm:top-16">
+          <div className="mx-auto max-w-5xl">
+            <nav className="stage-nav flex scrollbar-thin gap-2 overflow-x-auto px-4 py-2 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent">
+              {stages.map((stage) => (
+                <a
+                  key={stage.id}
+                  href={`#${stage.id}`}
+                  className="hover:bg-surface-2 hover-text-primary text-secondary shrink-0 rounded-md px-3 py-2 text-xs font-medium transition-colors active:scale-95 sm:min-w-20 sm:px-4 sm:text-sm"
+                  style={{ scrollSnapAlign: 'start' }}
+                >
+                  {getStageMeta(stage.id).label}
+                </a>
+              ))}
+            </nav>
           </div>
         </div>
-      </div>
+      )}
 
-      {/* 阶段导航条 */}
-      <div className="bg-surface-0 border-border stage-nav sticky top-12 z-40 border-b sm:top-16">
-        <div className="mx-auto max-w-5xl">
-          <nav
-            className="stage-nav flex scrollbar-thin gap-2 overflow-x-auto px-4 py-2 sm:px-4 [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent"
-            role="navigation"
-            style={{ scrollSnapType: 'x mandatory' }}
-          >
-            {stages.toReversed().map((stage) => (
-              <a
-                key={stage.id}
-                href={`#${stage.id}`}
-                className="hover:bg-surface-2 hover-text-primary text-secondary shrink-0 rounded-md px-3 py-2 text-xs font-medium transition-colors active:scale-95 sm:min-w-20 sm:px-4 sm:text-sm"
-                style={{ scrollSnapAlign: 'start' }}
-              >
-                {getStageName(stage.id)}
-              </a>
-            ))}
-          </nav>
-        </div>
-      </div>
-
-      {/* 内容区适配，表格/卡片横向滚动优化 */}
       <div className="mx-auto max-w-5xl space-y-8 px-4 py-6 sm:space-y-12 sm:py-8 lg:space-y-16">
         {stages.length === 0 ? (
-          <div className="flex min-h-100 items-center justify-center">
-            <div className="text-center">
-              <div className="bg-surface-1 border-border mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full border">
-                <span className="text-muted text-2xl">📅</span>
-              </div>
-              <h3 className="text-primary mb-2 text-lg font-medium">赛事尚未开始</h3>
-              <p className="text-muted text-sm">比赛结果将在赛事开始后实时更新</p>
-            </div>
-          </div>
+          <EmptyState
+            icon="📅"
+            title="赛事尚未开始"
+            description="比赛结果将在赛事开始后实时更新"
+            className="flex min-h-100 items-center justify-center"
+          />
         ) : (
-          stages.map((stage) => (
-            <StageSection
-              key={stage.id}
-              stageId={stage.id}
-              stageName={getStageName(stage.id)}
-              stageData={stage.data}
-              stageType={stage.type}
-              event={event}
-              stageStatus={stage.status}
-              round={'round' in stage ? stage.round : undefined}
-            />
-          ))
+          // 最新阶段排在最前
+          stages
+            .toReversed()
+            .map((stage) => <StageSection key={stage.id} eventId={eventId} stage={stage} />)
         )}
       </div>
     </div>
   )
 }
 
-function StageSection({
-  stageId,
-  stageName,
-  stageData,
-  stageType,
-  event,
-  stageStatus,
-  round,
-}: {
-  stageId: TaskStageType
-  stageName: string
-  stageData?: SwissStage | PlayoffsStage
-  stageType: StageType
-  event: MajorEvent
-  stageStatus?: 'completed' | 'in_progress' | 'waiting'
-  round?: PlayoffStageType
-}) {
-  const isSwiss = stageType === STAGE_TYPE.SWISS
-  const swissData = isSwiss ? (stageData as SwissStage) : null
-  const playoffsData = stageType === STAGE_TYPE.PLAYOFFS ? (stageData as PlayoffsStage) : null
+interface StageSectionProps {
+  eventId: string
+  stage: StageView
+}
 
-  const predictions =
-    evt
-      .getPredictions(event.id)
-      .filter((e) =>
-        stageType === STAGE_TYPE.SWISS
-          ? e[stageId as SwissStageType]?.['0-3']?.length
-          : e.playoffs?.[stageId as PlayoffStageType]?.length,
-      ) || []
+/** 单个阶段：左侧比赛结果，右侧竞猜预览 */
+function StageSection({ eventId, stage }: StageSectionProps) {
+  const event = getEvent(eventId)
+  const isSwiss = stage.kind === 'swiss'
+  const participants = countParticipants(eventId, stage.id)
 
   return (
-    <section id={stageId} className="scroll-mt-32">
-      {/* 阶段标题 */}
-      <div className="mb-6 flex items-center gap-4">
-        <div className="bg-primary-500/10 border-primary-500/20 flex h-10 w-10 items-center justify-center rounded-md border">
-          <span className={`text-primary-400 font-bold`}>
-            {isSwiss
-              ? stageId.replace('stage-', 'S')
-              : round === '8-to-4'
-                ? 'F1'
-                : round === '4-to-2'
-                  ? 'F2'
-                  : 'F3'}
-          </span>
-        </div>
-        <div className="flex-1">
-          <div className="flex items-center gap-3">
-            <h2 className="text-primary text-xl font-semibold">{stageName}</h2>
-            {stageStatus && (
-              <span
-                className={`rounded px-2 py-0.5 text-xs font-medium ${
-                  stageStatus === 'completed'
-                    ? 'bg-win/10 text-win'
-                    : stageStatus === 'in_progress'
-                      ? 'bg-primary-500/10 text-primary-400 animate-pulse'
-                      : 'bg-yellow-500/10 text-yellow-400'
-                }`}
-              >
-                {stageStatus === 'completed'
-                  ? '已完成'
-                  : stageStatus === 'in_progress'
-                    ? '进行中'
-                    : '等待中'}
-              </span>
-            )}
-          </div>
-          <p className="text-muted text-sm">
-            {isSwiss
-              ? '瑞士轮 · 三败淘汰'
-              : round === '8-to-4'
-                ? '决胜阶段 · 八进四'
-                : round === '4-to-2'
-                  ? '决胜阶段 · 四进二'
-                  : '决赛 · 冠军争夺'}
-          </p>
-        </div>
-      </div>
+    <section id={stage.id} className="scroll-mt-32">
+      <StageHeader stageId={stage.id} status={stage.status} />
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
-        {/* 左侧：比赛结果 */}
         <div className="flex lg:col-span-5">
-          <div className="bg-surface-1 border-border flex flex-1 flex-col rounded-lg border">
-            <div className="border-border border-b px-4 py-3">
-              <h3 className="text-secondary text-sm font-medium">比赛结果</h3>
-            </div>
-            <div className="flex-1 p-4">
-              {stageStatus === 'waiting' && (
-                <div className="text-muted py-8 text-center">
-                  <div className="mb-2 text-2xl">⏳</div>
-                  <p className="text-sm">比赛尚未开始</p>
-                  <p className="text-muted mt-1 text-xs">竞猜已提交，等待比赛结果</p>
-                </div>
-              )}
-
-              {stageStatus !== 'waiting' && isSwiss && swissData
-                ? // 检查是否有最终结果或进行中的战绩
-                  (() => {
-                    const hasPlayoffResults = hasSwissPlayoffResults(swissData.result)
-                    const hasInProgress = hasSwissInProgressResults(swissData.result)
-
-                    // 如果既没有最终结果,也没有进行中的结果,显示占位符
-                    if (!hasPlayoffResults && !hasInProgress) {
-                      return (
-                        <div className="text-muted py-8 text-center">
-                          <div className="mb-2 text-2xl">⚔️</div>
-                          <p className="text-sm">比赛进行中</p>
-                          <p className="text-muted mt-1 text-xs">结果尚未出炉</p>
-                        </div>
-                      )
-                    }
-
-                    // 进行中的战绩记录(按胜场数从高到低排序)
-                    const inProgressRecords = [
-                      '2-2', // 2胜
-                      '2-1', // 2胜
-                      '2-0', // 2胜
-                      '1-2', // 1胜
-                      '1-1', // 1胜
-                      '1-0', // 1胜
-                      '0-2', // 0胜
-                      '0-1', // 0胜
-                    ] as const
-
-                    // 有结果,显示结果内容
-                    return (
-                      <div className="space-y-4">
-                        {/* 进行中的战绩(仅在有进行中战绩时显示) */}
-                        {hasInProgress && (
-                          <div>
-                            <p className="text-secondary mb-2 text-xs font-medium">当前战绩</p>
-                            <div className="space-y-2">
-                              {inProgressRecords.map((record) => {
-                                const teams = swissData.result[record]
-                                if (!teams || !teams.length) return null
-                                return (
-                                  <div key={record} className="flex items-start gap-2">
-                                    <span className="text-muted w-8 shrink-0 pt-0.5 text-xs text-nowrap">
-                                      {record}
-                                    </span>
-                                    <div className="flex flex-wrap gap-1">
-                                      {teams.map((t) => (
-                                        <TeamLogo key={t} id={t} />
-                                      ))}
-                                    </div>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          </div>
-                        )}
-
-                        {/* 晋级(仅在有最终结果时显示) */}
-                        {hasPlayoffResults && (
-                          <>
-                            {/* 晋级队伍 */}
-                            {(swissData.result['3-0'].length > 0 ||
-                              swissData.result['3-1'].length > 0 ||
-                              swissData.result['3-2'].length > 0) && (
-                              <div>
-                                <p className="text-win mb-2 font-medium">晋级</p>
-                                <div className="space-y-2">
-                                  {(['3-0', '3-1', '3-2'] as const).map((record) => {
-                                    const teams = swissData.result[record]
-                                    if (!teams.length) return null
-                                    return (
-                                      <div key={record} className="flex items-start gap-2">
-                                        <span className="text-muted w-8 shrink-0 pt-0.5 text-xs text-nowrap">
-                                          {record}
-                                        </span>
-                                        <div className="flex flex-wrap gap-1">
-                                          {teams.map((t) => (
-                                            <TeamLogo key={t} id={t} status="win" />
-                                          ))}
-                                        </div>
-                                      </div>
-                                    )
-                                  })}
-                                </div>
-                              </div>
-                            )}
-
-                            {/* 淘汰队伍 */}
-                            {(swissData.result['2-3'].length > 0 ||
-                              swissData.result['1-3'].length > 0 ||
-                              swissData.result['0-3'].length > 0) && (
-                              <div>
-                                <p className="text-lose mb-2 font-medium">淘汰</p>
-                                <div className="space-y-2">
-                                  {(['2-3', '1-3', '0-3'] as const).map((record) => {
-                                    const teams = swissData.result[record]
-                                    if (!teams.length) return null
-                                    return (
-                                      <div key={record} className="flex items-start gap-2">
-                                        <span className="text-muted w-8 shrink-0 pt-0.5 text-xs text-nowrap">
-                                          {record}
-                                        </span>
-                                        <div className="flex flex-wrap gap-1">
-                                          {teams.map((t) => (
-                                            <TeamLogo key={t} id={t} status="lose" />
-                                          ))}
-                                        </div>
-                                      </div>
-                                    )
-                                  })}
-                                </div>
-                              </div>
-                            )}
-                          </>
-                        )}
-                      </div>
-                    )
-                  })()
-                : null}
-
-              {stageStatus !== 'waiting' &&
-                !isSwiss &&
-                playoffsData &&
-                round &&
-                (() => {
-                  // 检查当前轮次是否有结果
-                  const hasResults =
-                    round === '2-to-1'
-                      ? playoffsData.result['2-to-1'].winner !== null
-                      : playoffsData.result[round].winners.length > 0 ||
-                        playoffsData.result[round].losers.length > 0
-
-                  // 如果没有结果，显示进行中提示
-                  if (!hasResults) {
-                    return (
-                      <div className="text-muted py-8 text-center">
-                        <div className="mb-2 text-2xl">⚔️</div>
-                        <p className="text-sm">比赛进行中</p>
-                        <p className="text-muted mt-1 text-xs">结果尚未出炉</p>
-                      </div>
-                    )
-                  }
-
-                  const waitingTeams =
-                    round === '8-to-4'
-                      ? playoffsData.teams.filter(
-                          (e) =>
-                            !playoffsData.result[round].winners.includes(e) &&
-                            !playoffsData.result[round].losers.includes(e),
-                        )
-                      : round === '4-to-2'
-                        ? playoffsData.result['8-to-4'].winners.filter(
-                            (e) =>
-                              !playoffsData.result[round].winners.includes(e) &&
-                              !playoffsData.result[round].losers.includes(e),
-                          )
-                        : []
-
-                  // 有结果，显示结果内容
-                  return (
-                    <div className="space-y-4">
-                      {/* 八进四 和 半决赛 */}
-                      {(round === '8-to-4' || round === '4-to-2') && (
-                        <div className="flex flex-col gap-2 sm:gap-4">
-                          {waitingTeams.length > 0 && (
-                            <div className="flex-1">
-                              <p className="text-muted mb-2 font-medium">等待比赛</p>
-                              <div className="flex flex-wrap gap-1">
-                                {waitingTeams.map((t) => (
-                                  <TeamLogo key={t} id={t} />
-                                ))}
-                              </div>
-                            </div>
-                          )}
-                          <div className="flex gap-4">
-                            <div className="flex-1">
-                              <p className="text-win mb-2 font-medium">晋级</p>
-                              <div className="flex flex-wrap gap-1">
-                                {playoffsData.result[round].winners.map((t) => (
-                                  <TeamLogo key={t} id={t} status="win" />
-                                ))}
-                              </div>
-                            </div>
-                            <div className="flex-1">
-                              <p className="text-lose mb-2 font-medium">淘汰</p>
-                              <div className="flex flex-wrap gap-1">
-                                {playoffsData.result[round].losers.map((t) => (
-                                  <TeamLogo key={t} id={t} status="lose" />
-                                ))}
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      )}
-                      {/* 决赛 - 冠军 */}
-                      {round === '2-to-1' && playoffsData.result['2-to-1'].winner && (
-                        <div>
-                          <p className="text-primary-400 mb-2 text-xs">🏆 冠军</p>
-                          <div className="flex items-center gap-2">
-                            <TeamLogo
-                              id={playoffsData.result['2-to-1'].winner}
-                              size="lg"
-                              hideLabel
-                            />
-                            <p className="text-primary text-lg font-semibold">
-                              {playoffsData.result['2-to-1'].winner}
-                            </p>
-                          </div>
-                          {playoffsData.result['2-to-1'].loser && (
-                            <div className="text-muted mt-2 flex items-center gap-2 text-sm">
-                              <TeamLogo
-                                id={playoffsData.result['2-to-1'].loser}
-                                size="sm"
-                                hideLabel
-                              />
-                              <span>亚军: {playoffsData.result['2-to-1'].loser}</span>
-                            </div>
-                          )}
-                        </div>
-                      )}
-                    </div>
-                  )
-                })()}
-            </div>
-          </div>
+          <Card title="比赛结果" className="flex flex-1 flex-col" bodyClassName="flex-1 p-4">
+            {stage.status === 'waiting' ? (
+              <EmptyState icon="⏳" title="比赛尚未开始" description="竞猜已提交，等待比赛结果" />
+            ) : isSwiss ? (
+              <SwissResultPanel result={event[stage.id as SwissStageType].result} />
+            ) : (
+              <PlayoffResultPanel round={stage.id as PlayoffStageType} playoffs={event.playoffs} />
+            )}
+          </Card>
         </div>
 
-        {/* 右侧：竞猜情况 */}
         <div className="lg:col-span-7">
-          <div className="bg-surface-1 border-border rounded-lg border">
-            <div className="border-border flex items-center justify-between border-b px-4 py-3">
-              <h3 className="text-secondary text-sm font-medium">竞猜情况</h3>
+          <Card
+            title="竞猜情况"
+            action={
               <Link
-                href={`${event.id}/stages/${stageType === STAGE_TYPE.PLAYOFFS ? 'playoffs' : stageId}`}
+                href={`/${eventId}/stages/${isSwiss ? stage.id : 'playoffs'}`}
                 className="text-secondary hover:text-primary-300 text-xs hover:underline"
               >
-                查看全部 ({predictions.length}) ➜
+                查看全部 ({participants}) ➜
               </Link>
-            </div>
-            <div className="divide-border divide-y">
-              <PredictorPredictions
-                stageId={stageId}
-                stageType={stageType}
-                event={event}
-                round={round}
-                stageStatus={stageStatus}
-                limit={3}
-              />
-            </div>
-          </div>
+            }
+            bodyClassName="divide-border divide-y"
+          >
+            <StagePreview eventId={eventId} stageId={stage.id} limit={3} />
+          </Card>
         </div>
       </div>
     </section>
-  )
-}
-
-function PredictorPredictions({
-  stageId,
-  stageType,
-  event,
-  round,
-  stageStatus,
-  limit,
-}: {
-  stageId: TaskStageType
-  stageType: StageType
-  event: MajorEvent
-  round?: PlayoffStageType
-  stageStatus?: 'completed' | 'in_progress' | 'waiting'
-  limit?: number
-}) {
-  const predictions = evt.getPredictions(event.id)
-  if (!predictions.length) return null
-
-  // 获取当前阶段的实际结果
-  const stageData = stageType === STAGE_TYPE.SWISS ? event[stageId as SwissStageType] : null
-  const actualResult = stageData?.result
-
-  // 计算每个预测者在当前阶段的错误数,并排序(错误最少的排前面)
-  const predictorsWithStats = predictions
-    .filter((e) => e.id !== 'cs') // 排除比赛结果
-    .map((p) => {
-      const stats = calculatePredictorStats(event.id, p.id)
-      const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
-
-      // 计算错误数: 总预测数 - 正确数 - 仍有可能的数
-      let totalPredictions = 0
-      let correctCount = stageResult?.correctCount || 0
-      let impossibleCount = 0
-
-      if (stageType === STAGE_TYPE.SWISS) {
-        const prediction = p[stageId as SwissStageType]
-        if (prediction && actualResult) {
-          totalPredictions = 10 // 瑞士轮固定10个预测
-
-          // 统计已经确认错误的预测(不可能成真的)
-          for (const team of prediction['3-0']) {
-            if (
-              !isSwissPredictionPossible(team, '3-0', actualResult) &&
-              !actualResult['3-0']?.includes(team)
-            ) {
-              impossibleCount++
-            }
-          }
-          for (const team of prediction['3-X']) {
-            if (
-              !isSwissPredictionPossible(team, '3-X', actualResult) &&
-              !actualResult['3-1']?.includes(team) &&
-              !actualResult['3-2']?.includes(team)
-            ) {
-              impossibleCount++
-            }
-          }
-          for (const team of prediction['0-3']) {
-            if (
-              !isSwissPredictionPossible(team, '0-3', actualResult) &&
-              !actualResult['0-3']?.includes(team)
-            ) {
-              impossibleCount++
-            }
-          }
-        }
-      } else {
-        impossibleCount = stageResult?.impossibleCount || 0
-      }
-
-      return {
-        predictor: p,
-        stats,
-        stageResult,
-        correctCount,
-        impossibleCount,
-        totalPredictions,
-        totalCorrect: stats?.totalCorrect || 0,
-        totalPassed: stats?.totalPassed || 0,
-      }
-    })
-    .toSorted((a, b) => {
-      // 先按错误数升序(错误少的在前)
-      // 错误数相同，按正确数降序(正确多的在前)
-      // 正确数相同，按总通过阶段数降序
-      // 总通过阶段数相同，按总正确数降序
-      return (
-        a.impossibleCount - b.impossibleCount ||
-        b.correctCount - a.correctCount ||
-        b.totalPassed - a.totalPassed ||
-        b.totalCorrect - a.totalCorrect
-      )
-    })
-
-  // 如果有 limit,只显示前 N 个
-  const displayPredictors = limit
-    ? predictorsWithStats
-        .filter(({ predictor: p }) => {
-          const prediction =
-            stageType === STAGE_TYPE.PLAYOFFS ? p.playoffs : p[stageId as SwissStageType]
-          return prediction
-        })
-        .slice(0, limit)
-    : predictorsWithStats
-
-  return (
-    <>
-      {displayPredictors.map(({ predictor: p, stats }) => {
-        const stageResult = stats?.stageResults.find((s) => s.stageId === stageId)
-        const prediction =
-          stageType === STAGE_TYPE.PLAYOFFS ? p.playoffs : p[stageId as SwissStageType]
-
-        return (
-          <div key={p.id} className="px-4 py-3">
-            <div className="mb-2 flex items-center justify-between">
-              <div className="flex items-center gap-2">
-                {p.avatar && (
-                  <img
-                    className="size-8 rounded-full object-cover"
-                    src={p.avatar}
-                    alt={`${p.name} logo`}
-                    referrerPolicy="no-referrer"
-                  />
-                )}
-                <div className="flex flex-col items-start">
-                  <a
-                    className="text-primary hover:text-primary-400 text-sm font-medium text-nowrap hover:underline"
-                    href={p.link || '#'}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {p.name}
-                  </a>
-                  {p.platform && (
-                    <span className="text-primary-400 text-xs text-nowrap">@{p.platform}</span>
-                  )}
-                </div>
-              </div>
-              {/* 只在结束时显示通过/未通过 */}
-              {stageResult && (
-                <span
-                  className={`rounded px-2 py-0.5 text-xs ${
-                    stageStatus === 'completed'
-                      ? stageResult.passed
-                        ? 'bg-win/10 text-win'
-                        : 'bg-lose/10 text-lose'
-                      : stageStatus === 'in_progress'
-                        ? 'bg-primary-500/10 text-primary-400 animate-pulse'
-                        : 'bg-yellow-500/10 text-yellow-400'
-                  }`}
-                >
-                  {stageStatus === 'completed'
-                    ? stageResult.passed
-                      ? '通过'
-                      : '未通过'
-                    : stageStatus === 'in_progress'
-                      ? '进行中'
-                      : '祈祷中'}
-                </span>
-              )}
-            </div>
-
-            {prediction && stageType === STAGE_TYPE.SWISS && (
-              <div className="space-y-2 text-xs">
-                {/* 3-0 预测 */}
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-8 shrink-0">3-0</span>
-                  <div className="flex flex-wrap gap-1">
-                    {(prediction as StagePrediction)['3-0']
-                      .toSorted((p, n) => p.localeCompare(n))
-                      .map((team) => {
-                        const possible =
-                          stageStatus === 'waiting'
-                            ? true
-                            : isSwissPredictionPossible(team, '3-0', actualResult)
-
-                        const isCorrect =
-                          stageStatus === 'waiting' ? false : actualResult?.['3-0']?.includes(team)
-
-                        const status =
-                          stageStatus === 'waiting'
-                            ? 'normal'
-                            : isCorrect
-                              ? 'win'
-                              : !possible
-                                ? 'lose'
-                                : 'normal'
-
-                        return <TeamLogo key={team} id={team} status={status} />
-                      })}
-                  </div>
-                </div>
-
-                {/* 3-X 预测 */}
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-8 shrink-0">3-X</span>
-                  <div className="flex flex-wrap gap-1">
-                    {(prediction as StagePrediction)['3-X']
-                      .toSorted((p, n) => p.localeCompare(n))
-                      .map((team) => {
-                        const possible =
-                          stageStatus === 'waiting'
-                            ? true
-                            : isSwissPredictionPossible(team, '3-X', actualResult)
-                        const isCorrect =
-                          stageStatus === 'waiting'
-                            ? false
-                            : actualResult?.['3-1']?.includes(team) ||
-                              actualResult?.['3-2']?.includes(team)
-
-                        const status =
-                          stageStatus === 'waiting'
-                            ? 'normal'
-                            : isCorrect
-                              ? 'win'
-                              : !possible
-                                ? 'lose'
-                                : 'normal'
-
-                        return <TeamLogo key={team} id={team} status={status} />
-                      })}
-                  </div>
-                </div>
-
-                {/* 0-3 预测 */}
-                <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                  <span className="text-muted w-8 shrink-0">0-3</span>
-                  <div className="flex flex-wrap gap-1">
-                    {(prediction as StagePrediction)['0-3']
-                      .toSorted((p, n) => p.localeCompare(n))
-                      .map((team) => {
-                        const possible =
-                          stageStatus === 'waiting'
-                            ? true
-                            : isSwissPredictionPossible(team, '0-3', actualResult)
-                        const isCorrect =
-                          stageStatus === 'waiting' ? false : actualResult?.['0-3']?.includes(team)
-
-                        const status =
-                          stageStatus === 'waiting'
-                            ? 'normal'
-                            : isCorrect
-                              ? 'win'
-                              : !possible
-                                ? 'lose'
-                                : 'normal'
-
-                        return <TeamLogo key={team} id={team} status={status} />
-                      })}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {prediction && stageType === STAGE_TYPE.PLAYOFFS && round && (
-              <div className="text-xs">
-                {round === '8-to-4' && (
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                    <span className="text-muted w-8 shrink-0">四强</span>
-                    <div className="flex flex-wrap gap-1">
-                      {(prediction as PlayoffsPrediction)['8-to-4'].map((team) => {
-                        const roundResult = event.playoffs?.result['8-to-4']
-                        const hasResult = roundResult && roundResult.winners.length > 0
-                        const isCorrect = hasResult && roundResult.winners.includes(team)
-                        const isWrong = hasResult && roundResult.losers.includes(team)
-
-                        const status =
-                          stageStatus === 'waiting' && !isWrong
-                            ? 'normal'
-                            : isCorrect
-                              ? 'win'
-                              : isWrong
-                                ? 'lose'
-                                : 'normal'
-
-                        return <TeamLogo key={team} id={team} status={status} />
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {round === '4-to-2' && (
-                  <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:gap-3">
-                    <span className="text-muted w-8 shrink-0">二强</span>
-                    <div className="flex flex-wrap gap-1">
-                      {(prediction as PlayoffsPrediction)['4-to-2'].map((team) => {
-                        const roundResult = event.playoffs?.result['4-to-2']
-                        const hasResult = roundResult && roundResult.winners.length > 0
-                        const isCorrect = hasResult && roundResult.winners.includes(team)
-
-                        const isWrong =
-                          (hasResult && roundResult.losers.includes(team)) ||
-                          event.playoffs?.result['8-to-4'].losers.includes(team) // 八进四已淘汰
-
-                        const status =
-                          stageStatus === 'waiting' && !isWrong
-                            ? 'normal'
-                            : isCorrect
-                              ? 'win'
-                              : isWrong
-                                ? 'lose'
-                                : 'normal'
-
-                        return <TeamLogo key={team} id={team} status={status} />
-                      })}
-                    </div>
-                  </div>
-                )}
-
-                {round === '2-to-1' && (
-                  <div className="space-y-2 text-xs">
-                    <span className="text-muted">冠军</span>
-                    {(prediction as PlayoffsPrediction)['2-to-1'] ? (
-                      <div className="flex">
-                        <TeamLogo
-                          id={(prediction as { '2-to-1': string | null })['2-to-1']!}
-                          status={
-                            stageStatus === 'waiting'
-                              ? 'normal'
-                              : event.playoffs?.result['2-to-1'].winner
-                                ? (prediction as { '2-to-1': string | null })['2-to-1'] ===
-                                  event.playoffs.result['2-to-1'].winner
-                                  ? 'win'
-                                  : 'lose'
-                                : 'normal'
-                          }
-                        />
-                      </div>
-                    ) : null}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
-        )
-      })}
-    </>
   )
 }

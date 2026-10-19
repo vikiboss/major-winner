@@ -1,15 +1,18 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { EventSelector } from './EventSelector'
-import { GitHubIcon } from './GitHubIcon'
-import { NavItems } from './NavItems'
-import { GroupIcon } from './GroupIcon'
+
+import { SITE } from '@/lib/constants'
+import { EventSelector, type EventOption } from './event-selector'
+import { GitHubIcon } from './github-icon'
+import { NavItems } from './nav-items'
+import { GroupIcon } from './group-icon'
 
 interface HeaderProps {
   eventId: string
+  events: EventOption[]
 }
 
-export function Header({ eventId }: HeaderProps) {
+export function Header({ eventId, events }: HeaderProps) {
   return (
     <header className="bg-surface-0 border-border sticky top-0 z-50 border-b">
       <div className="mx-auto max-w-5xl px-2 sm:px-4">
@@ -19,7 +22,7 @@ export function Header({ eventId }: HeaderProps) {
             className="flex cursor-pointer items-center gap-2 hover:opacity-80 sm:gap-3"
           >
             <Image
-              src="https://image.viki.moe/cs/image/icon.png"
+              src={SITE.logo}
               alt="Major Winner Logo"
               className="size-6 sm:size-8"
               width={48}
@@ -32,16 +35,16 @@ export function Header({ eventId }: HeaderProps) {
               href={`/${eventId}`}
               className="text-primary ml-1 text-xs font-semibold sm:ml-0 sm:text-lg"
             >
-              Major Winner
+              {SITE.name}
             </Link>
-            <EventSelector eventId={eventId} />
+            <EventSelector eventId={eventId} events={events} />
           </div>
 
           <NavItems eventId={eventId} />
 
           <div className="flex items-center gap-1">
-            <GitHubIcon link="https://github.com/vikiboss/major-winner" />
-            <GroupIcon link="https://qm.qq.com/q/oiHxyHNfl6" />
+            <GitHubIcon link={SITE.github} />
+            <GroupIcon link={SITE.qqGroup} />
           </div>
         </div>
       </div>

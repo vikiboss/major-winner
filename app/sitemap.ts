@@ -1,27 +1,28 @@
-import { evt } from '@/lib/data'
 import { MAJOR_STAGES } from '@/lib/constants'
+import { eventSummaries } from '@/lib/data'
 import { MetadataRoute } from 'next'
 
 export const dynamic = 'force-static'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://major.viki.moe'
+  const lastModified = new Date()
 
-  return evt.eventNames.flatMap(({ id }) => {
-    const routes = ['', '/teams', '/leaderboard'].map((route) => ({
+  return eventSummaries.flatMap(({ id }) => {
+    const pages = ['', '/teams', '/leaderboard'].map((route) => ({
       url: `${baseUrl}/${id}${route}`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'hourly' as const,
       priority: 1,
     }))
 
-    const predictionRoutes = MAJOR_STAGES.map((stage) => ({
+    const stages = MAJOR_STAGES.map((stage) => ({
       url: `${baseUrl}/${id}/stages/${stage}`,
-      lastModified: new Date(),
+      lastModified,
       changeFrequency: 'daily' as const,
       priority: 0.8,
     }))
 
-    return [...routes, ...predictionRoutes]
+    return [...pages, ...stages]
   })
 }

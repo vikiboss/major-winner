@@ -1,7 +1,8 @@
-import { evt } from '@/lib/data'
-import { StageNav } from './StageNav'
+import { getEvent, getStagePredictionCounts, hasPredictions } from '@/lib/data'
+import { PageHeader } from '@/components/ui/page-header'
+import { StageNav } from './stage-nav'
 
-export default async function PredictionsLayout({
+export default async function StagesLayout({
   children,
   params,
 }: {
@@ -9,36 +10,29 @@ export default async function PredictionsLayout({
   params: Promise<{ 'event-id': string }>
 }) {
   const { 'event-id': eventId } = await params
-  const predictions = evt.getPredictions(eventId)
 
-  if (!predictions.length) {
+  if (!hasPredictions(eventId)) {
     return (
       <div className="mx-auto min-h-screen max-w-5xl px-4 py-6 sm:py-8">
-        <div className="text-center">
-          <h1 className="text-primary text-2xl font-bold">各竞猜者、玩家竞猜情况</h1>
-          <p className="text-muted mt-1 text-sm">暂无竞猜数据</p>
-        </div>
+        <PageHeader title="各竞猜者、玩家竞猜情况" showUpdatedAt={false}>
+          <span className="block">暂无竞猜数据</span>
+        </PageHeader>
       </div>
     )
   }
 
+  const event = getEvent(eventId)
+  const counts = getStagePredictionCounts(eventId)
+
   return (
     <div className="mx-auto min-h-screen max-w-5xl px-4 py-6 sm:px-6 sm:py-8">
-      {/* 页面标题 */}
-      <div className="mb-6">
-        <h1 className="text-primary text-2xl font-bold sm:text-3xl">竞猜情况</h1>
-        <p className="text-muted mt-1 text-sm">
-          查看所有竞猜者在各阶段的竞猜情况。Ctrl + F 快速搜索。最后更新
-          <time className="mx-1">
-            {new Date(parseInt(BUILD_AT)).toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' })}。
-          </time>
-        </p>
-      </div>
+      <PageHeader
+        title="竞猜情况"
+        description={`${event.shortName} · 查看所有竞猜者在各阶段的竞猜情况。Ctrl + F 快速搜索。`}
+      />
 
-      {/* 阶段切换标签 */}
-      <StageNav eventId={eventId} />
+      <StageNav eventId={eventId} counts={counts} />
 
-      {/* 动态内容 */}
       {children}
     </div>
   )

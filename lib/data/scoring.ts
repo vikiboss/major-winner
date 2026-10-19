@@ -93,19 +93,21 @@ export function getSwissTeamOutcome(
   return 'pending'
 }
 
-/** 该队是否在指定轮次之前/之中已被淘汰 */
-export function isTeamEliminatedBefore(
+/**
+ * 该队在该轮次结束时是否已被淘汰（包含本轮败者）。
+ * 用于把「已经出局」的竞猜判为错误，而不是继续显示为待定。
+ */
+export function isTeamEliminated(
   team: string,
   round: PlayoffStageType,
   result: PlayoffsResult,
 ): boolean {
-  const earlier: string[] = []
-  if (round !== '8-to-4') earlier.push(...result['8-to-4'].losers)
-  if (round === '2-to-1') {
-    earlier.push(...result['4-to-2'].losers)
-    if (result['2-to-1'].loser) earlier.push(result['2-to-1'].loser)
-  }
-  return earlier.includes(team)
+  const eliminated: string[] = [...result['8-to-4'].losers]
+
+  if (round !== '8-to-4') eliminated.push(...result['4-to-2'].losers)
+  if (round === '2-to-1' && result['2-to-1'].loser) eliminated.push(result['2-to-1'].loser)
+
+  return eliminated.includes(team)
 }
 
 /** 决胜阶段竞猜中某队的判定结果 */
@@ -120,7 +122,7 @@ export function getPlayoffTeamOutcome(
   if (winners.includes(team)) return 'win'
 
   if (round === '2-to-1' && result['2-to-1'].winner) return 'lose'
-  return isTeamEliminatedBefore(team, round, result) ? 'lose' : 'pending'
+  return isTeamEliminated(team, round, result) ? 'lose' : 'pending'
 }
 
 /* -------------------------------------------------------------------------- */

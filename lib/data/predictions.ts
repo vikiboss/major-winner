@@ -208,16 +208,16 @@ function participatesIn(prediction: PredictorPrediction, scope: MajorStageType):
 /**
  * 生成某大阶段（stage-1 / stage-2 / stage-3 / playoffs）的表格行。
  * 行已按该阶段的规则排序，分组内的队伍按出现频次排序。
+ *
+ * 纯函数版本，便于测试；页面请用 `buildRows(eventId, scope)`。
  */
-export function buildRows(eventId: string, scope: MajorStageType): PredictorRow[] {
-  const cacheKey = `${eventId}:${scope}`
-  const cached = rowsCache.get(cacheKey)
-  if (cached) return cached
-
-  const event = getEvent(eventId)
-  const statsMap = getStatsMap(eventId)
-
-  const rows: PredictorRow[] = getEventPredictions(eventId)
+export function createRows(
+  event: MajorEvent,
+  predictions: PredictorPrediction[],
+  statsMap: Map<string, PredictorStats>,
+  scope: MajorStageType,
+): PredictorRow[] {
+  const rows: PredictorRow[] = predictions
     .filter((prediction) => participatesIn(prediction, scope))
     .map((prediction) => {
       const stats = statsMap.get(prediction.id)!
@@ -249,7 +249,7 @@ export function buildRows(eventId: string, scope: MajorStageType): PredictorRow[
     rankByGroup.set(groupId, buildFrequencyRank(lists))
   }
 
-  const sorted = rows
+  return rows
     .map((row) => ({
       ...row,
       groups: row.groups.map((group) => ({
@@ -258,9 +258,17 @@ export function buildRows(eventId: string, scope: MajorStageType): PredictorRow[
       })),
     }))
     .toSorted(scope === 'playoffs' ? compareByPlayoffs : compareByCorrectFirst)
+}
 
-  rowsCache.set(cacheKey, sorted)
-  return sorted
+/** 生成某大阶段的表格行（带缓存） */
+export function buildRows(eventId: string, scope: MajorStageType): PredictorRow[] {
+  const cacheKey = `${eventId}:${scope}`
+  const cached = rowsCache.get(cacheKey)
+  if (cached) return cached
+
+  const rows = createRows(getEvent(eventId), getEventPredictions(eventId), getStatsMap(eventId), scope)
+  rowsCache.set(cacheKey, rows)
+  return rows
 }
 
 /** 首页预览：只取前 limit 位，按「还没炸」优先（不含「比赛结果」这条基准记录） */
@@ -304,13 +312,13 @@ function toViewStatus(
 /**
  * 把赛事拆成页面上要展示的阶段序列：
  * 三个瑞士轮 + 决胜阶段的三轮，并给出各自状态与是否可见。
+ *
+ * 纯函数版本，便于测试；页面请用 `getStageViews(eventId)`。
  */
-export function getStageViews(eventId: string): StageView[] {
-  const cached = stageViewsCache.get(eventId)
-  if (cached) return cached
-
-  const event = getEvent(eventId)
-  const predictions = getEventPredictions(eventId)
+export function createStageViews(
+  event: MajorEvent,
+  predictions: PredictorPrediction[],
+): StageView[] {
   const views: StageView[] = []
 
   for (const stageId of SWISS_STAGES) {
@@ -333,11 +341,10 @@ export function getStageViews(eventId: string): StageView[] {
 
   for (const round of PLAYOFF_ROUNDS) {
     const progress = getRoundProgress(event.playoffs, round)
+    // 上一轮没打完时，本轮还没开始（不提前显示为等待中）
     const status: StageProgressStatus = unlocked
       ? toViewStatus(progress, hasPlayoffPredictions)
-      : hasPlayoffPredictions
-        ? 'waiting'
-        : 'not_started'
+      : 'not_started'
 
     views.push({
       id: round,
@@ -351,6 +358,15 @@ export function getStageViews(eventId: string): StageView[] {
     unlocked = progress.isComplete
   }
 
+  return views
+}
+
+/** 阶段视图（带缓存） */
+export function getStageViews(eventId: string): StageView[] {
+  const cached = stageViewsCache.get(eventId)
+  if (cached) return cached
+
+  const views = createStageViews(getEvent(eventId), getEventPredictions(eventId))
   stageViewsCache.set(eventId, views)
   return views
 }

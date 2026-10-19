@@ -3,7 +3,6 @@
   "predictions": [
     {
       "id": "cs",
-      "name": "比赛结果",
       "stage-1": {
         "3-0": ["BB", "B8"],
         "3-X": ["TYLOO", "GL", "MIBR", "BIG", "FlyQuest", "M80"],
@@ -27,7 +26,6 @@
     },
     {
       "id": "cs-advent",
-      "name": "CS-advent",
       "stage-1": {
         "3-0": ["BB", "HEROIC"],
         "3-X": ["TYLOO", "GL", "B8", "BIG", "FlyQuest", "MIBR"],
@@ -51,7 +49,6 @@
     },
     {
       "id": "wanjiqi",
-      "name": "玩机器丶Machine",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "TYLOO", "LVG", "BIG"],
@@ -75,7 +72,6 @@
     },
     {
       "id": "danking",
-      "name": "DANKING",
       "stage-1": {
         "3-0": ["B8", "GL"],
         "3-X": ["BB", "TYLOO", "HEROIC", "M80", "NRG", "SINNERS"],
@@ -99,7 +95,6 @@
     },
     {
       "id": "sunxiaochuan",
-      "name": "川臊258/孙笑川",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["TYLOO", "HEROIC", "B8", "MIBR", "M80", "Liquid"],
@@ -116,10 +111,8 @@
         "0-3": ["BB", "B8"]
       }
     },
-
     {
       "id": "niko",
-      "name": "NiKo",
       "stage-1": {
         "3-0": ["GL", "BIG"],
         "3-X": ["HEROIC", "MIBR", "B8", "BB", "Liquid", "TYLOO"],
@@ -128,7 +121,6 @@
     },
     {
       "id": "spirit",
-      "name": "Team Spirit",
       "stage-1": {
         "3-0": ["BB", "GL"],
         "3-X": ["B8", "HEROIC", "MIBR", "Liquid", "TYLOO", "SINNERS"],
@@ -137,7 +129,6 @@
     },
     {
       "id": "mouz",
-      "name": "MOUZ",
       "stage-1": {
         "3-0": ["B8", "GL"],
         "3-X": ["SINNERS", "BB", "HEROIC", "TYLOO", "LVG", "Liquid"],
@@ -146,7 +137,6 @@
     },
     {
       "id": "chopper",
-      "name": "chopper",
       "stage-1": {
         "3-0": ["B8", "GL"],
         "3-X": ["BIG", "BB", "HEROIC", "M80", "Liquid", "MIBR"],
@@ -170,7 +160,6 @@
     },
     {
       "id": "overdrive",
-      "name": "OverDrive",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "SINNERS", "Liquid", "TYLOO"],
@@ -194,7 +183,6 @@
     },
     {
       "id": "csboy-maxixi",
-      "name": "CSBOY-马西西",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["BIG", "HEROIC", "B8", "MIBR", "M80", "Liquid"],
@@ -213,7 +201,6 @@
     },
     {
       "id": "csboy-mo",
-      "name": "CSBOY-MO",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "TYLOO", "LVG", "BIG"],
@@ -232,7 +219,6 @@
     },
     {
       "id": "biliwang",
-      "name": "比利王",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -256,7 +242,6 @@
     },
     {
       "id": "xvduoyu",
-      "name": "许多鱼 x",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -275,7 +260,6 @@
     },
     {
       "id": "juebao",
-      "name": "不会沙鹰的珏宝、",
       "stage-1": {
         "3-0": ["LVG", "Liquid"],
         "3-X": ["HEROIC", "MIBR", "B8", "GL", "BB", "BIG"],
@@ -299,7 +283,6 @@
     },
     {
       "id": "banks",
-      "name": "BanKs",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["TYLOO", "BB", "BIG", "HEROIC", "MIBR", "M80"],
@@ -323,7 +306,6 @@
     },
     {
       "id": "hooxi",
-      "name": "HooXi",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "TYLOO", "BIG"],
@@ -332,7 +314,6 @@
     },
     {
       "id": "snax",
-      "name": "snax",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["LVG", "MIBR", "B8", "SINNERS", "Liquid", "BIG"],
@@ -341,7 +322,6 @@
     },
     {
       "id": "xielo",
-      "name": "xiELO",
       "stage-1": {
         "3-0": ["GL", "TYLOO"],
         "3-X": ["HEROIC", "MIBR", "B8", "BB", "NRG", "FlyQuest"],
@@ -355,7 +335,6 @@
     },
     {
       "id": "olofmeister",
-      "name": "olofmeister",
       "stage-1": {
         "3-0": ["HEROIC", "TYLOO"],
         "3-X": ["GL", "MIBR", "B8", "M80", "BB", "BIG"],
@@ -364,7 +343,6 @@
     },
     {
       "id": "ququ",
-      "name": "QUQU 太不常规",
       "stage-1": {
         "3-0": ["GL", "BIG"],
         "3-X": ["TYLOO", "MIBR", "B8", "HEROIC", "BB", "LVG"],
@@ -388,7 +366,6 @@
     },
     {
       "id": "deyunlianggui",
-      "name": "CS2-德云两鬼",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "LVG", "TYLOO"],
@@ -397,7 +374,6 @@
     },
     {
       "id": "xiaotian",
-      "name": "小天 FreeZing",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "TYLOO", "LVG", "BIG"],
@@ -421,7 +397,6 @@
     },
     {
       "id": "cs-rw",
-      "name": "CS-RW",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "TYLOO", "B8", "FlyQuest", "Liquid", "BIG"],
@@ -445,7 +420,6 @@
     },
     {
       "id": "fga",
-      "name": "FGA 字幕组",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["HEROIC", "B8", "BB", "TYLOO", "LVG", "BIG"],
@@ -469,7 +443,6 @@
     },
     {
       "id": "laozhang",
-      "name": "CS 解说老张",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "MIBR", "SINNERS", "M80", "HEROIC", "BIG"],
@@ -493,7 +466,6 @@
     },
     {
       "id": "laiangkai",
-      "name": "莱昂凯 shyeark",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["TYLOO", "BIG", "B8", "HEROIC", "Liquid", "LVG"],
@@ -517,7 +489,6 @@
     },
     {
       "id": "rose",
-      "name": "-玫瑰予乐-",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["Liquid", "BB", "BIG", "HEROIC", "MIBR", "M80"],
@@ -541,7 +512,6 @@
     },
     {
       "id": "laojiao",
-      "name": "老蕉 Banous",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["Liquid", "BB", "BIG", "HEROIC", "MIBR", "M80"],
@@ -565,7 +535,6 @@
     },
     {
       "id": "xieshaonian",
-      "name": "邪少年丶",
       "stage-1": {
         "3-0": ["GL", "HEROIC"],
         "3-X": ["Liquid", "BB", "BIG", "B8", "MIBR", "M80"],
@@ -589,7 +558,6 @@
     },
     {
       "id": "mauisnake",
-      "name": "Mauisnake",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "SINNERS", "BIG", "HEROIC", "MIBR", "M80"],
@@ -608,7 +576,6 @@
     },
     {
       "id": "cs-tactics",
-      "name": "CS Tactics",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "Liquid", "BIG", "HEROIC", "MIBR", "M80"],
@@ -632,7 +599,6 @@
     },
     {
       "id": "co-jo-mo",
-      "name": "CoJoMo",
       "stage-1": {
         "3-0": ["B8", "BB"],
         "3-X": ["TYLOO", "GL", "BIG", "HEROIC", "MIBR", "M80"],
@@ -651,7 +617,6 @@
     },
     {
       "id": "gaules",
-      "name": "Gaules",
       "stage-1": {
         "3-0": ["MIBR", "GL"],
         "3-X": ["B8", "BB", "BIG", "GG", "HEROIC", "Liquid"],
@@ -675,7 +640,6 @@
     },
     {
       "id": "poloolpp",
-      "name": "Poloolpp",
       "stage-1": {
         "3-0": ["GL", "M80"],
         "3-X": ["B8", "BB", "BIG", "HEROIC", "MIBR", "SINNERS"],
@@ -699,7 +663,6 @@
     },
     {
       "id": "statsmeister1",
-      "name": "statsmeister",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "Sharks", "BIG", "HEROIC", "MIBR", "M80"],
@@ -723,7 +686,6 @@
     },
     {
       "id": "m1chaeL",
-      "name": "-m1chaeL-",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "Liquid", "BIG", "HEROIC", "MIBR", "M80"],
@@ -747,7 +709,6 @@
     },
     {
       "id": "jiangjunge",
-      "name": "CS2 将军鸽",
       "stage-1": {
         "3-0": ["MIBR", "HEROIC"],
         "3-X": ["GL", "BB", "B8", "M80", "BIG", "TYLOO"],
@@ -771,7 +732,6 @@
     },
     {
       "id": "yezi-c",
-      "name": "椰子 c",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "M80", "BIG", "Liquid", "HEROIC", "MIBR"],
@@ -795,7 +755,6 @@
     },
     {
       "id": "tatukunn",
-      "name": "Tatukunn",
       "stage-1": {
         "3-0": ["MIBR", "BB"],
         "3-X": ["HEROIC", "Sharks", "B8", "LVG", "Liquid", "GL"],
@@ -819,7 +778,6 @@
     },
     {
       "id": "qianzhihe-cs",
-      "name": "千纸鹤 cs",
       "stage-1": {
         "3-0": ["GL", "NRG"],
         "3-X": ["BB", "B8", "MIBR", "Liquid", "LVG", "TYLOO"],
@@ -838,7 +796,6 @@
     },
     {
       "id": "ounijiang",
-      "name": "瓜鱼欧尼酱",
       "stage-1": {
         "3-0": ["MIBR", "FlyQuest"],
         "3-X": ["HEROIC", "GL", "B8", "M80", "Liquid", "TYLOO"],
@@ -862,7 +819,6 @@
     },
     {
       "id": "elysia-cs2",
-      "name": "ElysiaCS2",
       "stage-1": {
         "3-0": ["TYLOO", "LVG"],
         "3-X": ["BB", "MIBR", "B8", "M80", "GL", "BIG"],
@@ -886,7 +842,6 @@
     },
     {
       "id": "csgo-leien",
-      "name": "CSGO 雷恩",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -910,7 +865,6 @@
     },
     {
       "id": "k4mi",
-      "name": "k4Mi",
       "stage-1": {
         "3-0": ["TYLOO", "LVG"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "BB", "GL"],
@@ -934,7 +888,6 @@
     },
     {
       "id": "yinxing",
-      "name": "银杏就是 YINXING",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "TYLOO", "BIG"],
@@ -958,7 +911,6 @@
     },
     {
       "id": "magnojez",
-      "name": "Magnojez",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -967,7 +919,6 @@
     },
     {
       "id": "styko",
-      "name": "STYKO",
       "stage-1": {
         "3-0": ["GL", "BIG"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "BB", "SINNERS"],
@@ -976,7 +927,6 @@
     },
     {
       "id": "clife",
-      "name": "clife",
       "stage-1": {
         "3-0": ["MIBR", "BB"],
         "3-X": ["HEROIC", "GL", "B8", "Liquid", "BIG", "SINNERS"],
@@ -1000,7 +950,6 @@
     },
     {
       "id": "ash",
-      "name": "Ash",
       "stage-1": {
         "3-0": ["MIBR", "B8"],
         "3-X": ["HEROIC", "GL", "BB", "M80", "GG", "BIG"],
@@ -1009,7 +958,6 @@
     },
     {
       "id": "vince",
-      "name": "Vince",
       "stage-1": {
         "3-0": ["GL", "HEROIC"],
         "3-X": ["BB", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1033,7 +981,6 @@
     },
     {
       "id": "hawka",
-      "name": "Hawka",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["BB", "HEROIC", "B8", "SINNERS", "Liquid", "BIG"],
@@ -1057,7 +1004,6 @@
     },
     {
       "id": "fl0m",
-      "name": "fl0m",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "NRG", "B8", "M80", "SINNERS", "BIG"],
@@ -1081,7 +1027,6 @@
     },
     {
       "id": "ozzny",
-      "name": "Ozzny",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "BIG"],
@@ -1105,7 +1050,6 @@
     },
     {
       "id": "mac-mate",
-      "name": "MacMate",
       "stage-1": {
         "3-0": ["GL", "BIG"],
         "3-X": ["BB", "B8", "HEROIC", "M80", "MIBR", "TYLOO"],
@@ -1129,7 +1073,6 @@
     },
     {
       "id": "nart-out",
-      "name": "NartOut",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "SINNERS", "Liquid", "BIG"],
@@ -1153,7 +1096,6 @@
     },
     {
       "id": "lancerrr",
-      "name": "幸运的 LANCERRR",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "SINNERS", "M80", "BIG"],
@@ -1177,7 +1119,6 @@
     },
     {
       "id": "jerry",
-      "name": "Jerry",
       "stage-1": {
         "3-0": ["GL", "M80"],
         "3-X": ["HEROIC", "B8", "BB", "Sharks", "Liquid", "BIG"],
@@ -1201,7 +1142,6 @@
     },
     {
       "id": "kane",
-      "name": "Kane",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "NRG", "M80", "BIG"],
@@ -1220,7 +1160,6 @@
     },
     {
       "id": "ban-ga",
-      "name": "CS2-BanGa",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["HEROIC", "BB", "B8", "Liquid", "M80", "BIG"],
@@ -1239,7 +1178,6 @@
     },
     {
       "id": "momo",
-      "name": "MoMo 侠",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1263,7 +1201,6 @@
     },
     {
       "id": "niaozi",
-      "name": "斋藤飛鸟子",
       "stage-1": {
         "3-0": ["GL", "HEROIC"],
         "3-X": ["BB", "MIBR", "B8", "M80", "TYLOO", "SINNERS"],
@@ -1287,7 +1224,6 @@
     },
     {
       "id": "sam-cs2",
-      "name": "Sam-CS2",
       "stage-1": {
         "3-0": ["GL", "HEROIC"],
         "3-X": ["BB", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1311,7 +1247,6 @@
     },
     {
       "id": "jiayounuli",
-      "name": "- 加油努力 Ovo-",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "TYLOO"],
@@ -1335,7 +1270,6 @@
     },
     {
       "id": "cangshanxue",
-      "name": "CS2 苍山雪",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "TYLOO", "BIG"],
@@ -1359,7 +1293,6 @@
     },
     {
       "id": "sishen",
-      "name": "死神怪蜀黍",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "TYLOO"],
@@ -1368,7 +1301,6 @@
     },
     {
       "id": "duckie",
-      "name": "duckie__",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1392,7 +1324,6 @@
     },
     {
       "id": "beimingyouyu",
-      "name": "北冥忧郁",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["SINNERS", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1416,7 +1347,6 @@
     },
     {
       "id": "ninjiajam",
-      "name": "NinjaJam",
       "stage-1": {
         "3-0": ["Liquid", "MIBR"],
         "3-X": ["HEROIC", "GL", "B8", "BB", "TYLOO", "BIG"],
@@ -1440,7 +1370,6 @@
     },
     {
       "id": "hades",
-      "name": "hades",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "BIG"],
@@ -1464,7 +1393,6 @@
     },
     {
       "id": "cmtry",
-      "name": "cmtry",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["HEROIC", "BB", "B8", "TYLOO", "Liquid", "BIG"],
@@ -1483,7 +1411,6 @@
     },
     {
       "id": "launders",
-      "name": "launders",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "BIG"],
@@ -1497,7 +1424,6 @@
     },
     {
       "id": "trav",
-      "name": "Trav",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "SINNERS", "BIG"],
@@ -1521,7 +1447,6 @@
     },
     {
       "id": "mr-maxim",
-      "name": "MrMaxim",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1535,7 +1460,6 @@
     },
     {
       "id": "heaton",
-      "name": "HeatoN",
       "stage-1": {
         "3-0": ["GL", "BIG"],
         "3-X": ["B8", "TYLOO", "HEROIC", "SINNERS", "Liquid", "MIBR"],
@@ -1554,7 +1478,6 @@
     },
     {
       "id": "root-the-gamer",
-      "name": "rootthegamer",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "BIG"],
@@ -1563,7 +1486,6 @@
     },
     {
       "id": "austincs",
-      "name": "austincs",
       "stage-1": {
         "3-0": ["MIBR", "BB"],
         "3-X": ["HEROIC", "GL", "B8", "M80", "SINNERS", "LVG"],
@@ -1587,7 +1509,6 @@
     },
     {
       "id": "Officialhypercs",
-      "name": "Officialhyper",
       "stage-1": {
         "3-0": ["GL", "BIG"],
         "3-X": ["BB", "MIBR", "B8", "M80", "Liquid", "TYLOO"],
@@ -1611,7 +1532,6 @@
     },
     {
       "id": "cs2-dq",
-      "name": "CS2-dq",
       "stage-1": {
         "3-0": ["MIBR", "B8"],
         "3-X": ["HEROIC", "GL", "BB", "M80", "TYLOO", "BIG"],
@@ -1635,7 +1555,6 @@
     },
     {
       "id": "xiaoyuan",
-      "name": "- 小鸢 w -",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["BB", "MIBR", "FlyQuest", "M80", "TYLOO", "BIG"],
@@ -1659,7 +1578,6 @@
     },
     {
       "id": "fenlegeli",
-      "name": "CS2 芬了个黎",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["B8", "MIBR", "LVG", "TYLOO", "HEROIC", "BIG"],
@@ -1683,7 +1601,6 @@
     },
     {
       "id": "xiaowo",
-      "name": "小蜗 Snail",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["BB", "MIBR", "Liquid", "M80", "HEROIC", "BIG"],
@@ -1707,7 +1624,6 @@
     },
     {
       "id": "zheguchenshi",
-      "name": "折骨成诗的女人",
       "stage-1": {
         "3-0": ["BB", "MIBR"],
         "3-X": ["TYLOO", "GL", "B8", "LVG", "Liquid", "BIG"],
@@ -1731,7 +1647,6 @@
     },
     {
       "id": "r1nkle",
-      "name": "r1nkle",
       "stage-1": {
         "3-0": ["MIBR", "B8"],
         "3-X": ["GL", "BB", "SINNERS", "M80", "Liquid", "BIG"],
@@ -1740,7 +1655,6 @@
     },
     {
       "id": "markeloff",
-      "name": "markeloff",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "LVG", "BB", "M80", "Liquid", "TYLOO"],
@@ -1759,7 +1673,6 @@
     },
     {
       "id": "n0rb3r7",
-      "name": "n0rb3r7",
       "stage-2": {
         "3-0": ["Spirit", "FUT"],
         "3-X": ["Legacy", "Astralis", "G2", "GL", "B8", "BB"],
@@ -1778,7 +1691,6 @@
     },
     {
       "id": "pimp",
-      "name": "Pimp",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "TYLOO", "Liquid", "BIG"],
@@ -1802,7 +1714,6 @@
     },
     {
       "id": "thorin",
-      "name": "Thorin",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "TYLOO", "M80", "BIG"],
@@ -1826,7 +1737,6 @@
     },
     {
       "id": "tedd",
-      "name": "Tedd",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["HEROIC", "B8", "BB", "M80", "SINNERS", "BIG"],
@@ -1845,7 +1755,6 @@
     },
     {
       "id": "taz",
-      "name": "TaZ",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["BIG", "MIBR", "Liquid", "FlyQuest", "M80", "B8"],
@@ -1869,7 +1778,6 @@
     },
     {
       "id": "dust",
-      "name": "dusT",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "SINNERS", "Liquid", "BIG"],
@@ -1888,7 +1796,6 @@
     },
     {
       "id": "conner",
-      "name": "Conner/Scrawny",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["HEROIC", "B8", "BB", "M80", "Liquid", "TYLOO"],
@@ -1897,7 +1804,6 @@
     },
     {
       "id": "cooper",
-      "name": "Cooper",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["TYLOO", "MIBR", "B8", "Liquid", "NRG", "M80"],
@@ -1916,7 +1822,6 @@
     },
     {
       "id": "ceh9",
-      "name": "ceh9",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "M80", "Liquid", "NRG"],
@@ -1940,7 +1845,6 @@
     },
     {
       "id": "elfish-guy",
-      "name": "Elfishguy",
       "stage-1": {
         "3-0": ["GL", "FlyQuest"],
         "3-X": ["HEROIC", "MIBR", "B8", "BB", "TYLOO", "BIG"],
@@ -1964,7 +1868,6 @@
     },
     {
       "id": "trilluxe",
-      "name": "TrilluXe",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "Liquid", "BIG"],
@@ -1988,7 +1891,6 @@
     },
     {
       "id": "weiwei",
-      "name": "解说伟伟",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "BIG", "Liquid", "TYLOO"],
@@ -2012,7 +1914,6 @@
     },
     {
       "id": "navi-csgo",
-      "name": "NAVI-CSGO",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "BB", "LVG", "Liquid", "TYLOO"],
@@ -2036,7 +1937,6 @@
     },
     {
       "id": "gubaolongji",
-      "name": "古堡龙姬",
       "stage-1": {
         "3-0": ["BB", "B8"],
         "3-X": ["GL", "MIBR", "LVG", "M80", "Liquid", "TYLOO"],
@@ -2055,7 +1955,6 @@
     },
     {
       "id": "zhengyilaodeng",
-      "name": "CS 正义老登",
       "stage-1": {
         "3-0": ["B8", "MIBR"],
         "3-X": ["HEROIC", "FlyQuest", "BB", "M80", "Liquid", "TYLOO"],
@@ -2074,7 +1973,6 @@
     },
     {
       "id": "yoke",
-      "name": "勤奋的 yoke",
       "stage-1": {
         "3-0": ["GL", "MIBR"],
         "3-X": ["HEROIC", "SINNERS", "B8", "LVG", "TYLOO", "BB"],
@@ -2098,7 +1996,6 @@
     },
     {
       "id": "kustyd",
-      "name": "Kustyd_cs2",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "MIBR", "Liquid", "M80", "TYLOO", "BB"],
@@ -2122,7 +2019,6 @@
     },
     {
       "id": "nuko",
-      "name": "Nuko 丶",
       "stage-1": {
         "3-0": ["B8", "GL"],
         "3-X": ["TYLOO", "BB", "M80", "MIBR", "BIG", "Liquid"],
@@ -2141,7 +2037,6 @@
     },
     {
       "id": "nanchanfang",
-      "name": "难产房",
       "stage-1": {
         "3-0": ["B8", "GL"],
         "3-X": ["MIBR", "BB", "HEROIC", "LVG", "M80", "TYLOO"],
@@ -2165,7 +2060,6 @@
     },
     {
       "id": "suke",
-      "name": "苏可槑",
       "stage-1": {
         "3-0": ["BB", "GL"],
         "3-X": ["MIBR", "BIG", "BB", "LVG", "FlyQuest", "HEROIC"],
@@ -2189,7 +2083,6 @@
     },
     {
       "id": "flamejz",
-      "name": "FlameJZ",
       "stage-2": {
         "3-0": ["Spirit", "Legacy"],
         "3-X": ["BB", "Astralis", "G2", "B8", "FUT", "MIBR"],
@@ -2203,7 +2096,6 @@
     },
     {
       "id": "shenmimaotouying",
-      "name": "神秘猫头鹰",
       "stage-1": {
         "3-0": ["BB", "B8"],
         "3-X": ["HEROIC", "BIG", "Liquid", "GL", "TYLOO", "LVG"],
@@ -2227,7 +2119,6 @@
     },
     {
       "id": "neeko",
-      "name": "Vitality-Neeko",
       "stage-1": {
         "3-0": ["HEROIC", "Liquid"],
         "3-X": ["GL", "B8", "BB", "TYLOO", "MIBR", "BIG"],
@@ -2251,7 +2142,6 @@
     },
     {
       "id": "ynk",
-      "name": "YNk",
       "stage-2": {
         "3-0": ["BB", "GL"],
         "3-X": ["Legacy", "Astralis", "G2", "Spirit", "FUT", "B8"],
@@ -2265,7 +2155,6 @@
     },
     {
       "id": "awang",
-      "name": "邪恶的阿旺",
       "stage-1": {
         "3-0": ["BB", "B8"],
         "3-X": ["M80", "Liquid", "FlyQuest", "TYLOO", "MIBR", "GL"],
@@ -2289,7 +2178,6 @@
     },
     {
       "id": "xieezhimao",
-      "name": "CS2 邪恶之猫",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["SINNERS", "Liquid", "FlyQuest", "TYLOO", "MIBR", "HEROIC"],
@@ -2313,7 +2201,6 @@
     },
     {
       "id": "tie",
-      "name": "懂哥 Tie",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "BB", "M80", "MIBR", "NRG", "TYLOO"],
@@ -2337,7 +2224,6 @@
     },
     {
       "id": "xichen",
-      "name": "吸尘 XiChen",
       "stage-2": {
         "3-0": ["Spirit", "G2"],
         "3-X": ["Legacy", "Astralis", "BB", "GL", "FUT", "B8"],
@@ -2356,7 +2242,6 @@
     },
     {
       "id": "little",
-      "name": "liTTle",
       "stage-2": {
         "3-0": ["Spirit", "FUT"],
         "3-X": ["Legacy", "Astralis", "G2", "B8", "M80", "BB"],
@@ -2375,7 +2260,6 @@
     },
     {
       "id": "btrams",
-      "name": "btrams",
       "stage-2": {
         "3-0": ["Spirit", "G2"],
         "3-X": ["Legacy", "Astralis", "BB", "GL", "FUT", "9z"],
@@ -2384,7 +2268,6 @@
     },
     {
       "id": "hikari",
-      "name": "希卡利 Hikari4ever",
       "stage-3": {
         "3-0": ["Vitality", "NAVI"],
         "3-X": ["MOUZ", "Falcons", "FUT", "Spirit", "MongolZ", "G2"],
@@ -2398,7 +2281,6 @@
     },
     {
       "id": "fl4mus",
-      "name": "FL4MUS",
       "stage-3": {
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "MOUZ", "NAVI", "MongolZ", "BB"],
@@ -2407,7 +2289,6 @@
     },
     {
       "id": "s1zzi",
-      "name": "s1zzi",
       "stage-3": {
         "3-0": ["Vitality", "Spirit"],
         "3-X": ["FURIA", "Falcons", "Aurora", "NAVI", "B8", "G2"],
@@ -2416,7 +2297,6 @@
     },
     {
       "id": "malou",
-      "name": "解说吗喽公主",
       "playoffs": {
         "8-to-4": ["Spirit", "Vitality", "Aurora", "9z"],
         "4-to-2": ["Vitality", "9z"],
@@ -2425,17 +2305,14 @@
     },
     {
       "id": "zhidudeyanhuo",
-      "name": "纸都的烟火",
       "playoffs": {
         "8-to-4": ["Spirit", "Falcons", "Aurora", "FURIA"],
         "4-to-2": ["Falcons", "FURIA"],
         "2-to-1": "Falcons"
       }
     },
-
     {
       "id": "viki",
-      "name": "Viki",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["BB", "HEROIC", "TYLOO", "Liquid", "FlyQuest", "LVG"],
@@ -2459,7 +2336,6 @@
     },
     {
       "id": "yuanjiese",
-      "name": "原劫色",
       "stage-2": {
         "3-0": ["Spirit", "G2"],
         "3-X": ["B8", "Astralis", "BB", "9z", "FUT", "GL"],
@@ -2478,7 +2354,6 @@
     },
     {
       "id": "sanmiqiqi",
-      "name": "三米七七",
       "stage-1": {
         "3-0": ["GL", "HEROIC"],
         "3-X": ["BB", "MIBR", "B8", "M80", "LVG", "BIG"],
@@ -2502,7 +2377,6 @@
     },
     {
       "id": "boshiyk",
-      "name": "BOSHIYK",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["HEROIC", "MIBR", "B8", "M80", "TYLOO", "BIG"],
@@ -2526,7 +2400,6 @@
     },
     {
       "id": "14k",
-      "name": "14K",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["HEROIC", "TYLOO", "MIBR", "BB", "SINNERS", "Liquid"],
@@ -2545,7 +2418,6 @@
     },
     {
       "id": "mio",
-      "name": "Mio",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["BIG", "BB", "M80", "Liquid", "MIBR", "HEROIC"],
@@ -2564,7 +2436,6 @@
     },
     {
       "id": "logic",
-      "name": "罗辑",
       "stage-1": {
         "3-0": ["BB", "MIBR"],
         "3-X": ["GL", "Liquid", "M80", "BIG", "HEROIC", "B8"],
@@ -2588,7 +2459,6 @@
     },
     {
       "id": "crazy-jester",
-      "name": "Crazy_Jester",
       "stage-1": {
         "3-0": ["GL", "B8"],
         "3-X": ["BB", "TYLOO", "HEROIC", "M80", "BIG", "MIBR"],
@@ -2612,7 +2482,6 @@
     },
     {
       "id": "1v7w",
-      "name": "1v7w",
       "stage-1": {
         "3-0": ["GL", "BB"],
         "3-X": ["LVG", "TYLOO", "HEROIC", "B8", "BIG", "MIBR"],

@@ -12,7 +12,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "data:check": "node scripts/check-data.mjs",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "studio": "node tools/studio/server.mjs"
   },
   "keywords": [],
   "author": "Viki <hi@viki.moe> (https://github.com/vikiboss)",

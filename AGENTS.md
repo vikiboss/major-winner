@@ -13,9 +13,10 @@ Major Winner：CS2 Major 竞猜结果与排行榜，纯静态站点，无后端�
 ```bash
 pnpm dev         # 开发（Turbopack）
 pnpm build       # 构建（静态导出到 out/）
-pnpm start       # 预览构建产物
 pnpm typecheck   # tsc --noEmit
+pnpm test        # Vitest（测试紧贴源码）
 pnpm data:check  # 校验 data/*.json
+pnpm studio      # 本地数据台，可视化改 data/
 pnpm format      # Prettier
 ```
 
@@ -24,8 +25,8 @@ pnpm format      # Prettier
 ```
 data/
 ├── events.json                 # 赛事 + 各阶段实际结果（唯一结果来源）
-├── predictions/<event-id>.json # 各赛事竞猜
-├── predictors.json             # 竞猜者资料
+├── predictions/<event-id>.json # 各赛事竞猜（只存 id，昵称以 predictors 为准）
+├── predictors.json             # 竞猜者资料（昵称唯一来源）
 └── teams.json                  # 战队资料
 ```
 
@@ -48,8 +49,7 @@ data/
 
 ## 评分规则
 
-- 瑞士轮：猜 2×3-0、6×3-X、2×0-3，中 5 通过，必须精确匹配
-- 决胜阶段：八进四 2/4，半决赛 1/2，决赛必须猜中冠军
+瑞士轮 5/10（须精确匹配）；八进四 2/4；半决赛 1/2；决赛必中冠军。
 
 ## 结构
 
@@ -67,9 +67,15 @@ components/
 └── stage/      # 阶段头部、结果面板、表格、预览
 ```
 
-- 默认 Server Component，直接调 `@/lib/data`
-- 仅 `StageNav` / `EventSelector` / `NavItems` 为 client，且不导入数据层，数据由 props 传入
-- 组合优于复制：新页面优先复用 `StageTableFrame`、`PredictorCard`、`PassMark`、`TeamLogoGroup`
+- 默认 Server Component，直接调 `@/lib/data`；仅 `StageNav` / `EventSelector` / `NavItems` 为 client 且不导入数据层
+- 组合优于复制：优先复用 `StageTableFrame`、`PredictorCard`、`PassMark`、`TeamLogoGroup`
+
+## 数据台
+
+`pnpm studio` 起本地页面（默认 4310，被占用则自动顺延），改动直接写回 `data/`：
+
+- 竞猜：左侧选竞猜者 → 拖队伍进 3-0 / 3-X / 0-3 或四强 / 二强 / 冠军
+- 「数据工具」菜单：比赛结果、队伍资料、新建赛事；写盘走 prettier，内容未变不落盘
 
 ## 改数据
 
@@ -77,9 +83,7 @@ components/
 
 新增竞猜者：在 `data/predictions/<event-id>.json` 加条目，`id` 对应 `predictors.json`；瑞士轮每阶段 2/6/2 支，决胜阶段 4/2/1。
 
-新增赛事：`events.json` 加赛事 → 新建 `predictions/<event-id>.json` → 在 `lib/data/store.ts` 的 `predictionFiles` 补 import → `pnpm data:check`。
-
-进度、通过状态、排行、阶段显隐全部自动推导，无需改代码。
+新增赛事：`events.json` 加赛事 → 新建 `predictions/<event-id>.json` → 在 `lib/data/store.ts` 的 `predictionFiles` 补 import → `pnpm data:check`。进度、排行、阶段显隐均自动推导。
 
 ## 样式
 
@@ -92,6 +96,5 @@ components/
 
 - Prettier：2 空格、单引号、无分号、100 列
 - 文件名统一 kebab-case（`swiss-table.tsx`），组件名保持 PascalCase；Next 约定的 `page.tsx` / `layout.tsx` 例外
-- `BUILD_AT` 由 `next.config.ts` 注入，用 `formatLastUpdated()` 展示
+- `BUILD_AT` 由 `next.config.ts` 注入，用 `formatLastUpdated()` 展示；远程图片白名单同在此文件
 - 阶段 id 固定为 `stage-1/2/3` 与 `8-to-4/4-to-2/2-to-1`，竞猜文件 key 必须一致
-- 远程图片域名白名单在 `next.config.ts`

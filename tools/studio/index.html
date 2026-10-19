@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>数据台 · Major Winner</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="brand">
+        <span class="mark" aria-hidden="true"></span>
+        <span>Major Winner</span>
+        <span class="brand-sub">数据台</span>
+      </div>
+
+      <select id="event-select" class="select" aria-label="选择赛事"></select>
+
+      <details class="menu" id="tools-menu">
+        <summary class="btn ghost">数据工具</summary>
+        <div class="menu-body">
+          <button type="button" data-mode="results">比赛结果</button>
+          <button type="button" data-mode="teams">队伍资料</button>
+          <hr />
+          <button type="button" data-action="add-event">新建赛事</button>
+        </div>
+      </details>
+
+      <div class="spacer"></div>
+
+      <span id="save-status" class="status" data-state="idle">载入中…</span>
+      <button id="reload" class="btn ghost" type="button">重新载入</button>
+    </header>
+
+    <main class="layout" id="layout" data-mode="picks">
+      <aside class="rail" id="rail">
+        <div class="rail-head">
+          <input
+            id="search"
+            class="search"
+            type="search"
+            placeholder="搜索"
+            autocomplete="off"
+            aria-label="搜索竞猜者"
+          />
+          <div class="rail-summary" id="rail-summary"></div>
+        </div>
+        <div id="rail-list" class="rail-list" role="listbox" aria-label="竞猜者列表"></div>
+        <div class="rail-foot">
+          <button id="add-predictor" class="btn" type="button">新建竞猜者</button>
+        </div>
+      </aside>
+
+      <section id="editor" class="editor" aria-live="polite"></section>
+    </main>
+
+    <dialog id="predictor-dialog" class="dialog">
+      <form id="predictor-form" method="dialog">
+        <h2 class="dialog-title">新建竞猜者</h2>
+        <div class="field">
+          <label class="label" for="new-id">ID（写入 JSON 的 key）</label>
+          <input id="new-id" name="id" required pattern="[\w.-]+" placeholder="例如 shroud" />
+        </div>
+        <div class="field">
+          <label class="label" for="new-name">昵称</label>
+          <input id="new-name" name="name" required placeholder="例如 shroud" />
+        </div>
+        <div class="field">
+          <label class="label" for="new-platform">平台</label>
+          <input id="new-platform" name="platform" placeholder="例如 Twitch / B 站" />
+        </div>
+        <p class="dialog-error" data-error hidden></p>
+        <div class="dialog-actions">
+          <button class="btn ghost" type="button" data-close>取消</button>
+          <button class="btn primary" type="submit">创建</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="event-dialog" class="dialog dialog-wide">
+      <form id="event-form" method="dialog">
+        <h2 class="dialog-title">新建赛事</h2>
+        <div class="form-grid">
+          <label class="field"
+            ><span class="label">赛事 ID</span>
+            <input name="id" required pattern="[\w.-]+" placeholder="例如 2027-katowice"
+          /></label>
+          <label class="field"
+            ><span class="label">名称</span>
+            <input name="name" required placeholder="例如 IEM 卡托维兹 Major 2027"
+          /></label>
+          <label class="field"
+            ><span class="label">简称</span>
+            <input name="shortName" required placeholder="例如 卡托维兹 2027"
+          /></label>
+        </div>
+
+        <label class="field" style="margin-top: 10px">
+          <span class="label">队伍来源</span>
+          <select name="copyFrom" id="copy-from" class="input">
+            <option value="">手动填写</option>
+          </select>
+        </label>
+
+        <label class="field" style="margin-top: 10px">
+          <span class="label">队伍清单（每行：队伍 ID + 起始阶段）</span>
+          <textarea
+            name="teams"
+            id="event-teams"
+            class="textarea"
+            rows="8"
+            spellcheck="false"
+            placeholder="Vitality stage-3&#10;TYLOO stage-1"
+          ></textarea>
+        </label>
+
+        <p class="dialog-error" data-error hidden></p>
+        <p class="dialog-hint">
+          阶段结构会自动生成；晋级队伍（teamsFromAdvanced）可在结果页填完后手动补。
+        </p>
+        <div class="dialog-actions">
+          <button class="btn ghost" type="button" data-close>取消</button>
+          <button class="btn primary" type="submit">创建</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="team-dialog" class="dialog">
+      <form id="team-form" method="dialog">
+        <h2 class="dialog-title">新增队伍</h2>
+        <div class="field">
+          <label class="label" for="team-id">队伍 ID（与赛事数据一致）</label>
+          <input id="team-id" name="id" required pattern="[\w.-]+" placeholder="例如 Falcons" />
+        </div>
+        <div class="field">
+          <label class="label" for="team-name">全名</label>
+          <input id="team-name" name="name" required placeholder="例如 Team Falcons" />
+        </div>
+        <div class="field">
+          <label class="label" for="team-logo">队徽 URL</label>
+          <input id="team-logo" name="logo" placeholder="https://" />
+        </div>
+        <p class="dialog-error" data-error hidden></p>
+        <div class="dialog-actions">
+          <button class="btn ghost" type="button" data-close>取消</button>
+          <button class="btn primary" type="submit">创建</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

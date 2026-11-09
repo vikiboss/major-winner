@@ -40,7 +40,7 @@ export function Footer() {
                 网站将及时更新竞猜情况，助你轻松完成竞猜任务。
               </p>
               <p className="text-xs opacity-60">
-                © 2025-{new Date().getFullYear()} {SITE.name}, Viki. 数据仅供娱乐参考。
+                © 2025-{new Date().getFullYear()} {SITE.name}, Viki. 数据仅供娱乐参考。当前版本: {BUILD_VERSION}
               </p>
             </div>
           </div>

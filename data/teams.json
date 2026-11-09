@@ -55,7 +55,6 @@
     "logo": "https://image.viki.moe/cs/team/MOUZ.png",
     "link": "https://www.hltv.org/team/4494/mouz"
   },
-
   {
     "id": "Spirit",
     "name": "Team Spirit",
@@ -182,7 +181,6 @@
     "logo": "https://image.viki.moe/cs/team/Monte.png",
     "link": "https://www.hltv.org/team/11811/monte"
   },
-
   {
     "id": "GL",
     "name": "GamerLegion",
@@ -294,5 +292,61 @@
     "shortName": "TD",
     "logo": "https://image.viki.moe/cs/team/TD.png",
     "link": "https://www.hltv.org/team/13486/thunder-downunder"
+  },
+  {
+    "id": "1W",
+    "name": "1win",
+    "shortName": "1W",
+    "logo": "https://image.viki.moe/cs/team/1W.png",
+    "link": "https://www.hltv.org/team/10621/1win"
+  },
+  {
+    "id": "Nemiga",
+    "name": "Nemiga",
+    "shortName": "Nemiga",
+    "logo": "https://image.viki.moe/cs/team/Nemiga.png",
+    "link": "https://www.hltv.org/team/7969/nemiga"
+  },
+  {
+    "id": "EF",
+    "name": "Eternal Fire",
+    "shortName": "EF",
+    "logo": "https://image.viki.moe/cs/team/EF.png",
+    "link": "https://www.hltv.org/team/11251/eternal-fire"
+  },
+  {
+    "id": "BCG",
+    "name": "BC.Game",
+    "shortName": "BCG",
+    "logo": "https://image.viki.moe/cs/team/BCG.png",
+    "link": "https://www.hltv.org/team/12878/bcgame"
+  },
+  {
+    "id": "100T",
+    "name": "100 Thieves",
+    "shortName": "100T",
+    "logo": "https://image.viki.moe/cs/team/100T.png",
+    "link": "https://www.hltv.org/team/8474/100-thieves"
+  },
+  {
+    "id": "DENDELE",
+    "name": "DENDELE",
+    "shortName": "DENDELE",
+    "logo": "https://image.viki.moe/cs/team/DENDELE.png",
+    "link": "https://www.hltv.org/team/13926/dendele"
+  },
+  {
+    "id": "Wildcard",
+    "name": "Wildcard",
+    "shortName": "Wildcard",
+    "logo": "https://image.viki.moe/cs/team/Wildcard.png",
+    "link": "https://www.hltv.org/team/12257/wildcard"
+  },
+  {
+    "id": "CW",
+    "name": "Chinggis Warriors",
+    "shortName": "CW",
+    "logo": "https://image.viki.moe/cs/team/CW.png",
+    "link": "https://www.hltv.org/team/12646/chinggis-warriors"
   }
 ]

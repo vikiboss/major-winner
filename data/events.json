@@ -1,13 +1,159 @@
 [
   {
-    "id": "2027-singapore",
-    "name": "PGL 新加坡 Major 2027",
-    "shortName": "新加坡 2027",
+    "id": "2026-singapore",
+    "name": "PGL 新加坡 Major 2026",
+    "shortName": "新加坡 2026",
     "current": "stage-1",
-    "teams": [],
+    "teams": [
+      {
+        "id": "MOUZ",
+        "stage": "stage-3"
+      },
+      {
+        "id": "Aurora",
+        "stage": "stage-3"
+      },
+      {
+        "id": "BB",
+        "stage": "stage-3"
+      },
+      {
+        "id": "FURIA",
+        "stage": "stage-3"
+      },
+      {
+        "id": "Vitality",
+        "stage": "stage-3"
+      },
+      {
+        "id": "Spirit",
+        "stage": "stage-3"
+      },
+      {
+        "id": "Falcons",
+        "stage": "stage-3"
+      },
+      {
+        "id": "Legacy",
+        "stage": "stage-3"
+      },
+      {
+        "id": "FUT",
+        "stage": "stage-2"
+      },
+      {
+        "id": "NAVI",
+        "stage": "stage-2"
+      },
+      {
+        "id": "1W",
+        "stage": "stage-2"
+      },
+      {
+        "id": "MIBR",
+        "stage": "stage-2"
+      },
+      {
+        "id": "Nemiga",
+        "stage": "stage-2"
+      },
+      {
+        "id": "G2",
+        "stage": "stage-2"
+      },
+      {
+        "id": "Astralis",
+        "stage": "stage-2"
+      },
+      {
+        "id": "MongolZ",
+        "stage": "stage-2"
+      },
+      {
+        "id": "NIP",
+        "stage": "stage-1"
+      },
+      {
+        "id": "HEROIC",
+        "stage": "stage-1"
+      },
+      {
+        "id": "EF",
+        "stage": "stage-1"
+      },
+      {
+        "id": "Liquid",
+        "stage": "stage-1"
+      },
+      {
+        "id": "M80",
+        "stage": "stage-1"
+      },
+      {
+        "id": "Imperial",
+        "stage": "stage-1"
+      },
+      {
+        "id": "BCG",
+        "stage": "stage-1"
+      },
+      {
+        "id": "FlyQuest",
+        "stage": "stage-1"
+      },
+      {
+        "id": "PV",
+        "stage": "stage-1"
+      },
+      {
+        "id": "FaZe",
+        "stage": "stage-1"
+      },
+      {
+        "id": "100T",
+        "stage": "stage-1"
+      },
+      {
+        "id": "9z",
+        "stage": "stage-1"
+      },
+      {
+        "id": "DENDELE",
+        "stage": "stage-1"
+      },
+      {
+        "id": "Wildcard",
+        "stage": "stage-1"
+      },
+      {
+        "id": "CW",
+        "stage": "stage-1"
+      },
+      {
+        "id": "LVG",
+        "stage": "stage-1"
+      }
+    ],
     "stage-1": {
       "name": "第一阶段",
-      "teams": [],
+      "teams": [
+        "NIP",
+        "HEROIC",
+        "EF",
+        "Liquid",
+        "M80",
+        "Imperial",
+        "BCG",
+        "FlyQuest",
+        "PV",
+        "FaZe",
+        "100T",
+        "9z",
+        "DENDELE",
+        "Wildcard",
+        "CW",
+        "LVG"
+      ],
       "result": {
         "1-0": [],
         "0-1": [],
@@ -27,7 +173,7 @@
     },
     "stage-2": {
       "name": "第二阶段",
-      "teams": [],
+      "teams": ["FUT", "NAVI", "1W", "MIBR", "Nemiga", "G2", "Astralis", "MongolZ"],
       "teamsFromAdvanced": [],
       "result": {
         "1-0": [],
@@ -48,7 +194,7 @@
     },
     "stage-3": {
       "name": "第三阶段",
-      "teams": ["Vitality", "NAVI", "Falcons", "FURIA", "Aurora", "PV", "MongolZ", "MOUZ"],
+      "teams": ["MOUZ", "Aurora", "BB", "FURIA", "Vitality", "Spirit", "Falcons", "Legacy"],
       "teamsFromAdvanced": [],
       "result": {
         "1-0": [],

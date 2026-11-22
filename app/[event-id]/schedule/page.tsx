@@ -112,6 +112,9 @@ function DaySection({ day, today }: { day: ScheduleDayView; today: boolean }) {
         >
           {day.label}
         </h2>
+        <span className="text-muted border-border border-l pl-2 text-xs font-medium">
+          {day.weekdayLabel}
+        </span>
         <span className="text-muted text-xs tabular-nums">
           {day.timezoneLabel} · {day.matches.length} 场
         </span>

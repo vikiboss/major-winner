@@ -183,8 +183,10 @@ export interface ScheduleMatchView {
 /** 赛程页按天分组 */
 export interface ScheduleDayView {
   dateKey: string
-  /** 日期标题，如 11月15日 周日 */
+  /** 日期标题，如 11月15日 */
   label: string
+  /** 星期，如 周日 */
+  weekdayLabel: string
   /** 时区短标签，如 GMT+8 */
   timezoneLabel: string
   matches: ScheduleMatchView[]

@@ -48,12 +48,19 @@ function toDateKey(date: Date, timezone: string): string {
   }).format(date)
 }
 
-/** 日期标题，如「11月15日 周六」 */
+/** 日期标题，如「11月15日」 */
 function toDateLabel(date: Date, timezone: string): string {
   return new Intl.DateTimeFormat('zh-CN', {
     timeZone: timezone,
     month: 'long',
     day: 'numeric',
+  }).format(date)
+}
+
+/** 星期，如「周六」 */
+function toWeekdayLabel(date: Date, timezone: string): string {
+  return new Intl.DateTimeFormat('zh-CN', {
+    timeZone: timezone,
     weekday: 'short',
   }).format(date)
 }
@@ -81,9 +88,10 @@ export function formatMatchTime(match: Match, timezone: string): string {
   }).format(new Date(match.start))
 }
 
-/** 对局时间完整格式，如 11月15日 18:00（带时区标签） */
+/** 对局时间完整格式，如 11月15日 周六 18:00 */
 export function formatMatchDateTime(match: Match, timezone: string): string {
-  return `${toDateLabel(new Date(match.start), timezone)} ${formatMatchTime(match, timezone)}`
+  const start = new Date(match.start)
+  return `${toDateLabel(start, timezone)} ${toWeekdayLabel(start, timezone)} ${formatMatchTime(match, timezone)}`
 }
 
 /** 阶段名，如「第一阶段」（轮次信息由战绩组标签承担） */
@@ -141,6 +149,7 @@ export function getScheduleDays(event: MajorEvent, stage?: MajorStageType): Sche
     days.set(view.dateKey, {
       dateKey: view.dateKey,
       label: toDateLabel(new Date(view.match.start), timezone),
+      weekdayLabel: toWeekdayLabel(new Date(view.match.start), timezone),
       timezoneLabel: toTimezoneLabel(timezone),
       matches: [view],
       resolved: !view.teamsPending,

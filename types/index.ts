@@ -128,6 +128,9 @@ export interface MajorEvent {
 /** 对局赛制：bo1 / bo3 / bo5 */
 export type MatchFormat = 'bo1' | 'bo3' | 'bo5'
 
+/** 对局状态：未开始 / 进行中 / 已结束 */
+export type MatchStatus = 'upcoming' | 'live' | 'finished'
+
 /** 赛程中的一场对局 */
 export interface Match {
   /** 对局唯一 id，形如 stage-1-r1-m1 */
@@ -158,13 +161,18 @@ export interface StageSchedule {
 export interface ScheduleMatchView {
   match: Match
   stageId: MajorStageType
+  /** 阶段与轮次，如「第一阶段 · 第 2 轮」 */
   stageLabel: string
-  /** 瑞士轮轮次说明，如「第 2 轮 · 1-0 组」 */
-  detail: string
+  /** 战绩组，如「1-0」 */
+  groupLabel: string
+  /** 赛制标签，如 BO1 / BO3 */
+  formatLabel: string
+  /** 对局状态，由赛制与比分推导 */
+  status: MatchStatus
   /** 所在时区下的日期 key，如 2026-11-15 */
   dateKey: string
-  /** 该场比分是否已录入 */
-  hasScore: boolean
+  /** 格式化后的时刻，如「12:00」 */
+  timeLabel: string
 }
 
 /** 赛程页按天分组 */
@@ -172,6 +180,8 @@ export interface ScheduleDayView {
   dateKey: string
   /** 日期标题，如 11月15日 周日 */
   label: string
+  /** 时区短标签，如 GMT+8 */
+  timezoneLabel: string
   matches: ScheduleMatchView[]
 }
 
@@ -190,7 +200,6 @@ export interface SwissSimulation {
   /** 每个对局编号对应的战绩组（用于展示轮次表） */
   rounds: { round: number; group: string }[]
 }
-
 
 /* -------------------------------------------------------------------------- */
 /*                                  竞猜                                      */

@@ -640,6 +640,14 @@
         "3-X": ["FaZe", "Liquid", "9z", "HEROIC", "LVG", "BCG"],
         "0-3": ["CW", "DENDELE"]
       }
+    },
+    {
+      "id": "viki",
+      "stage-1": {
+        "3-0": ["PV", "LVG"],
+        "3-X": ["BCG", "FaZe", "100T", "9z", "NIP", "HEROIC"],
+        "0-3": ["CW", "Wildcard"]
+      }
     }
   ]
 }

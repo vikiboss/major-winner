@@ -132,13 +132,14 @@ describe('foldPair', () => {
 /* -------------------------------------------------------------------------- */
 
 describe('buchholzScore', () => {
-  it('等于所有对手当前胜场之和', () => {
+  it('等于所有对手净胜场（胜 − 负）之和', () => {
     const records = new Map([
       ['a', { wins: 1, losses: 0 }],
       ['x', { wins: 3, losses: 0 }],
       ['y', { wins: 1, losses: 2 }],
     ])
-    expect(buchholzScore('a', historyOf(['a', 'x'], ['a', 'y']), records)).toBe(4)
+    // x 是 3-0 → +3，y 是 1-2 → −1，合计 2
+    expect(buchholzScore('a', historyOf(['a', 'x'], ['a', 'y']), records)).toBe(2)
   })
 
   it('没打过的对手不计分', () => {
@@ -148,7 +149,7 @@ describe('buchholzScore', () => {
 
 describe('pairGroup', () => {
   it('组内按 Buchholz 降序排序后再首尾配对', () => {
-    // 组内 4 队：a 的对手赢过 3 场、b 的对手赢过 1 场、c/d 的对手全败
+    // 组内 4 队：a 的对手 3-0(+3)、b 的对手 1-2(−1)、c/d 的对手 0-3(−3)
     // → a > b > (c, d 同分比种子)
     const history = historyOf(['a', 'C'], ['b', 'D'], ['c', 'E'], ['d', 'F'])
     const records = new Map([
@@ -170,9 +171,9 @@ describe('pairGroup', () => {
       records,
     )
 
-    // Buchholz：a=3、b=1、c=0、d=0 → 同分时种子小的在前
+    // Buchholz：a=3、b=−1、c=−3、d=−3 → 同分时种子小的在前
     expect(group.standings.map((t) => t.id)).toEqual(['a', 'b', 'c', 'd'])
-    expect(group.standings.map((t) => t.buchholz)).toEqual([3, 1, 0, 0])
+    expect(group.standings.map((t) => t.buchholz)).toEqual([3, -1, -3, -3])
     expect(group.pairs).toEqual([
       ['a', 'd'],
       ['b', 'c'],
@@ -180,7 +181,7 @@ describe('pairGroup', () => {
   })
 
   it('Buchholz 高的排在前面（不是简单按种子排）', () => {
-    // d 的对手赢过 3 场，a 的对手一场未赢 → d 排在 a 前面
+    // d 的对手 3-0(+3)，a 的对手 0-3(−3) → d 排在 a 前面
     const history = historyOf(['a', 'X'], ['d', 'Y'])
     const records = new Map([
       ['X', { wins: 0, losses: 3 }],
@@ -199,9 +200,9 @@ describe('pairGroup', () => {
       records,
     )
 
-    // d=3 分；a/b/c 均 0 分，按种子 a → b → c
-    expect(group.standings.map((t) => t.id)).toEqual(['d', 'a', 'b', 'c'])
-    expect(group.standings.map((t) => t.buchholz)).toEqual([3, 0, 0, 0])
+    // d=+3；a 的对手 0-3 记 −3；b/c 无对手记 0，按种子 b → c
+    expect(group.standings.map((t) => t.id)).toEqual(['d', 'b', 'c', 'a'])
+    expect(group.standings.map((t) => t.buchholz)).toEqual([3, 0, 0, -3])
   })
 
   it('Buchholz 相同按种子打破平局（种子小的排前）', () => {
@@ -343,7 +344,6 @@ describe('simulateSwissStage', () => {
     // 总场次 = 8 + 8 + 8 + 6 + 3
     expect(simulation.rounds).toHaveLength(33)
   })
-
 
   it('同一个种子固定随机源时可复现', () => {
     let seed = 42

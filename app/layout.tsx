@@ -1,4 +1,5 @@
 import { Inter } from 'next/font/google'
+import Script from 'next/script'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Analytics } from '@vercel/analytics/next'
 
@@ -100,11 +101,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <link rel="dns-prefetch" href="https://image.viki.moe" />
 
       <body className={`${inter.className} bg-game-dark flex min-h-screen flex-col`}>
-        <script
+        <Script
           defer
           src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "f28dcc707af64d76bfaba5c33cf7fbdd"}'
-        ></script>
+          strategy="afterInteractive"
+        />
         <Analytics />
         <GoogleAnalytics gaId="G-NRG0R1D14W" />
 

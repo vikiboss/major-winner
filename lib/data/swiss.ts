@@ -4,7 +4,7 @@
  * 规则来源（Valve / HLTV 通行做法），实现时按顺序应用：
  *
  * 1. 同战绩交手：0-0 打 0-0，1-0 打 1-0，0-1 打 0-1……三胜晋级、三负淘汰。
- * 2. 组内按 Buchholz 分排序：分数 = 本队所有对手当前战绩之和（胜场算 1）。
+ * 2. 组内按 Buchholz 分排序：分数 = 本队所有对手的净胜场（胜 − 负）之和。
  * 3. 首尾配对（fold）：组内第 1 名对最后 1 名，第 2 名对倒数第 2 名……
  * 4. 重赛规避：首尾配对出现打过的组合时，保持排名靠前那队不动，
  *    把靠后那队向下滑动找没打过的对手；实在无解才回退（并打上 `rematch` 标记）。
@@ -18,6 +18,7 @@ import { SWISS_RESULT_RECORDS } from '@/lib/constants'
 
 import type {
   MatchFormat,
+  MatchStatus,
   SimulationTeam,
   SwissProgressRecord,
   SwissResultRecord,
@@ -78,6 +79,27 @@ export function isDecidingGroup(record: TeamRecord): boolean {
   return getMatchFormat(record) === 'bo3'
 }
 
+/** 赢下多少局获胜（BO1 取 1、BO3 取 2、BO5 取 3） */
+export function winsNeeded(format: MatchFormat): number {
+  return Math.ceil(Number(format.replace('bo', '')) / 2)
+}
+
+/**
+ * 根据比分与赛制推导对局状态。
+ *
+ * - `score` 为空：未开始
+ * - 任一方达到赛制所需局数：已结束
+ * - 其余（有比分但未分出胜负）：进行中
+ */
+export function getMatchStatus(format: MatchFormat, score?: [number, number] | null): MatchStatus {
+  if (!score) return 'upcoming'
+
+  const target = winsNeeded(format)
+  if (score[0] >= target || score[1] >= target) return 'finished'
+
+  return 'live'
+}
+
 /* -------------------------------------------------------------------------- */
 /*                                 配对引擎                                    */
 /* -------------------------------------------------------------------------- */
@@ -113,12 +135,23 @@ export interface PairingResult {
 }
 
 /**
- * Buchholz 分：本队所有对手的当前胜场之和。
+ * Buchholz 分：本队所有对手的净胜场（胜 − 负）之和。
+ *
+ * 用净胜场而不是单纯胜场，能让「对手也曾输过」和「对手全胜」区分开，
+ * 与 Valve / majors.im 的 SwissBuchholtzMajorOptimized 一致。
  * 对手尚未产生（未来轮次）时不计。
  */
-export function buchholzScore(team: string, history: MatchHistory, records: Map<string, TeamRecord>) {
+export function buchholzScore(
+  team: string,
+  history: MatchHistory,
+  records: Map<string, TeamRecord>,
+) {
   const opponents = history[team] ?? []
-  return opponents.reduce((sum, opponent) => sum + (records.get(opponent)?.wins ?? 0), 0)
+  return opponents.reduce(
+    (sum, opponent) =>
+      sum + (records.get(opponent)?.wins ?? 0) - (records.get(opponent)?.losses ?? 0),
+    0,
+  )
 }
 
 /** 排名：Buchholz 高的在前；同分时初始种子小的（更强的）在前 */

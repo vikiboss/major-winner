@@ -54,7 +54,9 @@ export function simulateStage(teamIds: string[], random: () => number): Simulate
   const matches: SimulatedMatch[] = []
 
   for (let round = 1; round <= 5; round++) {
-    const active = teamIds.filter((id) => !isRecordDecided(parseRecord(formatRecord(records.get(id)!))))
+    const active = teamIds.filter(
+      (id) => !isRecordDecided(parseRecord(formatRecord(records.get(id)!))),
+    )
     if (active.length < 2) break
 
     // 按战绩分组

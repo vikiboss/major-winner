@@ -10,16 +10,9 @@
 
 import { MAJOR_STAGES, MAJOR_STAGE_LABEL } from '@/lib/constants'
 
-import { getMatchFormat, parseRecord } from './swiss'
+import { getMatchFormat, getMatchStatus, parseRecord } from './swiss'
 
-import type {
-  MajorEvent,
-  MajorStageType,
-  Match,
-  MatchFormat,
-  ScheduleDayView,
-  ScheduleMatchView,
-} from '@/types'
+import type { MajorEvent, MajorStageType, Match, ScheduleDayView, ScheduleMatchView } from '@/types'
 
 const DEFAULT_TIMEZONE = 'Asia/Shanghai'
 
@@ -65,6 +58,19 @@ function toDateLabel(date: Date, timezone: string): string {
   }).format(date)
 }
 
+/** 时区短标签，如「GMT+8」 */
+function toTimezoneLabel(timezone: string): string {
+  try {
+    const parts = new Intl.DateTimeFormat('en-US', {
+      timeZone: timezone,
+      timeZoneName: 'shortOffset',
+    }).formatToParts(new Date())
+    return parts.find((part) => part.type === 'timeZoneName')?.value ?? timezone
+  } catch {
+    return timezone
+  }
+}
+
 /** 对局时间，如 18:00 */
 export function formatMatchTime(match: Match, timezone: string): string {
   return new Intl.DateTimeFormat('zh-CN', {
@@ -80,15 +86,10 @@ export function formatMatchDateTime(match: Match, timezone: string): string {
   return `${toDateLabel(new Date(match.start), timezone)} ${formatMatchTime(match, timezone)}`
 }
 
-/** 日内分组的小标题，如「第 2 轮 · 1-0 组 · BO1」 */
-function buildDetail(match: Match, format: MatchFormat): string {
-  const parts: string[] = []
-
-  if (match.round) parts.push(`第 ${match.round} 轮`)
-  if (match.group) parts.push(`${match.group} 组`)
-  parts.push(format.toUpperCase())
-
-  return parts.join(' · ')
+/** 阶段与轮次合成一个标签，如「第一阶段 · 第 2 轮」 */
+function buildStageLabel(stageId: MajorStageType, match: Match): string {
+  const stage = MAJOR_STAGE_LABEL[stageId]
+  return match.round ? `${stage} · 第 ${match.round} 轮` : stage
 }
 
 /**
@@ -108,15 +109,16 @@ export function getScheduleDays(event: MajorEvent, stage?: MajorStageType): Sche
       if (Number.isNaN(start.getTime())) continue
 
       const format = match.format ?? getMatchFormat(parseRecord(match.group ?? '0-0'))
-      const [a, b] = match.score ?? [null, null]
 
       views.push({
         match,
         stageId,
-        stageLabel: MAJOR_STAGE_LABEL[stageId],
-        detail: buildDetail(match, format),
+        stageLabel: buildStageLabel(stageId, match),
+        groupLabel: match.group ?? '',
+        formatLabel: format.toUpperCase(),
+        status: getMatchStatus(format, match.score ?? null),
         dateKey: toDateKey(start, timezone),
-        hasScore: a !== null && b !== null,
+        timeLabel: formatMatchTime(match, timezone),
       })
     }
   }
@@ -135,6 +137,7 @@ export function getScheduleDays(event: MajorEvent, stage?: MajorStageType): Sche
     days.set(view.dateKey, {
       dateKey: view.dateKey,
       label: toDateLabel(new Date(view.match.start), timezone),
+      timezoneLabel: toTimezoneLabel(timezone),
       matches: [view],
     })
   }

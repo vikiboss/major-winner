@@ -3,184 +3,499 @@
 import { useCallback, useMemo, useState } from 'react'
 
 import { MAJOR_STAGE_LABEL } from '@/lib/constants'
-import { seedRandom, simulateStage } from '@/lib/data/swiss-sim'
+import { SETTLED_SLOTS } from '@/lib/data/swiss-bracket'
+import {
+  createBracket,
+  getBracketProgress,
+  pickWinner,
+  seedBracket,
+  settleBracket,
+  summarizeBracket,
+} from '@/lib/data/swiss-bracket'
 import { TeamLogo } from '@/components/team/team-logo'
 
-import type { SimulatedStage } from '@/lib/data/swiss-sim'
-import type { SwissResultRecord, SwissStageType } from '@/types'
+import type { BracketMatch, BracketState, BracketSummary } from '@/lib/data/swiss-bracket'
+import type { Match, SwissResultRecord, SwissStageType } from '@/types'
 
-/** 推演输入的战队快照（服务器组件序列化后传入） */
-export interface SimulationTeamInput {
-  id: string
-  name: string
-}
+/* -------------------------------------------------------------------------- */
+/*                                  类型                                       */
+/* -------------------------------------------------------------------------- */
 
-export interface StageTeamPool {
+/** 单个瑞士轮阶段的推演素材（服务器组件序列化后传入） */
+export interface SimulatorStageInput {
   stageId: SwissStageType
-  teams: SimulationTeamInput[]
+  /** 参赛队伍 id，顺序即种子序 */
+  teamIds: string[]
+  /** 真实赛程（可为空）；已结束的对局会预置为锁定结果 */
+  fixture: Match[]
 }
 
-/* -------------------------------------------------------------------------- */
-/*                                  组件                                       */
-/* -------------------------------------------------------------------------- */
-
-const RESULT_GROUPS: SwissResultRecord[] = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3']
-
-const GROUP_TONE: Record<SwissResultRecord, { label: string; className: string }> = {
-  '3-0': { label: '全胜晋级', className: 'text-win' },
-  '3-1': { label: '一负晋级', className: 'text-win' },
-  '3-2': { label: '两负晋级', className: 'text-win' },
-  '2-3': { label: '两胜淘汰', className: 'text-lose' },
-  '1-3': { label: '一胜淘汰', className: 'text-lose' },
-  '0-3': { label: '全败淘汰', className: 'text-lose' },
-}
-
-interface SimulatorPanelProps {
-  pools: StageTeamPool[]
+interface SimulatorProps {
+  stages: SimulatorStageInput[]
+  /** id → 展示名 */
   nameMap: Record<string, string>
 }
 
-export function SimulatorPanel({ pools, nameMap }: SimulatorPanelProps) {
-  const [stageId, setStageId] = useState<SwissStageType>(pools[0]?.stageId ?? 'stage-1')
-  const [result, setResult] = useState<SimulatedStage | null>(null)
-  const [seed, setSeed] = useState(0)
+/* -------------------------------------------------------------------------- */
+/*                                  常量                                       */
+/* -------------------------------------------------------------------------- */
 
-  const pool = useMemo(
-    () => pools.find((item) => item.stageId === stageId) ?? pools[0],
-    [pools, stageId],
+const ROUNDS = [1, 2, 3, 4, 5] as const
+
+const GROUPS: { record: SwissResultRecord; hint: string; tone: 'win' | 'lose' }[] = [
+  { record: '3-0', hint: '全胜', tone: 'win' },
+  { record: '3-1', hint: '一负', tone: 'win' },
+  { record: '3-2', hint: '两负', tone: 'win' },
+  { record: '2-3', hint: '两胜', tone: 'lose' },
+  { record: '1-3', hint: '一胜', tone: 'lose' },
+  { record: '0-3', hint: '全败', tone: 'lose' },
+]
+
+const ROUND_HINT: Record<number, string> = {
+  1: '全部 BO1',
+  2: '全部 BO1',
+  3: '2-0 / 0-2 为 BO3',
+  4: '2-1 / 1-2 为 BO3',
+  5: '2-2 全部 BO3',
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  主体                                       */
+/* -------------------------------------------------------------------------- */
+
+export function SimulatorPanel({ stages, nameMap }: SimulatorProps) {
+  const [stageId, setStageId] = useState<SwissStageType>(stages[0].stageId)
+
+  // 各阶段的初始状态：真实赛程预置 + 默认按种子强者胜出，一进来就是完整可改的
+  const initialStates = useMemo(
+    () =>
+      Object.fromEntries(stages.map((item) => [item.stageId, buildInitial(item)])) as Record<
+        SwissStageType,
+        BracketState
+      >,
+    [stages],
   )
 
-  const run = useCallback(() => {
-    if (!pool?.teams.length) return
+  const [state, setState] = useState<BracketState>(initialStates[stages[0].stageId])
 
-    // 每次点击用新的随机源，结果才真正「随机」
-    const random = seedRandom(Date.now() + Math.floor(Math.random() * 1e9))
-    setResult(simulateStage(pool.teams.map((team) => team.id), random))
-    setSeed((value) => value + 1)
-  }, [pool])
+  const stage = useMemo(
+    () => stages.find((item) => item.stageId === stageId) ?? stages[0],
+    [stages, stageId],
+  )
 
-  const label = (id: string) => nameMap[id] ?? id
+  const switchStage = useCallback(
+    (next: SwissStageType) => {
+      const target = stages.find((item) => item.stageId === next)
+      if (!target) return
+
+      setStageId(next)
+      setState(initialStates[next])
+    },
+    [stages, initialStates],
+  )
+
+  const summary = useMemo(() => summarizeBracket(state), [state])
+  const progress = useMemo(() => getBracketProgress(state), [state])
+
+  const name = useCallback((id: string) => nameMap[id] ?? id, [nameMap])
+
+  const onPick = useCallback((match: BracketMatch, teamId: string) => {
+    // 点当前胜者 = 换成另一方；点另一方 = 选它
+    const next = match.winner === teamId ? (teamId === match.a ? match.b : match.a) : teamId
+    setState((current) => pickWinner(current, match.id, next))
+  }, [])
 
   return (
-    <div className="space-y-6">
-      {/* 控制区 */}
-      <div className="bg-surface-1 border-border rounded-lg border p-4">
-        <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap items-center gap-2">
-            {pools.map((item) => (
-              <button
-                key={item.stageId}
-                type="button"
-                onClick={() => {
-                  setStageId(item.stageId)
-                  setResult(null)
-                }}
-                className={`rounded px-3 py-1.5 text-sm font-medium transition-colors ${
-                  item.stageId === stageId
-                    ? 'bg-primary-500/10 text-primary-400'
-                    : 'text-secondary bg-surface-2 hover:text-primary'
-                }`}
-              >
-                {MAJOR_STAGE_LABEL[item.stageId]}
-              </button>
-            ))}
-          </div>
+    <div className="space-y-4">
+      <StageTabs stages={stages} current={stageId} onChange={switchStage} />
 
-          <button
-            type="button"
-            onClick={run}
-            className="bg-primary-500 hover:bg-primary-600 rounded px-4 py-2 text-sm font-semibold text-white transition-colors active:scale-95"
-          >
-            {result ? '重新推演' : '开始推演'}
-          </button>
+      {/* 横向 5 轮面板：左边选完，右边各轮对阵跟着变 */}
+      <div className="bg-surface-1 border-border overflow-x-auto rounded-lg border">
+        <div className="divide-border grid min-w-[980px] grid-cols-[repeat(5,minmax(0,1fr))_minmax(150px,0.9fr)] items-stretch divide-x">
+          {ROUNDS.map((round) => (
+            <RoundColumn
+              key={round}
+              round={round}
+              matches={state.matches}
+              groups={summary.groups}
+              label={name}
+              onPick={onPick}
+            />
+          ))}
+
+          <ResultColumn summary={summary} label={name} done={progress.done} />
         </div>
-
-        <p className="text-muted mt-3 text-xs">
-          按 CS2 瑞士轮规则模拟：同战绩交手、Buchholz 分排序、首尾配对、规避重赛；2-x 组与
-          0-2 组为 BO3，其余 BO1。每支队伍每场胜率相同（50%）。
-        </p>
       </div>
-
-      {!result ? (
-        <div className="text-muted bg-surface-1 border-border rounded-lg border py-12 text-center">
-          <div className="mb-2 text-2xl">🎲</div>
-          <p className="text-sm">点击「开始推演」查看可能的晋级与淘汰分组</p>
-        </div>
-      ) : (
-        <>
-          {/* 结果分组 */}
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {RESULT_GROUPS.map((record) => {
-              const tone = GROUP_TONE[record]
-              const teams = result.groups[record]
-
-              return (
-                <div
-                  key={record}
-                  className="bg-surface-1 border-border rounded-lg border p-4"
-                >
-                  <div className="mb-2 flex items-center justify-between">
-                    <span className={`text-sm font-semibold ${tone.className}`}>{record}</span>
-                    <span className="text-muted text-xs">{tone.label}</span>
-                  </div>
-                  <div className="flex flex-wrap gap-1.5">
-                    {teams.length === 0 ? (
-                      <span className="text-muted text-xs">—</span>
-                    ) : (
-                      teams.map((id) => (
-                        <span
-                          key={id}
-                          className="bg-surface-2 flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium"
-                        >
-                          <TeamLogo hideLabel id={id} size="xs" className="rounded-sm" />
-                          {label(id)}
-                        </span>
-                      ))
-                    )}
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-
-          {/* 轮次明细 */}
-          <div className="bg-surface-1 border-border rounded-lg border">
-            <div className="border-border border-b px-4 py-3">
-              <h3 className="text-secondary text-sm font-medium">
-                推演对局明细（第 {seed} 次推演）
-              </h3>
-            </div>
-            <div className="divide-border max-h-100 divide-y overflow-y-auto">
-              {Array.from({ length: 5 }, (_, index) => index + 1).map((round) => {
-                const matches = result.matches.filter((item) => item.round === round)
-                if (!matches.length) return null
-
-                return (
-                  <div key={round} className="px-4 py-3">
-                    <p className="text-muted mb-2 text-xs font-medium">第 {round} 轮</p>
-                    <div className="space-y-1">
-                      {matches.map((match, index) => (
-                        <div
-                          key={`${match.a}-${match.b}-${index}`}
-                          className="flex flex-wrap items-center gap-2 text-xs"
-                        >
-                          <span className="text-muted w-14 shrink-0 tabular-nums">{match.group}</span>
-                          <span className="bg-surface-2 text-muted rounded px-1.5 py-0.5">
-                            {match.format.toUpperCase()}
-                          </span>
-                          <span className="text-primary">{label(match.a)}</span>
-                          <span className="text-muted">vs</span>
-                          <span className="text-primary">{label(match.b)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
-          </div>
-        </>
-      )}
     </div>
   )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  子组件                                     */
+/* -------------------------------------------------------------------------- */
+
+/** 由服务器传入的素材构造初始状态（纯函数，不在渲染期间触发副作用） */
+export function buildInitial(stage: SimulatorStageInput): BracketState {
+  // 种子序 → 第 1 轮两半同位对位、后续按战绩首尾配对 → 预置已结束结果 → 其余按强者胜出补齐
+  return settleBracket(seedBracket(createBracket(stage.teamIds), stage.fixture))
+}
+
+function StageTabs({
+  stages,
+  current,
+  onChange,
+}: {
+  stages: SimulatorStageInput[]
+  current: SwissStageType
+  onChange: (stageId: SwissStageType) => void
+}) {
+  return (
+    <div className="bg-surface-1 border-border flex gap-1 rounded-lg border p-1">
+      {stages.map((stage) => (
+        <button
+          key={stage.stageId}
+          type="button"
+          onClick={() => onChange(stage.stageId)}
+          className={`flex-1 rounded px-3 py-2 text-sm font-medium transition-colors ${
+            stage.stageId === current
+              ? 'bg-primary-500/15 text-primary-400'
+              : 'text-secondary hover:bg-surface-2'
+          }`}
+        >
+          {MAJOR_STAGE_LABEL[stage.stageId]}
+        </button>
+      ))}
+    </div>
+  )
+}
+
+/** 一轮对应的整列：列头 + 上下已定稿分组 + 中间对局 */
+function RoundColumn({
+  round,
+  matches: allMatches,
+  groups,
+  label,
+  onPick,
+}: {
+  round: number
+  matches: BracketMatch[]
+  groups: Record<SwissResultRecord, string[]>
+  label: (id: string) => string
+  onPick: (match: BracketMatch, teamId: string) => void
+}) {
+  const slots = SETTLED_SLOTS[round]
+  const decided = new Set(
+    [slots?.top ?? [], slots?.bottom ?? []].flat().flatMap((record) => groups[record] ?? []),
+  )
+  const matches = allMatches.filter(
+    (match) => match.round === round && !decided.has(match.a) && !decided.has(match.b),
+  )
+  const sections = groupByRecord(matches)
+
+  return (
+    <div className="flex min-w-0 flex-col">
+      <div className="bg-surface-2 border-border flex items-baseline justify-between gap-1 border-b px-2 py-1.5">
+        <span className="text-primary text-xs font-semibold">R{round}</span>
+        <span className="text-muted truncate text-[10px]">{ROUND_HINT[round]}</span>
+        <span className="text-muted shrink-0 text-[10px] tabular-nums">
+          {matches.length ? `${matches.length} 场` : ''}
+        </span>
+      </div>
+
+      {/* 上端：前面轮次已定稿的晋级组 */}
+      <SettledBlock records={slots?.top ?? []} groups={groups} label={label} position="top" />
+
+      {/* 对局少的轮次高度更矮，整体垂直居中；不同战绩组之间留出分界 */}
+      <div className="flex flex-1 flex-col justify-center py-2">
+        {sections.length === 0 ? (
+          <p className="text-muted px-2 text-center text-[11px]">—</p>
+        ) : (
+          sections.map(({ record, matches: groupMatches }, index) => (
+            <div key={record} className={index > 0 ? 'mt-6' : ''}>
+              {round > 1 && (
+                <p
+                  className={`bg-surface-1/60 mb-1 rounded py-0.5 text-center font-mono text-xs font-bold tracking-wide ${recordText(record)}`}
+                >
+                  {record}
+                </p>
+              )}
+              {groupMatches.map((match) => (
+                <Slot key={match.id} match={match} label={label} onPick={onPick} />
+              ))}
+            </div>
+          ))
+        )}
+      </div>
+
+      {/* 下端：前面轮次已定稿的淘汰组 */}
+      <SettledBlock records={slots?.bottom ?? []} groups={groups} label={label} position="bottom" />
+    </div>
+  )
+}
+
+/** 列上下端的已定稿分组（灰色粗框，表示这些队伍已经出线/淘汰） */
+function SettledBlock({
+  records,
+  groups,
+  label,
+  position,
+}: {
+  records: SwissResultRecord[]
+  groups: Record<SwissResultRecord, string[]>
+  label: (id: string) => string
+  position: 'top' | 'bottom'
+}) {
+  const blocks = records
+    .map((record) => ({ record, teams: groups[record] ?? [] }))
+    .filter((block) => block.teams.length > 0)
+
+  if (!blocks.length) return null
+
+  return (
+    // 顶部块贴向下方赛事区，底部块贴向上方赛事区
+    <div className={`px-1.5 ${position === 'top' ? 'mt-auto pt-1.5' : 'mb-auto pb-1.5'}`}>
+      {blocks.map(({ record, teams }, index) => (
+        <div key={record} className={index > 0 ? 'mt-6' : ''}>
+          <p
+            className={`mb-1 text-center font-mono text-xs font-bold tracking-wide ${recordText(record)}`}
+          >
+            {record}
+          </p>
+          <div className="border-border bg-surface-2/60 mx-0.5 rounded-md border-2 px-1 py-1">
+            <div className="space-y-px">
+              {teams.map((id) => (
+                <p
+                  key={id}
+                  className="text-primary flex items-center gap-1 text-[11px] font-medium"
+                >
+                  <TeamLogo hideLabel id={id} size="xs" className="shrink-0 rounded-sm" />
+                  <span className="truncate">{label(id)}</span>
+                </p>
+              ))}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+/** 一列中的一场对局：两个可点的队伍按钮 + 锁定开关 */
+function Slot({
+  match,
+  label,
+  onPick,
+}: {
+  match: BracketMatch
+  label: (id: string) => string
+  onPick: (match: BracketMatch, teamId: string) => void
+}) {
+  return (
+    <div className="border-primary-500/60 mx-1 mb-1 overflow-hidden rounded-md border-2">
+      <div className="bg-surface-1">
+        <TeamButton
+          id={match.a}
+          picked={match.winner === match.a}
+          disabled={match.locked}
+          label={label(match.a)}
+          onClick={() => onPick(match, match.a)}
+        />
+        <TeamButton
+          id={match.b}
+          picked={match.winner === match.b}
+          disabled={match.locked}
+          label={label(match.b)}
+          onClick={() => onPick(match, match.b)}
+        />
+      </div>
+    </div>
+  )
+}
+
+function TeamButton({
+  id,
+  picked,
+  disabled,
+  label,
+  onClick,
+}: {
+  id: string
+  picked: boolean
+  disabled: boolean
+  label: string
+  onClick: () => void
+}) {
+  const tone = picked
+    ? 'bg-win/20 text-win'
+    : 'text-muted/60 hover:bg-surface-2/60 hover:text-secondary'
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`flex w-full items-center gap-1 px-1.5 py-1 text-left transition-colors disabled:cursor-default ${tone}`}
+    >
+      <TeamLogo hideLabel id={id} size="xs" className="shrink-0 rounded-sm" />
+      <span className="truncate text-[11px] font-medium">{label}</span>
+      <MatchArrow up={picked} className="ml-auto shrink-0" />
+    </button>
+  )
+}
+
+/** 面板最右列：3-0 → 0-3 的结果分组，与各轮并排 */
+function ResultColumn({
+  summary,
+  label,
+  done,
+}: {
+  summary: BracketSummary
+  label: (id: string) => string
+  done: boolean
+}) {
+  const pending = Object.values(summary.records).filter(
+    (team) => team.wins < 3 && team.losses < 3,
+  ).length
+
+  return (
+    <div className="bg-surface-2/40 flex min-w-0 flex-col">
+      <div className="bg-surface-2 border-border flex items-baseline justify-between gap-1 border-b px-2 py-1.5">
+        <span className="text-primary text-xs font-semibold">结果</span>
+        <span className={`text-[10px] ${done ? 'text-win' : 'text-muted'}`}>
+          {done ? '已定稿' : pending ? `${pending} 队待定` : '推演中'}
+        </span>
+      </div>
+
+      <div className="flex flex-1 flex-col justify-center gap-6 py-2">
+        {GROUPS.map((group) => {
+          const teams = summary.groups[group.record]
+          return (
+            <div key={group.record}>
+              <p
+                className={`mb-1 text-center font-mono text-xs font-bold tracking-wide ${
+                  group.tone === 'win' ? 'text-win' : 'text-lose'
+                }`}
+              >
+                {group.record}
+              </p>
+              <div className="border-border bg-surface-2/60 mx-0.5 rounded-md border-2 px-1 py-1">
+                <div className="space-y-px">
+                  {teams.length === 0 ? (
+                    <p className="text-muted/50 text-center text-[10px]">—</p>
+                  ) : (
+                    teams.map((id) => (
+                      <p
+                        key={id}
+                        className="text-primary flex items-center gap-1 text-[11px] font-medium"
+                      >
+                        <TeamLogo hideLabel id={id} size="xs" className="shrink-0 rounded-sm" />
+                        <span className="truncate">{label(id)}</span>
+                      </p>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          )
+        })}
+      </div>
+
+      <PendingRecords summary={summary} label={label} />
+    </div>
+  )
+}
+
+/** 列尾：还没分出胜负的队伍，按当前战绩排列 */
+function PendingRecords({
+  summary,
+  label,
+}: {
+  summary: BracketSummary
+  label: (id: string) => string
+}) {
+  const buckets = new Map<string, string[]>()
+  for (const team of Object.values(summary.records)) {
+    if (team.wins >= 3 || team.losses >= 3) continue
+    const list = buckets.get(team.record) ?? []
+    list.push(team.id)
+    buckets.set(team.record, list)
+  }
+
+  if (!buckets.size) return null
+
+  const keys = [...buckets.keys()].toSorted((a, b) => {
+    const [aw, al] = a.split('-').map(Number)
+    const [bw, bl] = b.split('-').map(Number)
+    return bw - aw || al - bl
+  })
+
+  return (
+    <div className="border-border border-t px-2 py-1.5">
+      <p className="text-muted mb-1 text-[9px]">进行中</p>
+      <div className="space-y-0.5">
+        {keys.map((record) => (
+          <p key={record} className="flex items-start gap-1 text-[10px] leading-tight">
+            <span className="text-muted shrink-0 font-mono">{record}</span>
+            <span className="text-secondary flex flex-wrap gap-x-1">
+              {buckets.get(record)!.map((id) => (
+                <span key={id}>{label(id)}</span>
+              ))}
+            </span>
+          </p>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+/** 队伍标记：胜者向上，败者向下 */
+function MatchArrow({ up, className = '' }: { up: boolean; className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 12 12"
+      aria-hidden="true"
+      className={`h-2 w-2 ${up ? '' : 'rotate-180 opacity-50'} ${className}`}
+      fill="currentColor"
+    >
+      <path d="M6 1.5 11 10H1z" />
+    </svg>
+  )
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  工具                                       */
+/* -------------------------------------------------------------------------- */
+
+/** 一列里的对局按战绩分组成段（顺序：胜场多的在前） */
+function groupByRecord(matches: BracketMatch[]): { record: string; matches: BracketMatch[] }[] {
+  const buckets = new Map<string, BracketMatch[]>()
+  for (const match of matches) {
+    const list = buckets.get(match.group) ?? []
+    list.push(match)
+    buckets.set(match.group, list)
+  }
+
+  return [...buckets.entries()]
+    .toSorted(([a], [b]) => {
+      const [aw = 0, al = 0] = a.split('-').map(Number)
+      const [bw = 0, bl = 0] = b.split('-').map(Number)
+      return bw - aw || al - bl
+    })
+    .map(([record, list]) => ({ record, matches: list }))
+}
+
+/** 战绩文字色：晋级 / 淘汰 / 中性 */
+function recordText(record: string): string {
+  const [wins = 0, losses = 0] = record.split('-').map(Number)
+  if (wins >= 3) return 'text-win'
+  if (losses >= 3) return 'text-lose'
+  return 'text-muted'
+}
+
+/** 战绩配色：晋级色 / 淘汰色 / 中性 */
+function recordTone(record: string): string {
+  const [wins = 0, losses = 0] = record.split('-').map(Number)
+  if (wins >= 3) return 'bg-win/10 text-win'
+  if (losses >= 3) return 'bg-lose/10 text-lose'
+  return 'bg-surface-2 text-secondary'
 }

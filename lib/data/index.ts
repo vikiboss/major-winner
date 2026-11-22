@@ -75,6 +75,31 @@ export type {
   SimulationOptions,
 } from './swiss'
 
+/* 瑞士轮手动推演（逐场选赢家） */
+export {
+  createBracket,
+  advanceBracket,
+  buildRound,
+  previewBracket,
+  settleBracket,
+  pickWinner,
+  clearWinner,
+  toggleMatchLock,
+  clearBracketPicks,
+  getBracketProgress,
+  summarizeBracket,
+  seedBracket,
+  pairStandings,
+} from './swiss-bracket'
+
+export type {
+  BracketTeam,
+  BracketMatch,
+  BracketState,
+  BracketProgress,
+  BracketSummary,
+} from './swiss-bracket'
+
 /* 赛程 */
 export {
   getEventTimezone,

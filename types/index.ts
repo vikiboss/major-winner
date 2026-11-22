@@ -73,6 +73,8 @@ export interface SwissStage {
   teams: string[]
   /** 上一阶段晋级的队伍（第二阶段起） */
   teamsFromAdvanced?: string[]
+  /** 本阶段赛程（可选，未录入时赛程页无法展示） */
+  schedule?: StageSchedule
   result: SwissResult
 }
 
@@ -98,6 +100,8 @@ export interface PlayoffsResult {
 /** 决胜阶段 */
 export interface PlayoffsStage {
   teams: string[]
+  /** 本阶段赛程（可选） */
+  schedule?: StageSchedule
   result: PlayoffsResult
 }
 
@@ -106,6 +110,8 @@ export interface MajorEvent {
   id: string
   name: string
   shortName: string
+  /** 赛程所在时区（IANA），用于按天分组，如 Asia/Shanghai */
+  timezone?: string
   teams: Team[]
   /** 当前阶段（仅用于默认跳转） */
   current: MajorStageType
@@ -114,6 +120,77 @@ export interface MajorEvent {
   'stage-3': SwissStage
   playoffs: PlayoffsStage
 }
+
+/* -------------------------------------------------------------------------- */
+/*                                  赛程                                      */
+/* -------------------------------------------------------------------------- */
+
+/** 对局赛制：bo1 / bo3 / bo5 */
+export type MatchFormat = 'bo1' | 'bo3' | 'bo5'
+
+/** 赛程中的一场对局 */
+export interface Match {
+  /** 对局唯一 id，形如 stage-1-r1-m1 */
+  id: string
+  /** 开始时间（ISO 8601，带时区偏移） */
+  start: string
+  /** 对局编号（1 起），用于对应瑞士轮轮次表中的 Match N */
+  no?: number
+  /** 瑞士轮轮次（1 ~ 5），决胜阶段不使用 */
+  round?: number
+  /** 开赛时的战绩组，如 0-0 / 1-0 / 2-2 */
+  group?: string
+  format: MatchFormat
+  teamA: string | null
+  teamB: string | null
+  /** 最终比分；null 表示未结束 */
+  score?: [number, number] | null
+  /** 胜者 id */
+  winner?: string | null
+}
+
+/** 某个阶段的对局列表 */
+export interface StageSchedule {
+  matches: Match[]
+}
+
+/** 赛程页上的一场对局（队伍与阶段信息已展开） */
+export interface ScheduleMatchView {
+  match: Match
+  stageId: MajorStageType
+  stageLabel: string
+  /** 瑞士轮轮次说明，如「第 2 轮 · 1-0 组」 */
+  detail: string
+  /** 所在时区下的日期 key，如 2026-11-15 */
+  dateKey: string
+  /** 该场比分是否已录入 */
+  hasScore: boolean
+}
+
+/** 赛程页按天分组 */
+export interface ScheduleDayView {
+  dateKey: string
+  /** 日期标题，如 11月15日 周日 */
+  label: string
+  matches: ScheduleMatchView[]
+}
+
+/** 推演结果中的队伍 */
+export interface SimulationTeam {
+  id: string
+  /** 推演得到的总战绩 3-0 / 3-1 / 3-2 / 2-3 / 1-3 / 0-3 */
+  record: SwissResultRecord
+}
+
+/** 单次瑞士轮推演结果 */
+export interface SwissSimulation {
+  stageId: SwissStageType
+  /** 按 3-0 → 0-3 分组的队伍 */
+  groups: Record<SwissResultRecord, SimulationTeam[]>
+  /** 每个对局编号对应的战绩组（用于展示轮次表） */
+  rounds: { round: number; group: string }[]
+}
+
 
 /* -------------------------------------------------------------------------- */
 /*                                  竞猜                                      */

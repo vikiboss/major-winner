@@ -17,6 +17,7 @@ const SWISS_STAGES = ['stage-1', 'stage-2', 'stage-3']
 const PROGRESS_RECORDS = ['1-0', '0-1', '1-1', '2-0', '0-2', '2-1', '1-2', '2-2']
 const RESULT_RECORDS = ['3-0', '3-1', '3-2', '2-3', '1-3', '0-3']
 const RESULT_SIZES = { '3-0': 2, '3-1': 3, '3-2': 3, '2-3': 3, '1-3': 3, '0-3': 2 }
+const MATCH_FORMATS = ['bo1', 'bo3', 'bo5']
 
 const errors = []
 const warnings = []
@@ -41,6 +42,72 @@ function duplicates(list) {
 /* -------------------------------------------------------------------------- */
 /*                                    校验                                     */
 /* -------------------------------------------------------------------------- */
+
+/**
+ * 校验阶段的赛程。
+ *
+ * @param stagePath 报错用的路径前缀
+ * @param schedule 阶段的 schedule 字段
+ * @param members 本阶段参赛队伍
+ */
+function validateSchedule(stagePath, schedule, members) {
+  if (schedule === undefined) return
+  if (typeof schedule !== 'object' || schedule === null) {
+    fail(`${stagePath}.schedule`, '应为对象')
+    return
+  }
+
+  const matches = schedule.matches
+  if (!Array.isArray(matches)) {
+    fail(`${stagePath}.schedule`, '缺少 matches 数组')
+    return
+  }
+
+  const seenIds = new Set()
+
+  for (const [index, match] of matches.entries()) {
+    const path = `${stagePath}.schedule.matches[${index}]`
+
+    for (const key of ['id', 'start', 'format', 'teamA', 'teamB']) {
+      if (match[key] === undefined) fail(path, `缺少字段 ${key}`)
+    }
+
+    if (match.id) {
+      if (seenIds.has(match.id)) fail(path, `对局 id 重复: ${match.id}`)
+      seenIds.add(match.id)
+    }
+
+    if (match.start && Number.isNaN(Date.parse(match.start))) {
+      fail(path, `start 不是合法时间: ${match.start}`)
+    }
+
+    if (match.format && !MATCH_FORMATS.includes(match.format)) {
+      fail(path, `赛制 ${match.format} 非法（应为 ${MATCH_FORMATS.join(' / ')}）`)
+    }
+
+    for (const side of ['teamA', 'teamB']) {
+      const team = match[side]
+      if (team === null || team === undefined) continue
+      if (!members.has(team)) fail(path, `${side} 的 ${team} 不属于本阶段`)
+    }
+
+    if (match.teamA && match.teamA === match.teamB) fail(path, 'teamA 与 teamB 相同')
+
+    if (match.score !== undefined && match.score !== null) {
+      if (!Array.isArray(match.score) || match.score.length !== 2) {
+        fail(path, 'score 应为 [teamA, teamB] 或 null')
+      } else if (!match.score.every((value) => Number.isInteger(value) && value >= 0)) {
+        fail(path, 'score 应为非负整数')
+      }
+    }
+
+    if (match.winner !== undefined && match.winner !== null) {
+      if (match.winner !== match.teamA && match.winner !== match.teamB) {
+        fail(path, `winner ${match.winner} 不是本场参赛队伍`)
+      }
+    }
+  }
+}
 
 function validateEvent(event, teamIds, indexPath) {
   const path = `events.json[${indexPath}]`
@@ -98,6 +165,8 @@ function validateEvent(event, teamIds, indexPath) {
     if (!allFinal && totalFinal > 0) {
       warn(stagePath, `最终结果不完整（已录入 ${totalFinal} 支），页面会显示为进行中`)
     }
+
+    validateSchedule(stagePath, stage.schedule, members)
   }
 
   const playoffs = event.playoffs

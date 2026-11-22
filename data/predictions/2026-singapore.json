@@ -158,7 +158,7 @@
       "stage-1": {
         "3-0": ["PV", "HEROIC"],
         "3-X": ["9z", "Liquid", "100T", "EF", "NIP", "BCG"],
-        "0-3": ["CW"]
+        "0-3": ["CW", "Imperial"]
       }
     },
     {
@@ -213,7 +213,7 @@
       "id": "yinxing",
       "stage-1": {
         "3-0": ["PV", "FaZe"],
-        "3-X": ["Liquid", "100T", "HEROIC", "NIP", "BCG"],
+        "3-X": ["9z", "Liquid", "100T", "HEROIC", "NIP", "BCG"],
         "0-3": ["CW", "Imperial"]
       }
     },

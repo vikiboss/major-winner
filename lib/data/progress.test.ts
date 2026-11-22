@@ -112,7 +112,10 @@ describe('getStageProgress - 决胜阶段', () => {
     result['4-to-2'] = { winners: [], losers: [] }
     result['2-to-1'] = { winner: null, loser: null }
 
-    const progress = getStageProgress(makeEvent({ playoffs: makePlayoffsStage([], result) }), 'playoffs')
+    const progress = getStageProgress(
+      makeEvent({ playoffs: makePlayoffsStage([], result) }),
+      'playoffs',
+    )
     expect(progress.status).toBe('in_progress')
     expect(progress.hasResults).toBe(true)
     expect(progress.isResultsComplete).toBe(false)

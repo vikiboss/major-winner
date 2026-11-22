@@ -17,7 +17,24 @@ import type {
   SwissStage,
 } from '@/types'
 
-export const SWISS_TEAMS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P']
+export const SWISS_TEAMS = [
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+  'O',
+  'P',
+]
 
 export function emptySwissResult(): SwissResult {
   return {
@@ -73,7 +90,9 @@ export function makeSwissStage(
   result: SwissResult = emptySwissResult(),
   teamsFromAdvanced?: string[],
 ): SwissStage {
-  return teamsFromAdvanced ? { name: 'test', teams, teamsFromAdvanced, result } : { name: 'test', teams, result }
+  return teamsFromAdvanced
+    ? { name: 'test', teams, teamsFromAdvanced, result }
+    : { name: 'test', teams, result }
 }
 
 export function makePlayoffsStage(
@@ -125,9 +144,11 @@ export function makePredictor(
 }
 
 /** 瑞士轮竞猜：3-0 ×2 / 3-X ×6 / 0-3 ×2 */
-export function makeSwissPick(
-  teams: { '3-0': [string, string]; '3-X': string[]; '0-3': [string, string] },
-): StagePrediction {
+export function makeSwissPick(teams: {
+  '3-0': [string, string]
+  '3-X': string[]
+  '0-3': [string, string]
+}): StagePrediction {
   return { '3-0': teams['3-0'], '3-X': teams['3-X'], '0-3': teams['0-3'] }
 }
 
@@ -169,4 +190,3 @@ export function makeStatsMap(
     ]),
   )
 }
-

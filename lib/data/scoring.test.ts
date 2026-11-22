@@ -268,7 +268,11 @@ describe('evaluateStage - 瑞士轮', () => {
   const event = makeEvent({ 'stage-1': makeSwissStage(SWISS_TEAMS, completeSwissResult()) })
 
   it('猜对 5 个即通过', () => {
-    const status = evaluateStage(event, 'stage-1', makePredictor('p', { 'stage-1': passingSwissPick() }))!
+    const status = evaluateStage(
+      event,
+      'stage-1',
+      makePredictor('p', { 'stage-1': passingSwissPick() }),
+    )!
     expect(status.passed).toBe(true)
     expect(status.correctCount).toBe(5)
     expect(status.requiredCount).toBe(5)
@@ -277,7 +281,11 @@ describe('evaluateStage - 瑞士轮', () => {
   })
 
   it('已确定错误超过 5 个即失败', () => {
-    const status = evaluateStage(event, 'stage-1', makePredictor('p', { 'stage-1': failingSwissPick() }))!
+    const status = evaluateStage(
+      event,
+      'stage-1',
+      makePredictor('p', { 'stage-1': failingSwissPick() }),
+    )!
     expect(status.correctCount).toBe(4)
     expect(status.impossibleCount).toBe(6)
     expect(status.passed).toBe(false)
@@ -304,7 +312,9 @@ describe('evaluateStage - 瑞士轮', () => {
   })
 
   it('赛事缺少该阶段数据 → null', () => {
-    const event = { ...makeEvent(), 'stage-2': undefined } as unknown as ReturnType<typeof makeEvent>
+    const event = { ...makeEvent(), 'stage-2': undefined } as unknown as ReturnType<
+      typeof makeEvent
+    >
     expect(
       evaluateStage(event, 'stage-2', makePredictor('p', { 'stage-2': perfectSwissPick() })),
     ).toBeNull()
@@ -318,7 +328,9 @@ describe('evaluateStage - 决胜阶段', () => {
     const status = evaluateStage(
       event,
       '8-to-4',
-      makePredictor('p', { playoffs: { '8-to-4': ['A', 'B', 'E', 'F'], '4-to-2': [], '2-to-1': null } }),
+      makePredictor('p', {
+        playoffs: { '8-to-4': ['A', 'B', 'E', 'F'], '4-to-2': [], '2-to-1': null },
+      }),
     )!
     expect(status.correctCount).toBe(2)
     expect(status.impossibleCount).toBe(2)
@@ -329,7 +341,9 @@ describe('evaluateStage - 决胜阶段', () => {
     const status = evaluateStage(
       event,
       '8-to-4',
-      makePredictor('p', { playoffs: { '8-to-4': ['A', 'E', 'F', 'G'], '4-to-2': [], '2-to-1': null } }),
+      makePredictor('p', {
+        playoffs: { '8-to-4': ['A', 'E', 'F', 'G'], '4-to-2': [], '2-to-1': null },
+      }),
     )!
     expect(status.correctCount).toBe(1)
     expect(status.impossibleCount).toBe(3)
@@ -340,7 +354,9 @@ describe('evaluateStage - 决胜阶段', () => {
     const status = evaluateStage(
       event,
       '8-to-4',
-      makePredictor('p', { playoffs: { '8-to-4': ['A', 'B', 'Z', 'Y'], '4-to-2': [], '2-to-1': null } }),
+      makePredictor('p', {
+        playoffs: { '8-to-4': ['A', 'B', 'Z', 'Y'], '4-to-2': [], '2-to-1': null },
+      }),
     )!
     expect(status.passed).toBe(true)
   })

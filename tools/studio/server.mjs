@@ -113,7 +113,22 @@ function validatePredictionFile(file, eventId) {
   if (!Array.isArray(file.predictions)) throw new Error('predictions 必须是数组')
 }
 
-const SWISS_RESULT_KEYS = ['1-0', '0-1', '1-1', '2-0', '0-2', '2-1', '1-2', '2-2', '3-0', '3-1', '3-2', '2-3', '1-3', '0-3']
+const SWISS_RESULT_KEYS = [
+  '1-0',
+  '0-1',
+  '1-1',
+  '2-0',
+  '0-2',
+  '2-1',
+  '1-2',
+  '2-2',
+  '3-0',
+  '3-1',
+  '3-2',
+  '2-3',
+  '1-3',
+  '0-3',
+]
 
 function validateEvents(events) {
   if (!Array.isArray(events)) throw new Error('events 必须是数组')

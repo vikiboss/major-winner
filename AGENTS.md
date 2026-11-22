@@ -32,14 +32,14 @@ data/
 
 数据层在 `lib/data/`，页面只从 `@/lib/data` 引入：
 
-| 模块 | 职责 |
-| --- | --- |
-| `store.ts` | 读取 JSON，建立 id 索引 |
-| `scoring.ts` | 胜负判定、通过状态、竞猜者成绩 |
-| `progress.ts` | 由结果推导阶段/赛事进度 |
-| `predictions.ts` | 竞猜查询与视图模型（带缓存） |
-| `sort.ts` | 排序比较函数 |
-| `index.ts` | 统一出口 |
+| 模块             | 职责                           |
+| ---------------- | ------------------------------ |
+| `store.ts`       | 读取 JSON，建立 id 索引        |
+| `scoring.ts`     | 胜负判定、通过状态、竞猜者成绩 |
+| `progress.ts`    | 由结果推导阶段/赛事进度        |
+| `predictions.ts` | 竞猜查询与视图模型（带缓存）   |
+| `sort.ts`        | 排序比较函数                   |
+| `index.ts`       | 统一出口                       |
 
 阶段文案、通过规则、战绩分组等常量集中在 `lib/constants.ts`。
 

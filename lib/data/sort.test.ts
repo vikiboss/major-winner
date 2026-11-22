@@ -126,9 +126,7 @@ describe('compareByPlayoffs', () => {
 
 describe('compareLeaderboard', () => {
   it('先比通过任务数，再比猜对数', () => {
-    expect(
-      compareLeaderboard(stats({ totalPassed: 4 }), stats({ totalPassed: 3 })),
-    ).toBeLessThan(0)
+    expect(compareLeaderboard(stats({ totalPassed: 4 }), stats({ totalPassed: 3 }))).toBeLessThan(0)
     expect(
       compareLeaderboard(
         stats({ totalPassed: 3, totalCorrect: 9 }),

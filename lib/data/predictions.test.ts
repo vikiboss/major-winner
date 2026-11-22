@@ -151,7 +151,9 @@ describe('createStageViews', () => {
   })
 
   it('无竞猜无结果的阶段不显示', () => {
-    const views = createStageViews(makeEvent(), [makePredictor('p', { 'stage-1': perfectSwissPick() })])
+    const views = createStageViews(makeEvent(), [
+      makePredictor('p', { 'stage-1': perfectSwissPick() }),
+    ])
     const byId = Object.fromEntries(views.map((view) => [view.id, view]))
 
     expect(byId['stage-1'].visible).toBe(true)

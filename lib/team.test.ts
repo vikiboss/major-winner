@@ -36,17 +36,29 @@ describe('getTeamPerformance', () => {
 
   it('亚军：决赛落败记为 advanced', () => {
     const performance = getTeamPerformance(completeEvent(), 'B')
-    expect(performance.at(-1)).toMatchObject({ stageName: '决赛', result: '亚军', status: 'advanced' })
+    expect(performance.at(-1)).toMatchObject({
+      stageName: '决赛',
+      result: '亚军',
+      status: 'advanced',
+    })
   })
 
   it('四强：半决赛落败', () => {
     const performance = getTeamPerformance(completeEvent(), 'C')
-    expect(performance.at(-1)).toMatchObject({ stageName: '半决赛', result: '四强', status: 'eliminated' })
+    expect(performance.at(-1)).toMatchObject({
+      stageName: '半决赛',
+      result: '四强',
+      status: 'eliminated',
+    })
   })
 
   it('八强：八进四落败', () => {
     const performance = getTeamPerformance(completeEvent(), 'E')
-    expect(performance.at(-1)).toMatchObject({ stageName: '八进四', result: '八强', status: 'eliminated' })
+    expect(performance.at(-1)).toMatchObject({
+      stageName: '八进四',
+      result: '八强',
+      status: 'eliminated',
+    })
   })
 
   it('瑞士轮淘汰只有一条记录', () => {
@@ -84,7 +96,11 @@ describe('getTeamPerformance', () => {
       }),
       'A',
     )
-    expect(performance.at(-1)).toMatchObject({ stageName: '八进四', result: '待赛', status: 'waiting' })
+    expect(performance.at(-1)).toMatchObject({
+      stageName: '八进四',
+      result: '待赛',
+      status: 'waiting',
+    })
   })
 
   it('晋级四强后等待半决赛', () => {
@@ -102,7 +118,11 @@ describe('getTeamPerformance', () => {
     )
 
     expect(performance.at(-2)).toMatchObject({ result: '晋级四强', status: 'advanced' })
-    expect(performance.at(-1)).toMatchObject({ stageName: '半决赛', result: '待赛', status: 'waiting' })
+    expect(performance.at(-1)).toMatchObject({
+      stageName: '半决赛',
+      result: '待赛',
+      status: 'waiting',
+    })
   })
 
   it('不在本阶段的队伍不产生记录', () => {
@@ -139,9 +159,18 @@ describe('getTeamStatus', () => {
     result['3-0'] = ['B', 'C']
 
     const event = makeEvent({ 'stage-1': makeSwissStage(SWISS_TEAMS, result) })
-    expect(getTeamStatus(getTeamPerformance(event, 'A'))).toEqual({ text: '赛程中', tone: 'in-progress' })
-    expect(getTeamStatus(getTeamPerformance(event, 'B'))).toEqual({ text: '已晋级', tone: 'advanced' })
-    expect(getTeamStatus(getTeamPerformance(event, 'P'))).toEqual({ text: '等待中', tone: 'waiting' })
+    expect(getTeamStatus(getTeamPerformance(event, 'A'))).toEqual({
+      text: '赛程中',
+      tone: 'in-progress',
+    })
+    expect(getTeamStatus(getTeamPerformance(event, 'B'))).toEqual({
+      text: '已晋级',
+      tone: 'advanced',
+    })
+    expect(getTeamStatus(getTeamPerformance(event, 'P'))).toEqual({
+      text: '等待中',
+      tone: 'waiting',
+    })
   })
 })
 

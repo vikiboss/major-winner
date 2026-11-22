@@ -13,11 +13,7 @@ import {
 import type { MajorEvent, Team } from '@/types'
 
 export type TeamPerformanceStatus =
-  | 'advanced'
-  | 'eliminated'
-  | 'champion'
-  | 'in-progress'
-  | 'waiting'
+  'advanced' | 'eliminated' | 'champion' | 'in-progress' | 'waiting'
 
 export interface TeamPerformanceRecord {
   stage: string
@@ -28,13 +24,7 @@ export interface TeamPerformanceRecord {
 
 /** 队伍状态文案的语义色调，具体样式由组件决定 */
 export type TeamTone =
-  | 'champion'
-  | 'runner-up'
-  | 'advanced'
-  | 'in-progress'
-  | 'waiting'
-  | 'eliminated'
-  | 'idle'
+  'champion' | 'runner-up' | 'advanced' | 'in-progress' | 'waiting' | 'eliminated' | 'idle'
 
 export interface TeamStatus {
   text: string

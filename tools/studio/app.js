@@ -289,13 +289,15 @@ function logoHtml(id) {
   return `<span class="logo" data-initial="${esc(id.slice(0, 2))}"><img referrerpolicy="no-referrer" src="${esc(src)}" alt="" loading="lazy" onerror="this.remove()"></span>`
 }
 
-function chipHtml(id, board, options = {}) {
+function chipHtml(id, board) {
   const outcome = outcomeFor(id, board)
   const selected = state.selectedTeam === id
+  const team = state.teamMap.get(id)
+  const label = team?.name && team.name !== id ? `${id} · ${team.name}` : id
 
   return `<button class="chip${selected ? ' selected' : ''}" type="button" draggable="true" data-team="${esc(id)}"${
     outcome ? ` data-outcome="${outcome}"` : ''
-  } title="${esc(id)}">${logoHtml(id)}<span class="name">${esc(id)}</span></button>`
+  } title="${esc(label)}" aria-label="${esc(id)}">${logoHtml(id)}</button>`
 }
 
 function renderMode() {
@@ -318,13 +320,17 @@ function renderRail() {
   const query = state.query.trim().toLowerCase()
   const file = currentFile()
 
-  const ordered = [...state.predictors].sort((a, b) => Number(a.id === 'cs') - Number(b.id === 'cs'))
+  const ordered = [...state.predictors].sort(
+    (a, b) => Number(a.id === 'cs') - Number(b.id === 'cs'),
+  )
 
   const rows = ordered
     .filter((item) => {
       if (!query) return true
       return [item.name, item.id, item.platform].some((field) =>
-        String(field ?? '').toLowerCase().includes(query),
+        String(field ?? '')
+          .toLowerCase()
+          .includes(query),
       )
     })
     .map((item) => {
@@ -396,6 +402,25 @@ function readBoardFor(stageId) {
   return board
 }
 
+/* 泳道宽度按队伍容量分配但收敛差距：2/6/2 → 2fr/3fr/2fr，避免小格被挤扁 */
+const LANE_MIN_WIDTH = 168
+
+function laneColumns(lanes) {
+  if (lanes.length <= 1) return 'minmax(0, 1fr)'
+
+  const sizes = lanes.map((lane) => lane.size)
+  const max = Math.max(...sizes)
+  const min = Math.min(...sizes)
+
+  // 尺寸差距大时才拉开，最多 1 : 1.5
+  const weights = sizes.map((size) => {
+    if (max === min) return 1
+    return 1 + ((size - min) / (max - min)) * 0.5
+  })
+
+  return weights.map((w) => `minmax(min(100%, ${LANE_MIN_WIDTH}px), ${w.toFixed(2)}fr)`).join(' ')
+}
+
 function laneHtml(lane, board) {
   const teams = board[lane.key] ?? []
   const full = teams.length >= lane.size
@@ -433,7 +458,7 @@ function renderBoard() {
     .map(
       (group) => `
       ${group.title ? `<div class="group-title">${esc(group.title)}</div>` : ''}
-      <div class="lanes${group.compact ? ' compact' : ''}">
+      <div class="lanes${group.compact ? ' compact' : ''}" style="--lane-cols: ${laneColumns(group.lanes)}">
         ${group.lanes.map((lane) => laneHtml(lane, board)).join('')}
       </div>`,
     )
@@ -449,12 +474,18 @@ function renderFoot(board) {
     if (state.stageId === 'playoffs') {
       const four = board['8-to-4:win']
       const two = board['4-to-2:win']
-      if (two.some((team) => !four.includes(team))) notes.push(['warn', '半决赛晋级队伍不在四强名单中'])
+      if (two.some((team) => !four.includes(team)))
+        notes.push(['warn', '半决赛晋级队伍不在四强名单中'])
       const champion = board['2-to-1:win'][0]
       if (champion && !two.includes(champion)) notes.push(['warn', '冠军不在决赛名单中'])
     } else {
       const missing = SWISS_FINAL.reduce(
-        (sum, key) => sum + Math.max(0, (SWISS_RESULT_LANES.find((l) => l.key === key)?.size ?? 0) - board[key].length),
+        (sum, key) =>
+          sum +
+          Math.max(
+            0,
+            (SWISS_RESULT_LANES.find((l) => l.key === key)?.size ?? 0) - board[key].length,
+          ),
         0,
       )
       if (missing) notes.push(['hint', `最终结果还差 ${missing} 支`])
@@ -608,7 +639,9 @@ function renderTeamsEditor() {
       !query
         ? true
         : [team.id, team.name, team.shortName].some((field) =>
-            String(field ?? '').toLowerCase().includes(query),
+            String(field ?? '')
+              .toLowerCase()
+              .includes(query),
           ),
     )
     .map(
@@ -766,7 +799,8 @@ function clearStage() {
   const hasAny = allLanes(laneGroups()).some((lane) => (board[lane.key] ?? []).length)
   if (!hasAny) return toast('本阶段已经是空的')
 
-  if (!confirm(`清空「${STAGES.find((stage) => stage.id === state.stageId)?.label}」的全部数据？`)) return
+  if (!confirm(`清空「${STAGES.find((stage) => stage.id === state.stageId)?.label}」的全部数据？`))
+    return
 
   pushHistory()
   for (const lane of allLanes(laneGroups())) board[lane.key] = []
@@ -1017,6 +1051,17 @@ document.addEventListener('dragstart', (event) => {
   if (!chip) return
   event.dataTransfer.setData('text/plain', chip.dataset.team)
   event.dataTransfer.effectAllowed = 'move'
+
+  // 统一 chip 尺寸，拖影直接用 chip 当前尺寸
+  const rect = chip.getBoundingClientRect()
+  const ghost = chip.cloneNode(true)
+  ghost.classList.add('drag-ghost')
+  ghost.style.width = `${rect.width}px`
+  ghost.style.height = `${rect.height}px`
+  document.body.append(ghost)
+  event.dataTransfer.setDragImage(ghost, rect.width / 2, rect.height / 2)
+  setTimeout(() => ghost.remove(), 0)
+
   chip.classList.add('dragging')
 })
 
@@ -1098,7 +1143,8 @@ els.predictorForm.addEventListener('submit', async (event) => {
   const platform = String(data.get('platform') ?? '').trim()
   const error = els.predictorForm.querySelector('[data-error]')
 
-  if (!/^[\w.-]+$/.test(id)) return showDialogError(error, 'ID 只能包含字母、数字、下划线、点和连字符')
+  if (!/^[\w.-]+$/.test(id))
+    return showDialogError(error, 'ID 只能包含字母、数字、下划线、点和连字符')
   if (state.predictors.some((item) => item.id === id)) return showDialogError(error, '该 ID 已存在')
 
   state.predictors.push({ id, name, platform, link: '', avatar: '' })
@@ -1116,7 +1162,9 @@ async function deletePredictor() {
   const profile = currentProfile()
   if (!profile) return
 
-  const ok = confirm(`删除「${profile.name || profile.id}」？\n会同时移除所有赛事中的竞猜记录，且不可撤销。`)
+  const ok = confirm(
+    `删除「${profile.name || profile.id}」？\n会同时移除所有赛事中的竞猜记录，且不可撤销。`,
+  )
   if (!ok) return
 
   try {
@@ -1141,7 +1189,10 @@ function openEventDialog() {
   copyFrom.innerHTML =
     '<option value="">手动填写</option>' +
     state.events
-      .map((event) => `<option value="${esc(event.id)}">复制自 ${esc(event.shortName || event.name)}</option>`)
+      .map(
+        (event) =>
+          `<option value="${esc(event.id)}">复制自 ${esc(event.shortName || event.name)}</option>`,
+      )
       .join('')
 
   els.eventForm.querySelector('[data-error]').hidden = true
@@ -1165,7 +1216,8 @@ els.eventForm.addEventListener('submit', async (event) => {
   const rawTeams = String(form.get('teams') ?? '')
   const error = els.eventForm.querySelector('[data-error]')
 
-  if (!/^[\w.-]+$/.test(id)) return showDialogError(error, 'ID 只能包含字母、数字、下划线、点和连字符')
+  if (!/^[\w.-]+$/.test(id))
+    return showDialogError(error, 'ID 只能包含字母、数字、下划线、点和连字符')
   if (state.events.some((item) => item.id === id)) return showDialogError(error, '该赛事 ID 已存在')
 
   const teams = []
@@ -1174,12 +1226,15 @@ els.eventForm.addEventListener('submit', async (event) => {
     if (!trimmed) continue
 
     const [teamId, stage] = trimmed.split(/[\s,]+/)
-    if (!teamId || !/^[\w.-]+$/.test(teamId)) return showDialogError(error, `队伍 ID 非法：${trimmed}`)
+    if (!teamId || !/^[\w.-]+$/.test(teamId))
+      return showDialogError(error, `队伍 ID 非法：${trimmed}`)
     if (!['stage-1', 'stage-2', 'stage-3'].includes(stage)) {
       return showDialogError(error, `阶段非法：${trimmed}（应为 stage-1 / stage-2 / stage-3）`)
     }
-    if (!state.teamMap.has(teamId)) return showDialogError(error, `teams.json 中不存在队伍：${teamId}`)
-    if (teams.some((item) => item.id === teamId)) return showDialogError(error, `队伍重复：${teamId}`)
+    if (!state.teamMap.has(teamId))
+      return showDialogError(error, `teams.json 中不存在队伍：${teamId}`)
+    if (teams.some((item) => item.id === teamId))
+      return showDialogError(error, `队伍重复：${teamId}`)
 
     teams.push({ id: teamId, stage })
   }
@@ -1268,7 +1323,8 @@ els.teamForm.addEventListener('submit', async (event) => {
   const logo = String(form.get('logo') ?? '').trim()
   const error = els.teamForm.querySelector('[data-error]')
 
-  if (!/^[\w.-]+$/.test(id)) return showDialogError(error, 'ID 只能包含字母、数字、下划线、点和连字符')
+  if (!/^[\w.-]+$/.test(id))
+    return showDialogError(error, 'ID 只能包含字母、数字、下划线、点和连字符')
   if (state.teamMap.has(id)) return showDialogError(error, '该队伍已存在')
 
   state.teams.push({ id, name, shortName: name, logo, link: '' })

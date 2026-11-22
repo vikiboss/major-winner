@@ -86,10 +86,9 @@ export function formatMatchDateTime(match: Match, timezone: string): string {
   return `${toDateLabel(new Date(match.start), timezone)} ${formatMatchTime(match, timezone)}`
 }
 
-/** 阶段与轮次合成一个标签，如「第一阶段 · 第 2 轮」 */
-function buildStageLabel(stageId: MajorStageType, match: Match): string {
-  const stage = MAJOR_STAGE_LABEL[stageId]
-  return match.round ? `${stage} · 第 ${match.round} 轮` : stage
+/** 阶段名，如「第一阶段」（轮次信息由战绩组标签承担） */
+function buildStageLabel(stageId: MajorStageType): string {
+  return MAJOR_STAGE_LABEL[stageId]
 }
 
 /**
@@ -109,14 +108,19 @@ export function getScheduleDays(event: MajorEvent, stage?: MajorStageType): Sche
       if (Number.isNaN(start.getTime())) continue
 
       const format = match.format ?? getMatchFormat(parseRecord(match.group ?? '0-0'))
+      const rawStatus = getMatchStatus(format, match.score ?? null)
+
+      // 队伍待定的占位场次不可能「进行中」：真实情况是对阵未产生，按未开始展示
+      const teamsPending = !match.teamA || !match.teamB
 
       views.push({
         match,
         stageId,
-        stageLabel: buildStageLabel(stageId, match),
+        stageLabel: buildStageLabel(stageId),
         groupLabel: match.group ?? '',
         formatLabel: format.toUpperCase(),
-        status: getMatchStatus(format, match.score ?? null),
+        status: teamsPending && rawStatus === 'live' ? 'upcoming' : rawStatus,
+        teamsPending,
         dateKey: toDateKey(start, timezone),
         timeLabel: formatMatchTime(match, timezone),
       })
@@ -139,10 +143,36 @@ export function getScheduleDays(event: MajorEvent, stage?: MajorStageType): Sche
       label: toDateLabel(new Date(view.match.start), timezone),
       timezoneLabel: toTimezoneLabel(timezone),
       matches: [view],
+      resolved: !view.teamsPending,
+      stageId: view.stageId,
     })
   }
 
+  // 先汇总每天的「是否已确定对阵」，再回写到每一场，避免页面自行判断
+  for (const day of days.values()) {
+    day.resolved = day.matches.every((item) => !item.teamsPending)
+  }
+
   return [...days.values()]
+}
+
+/* -------------------------------------------------------------------------- */
+/*                                  日期辅助                                  */
+/* -------------------------------------------------------------------------- */
+
+/** 一天的长度（毫秒），用于「今天」判断 */
+const DAY_MS = 24 * 60 * 60 * 1000
+
+/** 时区下的「今天」偏移天数：0 = 今天，1 = 明天，-1 = 昨天 */
+function dayOffset(dateKey: string, now: Date, timezone: string): number {
+  const [y, m, d] = dateKey.split('-').map(Number)
+  const [ny, nm, nd] = toDateKey(now, timezone).split('-').map(Number)
+  return Math.round((Date.UTC(y, m - 1, d) - Date.UTC(ny, nm - 1, nd)) / DAY_MS)
+}
+
+/** 某天是否就是今天（按赛事时区） */
+export function isToday(dateKey: string, timezone: string, now: Date = new Date()): boolean {
+  return dayOffset(dateKey, now, timezone) === 0
 }
 
 /** 某阶段的对局所属轮次（用于推演页展示「第几轮」） */

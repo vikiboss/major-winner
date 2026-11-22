@@ -163,4 +163,13 @@ body {
   .stage-nav::-webkit-scrollbar {
     height: 2px;
   }
+
+  /* 横向滚动的日期快跳条：隐藏滚动条，保留滑动 */
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
 }

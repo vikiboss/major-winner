@@ -141,15 +141,18 @@ export interface Match {
   no?: number
   /** 瑞士轮轮次（1 ~ 5），决胜阶段不使用 */
   round?: number
-  /** 开赛时的战绩组，如 0-0 / 1-0 / 2-2 */
-  group?: string
+  /** 开赛时的战绩组，如 0-0 / 1-0 / 2-2；`null` 表示待定（尚未分组） */
+  group?: string | null
   format: MatchFormat
+  /** null 表示队伍待定（TBD） */
   teamA: string | null
   teamB: string | null
   /** 最终比分；null 表示未结束 */
   score?: [number, number] | null
   /** 胜者 id */
   winner?: string | null
+  /** 关联的赛事方比赛 id（便于回查原数据） */
+  sourceMatchId?: number
 }
 
 /** 某个阶段的对局列表 */
@@ -161,14 +164,16 @@ export interface StageSchedule {
 export interface ScheduleMatchView {
   match: Match
   stageId: MajorStageType
-  /** 阶段与轮次，如「第一阶段 · 第 2 轮」 */
+  /** 阶段名，如「第一阶段」 */
   stageLabel: string
-  /** 战绩组，如「1-0」 */
+  /** 战绩组，如「1-0」；空串表示待定 */
   groupLabel: string
   /** 赛制标签，如 BO1 / BO3 */
   formatLabel: string
   /** 对局状态，由赛制与比分推导 */
   status: MatchStatus
+  /** 双方队伍是否已确定（任一方为 null 即待定） */
+  teamsPending: boolean
   /** 所在时区下的日期 key，如 2026-11-15 */
   dateKey: string
   /** 格式化后的时刻，如「12:00」 */
@@ -183,6 +188,10 @@ export interface ScheduleDayView {
   /** 时区短标签，如 GMT+8 */
   timezoneLabel: string
   matches: ScheduleMatchView[]
+  /** 当天是否已确定全部对阵 */
+  resolved: boolean
+  /** 当天对局所处的阶段（取第一场） */
+  stageId: MajorStageType
 }
 
 /** 推演结果中的队伍 */

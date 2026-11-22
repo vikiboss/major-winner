@@ -12,6 +12,7 @@ import teamsData from '@/data/teams.json' with { type: 'json' }
 
 import budapest2025 from '@/data/predictions/2025-budapest.json' with { type: 'json' }
 import cologne2026 from '@/data/predictions/2026-cologne.json' with { type: 'json' }
+import singapore2026 from '@/data/predictions/2026-singapore.json' with { type: 'json' }
 
 import type { EventPredictions, MajorEvent, Predictor, TeamInfo } from '@/types'
 
@@ -19,7 +20,7 @@ export const events = eventsData as MajorEvent[]
 export const predictors = predictorsData as Predictor[]
 export const teams = teamsData as TeamInfo[]
 
-export const predictionFiles = [budapest2025, cologne2026] as EventPredictions[]
+export const predictionFiles = [budapest2025, cologne2026, singapore2026] as EventPredictions[]
 
 export const teamMap: Map<string, TeamInfo> = new Map(teams.map((t) => [t.id, t]))
 export const predictorMap: Map<string, Predictor> = new Map(predictors.map((p) => [p.id, p]))

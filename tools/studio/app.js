@@ -414,6 +414,9 @@ function laneHtml(lane, board) {
 }
 
 function renderBoard() {
+  // 未选中竞猜者、或该竞猜者尚未参与本赛事时，编辑器里没有泳道面板
+  if (!els.hasBoard) return
+
   const board = readBoard()
   const groups = laneGroups()
   const lanes = allLanes(groups)
@@ -653,6 +656,7 @@ function cacheBoardEls() {
   els.poolCount = els.editor.querySelector('#pool-count')
   els.lanes = els.editor.querySelector('#lanes')
   els.foot = els.editor.querySelector('#board-foot')
+  els.hasBoard = Boolean(els.poolBody && els.poolCount && els.lanes)
 }
 
 function renderEditor() {

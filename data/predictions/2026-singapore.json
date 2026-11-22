@@ -1,4 +1,29 @@
 {
   "id": "2026-singapore",
-  "predictions": []
+  "predictions": [
+    {
+      "id": "danking",
+      "stage-1": {
+        "3-0": ["Liquid", "NIP"],
+        "3-X": ["FaZe", "9z", "PV", "M80", "Wildcard", "BCG"],
+        "0-3": ["LVG", "FlyQuest"]
+      }
+    },
+    {
+      "id": "cs-advent",
+      "stage-1": {
+        "3-0": ["100T", "FaZe"],
+        "3-X": ["9z", "Liquid", "PV", "HEROIC", "EF", "FlyQuest"],
+        "0-3": ["CW", "Wildcard"]
+      }
+    },
+    {
+      "id": "momo",
+      "stage-1": {
+        "3-0": ["PV", "Liquid"],
+        "3-X": ["FaZe", "9z", "100T", "EF", "NIP", "BCG"],
+        "0-3": ["CW", "Wildcard"]
+      }
+    }
+  ]
 }

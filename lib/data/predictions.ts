@@ -266,7 +266,12 @@ export function buildRows(eventId: string, scope: MajorStageType): PredictorRow[
   const cached = rowsCache.get(cacheKey)
   if (cached) return cached
 
-  const rows = createRows(getEvent(eventId), getEventPredictions(eventId), getStatsMap(eventId), scope)
+  const rows = createRows(
+    getEvent(eventId),
+    getEventPredictions(eventId),
+    getStatsMap(eventId),
+    scope,
+  )
   rowsCache.set(cacheKey, rows)
   return rows
 }

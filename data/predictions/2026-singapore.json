@@ -400,6 +400,246 @@
         "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "LVG", "BCG"],
         "0-3": ["CW", "Imperial"]
       }
+    },
+    {
+      "id": "xiaowo",
+      "stage-1": {
+        "3-0": ["100T", "NIP"],
+        "3-X": ["9z", "Liquid", "PV", "HEROIC", "EF", "M80"],
+        "0-3": ["DENDELE", "Imperial"]
+      }
+    },
+    {
+      "id": "zheguchenshi",
+      "stage-1": {
+        "3-0": ["PV", "NIP"],
+        "3-X": ["FaZe", "EF", "100T", "HEROIC", "FlyQuest", "BCG"],
+        "0-3": ["CW", "Wildcard"]
+      }
+    },
+    {
+      "id": "tedd",
+      "stage-1": {
+        "3-0": ["PV", "M80"],
+        "3-X": ["FaZe", "Liquid", "EF", "HEROIC", "NIP", "BCG"],
+        "0-3": ["CW", "LVG"]
+      }
+    },
+    {
+      "id": "conner",
+      "stage-1": {
+        "3-0": ["100T", "NIP"],
+        "3-X": ["FaZe", "Liquid", "PV", "HEROIC", "M80", "FlyQuest"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "kustyd",
+      "stage-1": {
+        "3-0": ["BCG", "LVG"],
+        "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "NIP", "PV"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "yoke",
+      "stage-1": {
+        "3-0": ["100T", "NIP"],
+        "3-X": ["FaZe", "Liquid", "9z", "HEROIC", "PV", "EF"],
+        "0-3": ["CW", "FlyQuest"]
+      }
+    },
+    {
+      "id": "zhengyilaodeng",
+      "stage-1": {
+        "3-0": ["PV", "NIP"],
+        "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "9z", "EF"],
+        "0-3": ["CW", "LVG"]
+      }
+    },
+    {
+      "id": "navi-csgo",
+      "stage-1": {
+        "3-0": ["HEROIC", "FaZe"],
+        "3-X": ["PV", "Liquid", "100T", "EF", "NIP", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "weiwei",
+      "stage-1": {
+        "3-0": ["PV", "NIP"],
+        "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "9z", "BCG"],
+        "0-3": ["CW", "FlyQuest"]
+      }
+    },
+    {
+      "id": "suke",
+      "stage-1": {
+        "3-0": ["HEROIC", "100T"],
+        "3-X": ["FaZe", "Liquid", "9z", "EF", "NIP", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "neeko",
+      "stage-1": {
+        "3-0": ["FlyQuest", "Wildcard"],
+        "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "PV", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "xieezhimao",
+      "stage-1": {
+        "3-0": ["PV", "Liquid"],
+        "3-X": ["FaZe", "9z", "100T", "M80", "NIP", "BCG"],
+        "0-3": ["CW", "LVG"]
+      }
+    },
+    {
+      "id": "little",
+      "stage-1": {
+        "3-0": ["100T", "Liquid"],
+        "3-X": ["FaZe", "PV", "EF", "HEROIC", "NIP", "M80"],
+        "0-3": ["CW", "LVG"]
+      }
+    },
+    {
+      "id": "malou",
+      "stage-1": {
+        "3-0": ["PV", "9z"],
+        "3-X": ["FaZe", "Liquid", "100T", "LVG", "NIP", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "sanmiqiqi",
+      "stage-1": {
+        "3-0": ["HEROIC", "NIP"],
+        "3-X": ["FaZe", "Liquid", "100T", "PV", "EF", "M80"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "npl",
+      "stage-1": {
+        "3-0": ["HEROIC", "BCG"],
+        "3-X": ["FaZe", "Liquid", "9z", "PV", "NIP", "EF"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "b5",
+      "stage-1": {
+        "3-0": ["100T", "NIP"],
+        "3-X": ["FaZe", "Liquid", "PV", "HEROIC", "LVG", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "yzxy",
+      "stage-1": {
+        "3-0": ["HEROIC", "Liquid"],
+        "3-X": ["FaZe", "9z", "100T", "PV", "NIP", "FlyQuest"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "b8",
+      "stage-1": {
+        "3-0": ["FaZe", "NIP"],
+        "3-X": ["9z", "Liquid", "100T", "HEROIC", "PV", "EF"],
+        "0-3": ["CW", "DENDELE"]
+      }
+    },
+    {
+      "id": "sauce",
+      "stage-1": {
+        "3-0": ["100T", "NIP"],
+        "3-X": ["FaZe", "Liquid", "9z", "HEROIC", "PV", "EF"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "666k",
+      "stage-1": {
+        "3-0": ["PV", "100T"],
+        "3-X": ["FaZe", "Liquid", "M80", "LVG", "NIP", "FlyQuest"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "yxl",
+      "stage-1": {
+        "3-0": ["HEROIC", "NIP"],
+        "3-X": ["FaZe", "Liquid", "100T", "9z", "PV", "EF"],
+        "0-3": ["CW", "FlyQuest"]
+      }
+    },
+    {
+      "id": "hml",
+      "stage-1": {
+        "3-0": ["Liquid", "NIP"],
+        "3-X": ["FaZe", "PV", "100T", "HEROIC", "EF", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "chamri",
+      "stage-1": {
+        "3-0": ["HEROIC", "Liquid"],
+        "3-X": ["FaZe", "9z", "100T", "PV", "EF", "M80"],
+        "0-3": ["DENDELE", "Imperial"]
+      }
+    },
+    {
+      "id": "malong",
+      "stage-1": {
+        "3-0": ["PV", "Liquid"],
+        "3-X": ["FaZe", "9z", "100T", "HEROIC", "NIP", "BCG"],
+        "0-3": ["CW", "LVG"]
+      }
+    },
+    {
+      "id": "daguanren",
+      "stage-1": {
+        "3-0": ["PV", "HEROIC"],
+        "3-X": ["FaZe", "Liquid", "100T", "9z", "NIP", "DENDELE"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "captain-mo",
+      "stage-1": {
+        "3-0": ["PV", "HEROIC"],
+        "3-X": ["FaZe", "Liquid", "100T", "9z", "NIP", "BCG"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "laomo",
+      "stage-1": {
+        "3-0": ["HEROIC", "EF"],
+        "3-X": ["FaZe", "Liquid", "100T", "9z", "NIP", "PV"],
+        "0-3": ["CW", "FlyQuest"]
+      }
+    },
+    {
+      "id": "dupreeh",
+      "stage-1": {
+        "3-0": ["PV", "Liquid"],
+        "3-X": ["FaZe", "EF", "100T", "HEROIC", "NIP", "BCG"],
+        "0-3": ["CW", "Wildcard"]
+      }
+    },
+    {
+      "id": "xianhe",
+      "stage-1": {
+        "3-0": ["PV", "100T"],
+        "3-X": ["FaZe", "Liquid", "9z", "HEROIC", "LVG", "BCG"],
+        "0-3": ["CW", "DENDELE"]
+      }
     }
   ]
 }

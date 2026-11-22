@@ -1021,7 +1021,6 @@
     "avatar": "https://i1.hdslb.com/bfs/face/6cb7a2e838bf2e3aa50c100f0eede1d38ae3ab0f.jpg@70w_70h_1c_1s.webp",
     "link": "https://space.bilibili.com/312932032"
   },
-
   {
     "id": "viki",
     "name": "Viki",
@@ -1084,5 +1083,110 @@
     "platform": "群友",
     "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1115697863&s=100",
     "link": "#"
+  },
+  {
+    "id": "npl",
+    "name": "npl",
+    "platform": "B8 队员",
+    "link": "https://www.hltv.org/player/21708/npl",
+    "avatar": "https://liquipedia.net/commons/images/thumb/5/56/Npl_at_BLAST_Austin_Major_2025.jpg/675px-Npl_at_BLAST_Austin_Major_2025.jpg"
+  },
+  {
+    "id": "b5",
+    "name": "B5 对战平台",
+    "platform": "官方",
+    "link": "https://space.bilibili.com/166433367",
+    "avatar": "https://i1.hdslb.com/bfs/face/686349942837f72f21ebafab0b0fcb0be694bfd7.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "yzxy",
+    "name": "隐者咸鱼",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/289918461",
+    "avatar": "https://i1.hdslb.com/bfs/face/d1e01036b32629f774bdfb2e60d7395365bc9eef.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "b8",
+    "name": "B8 Esports",
+    "platform": "官方",
+    "link": "https://b8esports.gg/",
+    "avatar": "https://image.viki.moe/cs/team/B8.png"
+  },
+  {
+    "id": "sauce",
+    "name": "SauceSoy",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/352479603",
+    "avatar": "https://i1.hdslb.com/bfs/face/0a35d751c989de95d5354d44684937ce4bb09c09.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "666k",
+    "name": "抽象派 666K",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/424175546",
+    "avatar": "https://i1.hdslb.com/bfs/face/1fad3ab5f79ce83d9d32678495aba1565517bb67.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "yxl",
+    "name": "雨野澪",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/84136471",
+    "avatar": "https://i1.hdslb.com/bfs/face/3456c33edefe7472c348afb5774fd1ce2a680800.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "hml",
+    "name": "吼姆拉_l",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/3546704789899374",
+    "avatar": "https://i1.hdslb.com/bfs/face/5eb04e21e4912c70fad34b775fb293beac0af426.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "chamri",
+    "name": "Chamri_Channel",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/281398234",
+    "avatar": "https://i1.hdslb.com/bfs/face/815a6ec2c35cbc9757887a433d40be9940486b85.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "malong",
+    "name": "马龙 MA1ONG",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/88237916",
+    "avatar": "https://i1.hdslb.com/bfs/face/bda05ff7b2c81e5fbeb8379cb5c8902e56f4c6b0.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "daguanren",
+    "name": "幽灵大官人",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/19848044",
+    "avatar": "https://i1.hdslb.com/bfs/face/fad64f5d56c2849126032cc83d78588788bac6b4.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "captain-mo",
+    "name": "captainMo",
+    "platform": "前 TYLOO 队员",
+    "link": "https://www.hltv.org/player/5187/captainmo",
+    "avatar": "https://liquipedia.net/commons/images/thumb/3/35/Mo_at_DHM_2016.jpg/675px-Mo_at_DHM_2016.jpg"
+  },
+  {
+    "id": "laomo",
+    "name": "CS 老墨",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/211142477",
+    "avatar": "https://i1.hdslb.com/bfs/face/d96a64199a1eae9ef50172395870751a46951edc.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "dupreeh",
+    "name": "dupreeh",
+    "platform": "前 Falcons 队员",
+    "link": "https://www.hltv.org/player/7398/dupreeh",
+    "avatar": "https://liquipedia.net/commons/images/thumb/a/a6/Dupreeh_at_BLAST_Rivals_Spring_2025.jpg/675px-Dupreeh_at_BLAST_Rivals_Spring_2025.jpg"
+  },
+  {
+    "id": "xianhe",
+    "name": "CS2 仙鹤",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/396704992",
+    "avatar": "https://i1.hdslb.com/bfs/face/4186efbe133f54c40207d76e7c4a495d7cf663dc.jpg@128w_128h_1c_1s.webp"
   }
 ]

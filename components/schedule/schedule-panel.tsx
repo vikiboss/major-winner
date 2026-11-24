@@ -396,7 +396,7 @@ function MatchRow({
             )}
           </span>
           <span
-            className={`hidden items-center rounded px-1 py-0.5 text-[10px] font-medium sm:inline-flex ${FORMAT_STYLE[match.format] ?? 'bg-surface-2 text-secondary'}`}
+            className={`bg-surface-2 text-muted hidden items-center rounded px-1 py-0.5 text-[10px] font-medium sm:inline-flex`}
           >
             {match.format.toUpperCase()}
           </span>
@@ -411,7 +411,7 @@ function MatchRow({
             {shortEventName(match)}
           </span>
           <span
-            className={`inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium sm:hidden ${FORMAT_STYLE[match.format] ?? 'bg-surface-2 text-secondary'}`}
+            className={`bg-surface-2 text-muted inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium sm:hidden`}
           >
             {match.format.toUpperCase()}
           </span>

@@ -42,9 +42,13 @@ export function Header({ eventId, events }: HeaderProps) {
 
           <NavItems eventId={eventId} />
 
-          <div className="flex items-center gap-1">
+          <div className="hidden items-center gap-1 sm:flex">
             <GitHubIcon link={SITE.github} />
             <GroupIcon link={SITE.qqGroup} />
+          </div>
+
+          <div className="items-center gap-1 sm:hidden">
+            <GitHubIcon link={SITE.github} />
           </div>
         </div>
       </div>

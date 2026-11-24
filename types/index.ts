@@ -210,6 +210,11 @@ export interface ScheduleMatch {
   eventName: string
   /** 赛事中文名 */
   eventNameZh: string
+  /**
+   * 赛事方给该场次的「重要度」。实测：瑞士轮（含第三阶段）为 1，决胜阶段为 2。
+   * 决胜阶段的赛事名与主赛事同名、不带阶段信息，靠它才分得出来。
+   */
+  star: number | null
 }
 
 /** 推演结果中的队伍 */

@@ -18,7 +18,7 @@
 import type { MatchFormat, ScheduleMatch } from '@/types'
 
 /** 开赛超过这个时间还没结束，仍算「进行中」；超过则视为数据未更新 */
-const STALE_LIVE_MS = 12 * 60 * 60 * 1000
+const STALE_LIVE_MS = 8 * 60 * 60 * 1000
 
 /** 赛事方赛程接口 */
 export const API_BASE = 'https://gwapi.pwesports.cn/eventcenter/app/csgo/event/getMatchList'
@@ -39,6 +39,7 @@ export interface RawApiMatch {
   score2?: number | null
   bo?: string | null
   status?: number | null
+  star?: number | null
   csgoEventDTO?: { name?: string | null; nameZh?: string | null; level?: string | null } | null
 }
 
@@ -120,16 +121,19 @@ export function isMajorLevel(level: string | null | undefined): boolean {
 /**
  * 是否「正在打」。
  *
- * 接口对只打一张图的 BO1 存在滞后：终局已经开始，`status` 仍是 1（未开始）。
- * 因此只要对局还没结束、队伍已确定、且已过开赛时间（且不超过 12 小时），
- * 就按进行中展示，否则误判成「未开始」会丢掉进行中的高亮样式。
+ * ⚠️ 接口的 `status` 不能直接用（实测）：未结束的对局一律返回 `2`，
+ * 包括两天后才开赛、甚至还是 TBD 的场次——它根本不是「进行中」标记，
+ * 而是「没到 3（已结束）就算 2」。所以只看时间：
+ * - 已结束（`3`）→ 不是进行中
+ * - 开赛时间还没到 → 未开始（第二天/第三天的场次全部走这一条）
+ * - 已过开赛时间且没超过对局合理时长 → 进行中（含 `status` 滞后未刷成 3 的情况）
  */
 export function isInProgress(
   raw: Pick<RawApiMatch, 'status' | 'startTime'>,
   now: number = Date.now(),
 ): boolean {
-  if (raw.status === 2) return true
   if (raw.status === 3 || typeof raw.startTime !== 'number') return false
+
   const elapsed = now - raw.startTime
   return elapsed >= 0 && elapsed < STALE_LIVE_MS
 }
@@ -181,6 +185,7 @@ export function normalizeSchedule(data: RawApiResponse | undefined): ScheduleMat
       status,
       eventName,
       eventNameZh: raw.csgoEventDTO?.nameZh ?? eventName,
+      star: typeof raw.star === 'number' ? raw.star : null,
     })
   }
 

@@ -6,6 +6,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react'
 import type { ReactNode } from 'react'
 
 import { buildScheduleUrl, normalizeSchedule, REFRESH_MS } from '@/lib/schedule/client'
+import { shortEventName } from '@/lib/schedule/labels'
 import { lookupTeam, lookupTeamName } from '@/lib/schedule/teams'
 import {
   formatDayLabel,
@@ -463,20 +464,6 @@ const TEAM_ICON_TONE: Record<TeamLogoStatus, string> = {
   normal: 'border border-transparent bg-surface-3',
   win: 'border border-win/80 bg-win/30',
   lose: 'border border-lose/80 bg-lose/30',
-}
-
-/**
- * 展示用阶段名：只显示「第几阶段」，如「PGL新加坡Major第一阶段-2026」→「第一阶段」。
- *
- * 先看中文名的「第N阶段」，再看英文名的 `Stage N`；都没有时退回「Major」。
- */
-function shortEventName(match: ScheduleMatch): string {
-  for (const name of [match.eventNameZh, match.eventName]) {
-    const stage = name?.match(/第\s*([0-9一二三四五六七八九十]+)\s*阶段|\bStage\s*([0-9]+)\b/i)
-    if (!stage) continue
-    return stage[1] ? `第${stage[1]}阶段` : `Stage ${stage[2]}`
-  }
-  return 'Major'
 }
 
 /**

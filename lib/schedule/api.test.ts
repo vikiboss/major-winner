@@ -1,6 +1,11 @@
 import { expect, test } from 'vitest'
 import { normalizeMatchList, toMatchTimeParam } from '@/lib/schedule/api'
-import { buildScheduleUrl, matchFormat, normalizeSchedule } from '@/lib/schedule/client'
+import {
+  buildScheduleUrl,
+  isInProgress,
+  matchFormat,
+  normalizeSchedule,
+} from '@/lib/schedule/client'
 import { dateKeyOf, matchesOfDay, shiftDateKey, matchDateKeys } from '@/lib/schedule/date'
 
 test('normalize filters non-Major & handles TBD/live/finished', () => {
@@ -165,4 +170,27 @@ test('matchFormat：boN 优先，否则按比分形态推断赛制', () => {
   expect(matchFormat('inf', 2, 0)).toBe('bo3')
   expect(matchFormat('inf', 1, 2)).toBe('bo3')
   expect(matchFormat('mrg', 3, 1)).toBe('bo5')
+})
+
+test('isInProgress：接口未结束一律返回 status=2，必须靠开赛时间判断', () => {
+  const now = new Date(2026, 10, 24, 21, 48).getTime()
+
+  // 实测：11-25 / 11-26 的场次（含 TBD）接口都给 status=2，不能当进行中
+  expect(isInProgress({ status: 2, startTime: new Date(2026, 10, 25, 14, 0).getTime() }, now)).toBe(
+    false,
+  )
+  expect(isInProgress({ status: 2, startTime: new Date(2026, 10, 26, 14, 0).getTime() }, now)).toBe(
+    false,
+  )
+
+  // 今天已开赛、还没结束（status 仍是 2）→ 进行中
+  expect(isInProgress({ status: 2, startTime: now - 2 * 60 * 60 * 1000 }, now)).toBe(true)
+  // 昨天开赛但接口没刷成 3 → 不能算进行中
+  expect(isInProgress({ status: 2, startTime: new Date(2026, 10, 23, 20, 0).getTime() }, now)).toBe(
+    false,
+  )
+  // 今天开赛但已远超对局时长 → 视为数据未更新
+  expect(isInProgress({ status: 2, startTime: now - 20 * 60 * 60 * 1000 }, now)).toBe(false)
+  // status=3 已结束 → 一定不是进行中
+  expect(isInProgress({ status: 3, startTime: now - 60 * 1000 }, now)).toBe(false)
 })

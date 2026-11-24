@@ -33,6 +33,7 @@ interface ApiMatch {
   score2?: number | null
   bo?: string | null
   status?: number | null
+  star?: number | null
   csgoEventDTO?: { name?: string | null; nameZh?: string | null; level?: string | null } | null
 }
 
@@ -96,6 +97,7 @@ function toScheduleMatch(raw: ApiMatch): ScheduleMatch | null {
     status,
     eventName,
     eventNameZh: raw.csgoEventDTO?.nameZh ?? eventName,
+    star: typeof raw.star === 'number' ? raw.star : null,
   }
 }
 

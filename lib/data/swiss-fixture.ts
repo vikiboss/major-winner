@@ -20,7 +20,7 @@ import { parseRecord } from './swiss'
 
 import type { BracketMatch, BracketState } from './swiss-bracket'
 import type { TeamRecord } from './swiss'
-import type { Match, SwissResult } from '@/types'
+import type { Match, SwissMatch, SwissResult } from '@/types'
 
 /* -------------------------------------------------------------------------- */
 /*                                 战绩收录                                   */
@@ -52,32 +52,104 @@ export interface StageFixture {
   rounds: number
   /** 登记的战绩能否被规则推导出（false 表示数据可能录错或赛制有出入） */
   consistent: boolean
+  /**
+   * 对局是否来自真实赛程（`SwissStage.matches`）。
+   *
+   * `false` 表示只有战绩分组、没有对阵明细，`matches` 里是「能确定的那几场」，
+   * 不能当作完整赛程展示。
+   */
+  explicit: boolean
 }
 
 /**
  * 反推某阶段已结束的对局。
  *
+ * 登记的只有战绩分组，**不含具体对阵**，所以同一份战绩往往对应多种可能的排法。
+ * 这里逐轮求解并核对：
+ *
+ * - 所有解都一致认为某场该由谁赢 → 作为真实结果锁定；
+ * - 多个解给出不同对阵 / 不同胜者 → 无从判断，不锁定，交给推演。
+ *
+ * 这样不会把「其实没打过的对阵」当成真实赛果展示出来。
+ *
  * @param teamIds 参赛队伍，顺序即种子序（与 events.json 的 `stage.teams` 一致）
  * @param result  该阶段登记的 `result`
  */
-export function deriveSwissFixture(teamIds: string[], result?: SwissResult): StageFixture {
-  const target = getStageRecords(result)
-  if (!Object.keys(target).length) return { matches: [], rounds: 0, consistent: true }
+export function deriveSwissFixture(
+  teamIds: string[],
+  result?: SwissResult,
+  /** 真实对局明细（可选）。有它就不需要靠战绩去猜对阵了 */
+  explicitMatches?: SwissMatch[],
+): StageFixture {
+  if (explicitMatches?.length) return useExplicit(explicitMatches)
 
-  const solution = solve(teamIds, target)
-  if (!solution || solution.rounds === 0) return { matches: [], rounds: 0, consistent: false }
+  const target = getStageRecords(result)
+  if (!Object.keys(target).length)
+    return { matches: [], rounds: 0, consistent: true, explicit: false }
+
+  const solutions = solveAll(teamIds, target)
+  if (!solutions.length) return { matches: [], rounds: 0, consistent: false, explicit: false }
+
+  const rounds = Math.max(...solutions.map((solution) => solution.rounds))
+  const agreed = intersectSolutions(solutions.filter((solution) => solution.rounds === rounds))
 
   return {
-    matches: solution.matches.map((match, index) => toMatch(match, index)),
-    rounds: solution.rounds,
+    matches: agreed.map((match, index) => toMatch(match, index)),
+    rounds,
     consistent: true,
+    explicit: false,
   }
+}
+
+/** 一轮的对局数（16 队瑞士轮） */
+const MATCHES_PER_ROUND = 8
+
+/**
+ * 直接采用真实赛程。
+ *
+ * `[胜者, 败者]` 的顺序就是比赛顺序，所以第 index 场的轮次可以直接除出来，
+ * 不需要额外记轮次字段。
+ */
+function useExplicit(matches: SwissMatch[]): StageFixture {
+  const derived = matches.map(([winner, loser], index): Match => ({
+    id: `stage-match-${index + 1}`,
+    start: '',
+    no: index + 1,
+    round: Math.floor(index / MATCHES_PER_ROUND) + 1,
+    format: 'bo1',
+    teamA: winner,
+    teamB: loser,
+    winner,
+  }))
+
+  const rounds = Math.ceil(matches.length / MATCHES_PER_ROUND)
+  return { matches: derived, rounds, consistent: true, explicit: true }
+}
+
+/**
+ * 多个解的交集：某项对阵（按「双方 + 轮次」认）在所有解里都存在、且胜者一致，才算确定。
+ *
+ * 同一对队伍的比赛只在轮次与胜者都相同时视为一致，避免把不同轮次的对局混在一起。
+ */
+function intersectSolutions(solutions: Solution[]): BracketMatch[] {
+  if (!solutions.length) return []
+  if (solutions.length === 1) return solutions[0].matches
+
+  const [first, ...rest] = solutions
+  const keys = rest.map((solution) => new Map(solution.matches.map((match) => [key(match), match])))
+
+  return first.matches.filter((match) =>
+    keys.every((other) => other.get(key(match))?.winner === match.winner),
+  )
+}
+
+/** 一场对局的唯一键：轮次 + 双方（顺序无关） */
+function key(match: BracketMatch): string {
+  return `${match.round}|${[match.a, match.b].toSorted().join('|')}`
 }
 
 interface Solution {
   matches: BracketMatch[]
-  /** 与默认剧本不一致的场次数（越小越贴近「强弱」直觉） */
-  deviation: number
   /** 覆盖到第几轮 */
   rounds: number
 }
@@ -86,13 +158,13 @@ interface Solution {
 const MAX_ROUNDS = 5
 
 /**
- * 找出「打完 N 轮后战绩恰好等于登记战绩」的胜负安排，N 取能对上的最大值。
+ * 找出所有「打完 N 轮后战绩恰好等于登记战绩」的胜负安排，N 取能对上的最大值。
  *
- * 顺带剪枝：某个分支里已经有队伍胜场超过登记值，就说明这条路不可能是真实剧本，
- * 直接放弃——它只会让搜索树爆炸（5 轮全枚举是 2^40）。
- * 16 队一轮 8 场、每场两种结果，加上剪枝后实际只展开到真实结果覆盖的轮次。
+ * 剪枝：某条分支里已有队伍胜场超过登记值 → 不可能是真实剧本，直接放弃
+ * （5 轮全枚举是 2^40，不剪枝会跑不完）。
+ * 只保留最深一层的解：浅一层的解都被深一层的「截断版」包含，没必要混在一起比。
  */
-function solve(teamIds: string[], target: Record<string, TeamRecord>): Solution | null {
+function solveAll(teamIds: string[], target: Record<string, TeamRecord>): Solution[] {
   const matchesTarget = (state: BracketState) =>
     Object.entries(target).every(([id, record]) => state.teams[id]?.wins === record.wins)
 
@@ -101,13 +173,18 @@ function solve(teamIds: string[], target: Record<string, TeamRecord>): Solution 
       ([id, team]) => target[id] !== undefined && team.wins > target[id].wins,
     )
 
-  let best: Solution | null = null
+  let best: Solution[] = []
+  let bestRounds = 0
 
-  const walk = (state: BracketState, round: number, acc: BracketMatch[], deviation: number) => {
+  const walk = (state: BracketState, round: number, acc: BracketMatch[]) => {
     if (matchesTarget(state)) {
-      const better =
-        !best || round - 1 > best.rounds || (round - 1 === best.rounds && deviation < best.deviation)
-      if (better) best = { matches: acc, deviation, rounds: round - 1 }
+      const rounds = round - 1
+      if (rounds > bestRounds) {
+        best = [{ matches: acc, rounds }]
+        bestRounds = rounds
+      } else if (rounds === bestRounds) {
+        best.push({ matches: acc, rounds })
+      }
     }
 
     if (round > MAX_ROUNDS) return
@@ -123,20 +200,17 @@ function solve(teamIds: string[], target: Record<string, TeamRecord>): Solution 
       const next = applyRound(state, played)
       if (overshoot(next)) continue
 
-      const off = played.filter((match) => match.winner !== defaultWinner(state, match)).length
-      walk(next, round + 1, [...acc, ...played], deviation + off)
+      walk(next, round + 1, [...acc, ...played])
     }
   }
 
-  walk(createBracket(teamIds), 1, [], 0)
+  walk(createBracket(teamIds), 1, [])
   return best
 }
 
 /** 把一轮的胜负落到棋盘上（不重算配对，用于搜索下一轮） */
 function applyRound(state: BracketState, played: BracketMatch[]): BracketState {
-  const teams = Object.fromEntries(
-    Object.values(state.teams).map((team) => [team.id, { ...team }]),
-  )
+  const teams = Object.fromEntries(Object.values(state.teams).map((team) => [team.id, { ...team }]))
 
   for (const match of played) {
     const winner = teams[match.winner!]
@@ -150,13 +224,6 @@ function applyRound(state: BracketState, played: BracketMatch[]): BracketState {
   }
 
   return { teams, matches: [...state.matches, ...played] }
-}
-
-/** 默认剧本：种子数字小的（排名高）一方获胜 */
-function defaultWinner(state: BracketState, match: BracketMatch): string {
-  const seedA = state.teams[match.a]?.seed ?? Number.MAX_SAFE_INTEGER
-  const seedB = state.teams[match.b]?.seed ?? Number.MAX_SAFE_INTEGER
-  return seedA <= seedB ? match.a : match.b
 }
 
 /** 反推出的对局 → `seedBracket` 认得的赛程结构 */

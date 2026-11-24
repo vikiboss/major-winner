@@ -8,7 +8,7 @@ import {
   getStageRecords,
 } from '@/lib/data/swiss-fixture'
 
-import type { SwissResult } from '@/types'
+import type { SwissMatch, SwissResult } from '@/types'
 
 /** 新加坡 2026 第一阶段：R1、R2 已打完，登记到 2-0 / 1-1 / 0-2 */
 const TEAMS = [
@@ -63,26 +63,46 @@ describe('getStageRecords', () => {
 describe('deriveSwissFixture', () => {
   const fixture = deriveSwissFixture(TEAMS, TWO_ROUNDS)
 
-  it('还原出前两轮的 16 场，且结果是自洽的', () => {
+  it('只有战绩、没有对阵明细时，不声称自己还原了完整赛程', () => {
     expect(fixture.consistent).toBe(true)
+    expect(fixture.explicit).toBe(false)
     expect(fixture.rounds).toBe(2)
-    expect(fixture.matches).toHaveLength(16)
-    expect(fixture.matches.every((match) => match.round! <= 2)).toBe(true)
   })
 
-  it('每场比赛的两支队伍都来自参赛名单，且同轮不重复出场', () => {
+  it('只锁定所有解都一致的场次，不臆造对阵', () => {
+    // 同一份战绩对应两种 R1 排法（差别在 FaZe 那场），交集里只留下共有的对阵
+    expect(fixture.matches.length).toBeLessThan(16)
+
+    const pairs = fixture.matches.map((match) => [match.teamA, match.teamB].toSorted().join('-'))
+    expect(new Set(pairs).size).toBe(pairs.length)
+  })
+
+  it('有歧义的对阵不会被锁定（回归：FaZe 其实没打过 Wildcard）', () => {
+    // 真实情况是 FaZe 打 BCG，而按种子同位对位会得出 FaZe-Wildcard；
+    // 两种解都成立，所以这些场次一律不锁定，交给推演
+    const fazeMatches = fixture.matches.filter(
+      (match) => match.teamA === 'FaZe' || match.teamB === 'FaZe',
+    )
+
+    expect(fazeMatches.every((match) => match.winner && match.round)).toBe(true)
+    expect(
+      fixture.matches.some((m) => [m.teamA, m.teamB].toSorted().join('-') === 'FaZe-Wildcard'),
+    ).toBe(false)
+  })
+
+  it('锁定的场次都来自参赛名单、同轮不重复出场', () => {
     for (const round of [1, 2]) {
       const played = fixture.matches
         .filter((match) => match.round === round)
         .flatMap((match) => [match.teamA!, match.teamB!])
 
-      expect(played).toHaveLength(16)
-      expect(new Set(played).size).toBe(16)
+      expect(new Set(played).size).toBe(played.length)
       expect(played.every((id) => TEAMS.includes(id))).toBe(true)
     }
   })
 
-  it('反推出的战绩与登记的完全一致', () => {
+  it('锁定的胜场不会超过登记的战绩', () => {
+    const registered = getStageRecords(TWO_ROUNDS)
     const wins: Record<string, number> = {}
     const losses: Record<string, number> = {}
     for (const id of TEAMS) {
@@ -95,27 +115,10 @@ describe('deriveSwissFixture', () => {
       losses[match.winner === match.teamA ? match.teamB! : match.teamA!]++
     }
 
-    const registered = getStageRecords(TWO_ROUNDS)
-    for (const id of TEAMS) {
-      expect(`${wins[id]}-${losses[id]}`, id).toBe(
-        `${registered[id].wins}-${registered[id].losses}`,
-      )
+    for (const [id, record] of Object.entries(registered)) {
+      expect(wins[id], id).toBeLessThanOrEqual(record.wins)
+      expect(losses[id], id).toBeLessThanOrEqual(record.losses)
     }
-  })
-
-  it('第 1 轮按官方赛制：种子两半同位对位', () => {
-    const round1 = fixture.matches.filter((match) => match.round === 1)
-
-    expect(round1.map((match) => [match.teamA, match.teamB])).toEqual([
-      ['NIP', 'M80'],
-      ['PV', 'DENDELE'],
-      ['HEROIC', 'Imperial'],
-      ['FaZe', 'Wildcard'],
-      ['Liquid', 'BCG'],
-      ['EF', 'FlyQuest'],
-      ['100T', 'CW'],
-      ['9z', 'LVG'],
-    ])
   })
 
   it('没有任何结果时不反推', () => {
@@ -123,11 +126,12 @@ describe('deriveSwissFixture', () => {
       matches: [],
       rounds: 0,
       consistent: true,
+      explicit: false,
     })
   })
 
   it('战绩与已打轮次矛盾时标记为不自洽', () => {
-    // 2-0 以外的队伍被写成 3-0：两轮不可能打出 3 胜
+    // 2-0 以外被写成 3-0：两轮不可能打出 3 胜
     const broken: SwissResult = { ...TWO_ROUNDS, '2-0': [], '3-0': ['M80'] }
 
     const result = deriveSwissFixture(TEAMS, broken)
@@ -136,13 +140,40 @@ describe('deriveSwissFixture', () => {
   })
 })
 
+describe('deriveSwissFixture - 真实赛程', () => {
+  it('给了对局明细就直接采用，不再猜对阵', () => {
+    // ['胜者', '败者']
+    const matches: SwissMatch[] = [['FaZe', 'BCG']]
+    const fixture = deriveSwissFixture(TEAMS, TWO_ROUNDS, matches)
+
+    expect(fixture.explicit).toBe(true)
+    expect(fixture.rounds).toBe(1)
+    expect(fixture.matches[0]).toMatchObject({ teamA: 'FaZe', teamB: 'BCG', winner: 'FaZe' })
+  })
+
+  it('轮次按比赛顺序推算：每 8 场一轮', () => {
+    const matches: SwissMatch[] = Array.from(
+      { length: 16 },
+      (_, i) => [TEAMS[i], TEAMS[i + 8]] as SwissMatch,
+    )
+
+    const fixture = deriveSwissFixture(TEAMS, undefined, matches)
+
+    expect(fixture.rounds).toBe(2)
+    expect(fixture.matches.slice(0, 8).every((m) => m.round === 1)).toBe(true)
+    expect(fixture.matches.slice(8, 16).every((m) => m.round === 2)).toBe(true)
+  })
+})
+
 describe('buildStateFromResult', () => {
   const state = buildStateFromResult(TEAMS, TWO_ROUNDS)
 
-  it('真实结果全部锁定，且锁定场次覆盖到第 2 轮', () => {
+  it('能确定的真实结果被锁定，且覆盖到第 2 轮', () => {
     const locked = state.matches.filter((match) => match.locked)
 
-    expect(locked).toHaveLength(16)
+    expect(locked.length).toBeGreaterThan(0)
+    expect(locked.length).toBeLessThanOrEqual(16)
+    expect(locked.every((match) => match.round! <= 2)).toBe(true)
     expect(getFrontierRound(state)).toBe(2)
   })
 
@@ -181,7 +212,8 @@ describe('seedBracket', () => {
     const seeded = seedBracket(base, real)
 
     expect(seeded.matches.filter((match) => match.locked)).toHaveLength(8)
-    expect(seeded.matches.filter((match) => match.locked).every((match) => match.winner === match.a))
-      .toBe(true)
+    expect(
+      seeded.matches.filter((match) => match.locked).every((match) => match.winner === match.a),
+    ).toBe(true)
   })
 })

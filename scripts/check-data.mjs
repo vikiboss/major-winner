@@ -109,6 +109,53 @@ function validateSchedule(stagePath, schedule, members) {
   }
 }
 
+/**
+ * 校验阶段的对局明细（`[胜者, 败者]`）。
+ *
+ * 只检查“能不能当比赛看”：两支队伍都在本阶段、胜者不被重复上场。
+ * 轮次与配对由顺序推出，所以顺序错了只能在这里报出来。
+ */
+function validateMatches(stagePath, matches, members) {
+  if (matches === undefined) return
+  if (!Array.isArray(matches)) {
+    fail(`${stagePath}.matches`, '应为数组')
+    return
+  }
+
+  const played = new Set()
+
+  for (const [index, match] of matches.entries()) {
+    const path = `${stagePath}.matches[${index}]`
+
+    if (!Array.isArray(match) || match.length !== 2) {
+      fail(path, '应为 [胜者, 败者] 两元组')
+      continue
+    }
+
+    const [winner, loser] = match
+    if (typeof winner !== 'string' || typeof loser !== 'string') {
+      fail(path, '两边都应是队伍 id 字符串')
+      continue
+    }
+    if (winner === loser) {
+      fail(path, '胜者与败者不能是同一支队伍')
+      continue
+    }
+
+    for (const team of [winner, loser]) {
+      if (!members.has(team)) fail(path, `${team} 不属于本阶段`)
+    }
+
+    // 同一轮里一支队伍只能打一场（瑞士轮打完就等下一轮）
+    const round = Math.floor(index / 8) + 1
+    for (const team of [winner, loser]) {
+      const key = `${round}:${team}`
+      if (played.has(key)) fail(path, `${team} 在第 ${round} 轮重复出场`)
+      played.add(key)
+    }
+  }
+}
+
 function validateEvent(event, teamIds, indexPath) {
   const path = `events.json[${indexPath}]`
 
@@ -167,6 +214,7 @@ function validateEvent(event, teamIds, indexPath) {
     }
 
     validateSchedule(stagePath, stage.schedule, members)
+    validateMatches(stagePath, stage.matches, members)
   }
 
   const playoffs = event.playoffs

@@ -359,7 +359,7 @@ function LockIcon({ className = '' }: { className?: string }) {
     <svg
       viewBox="0 0 12 12"
       aria-hidden="true"
-      className={`h-2 w-2 opacity-60 ${className}`}
+      className={`h-3.5 w-3.5 opacity-80 ${className}`}
       fill="currentColor"
     >
       <path d="M3.5 5V3.75a2.5 2.5 0 1 1 5 0V5h.25c.414 0 .75.336.75.75v4c0 .414-.336.75-.75.75h-5.5A.75.75 0 0 1 2.5 9.75v-4c0-.414.336-.75.75-.75h.25Zm1.25 0h2.5V3.75a1.25 1.25 0 1 0-2.5 0V5Z" />

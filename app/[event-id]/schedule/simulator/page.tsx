@@ -35,8 +35,8 @@ function collectStages(event: MajorEvent): SimulatorStageInput[] {
     return {
       stageId,
       teamIds,
-      // 由 events.json 登记的当前战绩反推出已打完的对局，载入后直接锁定、不能改
-      fixture: deriveSwissFixture(teamIds, stage.result).matches,
+      // 已打完的真实对局：有明细就用明细，否则从登记的战绩里反推能确定的那几场
+      fixture: deriveSwissFixture(teamIds, stage.result, stage.matches).matches,
     }
   })
 }
@@ -74,8 +74,8 @@ export default async function SimulatorPage({ params }: SimulatorPageProps) {
       ) : (
         <>
           <div className="text-muted bg-surface-1 border-border mb-4 rounded-lg border px-4 py-3 text-xs leading-relaxed">
-            点队伍即可切换该场胜者。已录入的真实结果会按当前战绩自动选定并
-            <span className="text-primary">锁定</span>，不能再改；其余对局按种子强弱给出默认剧本，
+            点队伍即可切换该场胜者。已结束的真实对局会按实际结果选定并在右侧显示
+            <span className="text-primary">锁</span>，不能再改；其余对局按种子强弱给出默认剧本，
             点一下就能改成你猜的走向。每轮改完自动重算下一轮配对（同战绩交手、Buchholz
             排序、首尾配对、规避重赛）。当前可推演：
             {stages.map((stage) => MAJOR_STAGE_LABEL[stage.stageId]).join('、')}。

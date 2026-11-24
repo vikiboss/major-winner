@@ -10,6 +10,14 @@
       }
     },
     {
+      "id": "wanjiqi",
+      "stage-1": {
+        "3-0": ["PV", "HEROIC"],
+        "3-X": ["Liquid", "FaZe", "100T", "BCG", "NIP", "LVG"],
+        "0-3": ["CW", "FlyQuest"]
+      }
+    },
+    {
       "id": "danking",
       "stage-1": {
         "3-0": ["Liquid", "NIP"],
@@ -671,14 +679,6 @@
         "3-0": ["PV", "FlyQuest"],
         "3-X": ["9z", "FaZe", "HEROIC", "Liquid", "M80", "EF"],
         "0-3": ["LVG", "CW"]
-      }
-    },
-    {
-      "id": "wanjiqi",
-      "stage-1": {
-        "3-0": ["PV", "HEROIC"],
-        "3-X": ["Liquid", "FaZe", "100T", "BCG", "NIP", "LVG"],
-        "0-3": ["CW", "FlyQuest"]
       }
     },
     {

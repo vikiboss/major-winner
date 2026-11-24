@@ -304,17 +304,20 @@ function MatchRow({
   teamLogos?: Record<string, string>
 }) {
   const isLive = match.status === 'live'
-  // 就地定义，不要写成 `const sideTone = sideToneOf(match)`：那样编译器会按
-  // 「sideTone === undefined ? 新建 : 复用」处理，而缓存槽既没存也没回填，
-  // 每次重渲染都会重新创建闭包，进而把 MatchRow 的 useMemoCache 大小从 63 打成 1
-  const sideTone = (team: string | null) =>
-    !team
-      ? 'text-muted'
-      : !match.winner
-        ? 'text-primary'
-        : team === match.winner
-          ? 'text-win'
-          : 'text-lose'
+
+  const sideTone = (team: string | null) => {
+    if (!team) return 'text-muted'
+    if (!match.winner) return 'text-primary'
+    return team === match.winner ? 'text-win' : 'text-lose'
+  }
+
+  /** 比分颜色：进行中高亮，已结束显示胜者色，未开始弱化 */
+  function scoreTone(match: ScheduleMatch): string {
+    if (match.status === 'live') return 'text-primary-400 font-semibold'
+    if (match.status === 'finished')
+      return match.winner ? 'text-primary font-semibold' : 'text-secondary'
+    return 'text-muted'
+  }
 
   return (
     <div
@@ -376,14 +379,6 @@ function MatchRow({
       </div>
     </div>
   )
-}
-
-/** 比分颜色：进行中高亮，已结束显示胜者色，未开始弱化 */
-function scoreTone(match: ScheduleMatch): string {
-  if (match.status === 'live') return 'text-primary-400 font-semibold'
-  if (match.status === 'finished')
-    return match.winner ? 'text-primary font-semibold' : 'text-secondary'
-  return 'text-muted'
 }
 
 /** 赛事名太长，去掉年份并压缩 Common 后缀，如「PGL Singapore Major 2026 Stage 1」→「PGL Singapore Major · Stage 1」 */

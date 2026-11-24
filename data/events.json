@@ -155,11 +155,11 @@
         "LVG"
       ],
       "result": {
-        "1-0": ["Imperial", "LVG", "NIP", "100T", "Liquid", "PV", "Wildcard", "FlyQuest"],
-        "0-1": ["HEROIC", "9z", "M80", "CW", "BCG", "DENDELE", "FaZe", "EF"],
-        "1-1": [],
-        "2-0": [],
-        "0-2": [],
+        "1-0": ["Imperial", "100T", "Liquid", "PV", "Wildcard", "FlyQuest"],
+        "0-1": ["9z", "M80", "BCG", "DENDELE", "FaZe", "EF"],
+        "1-1": ["LVG", "HEROIC"],
+        "2-0": ["NIP"],
+        "0-2": ["CW"],
         "2-1": [],
         "1-2": [],
         "2-2": [],

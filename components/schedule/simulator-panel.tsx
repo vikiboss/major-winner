@@ -280,7 +280,7 @@ function SettledBlock({
   )
 }
 
-/** 一列中的一场对局：两个可点的队伍按钮 + 锁定开关 */
+/** 一列中的一场对局：两个可点的队伍按钮；真实赛果已锁定时不可切换 */
 function Slot({
   match,
   label,
@@ -291,19 +291,23 @@ function Slot({
   onPick: (match: BracketMatch, teamId: string) => void
 }) {
   return (
-    <div className="border-primary-500/60 mx-1 mb-1 overflow-hidden rounded-md border-2">
+    <div
+      className={`mx-1 mb-1 overflow-hidden rounded-md border-2 ${
+        match.locked ? 'border-border/80' : 'border-primary-500/60'
+      }`}
+    >
       <div className="bg-surface-1">
         <TeamButton
           id={match.a}
           picked={match.winner === match.a}
-          disabled={match.locked}
+          locked={match.locked}
           label={label(match.a)}
           onClick={() => onPick(match, match.a)}
         />
         <TeamButton
           id={match.b}
           picked={match.winner === match.b}
-          disabled={match.locked}
+          locked={match.locked}
           label={label(match.b)}
           onClick={() => onPick(match, match.b)}
         />
@@ -315,13 +319,14 @@ function Slot({
 function TeamButton({
   id,
   picked,
-  disabled,
+  locked,
   label,
   onClick,
 }: {
   id: string
   picked: boolean
-  disabled: boolean
+  /** 真实赛果已定，整场不可切换 */
+  locked: boolean
   label: string
   onClick: () => void
 }) {
@@ -333,13 +338,32 @@ function TeamButton({
     <button
       type="button"
       onClick={onClick}
-      disabled={disabled}
+      disabled={locked}
+      title={locked ? '真实赛果，已锁定' : undefined}
       className={`flex w-full items-center gap-1 px-1.5 py-1 text-left transition-colors disabled:cursor-default ${tone}`}
     >
       <TeamLogo hideLabel id={id} size="xs" className="shrink-0 rounded-sm" />
       <span className="truncate text-[11px] font-medium">{label}</span>
-      <MatchArrow up={picked} className="ml-auto shrink-0" />
+      {locked ? (
+        <LockIcon className="ml-auto shrink-0" />
+      ) : (
+        <MatchArrow up={picked} className="ml-auto shrink-0" />
+      )}
     </button>
+  )
+}
+
+/** 真实赛果的锁图标 */
+function LockIcon({ className = '' }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 12 12"
+      aria-hidden="true"
+      className={`h-2 w-2 opacity-60 ${className}`}
+      fill="currentColor"
+    >
+      <path d="M3.5 5V3.75a2.5 2.5 0 1 1 5 0V5h.25c.414 0 .75.336.75.75v4c0 .414-.336.75-.75.75h-5.5A.75.75 0 0 1 2.5 9.75v-4c0-.414.336-.75.75-.75h.25Zm1.25 0h2.5V3.75a1.25 1.25 0 1 0-2.5 0V5Z" />
+    </svg>
   )
 }
 

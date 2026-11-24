@@ -572,8 +572,9 @@ export function seedBracket(state: BracketState, matches: Match[]): BracketState
   let next = state
 
   for (const real of finished) {
+    // 只按对阵双方找场次：推演表里每场都已有默认胜者，不能因为「已选」就跳过
     const match = next.matches.find((item) => {
-      if (item.winner) return false
+      if (item.locked) return false
       const pair = [item.a, item.b]
       return pair.includes(real.teamA!) && pair.includes(real.teamB!)
     })

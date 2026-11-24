@@ -100,3 +100,13 @@ export type {
   BracketProgress,
   BracketSummary,
 } from './swiss-bracket'
+
+/* 由战绩反推已结束对局 */
+export {
+  getStageRecords,
+  deriveSwissFixture,
+  buildStateFromResult,
+  getFrontierRound,
+} from './swiss-fixture'
+
+export type { StageFixture } from './swiss-fixture'

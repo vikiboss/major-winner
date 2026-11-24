@@ -1,6 +1,7 @@
 import Link from 'next/link'
 
-import { eventSummaries, getEvent, teamMap } from '@/lib/data'
+import { deriveSwissFixture, eventSummaries, getEvent, teamMap } from '@/lib/data'
+
 import { MAJOR_STAGE_LABEL, SWISS_STAGES } from '@/lib/constants'
 import { PageHeader } from '@/components/ui/page-header'
 import { EmptyState } from '@/components/ui/empty-state'
@@ -29,11 +30,13 @@ function collectStages(event: MajorEvent): SimulatorStageInput[] {
     return (stage?.teams?.length ?? 0) + (stage?.teamsFromAdvanced?.length ?? 0) === 16
   }).map((stageId) => {
     const stage = event[stageId]
+    const teamIds = [...(stage.teams ?? []), ...(stage.teamsFromAdvanced ?? [])]
+
     return {
       stageId,
-      teamIds: [...(stage.teams ?? []), ...(stage.teamsFromAdvanced ?? [])],
-      // 本地赛程已不再维护，推演从空白轮次表开始
-      fixture: [],
+      teamIds,
+      // 由 events.json 登记的当前战绩反推出已打完的对局，载入后直接锁定、不能改
+      fixture: deriveSwissFixture(teamIds, stage.result).matches,
     }
   })
 }
@@ -71,9 +74,10 @@ export default async function SimulatorPage({ params }: SimulatorPageProps) {
       ) : (
         <>
           <div className="text-muted bg-surface-1 border-border mb-4 rounded-lg border px-4 py-3 text-xs leading-relaxed">
-            点队伍即可选择该场胜者，再点一次取消；点右侧「未锁」可以锁定关键场次。
-            每轮选完后自动生成下一轮配对（同战绩交手、Buchholz 排序、首尾配对、规避重赛）。
-            已录入的真实结果会自动锁定。当前可推演：
+            点队伍即可切换该场胜者。已录入的真实结果会按当前战绩自动选定并
+            <span className="text-primary">锁定</span>，不能再改；其余对局按种子强弱给出默认剧本，
+            点一下就能改成你猜的走向。每轮改完自动重算下一轮配对（同战绩交手、Buchholz
+            排序、首尾配对、规避重赛）。当前可推演：
             {stages.map((stage) => MAJOR_STAGE_LABEL[stage.stageId]).join('、')}。
           </div>
 

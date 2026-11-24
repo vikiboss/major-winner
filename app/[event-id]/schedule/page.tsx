@@ -142,8 +142,11 @@ function MatchRow({ item }: { item: ScheduleMatchView }) {
   const teamB = match.teamB
   const winner = match.winner ?? null
 
-  const sideTone = (team: string | null) =>
-    winner && team === winner ? 'text-win' : team ? 'text-primary' : 'text-muted'
+  const sideTone = (team: string | null) => {
+    const isWinner = winner && team === winner
+    const isLoser = winner && team !== winner
+    return isWinner ? 'text-win' : isLoser ? 'text-lose' : team ? 'text-primary' : 'text-muted'
+  }
 
   const isLive = item.status === 'live'
 
@@ -182,7 +185,7 @@ function MatchRow({ item }: { item: ScheduleMatchView }) {
         <TeamSide id={teamA} tone={sideTone(teamA)} align="start" />
 
         <span
-          className={`px-1 text-center text-base tabular-nums sm:text-xs ${scoreTone(item, winner)}`}
+          className={`px-1 text-center text-base font-bold tabular-nums sm:text-xs ${scoreTone(item, winner)}`}
         >
           {match.score ? `${match.score[0]} : ${match.score[1]}` : '—'}
         </span>
@@ -196,7 +199,7 @@ function MatchRow({ item }: { item: ScheduleMatchView }) {
 /** 比分颜色：进行中高亮，已结束显示胜者色，未开始弱化 */
 function scoreTone(item: ScheduleMatchView, winner: string | null): string {
   if (item.status === 'live') return 'text-primary-400 font-semibold'
-  if (item.status === 'finished') return winner ? 'text-win font-semibold' : 'text-secondary'
+  if (item.status === 'finished') return winner ? 'text-primary font-semibold' : 'text-secondary'
   return 'text-muted'
 }
 

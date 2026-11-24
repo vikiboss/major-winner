@@ -155,8 +155,8 @@
         "LVG"
       ],
       "result": {
-        "1-0": ["Imperial", "LVG", "NIP"],
-        "0-1": ["HEROIC", "9z", "M80"],
+        "1-0": ["Imperial", "LVG", "NIP", "100T", "Liquid"],
+        "0-1": ["HEROIC", "9z", "M80", "CW", "BCG"],
         "1-1": [],
         "2-0": [],
         "0-2": [],
@@ -207,8 +207,8 @@
             "format": "bo1",
             "teamA": "100T",
             "teamB": "CW",
-            "score": null,
-            "winner": null,
+            "score": [13, 6],
+            "winner": "100T",
             "sourceMatchId": 2400497
           },
           {
@@ -233,8 +233,8 @@
             "format": "bo1",
             "teamA": "Liquid",
             "teamB": "BCG",
-            "score": null,
-            "winner": null,
+            "score": [13, 1],
+            "winner": "Liquid",
             "sourceMatchId": 2400498
           },
           {

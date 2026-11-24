@@ -100,15 +100,3 @@ export type {
   BracketProgress,
   BracketSummary,
 } from './swiss-bracket'
-
-/* 赛程 */
-export {
-  getEventTimezone,
-  hasStageSchedule,
-  hasSchedule,
-  getScheduleDays,
-  isToday,
-  getStageRounds,
-  formatMatchTime,
-  formatMatchDateTime,
-} from './schedule'

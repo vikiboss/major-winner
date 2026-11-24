@@ -73,8 +73,6 @@ export interface SwissStage {
   teams: string[]
   /** 上一阶段晋级的队伍（第二阶段起） */
   teamsFromAdvanced?: string[]
-  /** 本阶段赛程（可选，未录入时赛程页无法展示） */
-  schedule?: StageSchedule
   result: SwissResult
 }
 
@@ -100,8 +98,6 @@ export interface PlayoffsResult {
 /** 决胜阶段 */
 export interface PlayoffsStage {
   teams: string[]
-  /** 本阶段赛程（可选） */
-  schedule?: StageSchedule
   result: PlayoffsResult
 }
 
@@ -131,7 +127,7 @@ export type MatchFormat = 'bo1' | 'bo3' | 'bo5'
 /** 对局状态：未开始 / 进行中 / 已结束 */
 export type MatchStatus = 'upcoming' | 'live' | 'finished'
 
-/** 赛程中的一场对局 */
+/** 赛程中的一场对局（推演页使用的本地赛程，赛程页已改为请求官方接口） */
 export interface Match {
   /** 对局唯一 id，形如 stage-1-r1-m1 */
   id: string
@@ -155,45 +151,30 @@ export interface Match {
   sourceMatchId?: number
 }
 
-/** 某个阶段的对局列表 */
-export interface StageSchedule {
-  matches: Match[]
-}
-
-/** 赛程页上的一场对局（队伍与阶段信息已展开） */
-export interface ScheduleMatchView {
-  match: Match
-  stageId: MajorStageType
-  /** 阶段名，如「第一阶段」 */
-  stageLabel: string
-  /** 战绩组，如「1-0」；空串表示待定 */
-  groupLabel: string
-  /** 赛制标签，如 BO1 / BO3 */
-  formatLabel: string
-  /** 对局状态，由赛制与比分推导 */
+/**
+ * 赛程页上的一场对局。
+ *
+ * 数据来自赛事方接口（`lib/schedule/api.ts`），与 `data/events.json` 无关，
+ * 队伍用队名而不是队伍 id，队标通过 `lib/schedule/teams.ts` 映射到本地资源。
+ */
+export interface ScheduleMatch {
+  /** 赛事方对局 id */
+  id: number
+  /** 开赛时间（毫秒时间戳） */
+  start: number
+  /** 队名；null 表示待定 */
+  teamA: string | null
+  teamB: string | null
+  /** 最终比分；null 表示未结束 */
+  score: [number, number] | null
+  /** 胜者队名；未结束或待定为 null */
+  winner: string | null
+  format: MatchFormat
   status: MatchStatus
-  /** 双方队伍是否已确定（任一方为 null 即待定） */
-  teamsPending: boolean
-  /** 所在时区下的日期 key，如 2026-11-15 */
-  dateKey: string
-  /** 格式化后的时刻，如「12:00」 */
-  timeLabel: string
-}
-
-/** 赛程页按天分组 */
-export interface ScheduleDayView {
-  dateKey: string
-  /** 日期标题，如 11月15日 */
-  label: string
-  /** 星期，如 周日 */
-  weekdayLabel: string
-  /** 时区短标签，如 GMT+8 */
-  timezoneLabel: string
-  matches: ScheduleMatchView[]
-  /** 当天是否已确定全部对阵 */
-  resolved: boolean
-  /** 当天对局所处的阶段（取第一场） */
-  stageId: MajorStageType
+  /** 赛事名，如 PGL Singapore Major 2026 Stage 1 */
+  eventName: string
+  /** 赛事中文名 */
+  eventNameZh: string
 }
 
 /** 推演结果中的队伍 */

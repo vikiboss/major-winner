@@ -22,7 +22,7 @@ interface SimulatorPageProps {
   params: Promise<{ 'event-id': string }>
 }
 
-/** 收集各瑞士轮阶段的参赛队伍（含上一阶段晋级队伍）与真实赛程 */
+/** 收集各瑞士轮阶段的参赛队伍（含上一阶段晋级队伍） */
 function collectStages(event: MajorEvent): SimulatorStageInput[] {
   return SWISS_STAGES.filter((stageId) => {
     const stage = event[stageId]
@@ -32,7 +32,8 @@ function collectStages(event: MajorEvent): SimulatorStageInput[] {
     return {
       stageId,
       teamIds: [...(stage.teams ?? []), ...(stage.teamsFromAdvanced ?? [])],
-      fixture: stage.schedule?.matches ?? [],
+      // 本地赛程已不再维护，推演从空白轮次表开始
+      fixture: [],
     }
   })
 }

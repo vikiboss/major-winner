@@ -98,3 +98,13 @@ components/
 - 文件名统一 kebab-case（`swiss-table.tsx`），组件名保持 PascalCase；Next 约定的 `page.tsx` / `layout.tsx` 例外
 - `BUILD_AT` 由 `next.config.ts` 注入，用 `formatLastUpdated()` 展示；远程图片白名单同在此文件
 - 阶段 id 固定为 `stage-1/2/3` 与 `8-to-4/4-to-2/2-to-1`，竞猜文件 key 必须一致
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+## This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

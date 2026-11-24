@@ -155,8 +155,8 @@
         "LVG"
       ],
       "result": {
-        "1-0": ["Imperial", "LVG"],
-        "0-1": ["HEROIC", "9z"],
+        "1-0": ["Imperial", "LVG", "NIP"],
+        "0-1": ["HEROIC", "9z", "M80"],
         "1-1": [],
         "2-0": [],
         "0-2": [],
@@ -220,8 +220,8 @@
             "format": "bo1",
             "teamA": "NIP",
             "teamB": "M80",
-            "score": null,
-            "winner": null,
+            "score": [13, 0],
+            "winner": "NIP",
             "sourceMatchId": 2400496
           },
           {

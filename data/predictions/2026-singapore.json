@@ -648,6 +648,30 @@
         "3-X": ["BCG", "FaZe", "100T", "9z", "NIP", "HEROIC"],
         "0-3": ["CW", "Wildcard"]
       }
+    },
+    {
+      "id": "crazy-jester",
+      "stage-1": {
+        "3-0": ["PV", "NIP"],
+        "3-X": ["FaZe", "100T", "BCG", "Liquid", "9z", "EF"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "1v7w",
+      "stage-1": {
+        "3-0": ["NIP", "HEROIC"],
+        "3-X": ["FaZe", "Liquid", "100T", "9z", "M80", "PV"],
+        "0-3": ["CW", "Imperial"]
+      }
+    },
+    {
+      "id": "dian",
+      "stage-1": {
+        "3-0": ["PV", "FlyQuest"],
+        "3-X": ["9z", "FaZe", "HEROIC", "Liquid", "M80", "EF"],
+        "0-3": ["LVG", "CW"]
+      }
     }
   ]
 }

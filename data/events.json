@@ -155,11 +155,11 @@
         "LVG"
       ],
       "result": {
-        "1-0": ["Imperial", "100T", "Liquid", "PV", "Wildcard", "FlyQuest"],
-        "0-1": ["9z", "M80", "BCG", "DENDELE", "FaZe", "EF"],
-        "1-1": ["LVG", "HEROIC"],
-        "2-0": ["NIP"],
-        "0-2": ["CW"],
+        "1-0": ["Liquid", "PV", "Wildcard", "FlyQuest"],
+        "0-1": ["BCG", "DENDELE", "FaZe", "EF"],
+        "1-1": ["LVG", "HEROIC", "M80", "100T"],
+        "2-0": ["NIP", "Imperial"],
+        "0-2": ["CW", "9z"],
         "2-1": [],
         "1-2": [],
         "2-2": [],
@@ -311,8 +311,8 @@
             "format": "bo1",
             "teamA": "9z",
             "teamB": "M80",
-            "score": null,
-            "winner": null,
+            "score": [8, 13],
+            "winner": "M80",
             "sourceMatchId": 2400560
           },
           {
@@ -324,8 +324,8 @@
             "format": "bo1",
             "teamA": "100T",
             "teamB": "Imperial",
-            "score": null,
-            "winner": null,
+            "score": [11, 13],
+            "winner": "Imperial",
             "sourceMatchId": 2400559
           },
           {

@@ -1188,5 +1188,12 @@
     "platform": "B 站",
     "link": "https://space.bilibili.com/396704992",
     "avatar": "https://i1.hdslb.com/bfs/face/4186efbe133f54c40207d76e7c4a495d7cf663dc.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "dian",
+    "name": "小数点",
+    "platform": "群友",
+    "link": "",
+    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1207589771&s=100"
   }
 ]

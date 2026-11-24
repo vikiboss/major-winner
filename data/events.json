@@ -155,8 +155,8 @@
         "LVG"
       ],
       "result": {
-        "1-0": ["Imperial", "LVG", "NIP", "100T", "Liquid", "PV", "Wildcard"],
-        "0-1": ["HEROIC", "9z", "M80", "CW", "BCG", "DENDELE", "FaZe"],
+        "1-0": ["Imperial", "LVG", "NIP", "100T", "Liquid", "PV", "Wildcard", "FlyQuest"],
+        "0-1": ["HEROIC", "9z", "M80", "CW", "BCG", "DENDELE", "FaZe", "EF"],
         "1-1": [],
         "2-0": [],
         "0-2": [],
@@ -259,8 +259,8 @@
             "format": "bo1",
             "teamA": "EF",
             "teamB": "FlyQuest",
-            "score": null,
-            "winner": null,
+            "score": [7, 13],
+            "winner": "FlyQuest",
             "sourceMatchId": 2400501
           },
           {

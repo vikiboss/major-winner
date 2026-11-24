@@ -1,4 +1,4 @@
-import { buildRows, getStageViews } from '@/lib/data'
+import { buildRows, getStageView } from '@/lib/data'
 import { TeamLogoGroup } from '@/components/team/team-logo-group'
 import { PassMark } from './pass-mark'
 import { PredictorCard } from './predictor-card'
@@ -19,7 +19,7 @@ const COLUMNS: TableColumn[] = [
 /** 瑞士轮竞猜表格 */
 export function SwissTable({ eventId, stageId }: { eventId: string; stageId: SwissStageType }) {
   const rows = buildRows(eventId, stageId)
-  const status = getStageViews(eventId).find((view) => view.id === stageId)?.status ?? 'not_started'
+  const status = getStageView(eventId, stageId)?.status ?? 'not_started'
   const waiting = status === 'waiting' || status === 'not_started'
 
   return (

@@ -52,6 +52,7 @@ const predictionsCache = new Map<string, PredictorPrediction[]>()
 const statsCache = new Map<string, Map<string, PredictorStats>>()
 const rowsCache = new Map<string, PredictorRow[]>()
 const stageViewsCache = new Map<string, StageView[]>()
+const stageViewCache = new Map<string, StageView | null>()
 
 /* -------------------------------------------------------------------------- */
 /*                                 竞猜查询                                    */
@@ -249,12 +250,14 @@ export function createRows(
     rankByGroup.set(groupId, buildFrequencyRank(lists))
   }
 
+  const emptyRank = new Map<string, number>()
+
   return rows
     .map((row) => ({
       ...row,
       groups: row.groups.map((group) => ({
         ...group,
-        teams: sortByRank(group.teams, rankByGroup.get(group.id) ?? new Map()),
+        teams: sortByRank(group.teams, rankByGroup.get(group.id) ?? emptyRank),
       })),
     }))
     .toSorted(scope === 'playoffs' ? compareByPlayoffs : compareByCorrectFirst)
@@ -364,6 +367,19 @@ export function createStageViews(
   }
 
   return views
+}
+
+/** 单阶段视图（带缓存），避免页面里反复 `getStageViews(...).find(...)` */
+export function getStageView(
+  eventId: string,
+  stageId: MajorStageType | TaskStageType,
+): StageView | null {
+  const cacheKey = `${eventId}:${stageId}`
+  if (stageViewCache.has(cacheKey)) return stageViewCache.get(cacheKey) ?? null
+
+  const view = getStageViews(eventId).find((item) => item.id === stageId) ?? null
+  stageViewCache.set(cacheKey, view)
+  return view
 }
 
 /** 阶段视图（带缓存） */

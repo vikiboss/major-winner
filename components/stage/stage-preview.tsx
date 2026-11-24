@@ -1,5 +1,5 @@
-import { getPreviewRows, getStageViews } from '@/lib/data'
-import { isPlayoffRound } from '@/lib/constants'
+import { getPreviewRows, getStageView } from '@/lib/data'
+import { isPlayoffRound, isSwissStage } from '@/lib/constants'
 import { PredictionStateBadge } from '@/components/ui/badge'
 import { EmptyState } from '@/components/ui/empty-state'
 import { PredictorIdentity } from '@/components/predictor/predictor-identity'
@@ -16,7 +16,8 @@ interface StagePreviewProps {
 /** 首页右侧：当前阶段排名靠前的竞猜预览 */
 export function StagePreview({ eventId, stageId, limit = 3 }: StagePreviewProps) {
   const rows = getPreviewRows(eventId, stageId, limit)
-  const status = getStageViews(eventId).find((v) => v.id === stageId)?.status ?? 'not_started'
+  const status =
+    getStageView(eventId, isSwissStage(stageId) ? stageId : 'playoffs')?.status ?? 'not_started'
 
   if (!rows.length) {
     return <EmptyState icon="📝" title="暂无竞猜数据" />

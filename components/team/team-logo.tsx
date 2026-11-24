@@ -1,5 +1,3 @@
-import Image from 'next/image'
-
 import { SITE } from '@/lib/constants'
 import { teamMap } from '@/lib/data'
 
@@ -56,15 +54,19 @@ export function TeamLogo({
 }: TeamLogoProps) {
   const pixelSize = PIXEL_SIZE[size]
 
+  // 站内图片走 unoptimized，next/image 不会产出 srcset/sizes，只会多出一堆冗余属性；
+  // 这个组件在表格里会渲染上千次，直接用 <img> 让首屏 HTML 小一大截。
   const icon = (
-    <Image
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       src={teamMap.get(id)?.logo || SITE.teamLogo(id)}
       alt={`${id} logo`}
+      title={id}
       width={pixelSize}
       height={pixelSize}
-      title={id}
+      loading="lazy"
+      decoding="async"
       className={`inline-block shrink-0 ${hideLabel ? ICON_TONE[status] : ''} ${className}`}
-      style={{ width: pixelSize, height: pixelSize }}
     />
   )
 

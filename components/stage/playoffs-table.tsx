@@ -1,4 +1,4 @@
-import { buildRows, getStageViews } from '@/lib/data'
+import { buildRows, getStageView } from '@/lib/data'
 import { GROUP_LABEL, PLAYOFF_ROUNDS } from '@/lib/constants'
 import { TeamLogoGroup } from '@/components/team/team-logo-group'
 import { PassMark } from './pass-mark'
@@ -34,8 +34,7 @@ function RoundMarks({ row, waiting }: { row: PredictorRow; waiting: boolean }) {
 /** 决胜阶段竞猜表格 */
 export function PlayoffsTable({ eventId }: { eventId: string }) {
   const rows = buildRows(eventId, 'playoffs')
-  const status =
-    getStageViews(eventId).find((view) => view.id === '8-to-4')?.status ?? 'not_started'
+  const status = getStageView(eventId, '8-to-4')?.status ?? 'not_started'
   const waiting = status === 'not_started' || status === 'waiting'
 
   return (

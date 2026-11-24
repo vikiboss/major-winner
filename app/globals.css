@@ -13,21 +13,21 @@
 
   /* 颜色主题 */
   --color-primary-300: #fda074;
-  --color-primary-400: var(--color-primary-400);
-  --color-primary-500: var(--color-primary-500);
-  --color-primary-600: var(--color-primary-600);
+  --color-primary-400: #fb923c;
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
 
-  --color-win: var(--color-win);
-  --color-lose: var(--color-lose);
-  --color-muted: var(--color-muted);
+  --color-win: #22c55e;
+  --color-lose: #ef4444;
+  --color-muted: #71717a;
 
-  --color-surface-0: var(--color-surface-0);
-  --color-surface-1: var(--color-surface-1);
-  --color-surface-2: var(--color-surface-2);
-  --color-surface-3: var(--color-surface-3);
+  --color-surface-0: #131318;
+  --color-surface-1: #1a1a20;
+  --color-surface-2: #222228;
+  --color-surface-3: #2a2a32;
 
-  --color-border: var(--color-border);
-  --color-border-active: var(--color-border-active);
+  --color-border: #333340;
+  --color-border-active: #454555;
 }
 
 /* 默认暗色主题变量 */

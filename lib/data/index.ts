@@ -44,6 +44,7 @@ export {
   getPreviewRows,
   getStagePredictionCounts,
   getStageViews,
+  getStageView,
   getVisibleStages,
   countParticipants,
 } from './predictions'

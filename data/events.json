@@ -155,8 +155,8 @@
         "LVG"
       ],
       "result": {
-        "1-0": ["Imperial", "LVG", "NIP", "100T", "Liquid", "PV"],
-        "0-1": ["HEROIC", "9z", "M80", "CW", "BCG", "DENDELE"],
+        "1-0": ["Imperial", "LVG", "NIP", "100T", "Liquid", "PV", "Wildcard"],
+        "0-1": ["HEROIC", "9z", "M80", "CW", "BCG", "DENDELE", "FaZe"],
         "1-1": [],
         "2-0": [],
         "0-2": [],
@@ -272,8 +272,8 @@
             "format": "bo1",
             "teamA": "FaZe",
             "teamB": "Wildcard",
-            "score": null,
-            "winner": null,
+            "score": [9, 13],
+            "winner": "Wildcard",
             "sourceMatchId": 2400500
           },
           {

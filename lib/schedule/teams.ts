@@ -9,9 +9,11 @@
  * 2. `shortName`（如 `Lynn Vision` → 简称）
  * 3. `name` 全称（如 `Lynn Vision Gaming`）
  * 4. 手工别名（接口与本地写法确实不同的，如 `PVISION` → `PV`）
+ *
+ * 页面上的队名也统一走这里：展示名 = 本地短名（`shortName`，即队标文件名 `id`），
+ * 接口原队名只作为兜底，避免同一个队在不同页面写成不同样子。
  */
 
-import { SITE } from '@/lib/constants'
 import { teams } from '@/lib/data/store'
 
 import type { TeamInfo } from '@/types'
@@ -65,46 +67,32 @@ export function findTeamByName(name: string | null | undefined): TeamInfo | unde
   return undefined
 }
 
-/** 队名 → 本地队标地址；没有对应队伍时返回 null（由调用方回退成占位块） */
-export function teamLogoByName(name: string | null | undefined): string | null {
-  const team = findTeamByName(name)
-  if (!team) return null
-  return team.logo || SITE.teamLogo(team.id)
-}
-
 /**
- * 「队名 → 本地队标地址」映射，供客户端组件查表。
+ * 「接口队名 → 本地战队资料」映射，供客户端组件查表。
  *
  * 客户端不能 import `data/teams.json`（会进浏览器包），所以由服务端算好一张小表传下去。
  *
  * 注意：表的 key 必须覆盖**接口可能返回的各种写法**（`9z`、`NIP`、`Lynn Vision`…），
  * 而不只是本地的 `name` 全称，否则客户端拿接口队名查不到。
- * 因此这里把本地 id / shortName / name，以及别名反查出来的写法全部写入。
+ * 因此这里把本地 id / shortName / name 和别名写法全部写入；归一化后的写法由
+ * `lookupTeam` 兜底匹配，不必重复写。
  */
-export function buildTeamLogoMap(): Record<string, string> {
-  const map: Record<string, string> = {}
+export function buildTeamMap(): Record<string, TeamInfo> {
+  const map: Record<string, TeamInfo> = {}
+
+  const add = (candidate: string) => {
+    const team = findTeamByName(candidate)
+    if (team) map[candidate] = team
+  }
 
   for (const team of teams) {
-    const logo = team.logo || SITE.teamLogo(team.id)
-
     for (const candidate of [team.id, team.shortName, team.name]) {
-      if (candidate) map[candidate] = logo
+      if (candidate) add(candidate)
     }
   }
 
-  // 别名（接口写法）反查后也指向同一张图
-  for (const aliasId of new Set(Object.values(ALIASES))) {
-    const team = teams.find((item) => item.id === aliasId)
-    if (!team) continue
-
-    const logo = team.logo || SITE.teamLogo(team.id)
-    for (const [aliasKey, id] of Object.entries(ALIASES)) {
-      if (id !== aliasId) continue
-      // 别名 key 是归一化过的（无空格/点），客户端用的是原始队名，
-      // 所以额外补一个归一化表供客户端 fallback。
-      map[aliasKey] = logo
-    }
-  }
+  // 别名（接口写法）也指向同一支队伍
+  for (const alias of Object.keys(ALIASES)) add(alias)
 
   return map
 }
@@ -112,30 +100,45 @@ export function buildTeamLogoMap(): Record<string, string> {
 /**
  * 客户端查表：先按原始队名，再按归一化队名（兼容 `BC.G` / `bcg` 这类写法差异）。
  */
-export function lookupTeamLogo(
+export function lookupTeam(
   name: string | null | undefined,
-  logos: Record<string, string>,
-): string | null {
+  teamMap: Record<string, TeamInfo>,
+): TeamInfo | null {
   if (!name) return null
 
-  const direct = logos[name]
+  const direct = teamMap[name]
   if (direct) return direct
 
   const k = key(name)
-  const normalized = logos[k]
+  const normalized = teamMap[k]
   if (normalized) return normalized
 
   // 再扫一遍，容忍别名表中归一化过的键
-  for (const [candidate, logo] of Object.entries(logos)) {
-    if (key(candidate) === k) return logo
+  for (const [candidate, team] of Object.entries(teamMap)) {
+    if (key(candidate) === k) return team
   }
 
   return null
 }
 
+/** 客户端：队名 → 展示用短名（本地 `shortName`，即队标资源的 id）；查不到时用接口原名 */
+export function lookupTeamName(
+  name: string | null | undefined,
+  teamMap: Record<string, TeamInfo>,
+): string | null {
+  if (!name) return null
+  const team = lookupTeam(name, teamMap)
+  return team?.shortName || team?.id || name
+}
+
+/** 队名 → 展示用短名（即本地队标资源的 id，如 `Lynn Vision` → `LVG`）；找不到返回 null */
+export function shortTeamName(name: string | null | undefined): string | null {
+  const team = findTeamByName(name)
+  return team?.shortName || team?.id || null
+}
+
 /** 队名 → 展示用名称（优先本地简称，找不到就用接口原名） */
 export function displayName(name: string | null | undefined): string | null {
   if (!name) return null
-  const team = findTeamByName(name)
-  return team?.shortName || team?.id || name
+  return shortTeamName(name) ?? name
 }

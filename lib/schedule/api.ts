@@ -11,14 +11,11 @@
  *   所以赛制优先看 `boN`，否则按赛制推断（Major 瑞士轮前两轮 BO1，其余 BO3）
  */
 
-import { matchFormat, normalizeSchedule } from './client'
+import { isInProgress, isMajorLevel, matchFormat, normalizeSchedule } from './client'
 
 import type { MatchStatus, ScheduleMatch } from '@/types'
 
 const API_BASE = 'https://gwapi.pwesports.cn/eventcenter/app/csgo/event/getMatchList'
-
-/** 赛事名（`csgoEventDTO.name`）里必须包含的关键字，只保留 Major 相关场次 */
-const MAJOR_KEYWORD = 'major'
 
 /** 单场对局需要的字段（接口返回的其他字段一律忽略） */
 interface ApiTeam {
@@ -36,7 +33,7 @@ interface ApiMatch {
   score2?: number | null
   bo?: string | null
   status?: number | null
-  csgoEventDTO?: { name?: string | null; nameZh?: string | null } | null
+  csgoEventDTO?: { name?: string | null; nameZh?: string | null; level?: string | null } | null
 }
 
 interface ApiResponse {
@@ -48,13 +45,6 @@ interface ApiResponse {
 /*                                  归一化                                    */
 /* -------------------------------------------------------------------------- */
 
-/** 由接口的 `status` 得到对局状态 */
-function toStatus(status: number | null | undefined): MatchStatus {
-  if (status === 3) return 'finished'
-  if (status === 2) return 'live'
-  return 'upcoming'
-}
-
 /** 队名：接口未定对阵时返回 `TBD`，统一视为「待定」 */
 function toTeamName(team: ApiTeam | null | undefined): string | null {
   const name = team?.name?.trim()
@@ -62,23 +52,27 @@ function toTeamName(team: ApiTeam | null | undefined): string | null {
   return name
 }
 
-/** 单条接口数据 → 视图模型；不合法（没 id / 没时间 / 不是 Major）返回 null */
+/** 单条接口数据 → 视图模型；不合法（没 id / 没时间 / 赛事等级不是 Major）返回 null */
 function toScheduleMatch(raw: ApiMatch): ScheduleMatch | null {
   const { id, startTime } = raw
   if (typeof id !== 'number' || typeof startTime !== 'number') return null
 
-  const eventName = raw.csgoEventDTO?.name ?? ''
-  if (!eventName.toLowerCase().includes(MAJOR_KEYWORD)) return null
+  if (!isMajorLevel(raw.csgoEventDTO?.level)) return null
 
-  const status = toStatus(raw.status)
+  const eventName = raw.csgoEventDTO?.name ?? ''
+
   const hasScore =
-    status === 'finished' && typeof raw.score1 === 'number' && typeof raw.score2 === 'number'
+    raw.status === 3 && typeof raw.score1 === 'number' && typeof raw.score2 === 'number'
 
   const teamA = toTeamName(raw.team1DTO)
   const teamB = toTeamName(raw.team2DTO)
 
-  // 队伍待定的占位对局不可能「进行中」：按未开始展示
-  const resolvedStatus = !teamA || !teamB ? (status === 'live' ? 'upcoming' : status) : status
+  // 已结束 → 已结束；队伍未定 → 未开始；否则按开赛时间判断是否进行中（接口 status 会滞后）
+  const status: MatchStatus = hasScore
+    ? 'finished'
+    : teamA && teamB && isInProgress(raw)
+      ? 'live'
+      : 'upcoming'
 
   const winner =
     hasScore && teamA && teamB
@@ -94,14 +88,18 @@ function toScheduleMatch(raw: ApiMatch): ScheduleMatch | null {
     teamB,
     score: hasScore ? [raw.score1 as number, raw.score2 as number] : null,
     winner,
-    format: matchFormat(raw.bo, hasScore ? (raw.score1 as number) : null, hasScore ? (raw.score2 as number) : null),
-    status: resolvedStatus,
+    format: matchFormat(
+      raw.bo,
+      hasScore ? (raw.score1 as number) : null,
+      hasScore ? (raw.score2 as number) : null,
+    ),
+    status,
     eventName,
     eventNameZh: raw.csgoEventDTO?.nameZh ?? eventName,
   }
 }
 
-/** 批量归一化：过滤非 Major、去重、按开赛时间升序 */
+/** 批量归一化：过滤非 Major（按赛事等级）、去重、按开赛时间升序 */
 export function normalizeMatchList(list: ApiMatch[] | null | undefined): ScheduleMatch[] {
   if (!list) return []
 

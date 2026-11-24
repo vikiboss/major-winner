@@ -14,7 +14,7 @@ test('normalize filters non-Major & handles TBD/live/finished', () => {
       score2: 13,
       bo: 'inf',
       status: 3,
-      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1' },
+      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1', level: 'major' },
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ test('normalize filters non-Major & handles TBD/live/finished', () => {
       score2: 0,
       bo: 'bo1',
       status: 2,
-      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1' },
+      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1', level: 'major' },
     },
     {
       id: 3,
@@ -34,7 +34,7 @@ test('normalize filters non-Major & handles TBD/live/finished', () => {
       team2DTO: { name: 'TBD' },
       bo: 'bo1',
       status: 2,
-      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1' },
+      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1', level: 'major' },
     },
     {
       id: 4,
@@ -45,16 +45,26 @@ test('normalize filters non-Major & handles TBD/live/finished', () => {
       status: 3,
       score1: 2,
       score2: 0,
-      csgoEventDTO: { name: 'CROSSFIRE Season 7' },
+      csgoEventDTO: { name: 'CROSSFIRE Season 7', level: 'minor' },
     },
     {
       id: 1,
       startTime: Date.UTC(2026, 10, 24, 4, 5),
-      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1' },
+      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1', level: 'major' },
+    },
+    {
+      id: 5,
+      startTime: Date.UTC(2026, 10, 24, 5),
+      team1DTO: { name: 'A' },
+      team2DTO: { name: 'B' },
+      bo: 'bo1',
+      status: 1,
+      // 名字带 Major 但等级不是 Major：不再按关键词保留
+      csgoEventDTO: { name: 'Major Trial Cup', level: 'minor' },
     },
   ]
   const out = normalizeMatchList(list as any)
-  expect(out.map((m) => m.id)).toEqual([1, 2, 3]) // non-Major dropped, dup dropped, sorted
+  expect(out.map((m) => m.id)).toEqual([1, 2, 3]) // 非 Major 等级丢掉、重复丢掉、按时间升序
   expect(out[0].status).toBe('finished')
   expect(out[0].winner).toBe('LVG')
   expect(out[0].format).toBe('bo1') // bo 是地图代号，按单局局分 11:13 判为 BO1
@@ -111,7 +121,7 @@ test('normalizeSchedule 与 api.ts 的 normalizeMatchList 行为一致', () => {
       score2: 13,
       bo: 'inf',
       status: 3,
-      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1' },
+      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1', level: 'major' },
     },
     {
       id: 2,
@@ -120,7 +130,7 @@ test('normalizeSchedule 与 api.ts 的 normalizeMatchList 行为一致', () => {
       team2DTO: { name: 'TBD' },
       bo: 'bo1',
       status: 2,
-      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1' },
+      csgoEventDTO: { name: 'PGL Singapore Major 2026 Stage 1', level: 'major' },
     },
     {
       id: 3,
@@ -131,7 +141,7 @@ test('normalizeSchedule 与 api.ts 的 normalizeMatchList 行为一致', () => {
       status: 3,
       score1: 2,
       score2: 0,
-      csgoEventDTO: { name: 'CROSSFIRE Season 7' },
+      csgoEventDTO: { name: 'CROSSFIRE Season 7', level: 'minor' },
     },
   ]
   expect(normalizeSchedule({ result: { matchResponse: { dtoList: list as never } } })).toEqual(

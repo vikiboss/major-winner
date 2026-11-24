@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 import { eventSummaries, getEvent } from '@/lib/data'
-import { buildTeamLogoMap } from '@/lib/schedule/teams'
+import { buildTeamMap } from '@/lib/schedule/teams'
 import { PageHeader } from '@/components/ui/page-header'
 import { SchedulePanel } from '@/components/schedule/schedule-panel'
 
@@ -31,8 +31,8 @@ export default async function SchedulePage({ params }: SchedulePageProps) {
   const { 'event-id': eventId } = await params
   const event = getEvent(eventId)
 
-  // 队标用本项目资源：接口只给队名，这里把「队名 → logo」的映射传下去
-  const teamLogos = buildTeamLogoMap()
+  // 队名/队标用本项目资源：接口只给队名，这里把「队名 → 战队资料」的映射传下去
+  const teamMap = buildTeamMap()
 
   return (
     <div className="mx-auto min-h-screen w-full max-w-5xl px-3 py-4 sm:px-4 sm:py-8">
@@ -50,7 +50,7 @@ export default async function SchedulePage({ params }: SchedulePageProps) {
         }
       />
 
-      <SchedulePanel teamLogos={teamLogos} />
+      <SchedulePanel teamMap={teamMap} />
     </div>
   )
 }

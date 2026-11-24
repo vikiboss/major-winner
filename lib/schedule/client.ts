@@ -10,11 +10,15 @@
  * - `matchTime` **必填**，且必须精确到秒的 `YYYY-MM-DD HH:mm:ss`；
  *   缺参数 / 缺秒 / 只有日期都会返回 `{ code: 10001, message: '参数错误' }`
  * - 按**日历日**取数：`matchTime=2026-11-24 00:00:00` 返回 11-24 全天比赛
- * - `status`：1 未开始 / 2 进行中 / 3 已结束
+ * - `status`：1 未开始 / 2 进行中 / 3 已结束（单一地图的 BO1 打完后才会翻成 3，
+ *   有时会滞后，所以已过开赛时间且没结束的对局按「进行中」处理）
  * - `bo`：未结束时是 `boN`，进行中/已结束时会变成地图代码（`inf`/`nuke`…）
  */
 
 import type { MatchFormat, ScheduleMatch } from '@/types'
+
+/** 开赛超过这个时间还没结束，仍算「进行中」；超过则视为数据未更新 */
+const STALE_LIVE_MS = 12 * 60 * 60 * 1000
 
 /** 赛事方赛程接口 */
 export const API_BASE = 'https://gwapi.pwesports.cn/eventcenter/app/csgo/event/getMatchList'
@@ -22,8 +26,8 @@ export const API_BASE = 'https://gwapi.pwesports.cn/eventcenter/app/csgo/event/g
 /** 自动刷新间隔（毫秒） */
 export const REFRESH_MS = 60 * 1000
 
-/** 只保留赛事名里含该关键字的场次 */
-const MAJOR_KEYWORD = 'major'
+/** 赛事等级（`csgoEventDTO.level`）为 Major 才展示 */
+const MAJOR_LEVEL = 'major'
 
 /** 接口返回的最小结构（其余字段忽略） */
 export interface RawApiMatch {
@@ -35,7 +39,7 @@ export interface RawApiMatch {
   score2?: number | null
   bo?: string | null
   status?: number | null
-  csgoEventDTO?: { name?: string | null; nameZh?: string | null } | null
+  csgoEventDTO?: { name?: string | null; nameZh?: string | null; level?: string | null } | null
 }
 
 interface RawApiTeam {
@@ -108,8 +112,30 @@ export function matchFormat(
   return 'bo1'
 }
 
+/** 是否 Major 赛事：只看 `csgoEventDTO.level`，不用赛事名关键字推断 */
+export function isMajorLevel(level: string | null | undefined): boolean {
+  return (level ?? '').trim().toLowerCase() === MAJOR_LEVEL
+}
+
 /**
- * 原始响应 → 赛程列表：只保留赛事名含 `Major` 的场次，去重后按开赛时间升序。
+ * 是否「正在打」。
+ *
+ * 接口对只打一张图的 BO1 存在滞后：终局已经开始，`status` 仍是 1（未开始）。
+ * 因此只要对局还没结束、队伍已确定、且已过开赛时间（且不超过 12 小时），
+ * 就按进行中展示，否则误判成「未开始」会丢掉进行中的高亮样式。
+ */
+export function isInProgress(
+  raw: Pick<RawApiMatch, 'status' | 'startTime'>,
+  now: number = Date.now(),
+): boolean {
+  if (raw.status === 2) return true
+  if (raw.status === 3 || typeof raw.startTime !== 'number') return false
+  const elapsed = now - raw.startTime
+  return elapsed >= 0 && elapsed < STALE_LIVE_MS
+}
+
+/**
+ * 原始响应 → 赛程列表：只保留赛事等级为 Major 的场次，去重后按开赛时间升序。
  */
 export function normalizeSchedule(data: RawApiResponse | undefined): ScheduleMatch[] {
   const list = data?.result?.matchResponse?.dtoList
@@ -122,8 +148,8 @@ export function normalizeSchedule(data: RawApiResponse | undefined): ScheduleMat
     const { id, startTime } = raw
     if (typeof id !== 'number' || typeof startTime !== 'number' || seen.has(id)) continue
 
+    if (!isMajorLevel(raw.csgoEventDTO?.level)) continue
     const eventName = raw.csgoEventDTO?.name ?? ''
-    if (!eventName.toLowerCase().includes(MAJOR_KEYWORD)) continue
     seen.add(id)
 
     const finished =
@@ -133,7 +159,7 @@ export function normalizeSchedule(data: RawApiResponse | undefined): ScheduleMat
     const teamB = teamName(raw.team2DTO)
 
     // 队伍待定的占位对局不可能「进行中」
-    const status = finished ? 'finished' : raw.status === 2 && teamA && teamB ? 'live' : 'upcoming'
+    const status = finished ? 'finished' : teamA && teamB && isInProgress(raw) ? 'live' : 'upcoming'
 
     const score: [number, number] | null = finished
       ? [raw.score1 as number, raw.score2 as number]

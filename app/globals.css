@@ -21,6 +21,11 @@
   --color-lose: #ef4444;
   --color-muted: #71717a;
 
+  /* 语义文字色：生成 text-primary / text-secondary / text-foreground（text-muted 已有） */
+  --color-primary: #e4e4e7;
+  --color-secondary: #a1a1aa;
+  --color-foreground: #e4e4e7;
+
   --color-surface-0: #131318;
   --color-surface-1: #1a1a20;
   --color-surface-2: #222228;
@@ -55,6 +60,10 @@
   --color-win: #22c55e;
   --color-lose: #ef4444;
   --color-muted: #71717a;
+
+  --color-primary: #e4e4e7;
+  --color-secondary: #a1a1aa;
+  --color-foreground: #e4e4e7;
 
   color-scheme: dark;
 }
@@ -111,6 +120,10 @@ body {
   --color-win: #16a34a;
   --color-lose: #dc2626;
   --color-muted: #71717a;
+
+  --color-primary: #18181b;
+  --color-secondary: #52525b;
+  --color-foreground: #18181b;
 
   color-scheme: light;
 }

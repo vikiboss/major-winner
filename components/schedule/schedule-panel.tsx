@@ -304,7 +304,17 @@ function MatchRow({
   teamLogos?: Record<string, string>
 }) {
   const isLive = match.status === 'live'
-  const sideTone = sideToneOf(match)
+  // 就地定义，不要写成 `const sideTone = sideToneOf(match)`：那样编译器会按
+  // 「sideTone === undefined ? 新建 : 复用」处理，而缓存槽既没存也没回填，
+  // 每次重渲染都会重新创建闭包，进而把 MatchRow 的 useMemoCache 大小从 63 打成 1
+  const sideTone = (team: string | null) =>
+    !team
+      ? 'text-muted'
+      : !match.winner
+        ? 'text-primary'
+        : team === match.winner
+          ? 'text-win'
+          : 'text-lose'
 
   return (
     <div
@@ -366,15 +376,6 @@ function MatchRow({
       </div>
     </div>
   )
-}
-
-/** 队伍名配色：无胜者时统一样式，赛后胜方绿、负方红 */
-function sideToneOf(match: ScheduleMatch) {
-  return (team: string | null) => {
-    if (!team) return 'text-muted'
-    if (!match.winner) return 'text-primary'
-    return team === match.winner ? 'text-win' : 'text-lose'
-  }
 }
 
 /** 比分颜色：进行中高亮，已结束显示胜者色，未开始弱化 */

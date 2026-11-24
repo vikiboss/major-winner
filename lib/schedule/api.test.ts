@@ -1,6 +1,6 @@
 import { expect, test } from 'vitest'
 import { normalizeMatchList, toMatchTimeParam } from '@/lib/schedule/api'
-import { buildScheduleUrl, normalizeSchedule } from '@/lib/schedule/client'
+import { buildScheduleUrl, matchFormat, normalizeSchedule } from '@/lib/schedule/client'
 import { dateKeyOf, matchesOfDay, shiftDateKey, matchDateKeys } from '@/lib/schedule/date'
 
 test('normalize filters non-Major & handles TBD/live/finished', () => {
@@ -57,7 +57,7 @@ test('normalize filters non-Major & handles TBD/live/finished', () => {
   expect(out.map((m) => m.id)).toEqual([1, 2, 3]) // non-Major dropped, dup dropped, sorted
   expect(out[0].status).toBe('finished')
   expect(out[0].winner).toBe('LVG')
-  expect(out[0].format).toBe('bo3') // live/finished falls back to bo3
+  expect(out[0].format).toBe('bo1') // bo 是地图代号，按单局局分 11:13 判为 BO1
   expect(out[1].status).toBe('live')
   expect(out[1].format).toBe('bo1')
   expect(out[2].teamA).toBeNull()
@@ -137,4 +137,22 @@ test('normalizeSchedule 与 api.ts 的 normalizeMatchList 行为一致', () => {
   expect(normalizeSchedule({ result: { matchResponse: { dtoList: list as never } } })).toEqual(
     normalizeMatchList(list as never),
   )
+})
+
+test('matchFormat：boN 优先，否则按比分形态推断赛制', () => {
+  // 未开始：接口直接给 boN
+  expect(matchFormat('bo1', null, null)).toBe('bo1')
+  expect(matchFormat('bo5', null, null)).toBe('bo5')
+
+  // 进行中：bo 已变成地图代号（inf/nuke…），拿不到最终比分，保守回退 BO1
+  expect(matchFormat('inf', null, null)).toBe('bo1')
+
+  // 已结束：单局局分（胜方 ≥ 13）→ BO1
+  expect(matchFormat('inf', 13, 5)).toBe('bo1')
+  expect(matchFormat('nuke', 16, 14)).toBe('bo1')
+
+  // 已结束：胜图数 → BO3 / BO5
+  expect(matchFormat('inf', 2, 0)).toBe('bo3')
+  expect(matchFormat('inf', 1, 2)).toBe('bo3')
+  expect(matchFormat('mrg', 3, 1)).toBe('bo5')
 })

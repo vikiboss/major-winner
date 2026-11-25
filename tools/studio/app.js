@@ -740,6 +740,11 @@ function ensureEntry() {
   if (!entry) {
     entry = { id: state.predictorId }
     file.predictions.push(entry)
+    file.predictions = file.predictions.toSorted((a, b) => {
+      const aIdx = state.predictors.findIndex((e) => e.id === a.id)
+      const bIdx = state.predictors.findIndex((e) => e.id === b.id)
+      return aIdx - bIdx
+    })
   }
   return entry
 }

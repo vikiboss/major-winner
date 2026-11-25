@@ -1022,69 +1022,6 @@
     "link": "https://space.bilibili.com/312932032"
   },
   {
-    "id": "viki",
-    "name": "Viki",
-    "platform": "网站作者",
-    "avatar": "https://blog.viki.moe/avatar.png",
-    "link": "https://github.com/vikiboss"
-  },
-  {
-    "id": "yuanjiese",
-    "name": "原劫色",
-    "platform": "制图作者",
-    "avatar": "https://i1.hdslb.com/bfs/face/620a44f683a0197757ce3381d30aa9c489cda46e.jpg@70w_70h_1c_1s.webp",
-    "link": "https://space.bilibili.com/472947493"
-  },
-  {
-    "id": "sanmiqiqi",
-    "name": "三米七七",
-    "platform": "制图作者",
-    "avatar": "https://i1.hdslb.com/bfs/face/ffe2bcc0fc4fe81124b784e70b5b098c6a7c8f5d.jpg@70w_70h_1c_1s.webp",
-    "link": "https://space.bilibili.com/1428295"
-  },
-  {
-    "id": "boshiyk",
-    "name": "BOSHIYK",
-    "platform": "制图作者",
-    "avatar": "https://i0.hdslb.com/bfs/face/159571acf4f054802cbb93584148b3b873d695ff.jpg@70w_70h_1c_1s.webp",
-    "link": "https://space.bilibili.com/65822877"
-  },
-  {
-    "id": "14k",
-    "name": "14K",
-    "platform": "网站贡献",
-    "avatar": "https://avatars.githubusercontent.com/u/34759162?v=4",
-    "link": "https://github.com/14kay"
-  },
-  {
-    "id": "mio",
-    "name": "Mio",
-    "platform": "网站贡献",
-    "avatar": "https://s2.loli.net/2025/11/21/CcTp4FnkGH6dO1g.png",
-    "link": "https://blog.viki.moe/mio-says"
-  },
-  {
-    "id": "logic",
-    "name": "罗辑",
-    "platform": "群友",
-    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
-    "link": "https://blog.shiro.team"
-  },
-  {
-    "id": "crazy-jester",
-    "name": "Crazy_Jester",
-    "platform": "群友",
-    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2239487283&s=100",
-    "link": "#"
-  },
-  {
-    "id": "1v7w",
-    "name": "1v7w",
-    "platform": "群友",
-    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1115697863&s=100",
-    "link": "#"
-  },
-  {
     "id": "npl",
     "name": "npl",
     "platform": "B8 队员",
@@ -1188,6 +1125,69 @@
     "platform": "B 站",
     "link": "https://space.bilibili.com/396704992",
     "avatar": "https://i1.hdslb.com/bfs/face/4186efbe133f54c40207d76e7c4a495d7cf663dc.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "viki",
+    "name": "Viki",
+    "platform": "网站作者",
+    "avatar": "https://blog.viki.moe/avatar.png",
+    "link": "https://github.com/vikiboss"
+  },
+  {
+    "id": "yuanjiese",
+    "name": "原劫色",
+    "platform": "制图作者",
+    "avatar": "https://i1.hdslb.com/bfs/face/620a44f683a0197757ce3381d30aa9c489cda46e.jpg@70w_70h_1c_1s.webp",
+    "link": "https://space.bilibili.com/472947493"
+  },
+  {
+    "id": "sanmiqiqi",
+    "name": "三米七七",
+    "platform": "制图作者",
+    "avatar": "https://i1.hdslb.com/bfs/face/ffe2bcc0fc4fe81124b784e70b5b098c6a7c8f5d.jpg@70w_70h_1c_1s.webp",
+    "link": "https://space.bilibili.com/1428295"
+  },
+  {
+    "id": "boshiyk",
+    "name": "BOSHIYK",
+    "platform": "制图作者",
+    "avatar": "https://i0.hdslb.com/bfs/face/159571acf4f054802cbb93584148b3b873d695ff.jpg@70w_70h_1c_1s.webp",
+    "link": "https://space.bilibili.com/65822877"
+  },
+  {
+    "id": "14k",
+    "name": "14K",
+    "platform": "网站贡献",
+    "avatar": "https://avatars.githubusercontent.com/u/34759162?v=4",
+    "link": "https://github.com/14kay"
+  },
+  {
+    "id": "mio",
+    "name": "Mio",
+    "platform": "网站贡献",
+    "avatar": "https://s2.loli.net/2025/11/21/CcTp4FnkGH6dO1g.png",
+    "link": "https://blog.viki.moe/mio-says"
+  },
+  {
+    "id": "logic",
+    "name": "罗辑",
+    "platform": "群友",
+    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2534316454&s=100",
+    "link": "https://blog.shiro.team"
+  },
+  {
+    "id": "crazy-jester",
+    "name": "Crazy_Jester",
+    "platform": "群友",
+    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=2239487283&s=100",
+    "link": "#"
+  },
+  {
+    "id": "1v7w",
+    "name": "1v7w",
+    "platform": "群友",
+    "avatar": "https://q1.qlogo.cn/g?b=qq&nk=1115697863&s=100",
+    "link": "#"
   },
   {
     "id": "dian",

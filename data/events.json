@@ -157,11 +157,11 @@
       "result": {
         "1-0": [],
         "0-1": [],
-        "1-1": ["LVG", "HEROIC", "M80", "100T", "EF", "PV", "FaZe", "Wildcard"],
+        "1-1": ["HEROIC", "PV", "FaZe"],
         "2-0": ["NIP", "Imperial", "FlyQuest", "Liquid"],
         "0-2": ["CW", "9z", "DENDELE", "BCG"],
-        "2-1": [],
-        "1-2": [],
+        "2-1": ["M80", "EF", "LVG"],
+        "1-2": ["HEROIC", "100T", "Wildcard"],
         "2-2": [],
         "3-0": [],
         "3-1": [],
@@ -186,7 +186,10 @@
         ["EF", "DENDELE"],
         ["FlyQuest", "PV"],
         ["Liquid", "Wildcard"],
-        ["FaZe", "BCG"]
+        ["FaZe", "BCG"],
+        ["M80", "HEROIC"],
+        ["EF", "100T"],
+        ["LVG", "Wildcard"]
       ],
       "schedule": {
         "matches": [

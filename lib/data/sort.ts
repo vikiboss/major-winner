@@ -18,20 +18,14 @@ export interface SortableRow {
 }
 
 /** 表格排序：先看猜对数，再看已确定错误数 */
-export function compareByCorrectFirst(a: SortableRow, b: SortableRow): number {
-  return (
-    (b.stage?.correctCount ?? 0) - (a.stage?.correctCount ?? 0) ||
-    (a.stage?.impossibleCount ?? 0) - (b.stage?.impossibleCount ?? 0) ||
-    b.stats.totalPassed - a.stats.totalPassed ||
-    b.stats.totalCorrect - a.stats.totalCorrect
-  )
-}
+export function compare(a: SortableRow, b: SortableRow): number {
+  const isAFailed = (a.stage?.impossibleCount ?? 0) > 5 ? 1 : 0
+  const isBFailed = (b.stage?.impossibleCount ?? 0) > 5 ? 1 : 0
 
-/** 首页预览排序：先看已经炸掉的数量，再看待定成绩 */
-export function compareByImpossibleFirst(a: SortableRow, b: SortableRow): number {
   return (
-    (a.stage?.impossibleCount ?? 0) - (b.stage?.impossibleCount ?? 0) ||
+    isAFailed - isBFailed ||
     (b.stage?.correctCount ?? 0) - (a.stage?.correctCount ?? 0) ||
+    (a.stage?.impossibleCount ?? 0) - (b.stage?.impossibleCount ?? 0) ||
     b.stats.totalPassed - a.stats.totalPassed ||
     b.stats.totalCorrect - a.stats.totalCorrect
   )

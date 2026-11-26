@@ -21,8 +21,7 @@ import {
   hasPredictionForStage,
 } from './scoring'
 import {
-  compareByCorrectFirst,
-  compareByImpossibleFirst,
+  compare,
   compareByPlayoffs,
   compareLeaderboard,
   buildFrequencyRank,
@@ -260,7 +259,7 @@ export function createRows(
         teams: sortByRank(group.teams, rankByGroup.get(group.id) ?? emptyRank),
       })),
     }))
-    .toSorted(scope === 'playoffs' ? compareByPlayoffs : compareByCorrectFirst)
+    .toSorted(scope === 'playoffs' ? compareByPlayoffs : compare)
 }
 
 /** 生成某大阶段的表格行（带缓存） */
@@ -286,7 +285,7 @@ export function getPreviewRows(eventId: string, stageId: TaskStageType, limit = 
   return buildRows(eventId, scope)
     .filter((row) => row.predictor.id !== RESULT_PREDICTOR_ID)
     .map((row) => ({ ...row, stage: row.stageMap[stageId] ?? null }))
-    .toSorted(compareByImpossibleFirst)
+    .toSorted(compare)
     .slice(0, limit)
 }
 

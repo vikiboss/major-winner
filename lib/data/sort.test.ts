@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest'
 
 import {
   buildFrequencyRank,
-  compareByCorrectFirst,
+  compare,
   compareByImpossibleFirst,
   compareByPlayoffs,
   compareLeaderboard,
@@ -60,29 +60,29 @@ describe('compareByCorrectFirst', () => {
   it('猜对数多的在前', () => {
     const a = row({ correct: 8 })
     const b = row({ correct: 5 })
-    expect(compareByCorrectFirst(a, b)).toBeLessThan(0)
+    expect(compare(a, b)).toBeLessThan(0)
   })
 
   it('猜对数相同则错误少的在前', () => {
     const a = row({ correct: 5, impossible: 1 })
     const b = row({ correct: 5, impossible: 3 })
-    expect(compareByCorrectFirst(a, b)).toBeLessThan(0)
+    expect(compare(a, b)).toBeLessThan(0)
   })
 
   it('前两项相同则看总通过数与总正确数', () => {
     const a = row({ correct: 5, stats: { totalPassed: 3, totalCorrect: 10 } })
     const b = row({ correct: 5, stats: { totalPassed: 2, totalCorrect: 20 } })
-    expect(compareByCorrectFirst(a, b)).toBeLessThan(0)
+    expect(compare(a, b)).toBeLessThan(0)
 
     const c = row({ correct: 5, stats: { totalPassed: 2, totalCorrect: 20 } })
     const d = row({ correct: 5, stats: { totalPassed: 2, totalCorrect: 10 } })
-    expect(compareByCorrectFirst(c, d)).toBeLessThan(0)
+    expect(compare(c, d)).toBeLessThan(0)
   })
 
   it('没有阶段状态时按 0 处理', () => {
     const a: SortableRow = { stats: stats(), stage: null, aggregate: row({}).aggregate }
     const b = row({ correct: 1 })
-    expect(compareByCorrectFirst(a, b)).toBeGreaterThan(0)
+    expect(compare(a, b)).toBeGreaterThan(0)
   })
 })
 

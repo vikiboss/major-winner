@@ -44,7 +44,17 @@ export function compareByPlayoffs(a: SortableRow, b: SortableRow): number {
 
 /** 排行榜排序 */
 export function compareLeaderboard(a: PredictorStats, b: PredictorStats): number {
-  return b.totalPassed - a.totalPassed || b.totalCorrect - a.totalCorrect
+  const aScore = a.stageResults.reduce(
+    (a, b) => (a += b.passed === null ? 0 : b.passed ? 1 : -1),
+    0,
+  )
+
+  const bScore = b.stageResults.reduce(
+    (a, b) => (a += b.passed === null ? 0 : b.passed ? 1 : -1),
+    0,
+  )
+
+  return b.totalPassed - a.totalPassed || b.totalCorrect - a.totalCorrect || bScore - aScore
 }
 
 /**

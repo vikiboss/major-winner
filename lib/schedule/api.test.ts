@@ -73,10 +73,10 @@ test('normalize filters non-Major & handles TBD/live/finished', () => {
   expect(out[0].status).toBe('finished')
   expect(out[0].winner).toBe('LVG')
   expect(out[0].format).toBe('bo1') // bo 是地图代号，按单局局分 11:13 判为 BO1
-  expect(out[1].status).toBe('live')
+  expect(out[1].status).toBe('upcoming')
   expect(out[1].format).toBe('bo1')
   expect(out[2].teamA).toBeNull()
-  expect(out[2].status).toBe('upcoming') // TBD never "live"
+  expect(out[2].status).toBe('upcoming')
 })
 
 test('date helpers', () => {

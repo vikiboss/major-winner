@@ -3,7 +3,6 @@ import { describe, expect, it } from 'vitest'
 import {
   buildFrequencyRank,
   compare,
-  compareByImpossibleFirst,
   compareByPlayoffs,
   compareLeaderboard,
   sortByRank,
@@ -83,20 +82,6 @@ describe('compareByCorrectFirst', () => {
     const a: SortableRow = { stats: stats(), stage: null, aggregate: row({}).aggregate }
     const b = row({ correct: 1 })
     expect(compare(a, b)).toBeGreaterThan(0)
-  })
-})
-
-describe('compareByImpossibleFirst', () => {
-  it('已确定错误少的在前', () => {
-    const a = row({ impossible: 0, correct: 3 })
-    const b = row({ impossible: 2, correct: 9 })
-    expect(compareByImpossibleFirst(a, b)).toBeLessThan(0)
-  })
-
-  it('错误数相同则猜对数多的在前', () => {
-    const a = row({ impossible: 1, correct: 9 })
-    const b = row({ impossible: 1, correct: 3 })
-    expect(compareByImpossibleFirst(a, b)).toBeLessThan(0)
   })
 })
 

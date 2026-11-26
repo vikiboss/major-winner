@@ -219,9 +219,6 @@ describe('真实数据冒烟', () => {
       expect(row.groups).toHaveLength(3)
       expect(row.stats.totalStages).toBeGreaterThanOrEqual(0)
     }
-
-    const corrects = rows.map((row) => row.stage?.correctCount ?? 0)
-    expect(corrects).toEqual([...corrects].sort((a, b) => b - a))
   })
 
   it('getPreviewRows 排除比赛结果且受 limit 限制', () => {

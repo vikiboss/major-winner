@@ -187,7 +187,7 @@ interface DaySwitcherProps {
  * 保证「今天 / 刷新 / 上下日」四个按钮高宽一致。
  */
 const BUTTON_BASE =
-  'border-border text-secondary hover:text-primary hover:bg-surface-2 inline-flex h-9 w-9 shrink-0 items-center justify-center gap-1.5 rounded-md border px-0 transition-colors active:scale-95 disabled:active:scale-100 sm:h-8 sm:w-auto sm:px-3 sm:text-sm'
+  'border-border text-secondary hover:text-primary hover:bg-surface-2 inline-flex h-9 w-9 shrink-0 items-center justify-center gap-1.5 rounded-md border px-0 transition-colors active:scale-95 disabled:active:scale-100 sm:h-8 sm:w-auto sm:px-3 sm:text-sm bg-surface-2 hover:border-border-active font-medium whitespace-nowrap disabled:opacity-30'
 
 /** 顶部日期条：← → | 日期 + 场次 | 今天 · 刷新（移动端全部压成一行，按钮只留图标） */
 function DaySwitcher({
@@ -282,7 +282,7 @@ function DayButton({
       disabled={disabled}
       aria-label={`${isPrevious ? '上一日' : '下一日'}（${targetLabel}）`}
       title={`${isPrevious ? '上一日' : '下一日'}：${targetLabel}`}
-      className={`${BUTTON_BASE} bg-surface-2 hover:border-border-active font-medium whitespace-nowrap disabled:opacity-30`}
+      className={BUTTON_BASE}
     >
       {isPrevious && <ChevronIcon direction="previous" />}
       <span className="hidden sm:inline">{isPrevious ? '上一日' : '下一日'}</span>
@@ -344,13 +344,6 @@ function RefreshIcon({ className = '' }: { className?: string }) {
 /*                                  单场对局                                  */
 /* -------------------------------------------------------------------------- */
 
-/** 赛制标签配色：BO5 最重，BO1 最轻 */
-const FORMAT_STYLE: Record<MatchFormat, string> = {
-  bo1: 'bg-surface-2 text-muted',
-  bo3: 'bg-surface-2 text-secondary',
-  bo5: 'bg-surface-2 text-primary-400',
-}
-
 function MatchRow({
   match,
   teamMap,
@@ -385,37 +378,19 @@ function MatchRow({
       className={`border-border flex flex-col gap-1.5 border-b p-2.5 transition-colors last:border-b-0 sm:flex-row sm:items-center sm:gap-3 sm:px-3 sm:py-2.5 ${ROW_TONE[match.status]}`}
     >
       <div className="flex items-center justify-between gap-2 sm:contents">
-        {/* 开赛时刻（进行中带脉冲点） */}
-        <span className="text-secondary flex shrink-0 items-center gap-1.5 text-sm font-medium tabular-nums sm:order-1 sm:w-14 sm:flex-col sm:items-start sm:gap-1 sm:text-xs">
-          <span className="flex items-center gap-1.5 whitespace-nowrap">
-            {formatTimeLabel(match.start)}
-            {isLive && (
-              <span className="relative flex size-2 sm:size-1.5" aria-label="进行中">
-                <span className="bg-primary-400 absolute inline-flex size-full animate-ping rounded-full opacity-75" />
-                <span className="bg-primary-500 relative inline-flex size-2 rounded-full sm:size-1.5" />
-              </span>
-            )}
-          </span>
-          <span
-            className={`bg-surface-2 text-muted hidden items-center rounded px-1 py-0.5 text-[10px] font-medium sm:inline-flex`}
-          >
-            {match.format.toUpperCase()}
-          </span>
+        {/* 开赛时刻 */}
+        <span
+          className={`flex shrink-0 items-center gap-1.5 text-sm whitespace-nowrap tabular-nums sm:text-xs ${isLive ? 'text-primary-400' : 'text-secondary'}`}
+        >
+          {formatTimeLabel(match.start)}
         </span>
 
         {/* 赛事/阶段名：按内容收紧，状态由整行样式表达 */}
-        <span className="flex min-w-0 flex-nowrap items-center justify-end gap-1.5 sm:order-2 sm:shrink-0 sm:justify-start">
-          <span
-            className="bg-surface-2 text-muted max-w-24 truncate rounded px-1.5 py-0.5 text-[11px] font-medium sm:max-w-20"
-            title={match.eventNameZh || match.eventName}
-          >
-            {shortEventName(match)}
-          </span>
-          <span
-            className={`bg-surface-2 text-muted inline-flex items-center rounded px-1.5 py-0.5 text-[11px] font-medium sm:hidden`}
-          >
-            {match.format.toUpperCase()}
-          </span>
+        <span
+          className="bg-surface-2 text-muted truncate rounded px-1.5 py-0.5 text-[11px] font-medium"
+          title={match.eventNameZh || match.eventName}
+        >
+          {shortEventName(match)} · {match.format.toUpperCase()}
         </span>
       </div>
 
@@ -426,7 +401,7 @@ function MatchRow({
           teamMap={teamMap}
           tone={sideTone(match.teamA)}
           status={statusOf(match.teamA)}
-          align="start"
+          align="end"
         />
 
         <span
@@ -440,7 +415,7 @@ function MatchRow({
           teamMap={teamMap}
           tone={sideTone(match.teamB)}
           status={statusOf(match.teamB)}
-          align="end"
+          align="start"
         />
       </div>
     </div>
@@ -515,7 +490,7 @@ function TeamSide({
       title={name}
     >
       <span
-        className={`flex size-[30px] shrink-0 items-center justify-center rounded p-[2px] ${TEAM_ICON_TONE[status]}`}
+        className={`flex size-7.5 shrink-0 items-center justify-center rounded p-0.5 ${TEAM_ICON_TONE[status]}`}
       >
         {logo ? (
           <Image

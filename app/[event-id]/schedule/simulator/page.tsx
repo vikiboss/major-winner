@@ -73,7 +73,7 @@ export default async function SimulatorPage({ params }: SimulatorPageProps) {
   const stages = collectStages(event)
 
   const nameMap = Object.fromEntries(
-    [...teamMap.values()].map((team) => [team.id, team.shortName || team.name || team.id]),
+    [...teamMap.values()].map((team) => [team.id, team.name || team.shortName || team.id]),
   )
 
   return (

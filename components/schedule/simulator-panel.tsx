@@ -111,7 +111,7 @@ export function SimulatorPanel({ stages, nameMap }: SimulatorProps) {
 
       {/* 横向 5 轮面板：左边选完，右边各轮对阵跟着变 */}
       <div className="bg-surface-1 border-border overflow-x-auto rounded-lg border">
-        <div className="divide-border grid min-w-[980px] grid-cols-[repeat(5,minmax(0,1fr))_minmax(150px,0.9fr)] items-stretch divide-x">
+        <div className="divide-border grid min-w-245 grid-cols-[repeat(5,minmax(0,1fr))_minmax(150px,0.9fr)] items-stretch divide-x">
           {ROUNDS.map((round) => (
             <RoundColumn
               key={round}
@@ -293,7 +293,7 @@ function Slot({
   return (
     <div
       className={`mx-1 mb-1 overflow-hidden rounded-md border-2 ${
-        match.locked ? 'border-border/80' : 'border-primary-500/60'
+        match.locked ? 'border-primary-400/32 border-solid' : 'border-primary-400/60 border-dashed'
       }`}
     >
       <div className="bg-surface-1">
@@ -332,7 +332,9 @@ function TeamButton({
 }) {
   const tone = picked
     ? 'bg-win/20 text-win'
-    : 'text-muted/60 hover:bg-surface-2/60 hover:text-secondary'
+    : locked
+      ? 'text-muted'
+      : 'text-muted hover:bg-surface-2/60 hover:text-secondary'
 
   return (
     <button
@@ -340,12 +342,12 @@ function TeamButton({
       onClick={onClick}
       disabled={locked}
       title={locked ? '真实赛果，已锁定' : undefined}
-      className={`flex w-full items-center gap-1 px-1.5 py-1 text-left transition-colors disabled:cursor-default ${tone}`}
+      className={`flex w-full items-center gap-1 px-1.5 py-1 text-left transition-colors disabled:cursor-default ${tone} ${locked ? 'opacity-32' : ''}`}
     >
       <TeamLogo hideLabel id={id} size="xs" className="shrink-0 rounded-sm" />
       <span className="truncate text-[11px] font-medium">{label}</span>
       {locked ? (
-        <LockIcon className="ml-auto shrink-0" />
+        <LockIcon className={`ml-auto shrink-0 ${picked ? 'text-primary-500' : ''}`} />
       ) : (
         <MatchArrow up={picked} className="ml-auto shrink-0" />
       )}

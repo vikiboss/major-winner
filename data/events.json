@@ -211,10 +211,10 @@
       "teams": ["FUT", "Nemiga", "G2", "1W", "NAVI", "Astralis", "MongolZ", "MIBR"],
       "teamsFromAdvanced": ["FlyQuest", "NIP", "Liquid", "EF", "PV", "Imperial", "LVG", "100T"],
       "result": {
-        "1-0": ["FUT", "MongolZ", "Astralis", "NIP", "G2", "1W", "NAVI", "100T"],
+        "1-0": ["FUT", "MongolZ", "Astralis", "1W", "NAVI", "100T"],
         "0-1": ["FlyQuest", "Imperial", "Liquid", "EF", "PV", "MIBR"],
-        "1-1": ["Nemiga"],
-        "2-0": [],
+        "1-1": ["Nemiga", "NIP"],
+        "2-0": ["G2"],
         "0-2": ["LVG"],
         "2-1": [],
         "1-2": [],
@@ -234,7 +234,8 @@
         ["G2", "Liquid"],
         ["1W", "EF"],
         ["NAVI", "PV"],
-        ["Nemiga", "LVG"]
+        ["Nemiga", "LVG"],
+        ["G2", "NIP"]
       ]
     },
     "stage-3": {

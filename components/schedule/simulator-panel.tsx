@@ -77,12 +77,12 @@ export function SimulatorPanel({ currentStageId, stages, nameMap }: SimulatorPro
     [stages],
   )
 
-  const [state, setState] = useState<BracketState>(initialStates[stages[0].stageId])
-
   const stage = useMemo(
     () => stages.find((item) => item.stageId === stageId) ?? stages[0],
     [stages, stageId],
   )
+
+  const [state, setState] = useState<BracketState>(initialStates[stageId])
 
   const switchStage = useCallback(
     (next: SwissStageType) => {

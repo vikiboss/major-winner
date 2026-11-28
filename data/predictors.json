@@ -1127,6 +1127,62 @@
     "avatar": "https://i1.hdslb.com/bfs/face/4186efbe133f54c40207d76e7c4a495d7cf663dc.jpg@128w_128h_1c_1s.webp"
   },
   {
+    "id": "mtc",
+    "name": "MTC 君",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/11125848",
+    "avatar": "https://i1.hdslb.com/bfs/face/3c60e8246cac1a834b7b546a21c2d86ecacef9aa.jpg@152w_152h_1c_1s.webp"
+  },
+  {
+    "id": "jametime",
+    "name": "JAMETIME 搬运组",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/1472495251",
+    "avatar": "https://i1.hdslb.com/bfs/face/786de0fa9281a775f8bfed942c1841dab5f6b6a0.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "lazy",
+    "name": "lazy 的泡泡鱼",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/348415292",
+    "avatar": "https://i1.hdslb.com/bfs/face/dff42f58e2b03fedf71caa3f6fe446bbe43b2752.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "lazzy",
+    "name": "拉兹 Lazzy",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/346351594",
+    "avatar": "https://i1.hdslb.com/bfs/face/5e6b5fb9e9d9c5fb8dd8789f4786d774485a9707.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "shijie",
+    "name": "今竞视界",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/291991685",
+    "avatar": "https://i1.hdslb.com/bfs/face/2d5ced13e661828599bf2920e709dc12bec4c264.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "zizi",
+    "name": "不马枪的子子",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/4778211",
+    "avatar": "https://i1.hdslb.com/bfs/face/fc757e38e9496ab75e0dc9aa4f3b4cdf0d6c871a.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "rinku",
+    "name": "Rinku09",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/197206945",
+    "avatar": "https://i1.hdslb.com/bfs/face/c7742f6bec8ade1ea86a6f9bd3ff3283c861d0b1.jpg@128w_128h_1c_1s.webp"
+  },
+  {
+    "id": "qiushanling",
+    "name": "秋山 Mio 酱丶",
+    "platform": "B 站",
+    "link": "https://space.bilibili.com/3546743079701167",
+    "avatar": "https://i1.hdslb.com/bfs/face/7a937ab5494fe9a6ffab2a81a2af9fd5795131da.jpg@128w_128h_1c_1s.webp"
+  },
+  {
     "id": "viki",
     "name": "Viki",
     "platform": "网站作者",

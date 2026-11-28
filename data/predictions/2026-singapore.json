@@ -1159,6 +1159,85 @@
         "3-X": ["9z", "FaZe", "HEROIC", "Liquid", "M80", "EF"],
         "0-3": ["LVG", "CW"]
       }
+    },
+    {
+      "id": "mtc",
+      "stage-1": {
+        "3-0": ["PV", "EF"],
+        "3-X": ["Liquid", "FaZe", "100T", "HEROIC", "NIP", "9z"],
+        "0-3": ["CW", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["MongolZ", "LVG", "Nemiga", "PV", "MIBR", "Liquid"],
+        "0-3": ["Imperial", "FlyQuest"]
+      }
+    },
+    {
+      "id": "jametime",
+      "stage-2": {
+        "3-0": ["Nemiga", "FUT"],
+        "3-X": ["MongolZ", "G2", "1W", "PV", "NAVI", "MIBR"],
+        "0-3": ["Astralis", "FlyQuest"]
+      }
+    },
+    {
+      "id": "lazy",
+      "stage-2": {
+        "3-0": ["G2", "PV"],
+        "3-X": ["MongolZ", "1W", "FUT", "NAVI", "MIBR", "100T"],
+        "0-3": ["NIP", "FlyQuest"]
+      }
+    },
+    {
+      "id": "lazzy",
+      "stage-1": {
+        "3-0": ["NIP", "LVG"],
+        "3-X": ["Liquid", "FaZe", "100T", "HEROIC", "PV", "EF"],
+        "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["G2", "FUT"],
+        "3-X": ["MongolZ", "1W", "Nemiga", "PV", "NAVI", "LVG"],
+        "0-3": ["Astralis", "FlyQuest"]
+      }
+    },
+    {
+      "id": "shijie",
+      "stage-1": {
+        "3-0": ["PV", "BCG"],
+        "3-X": ["Liquid", "FaZe", "100T", "HEROIC", "NIP", "9z"],
+        "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "MIBR"],
+        "3-X": ["MongolZ", "1W", "Nemiga", "FUT", "LVG", "FlyQuest"],
+        "0-3": ["Astralis", "G2"]
+      }
+    },
+    {
+      "id": "zizi",
+      "stage-2": {
+        "3-0": ["NAVI", "Nemiga"],
+        "3-X": ["MongolZ", "1W", "FUT", "PV", "EF", "Liquid"],
+        "0-3": ["Astralis", "MIBR"]
+      }
+    },
+    {
+      "id": "rinku",
+      "stage-2": {
+        "3-0": ["NAVI", "MongolZ"],
+        "3-X": ["FUT", "G2", "Nemiga", "PV", "NIP", "Liquid"],
+        "0-3": ["Imperial", "LVG"]
+      }
+    },
+    {
+      "id": "qiushanling",
+      "stage-2": {
+        "3-0": ["Nemiga", "FUT"],
+        "3-X": ["MongolZ", "G2", "NAVI", "PV", "100T", "Liquid"],
+        "0-3": ["Astralis", "EF"]
+      }
     }
   ]
 }

@@ -1095,6 +1095,11 @@
         "3-0": ["PV", "LVG"],
         "3-X": ["BCG", "FaZe", "100T", "9z", "NIP", "HEROIC"],
         "0-3": ["CW", "Wildcard"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "MongolZ"],
+        "3-X": ["G2", "FUT", "Nemiga", "PV", "LVG", "1W"],
+        "0-3": ["EF", "Imperial"]
       }
     },
     {
@@ -1158,6 +1163,11 @@
         "3-0": ["PV", "FlyQuest"],
         "3-X": ["9z", "FaZe", "HEROIC", "Liquid", "M80", "EF"],
         "0-3": ["LVG", "CW"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["Nemiga", "MongolZ", "Astralis", "PV", "G2", "NIP"],
+        "0-3": ["LVG", "FlyQuest"]
       }
     },
     {

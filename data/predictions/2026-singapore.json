@@ -109,6 +109,11 @@
         "3-0": ["PV", "Liquid"],
         "3-X": ["FaZe", "9z", "100T", "LVG", "FlyQuest", "BCG"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "100T"],
+        "3-X": ["1W", "G2", "FUT", "PV", "EF", "Liquid"],
+        "0-3": ["Astralis", "FlyQuest"]
       }
     },
     {
@@ -170,6 +175,11 @@
         "3-0": ["PV", "NIP"],
         "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "9z", "M80"],
         "0-3": ["CW", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "MongolZ"],
+        "3-X": ["FUT", "FlyQuest", "Nemiga", "PV", "NIP", "Liquid"],
+        "0-3": ["LVG", "G2"]
       }
     },
     {
@@ -186,6 +196,11 @@
         "3-0": ["EF", "HEROIC"],
         "3-X": ["Liquid", "FaZe", "100T", "BCG", "PV", "9z"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "Nemiga"],
+        "3-X": ["MongolZ", "G2", "FUT", "PV", "NIP", "Liquid"],
+        "0-3": ["Astralis", "1W"]
       }
     },
     {
@@ -194,6 +209,11 @@
         "3-0": ["HEROIC", "BCG"],
         "3-X": ["FaZe", "Liquid", "PV", "EF", "NIP", "M80"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["G2", "FUT"],
+        "3-X": ["NAVI", "LVG", "Nemiga", "Astralis", "NIP", "EF"],
+        "0-3": ["Imperial", "Liquid"]
       }
     },
     {
@@ -226,6 +246,11 @@
         "3-0": ["PV", "Liquid"],
         "3-X": ["FaZe", "9z", "100T", "HEROIC", "NIP", "M80"],
         "0-3": ["CW", "DENDELE"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["MIBR", "G2", "Nemiga", "PV", "NIP", "Liquid"],
+        "0-3": ["Astralis", "FlyQuest"]
       }
     },
     {
@@ -242,6 +267,11 @@
         "3-0": ["PV", "Liquid"],
         "3-X": ["BCG", "FaZe", "100T", "HEROIC", "NIP", "9z"],
         "0-3": ["CW", "LVG"]
+      },
+      "stage-2": {
+        "3-0": ["MongolZ", "FUT"],
+        "3-X": ["1W", "G2", "Nemiga", "NAVI", "Astralis", "Liquid"],
+        "0-3": ["LVG", "100T"]
       }
     },
     {
@@ -466,6 +496,11 @@
         "3-0": ["HEROIC", "NIP"],
         "3-X": ["FaZe", "Liquid", "100T", "9z", "PV", "M80"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "Nemiga"],
+        "3-X": ["MongolZ", "1W", "FUT", "PV", "NIP", "100T"],
+        "0-3": ["Astralis", "FlyQuest"]
       }
     },
     {
@@ -482,6 +517,11 @@
         "3-0": ["9z", "FaZe"],
         "3-X": ["PV", "EF", "100T", "HEROIC", "NIP", "LVG"],
         "0-3": ["CW", "BCG"]
+      },
+      "stage-2": {
+        "3-0": ["MongolZ", "FUT"],
+        "3-X": ["NAVI", "G2", "LVG", "PV", "NIP", "Liquid"],
+        "0-3": ["MIBR", "FlyQuest"]
       }
     },
     {
@@ -527,6 +567,11 @@
         "3-0": ["PV", "9z"],
         "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "EF", "M80"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["Nemiga", "NIP"],
+        "3-X": ["MongolZ", "1W", "FUT", "NAVI", "MIBR", "Liquid"],
+        "0-3": ["LVG", "G2"]
       }
     },
     {
@@ -631,6 +676,11 @@
         "3-0": ["PV", "9z"],
         "3-X": ["FaZe", "Liquid", "M80", "HEROIC", "Imperial", "BCG"],
         "0-3": ["CW", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["G2", "FUT"],
+        "3-X": ["MongolZ", "NAVI", "Nemiga", "PV", "LVG", "Liquid"],
+        "0-3": ["MIBR", "FlyQuest"]
       }
     },
     {
@@ -639,6 +689,11 @@
         "3-0": ["HEROIC", "FaZe"],
         "3-X": ["PV", "Liquid", "100T", "EF", "NIP", "BCG"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["MongolZ", "1W", "Nemiga", "PV", "NIP", "Liquid"],
+        "0-3": ["Astralis", "FlyQuest"]
       }
     },
     {
@@ -647,6 +702,11 @@
         "3-0": ["PV", "NIP"],
         "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "9z", "BCG"],
         "0-3": ["CW", "FlyQuest"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "Nemiga"],
+        "3-X": ["MongolZ", "G2", "1W", "PV", "NIP", "FUT"],
+        "0-3": ["Astralis", "LVG"]
       }
     },
     {
@@ -679,6 +739,11 @@
         "3-0": ["PV", "9z"],
         "3-X": ["FaZe", "Liquid", "100T", "HEROIC", "NIP", "FlyQuest"],
         "0-3": ["DENDELE", "M80"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["MongolZ", "G2", "1W", "MIBR", "NIP", "Liquid"],
+        "0-3": ["Astralis", "FlyQuest"]
       }
     },
     {
@@ -687,6 +752,11 @@
         "3-0": ["PV", "Liquid"],
         "3-X": ["FaZe", "9z", "100T", "M80", "NIP", "BCG"],
         "0-3": ["CW", "LVG"]
+      },
+      "stage-2": {
+        "3-0": ["Nemiga", "FUT"],
+        "3-X": ["MongolZ", "G2", "NAVI", "LVG", "NIP", "Liquid"],
+        "0-3": ["Astralis", "FlyQuest"]
       }
     },
     {
@@ -791,6 +861,11 @@
         "3-0": ["HEROIC", "Liquid"],
         "3-X": ["FaZe", "9z", "100T", "PV", "EF", "M80"],
         "0-3": ["DENDELE", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["MongolZ", "G2", "Nemiga", "1W", "LVG", "Astralis"],
+        "0-3": ["Imperial", "EF"]
       }
     },
     {
@@ -807,6 +882,11 @@
         "3-0": ["PV", "HEROIC"],
         "3-X": ["FaZe", "Liquid", "100T", "9z", "NIP", "DENDELE"],
         "0-3": ["CW", "Imperial"]
+      },
+      "stage-2": {
+        "3-0": ["Nemiga", "FUT"],
+        "3-X": ["MongolZ", "G2", "1W", "PV", "NAVI", "LVG"],
+        "0-3": ["Imperial", "MIBR"]
       }
     },
     {
@@ -839,6 +919,11 @@
         "3-0": ["PV", "100T"],
         "3-X": ["FaZe", "Liquid", "9z", "HEROIC", "LVG", "BCG"],
         "0-3": ["CW", "DENDELE"]
+      },
+      "stage-2": {
+        "3-0": ["NAVI", "FUT"],
+        "3-X": ["MongolZ", "G2", "Nemiga", "LVG", "NIP", "Liquid"],
+        "0-3": ["Imperial", "100T"]
       }
     },
     {

@@ -15,7 +15,7 @@ import {
 import { TeamLogo } from '@/components/team/team-logo'
 
 import type { BracketMatch, BracketState, BracketSummary } from '@/lib/data/swiss-bracket'
-import type { Match, SwissResultRecord, SwissStageType } from '@/types'
+import type { MajorStageType, Match, SwissResultRecord, SwissStageType } from '@/types'
 
 /* -------------------------------------------------------------------------- */
 /*                                  类型                                       */
@@ -31,6 +31,7 @@ export interface SimulatorStageInput {
 }
 
 interface SimulatorProps {
+  currentStageId: SwissStageType
   stages: SimulatorStageInput[]
   /** id → 展示名 */
   nameMap: Record<string, string>
@@ -63,8 +64,8 @@ const ROUND_HINT: Record<number, string> = {
 /*                                  主体                                       */
 /* -------------------------------------------------------------------------- */
 
-export function SimulatorPanel({ stages, nameMap }: SimulatorProps) {
-  const [stageId, setStageId] = useState<SwissStageType>(stages[0].stageId)
+export function SimulatorPanel({ currentStageId, stages, nameMap }: SimulatorProps) {
+  const [stageId, setStageId] = useState<SwissStageType>(currentStageId)
 
   // 各阶段的初始状态：真实赛程预置 + 默认按种子强者胜出，一进来就是完整可改的
   const initialStates = useMemo(
@@ -123,7 +124,7 @@ export function SimulatorPanel({ stages, nameMap }: SimulatorProps) {
             />
           ))}
 
-          <ResultColumn summary={summary} label={name} done={progress.done} />
+          <ResultColumn summary={summary} label={name} />
         </div>
       </div>
     </div>
@@ -261,7 +262,9 @@ function SettledBlock({
           >
             {record}
           </p>
-          <div className="border-border bg-surface-2/60 mx-0.5 rounded-md border-2 px-1 py-1">
+          <div
+            className={`${record.startsWith('3-') ? 'border-win/36 bg-win/12' : record.endsWith('-3') ? 'border-lose/36 bg-lose/12' : 'border-border bg-surface-2/60'} mx-0.5 rounded-md border-2 px-1 py-1`}
+          >
             <div className="space-y-px">
               {teams.map((id) => (
                 <p
@@ -373,23 +376,14 @@ function LockIcon({ className = '' }: { className?: string }) {
 function ResultColumn({
   summary,
   label,
-  done,
 }: {
   summary: BracketSummary
   label: (id: string) => string
-  done: boolean
 }) {
-  const pending = Object.values(summary.records).filter(
-    (team) => team.wins < 3 && team.losses < 3,
-  ).length
-
   return (
     <div className="bg-surface-2/40 flex min-w-0 flex-col">
-      <div className="bg-surface-2 border-border flex items-baseline justify-between gap-1 border-b px-2 py-1.5">
-        <span className="text-primary text-xs font-semibold">结果</span>
-        <span className={`text-[10px] ${done ? 'text-win' : 'text-muted'}`}>
-          {done ? '已定稿' : pending ? `${pending} 队待定` : '推演中'}
-        </span>
+      <div className="bg-surface-2 border-border text-primary border-b px-2 py-1.5 text-center text-xs font-semibold">
+        最终结果
       </div>
 
       <div className="flex flex-1 flex-col justify-center gap-6 py-2">
@@ -404,7 +398,9 @@ function ResultColumn({
               >
                 {group.record}
               </p>
-              <div className="border-border bg-surface-2/60 mx-0.5 rounded-md border-2 px-1 py-1">
+              <div
+                className={`${group.record.startsWith('3-') ? 'border-win/36 bg-win/12' : group.record.endsWith('-3') ? 'border-lose/36 bg-lose/12' : 'border-border bg-surface-2/60'} mx-0.5 rounded-md border-2 px-1 py-1`}
+              >
                 <div className="space-y-px">
                   {teams.length === 0 ? (
                     <p className="text-muted/50 text-center text-[10px]">—</p>
@@ -516,12 +512,4 @@ function recordText(record: string): string {
   if (wins >= 3) return 'text-win'
   if (losses >= 3) return 'text-lose'
   return 'text-muted'
-}
-
-/** 战绩配色：晋级色 / 淘汰色 / 中性 */
-function recordTone(record: string): string {
-  const [wins = 0, losses = 0] = record.split('-').map(Number)
-  if (wins >= 3) return 'bg-win/10 text-win'
-  if (losses >= 3) return 'bg-lose/10 text-lose'
-  return 'bg-surface-2 text-secondary'
 }

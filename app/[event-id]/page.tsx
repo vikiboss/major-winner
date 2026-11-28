@@ -21,6 +21,32 @@ export async function generateStaticParams() {
   return eventSummaries.map((event) => ({ 'event-id': event.id }))
 }
 
+/**
+ * 页头入口按钮：样式拷贝自赛程面板日期条的 `BUTTON_BASE`（`schedule-panel.tsx`），
+ * 尺寸、边框、前景色都与「上一日 / 下一日」一致；
+ * `text-secondary` 显式写在按钮上，避免继承 `PageHeader` 里 `<p>` 的 `text-muted` 而发灰。
+ */
+const HEADER_BUTTON =
+  'border-border text-secondary hover:text-primary hover:bg-surface-2 bg-surface-2 hover:border-border-active ml-auto inline-flex h-9 shrink-0 items-center justify-center gap-1.5 rounded-md border px-2 text-xs font-medium whitespace-nowrap transition-colors active:scale-95 sm:h-8 sm:px-3 sm:text-sm'
+
+/** 向右箭头，与赛程面板的 `ChevronIcon` 同一套描边 */
+function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="size-4 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+    >
+      <path d={direction === 'left' ? 'M15 18l-6-6 6-6' : 'M9 18l6-6-6-6'} />
+    </svg>
+  )
+}
+
 export default async function EventPage({ params }: { params: Promise<{ 'event-id': string }> }) {
   const { 'event-id': eventId } = await params
 
@@ -36,7 +62,13 @@ export default async function EventPage({ params }: { params: Promise<{ 'event-i
           <h1 className="text-primary mb-3 text-2xl font-semibold sm:mb-4 sm:text-4xl lg:text-5xl">
             {event.name}
           </h1>
-          <p className="text-muted text-sm sm:text-base">竞猜追踪 · {stats.length} 位竞猜者</p>
+          <p className="text-muted flex justify-between text-sm sm:text-base">
+            竞猜追踪 · {stats.length} 位竞猜者
+            <Link href={`/${eventId}/schedule/simulator`} className={HEADER_BUTTON}>
+              对阵推演
+              <ChevronIcon direction="right" />
+            </Link>
+          </p>
         </div>
       </div>
 

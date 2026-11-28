@@ -8,7 +8,7 @@ import { EmptyState } from '@/components/ui/empty-state'
 import { SimulatorPanel, type SimulatorStageInput } from '@/components/schedule/simulator-panel'
 
 import type { Metadata } from 'next'
-import type { MajorEvent } from '@/types'
+import type { MajorEvent, SwissStageType } from '@/types'
 
 /**
  * 页头入口按钮：样式拷贝自赛程面板日期条的 `BUTTON_BASE`（`schedule-panel.tsx`），
@@ -37,7 +37,7 @@ function ChevronIcon({ direction }: { direction: 'left' | 'right' }) {
 }
 
 export const metadata: Metadata = {
-  title: '赛事推演',
+  title: '对阵推演',
   description: '逐场点选赢家，按 CS2 瑞士轮规则实时推演 3-0 到 0-3 的最终分组。',
 }
 
@@ -76,10 +76,12 @@ export default async function SimulatorPage({ params }: SimulatorPageProps) {
     [...teamMap.values()].map((team) => [team.id, team.name || team.shortName || team.id]),
   )
 
+  const stageId = event.current === 'playoffs' ? 'stage-3' : event.current
+
   return (
     <div className="mx-auto min-h-screen w-full max-w-5xl px-4 py-6 sm:py-8">
       <PageHeader
-        title="赛事推演"
+        title="对阵推演"
         description={`${event.name} · 逐场选择赢家，实时得到 3-0 到 0-3 的最终分组。`}
         extra={
           <Link href={`/${eventId}/schedule`} className={HEADER_BUTTON}>
@@ -98,14 +100,13 @@ export default async function SimulatorPage({ params }: SimulatorPageProps) {
       ) : (
         <>
           <div className="text-muted bg-surface-1 border-border mb-4 rounded-lg border px-4 py-3 text-xs leading-relaxed">
-            点队伍即可切换该场胜者。已结束的真实对局会按实际结果选定并在右侧显示
-            <span className="text-primary">锁</span>，不能再改；其余对局按种子强弱给出默认剧本，
+            点队伍即可切换该场胜者。已结束的真实对局会按实际结果选定并在右侧显示锁，不能再改；其余对局按种子强弱给出默认剧本，
             点一下就能改成你猜的走向。每轮改完自动重算下一轮配对（同战绩交手、Buchholz
-            排序、首尾配对、规避重赛）。当前可推演：
+            排序、首尾配对、规避重赛）。当前可推演阶段：
             {stages.map((stage) => MAJOR_STAGE_LABEL[stage.stageId]).join('、')}。
           </div>
 
-          <SimulatorPanel stages={stages} nameMap={nameMap} />
+          <SimulatorPanel currentStageId={stageId} stages={stages} nameMap={nameMap} />
         </>
       )}
     </div>

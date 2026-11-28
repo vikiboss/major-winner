@@ -68,7 +68,7 @@ export default async function SchedulePage({ params }: SchedulePageProps) {
         showUpdatedAt={false}
         extra={
           <Link href={`/${eventId}/schedule/simulator`} className={HEADER_BUTTON}>
-            赛事推演
+            对阵推演
             <ChevronIcon direction="right" />
           </Link>
         }

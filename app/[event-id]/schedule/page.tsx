@@ -63,7 +63,7 @@ export default async function SchedulePage({ params }: SchedulePageProps) {
   return (
     <div className="mx-auto min-h-screen w-full max-w-5xl px-3 py-4 sm:px-4 sm:py-8">
       <PageHeader
-        title="赛程"
+        title="Major 赛程"
         description={`${event.name} · 实时数据来自赛事官方，可左右切换上下一天。`}
         showUpdatedAt={false}
         extra={

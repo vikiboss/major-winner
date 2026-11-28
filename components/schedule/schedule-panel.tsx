@@ -142,15 +142,24 @@ export function SchedulePanel({ teamMap, initialMatches, initialDateKey }: Sched
         </DayCard>
       ) : (
         // PC 两栏：左右各是一张完整卡片，栏内各行保持列表样式；只有一栏时仍占满宽度
-        <div className="grid items-start sm:grid-cols-2 sm:gap-3">
-          {columns.map((column, index) => (
-            <DayCard key={index} className={columns.length > 1 ? undefined : 'sm:col-span-2'}>
-              {column.map((match) => (
+        <>
+          <div className="hidden items-start gap-3 sm:grid sm:grid-cols-2 sm:gap-3">
+            {columns.map((column, index) => (
+              <DayCard key={index} className={columns.length > 1 ? undefined : 'sm:col-span-2'}>
+                {column.map((match) => (
+                  <MatchRow key={match.id} match={match} teamMap={teamMap} />
+                ))}
+              </DayCard>
+            ))}
+          </div>
+          <div className="grid sm:hidden">
+            <DayCard>
+              {dayMatches.map((match) => (
                 <MatchRow key={match.id} match={match} teamMap={teamMap} />
               ))}
             </DayCard>
-          ))}
-        </div>
+          </div>
+        </>
       )}
     </div>
   )
@@ -367,7 +376,7 @@ function MatchRow({
 
   /** 比分颜色：进行中高亮，已结束显示胜者色，未开始弱化 */
   function scoreTone(match: ScheduleMatch): string {
-    if (match.status === 'live') return 'text-primary-400 font-semibold'
+    if (isLive) return 'text-primary-400 font-semibold'
     if (match.status === 'finished')
       return match.winner ? 'text-primary font-semibold' : 'text-secondary'
     return 'text-muted'
@@ -395,7 +404,7 @@ function MatchRow({
       </div>
 
       {/* 队伍区固定宽度：左右两栏等宽、向中间靠，比分列居中且各卡竖直对齐 */}
-      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 sm:order-3 sm:ml-auto sm:w-72 sm:shrink-0 sm:gap-3">
+      <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-2 sm:order-3 sm:ml-auto sm:h-8 sm:w-72 sm:shrink-0 sm:gap-3">
         <TeamSide
           name={match.teamA}
           teamMap={teamMap}

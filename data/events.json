@@ -208,8 +208,8 @@
     },
     "stage-2": {
       "name": "第二阶段",
-      "teams": ["FUT", "NAVI", "1W", "MIBR", "Nemiga", "G2", "Astralis", "MongolZ"],
-      "teamsFromAdvanced": ["FlyQuest", "NIP", "EF", "PV", "Liquid", "LVG", "Imperial", "100T"],
+      "teams": ["FUT", "Nemiga", "G2", "1W", "NAVI", "Astralis", "MongolZ", "MIBR"],
+      "teamsFromAdvanced": ["FlyQuest", "NIP", "Liquid", "EF", "PV", "Imperial", "LVG", "100T"],
       "result": {
         "1-0": [],
         "0-1": [],

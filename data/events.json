@@ -204,120 +204,12 @@
         ["LVG", "HEROIC"],
         ["Imperial", "Wildcard"],
         ["100T", "M80"]
-      ],
-      "schedule": {
-        "matches": [
-          {
-            "id": "stage-1-r3-m1",
-            "start": "2026-11-25T06:00:00Z",
-            "no": 1,
-            "round": 3,
-            "group": "1-1",
-            "format": "bo1",
-            "teamA": "HEROIC",
-            "teamB": "M80",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400565
-          },
-          {
-            "id": "stage-1-r3-m2",
-            "start": "2026-11-25T06:00:00Z",
-            "no": 2,
-            "round": 3,
-            "group": "1-1",
-            "format": "bo1",
-            "teamA": "EF",
-            "teamB": "100T",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400566
-          },
-          {
-            "id": "stage-1-r3-m3",
-            "start": "2026-11-25T07:00:00Z",
-            "no": 3,
-            "round": 3,
-            "group": "1-1",
-            "format": "bo1",
-            "teamA": "PV",
-            "teamB": "FaZe",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400567
-          },
-          {
-            "id": "stage-1-r3-m4",
-            "start": "2026-11-25T07:00:00Z",
-            "no": 4,
-            "round": 3,
-            "group": "1-1",
-            "format": "bo1",
-            "teamA": "Wildcard",
-            "teamB": "LVG",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400568
-          },
-          {
-            "id": "stage-1-r3-m5",
-            "start": "2026-11-25T08:00:00Z",
-            "no": 5,
-            "round": 3,
-            "group": "2-0",
-            "format": "bo3",
-            "teamA": "Imperial",
-            "teamB": "FlyQuest",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400569
-          },
-          {
-            "id": "stage-1-r3-m6",
-            "start": "2026-11-25T08:00:00Z",
-            "no": 6,
-            "round": 3,
-            "group": "0-2",
-            "format": "bo3",
-            "teamA": "9z",
-            "teamB": "DENDELE",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400570
-          },
-          {
-            "id": "stage-1-r3-m7",
-            "start": "2026-11-25T10:30:00Z",
-            "no": 7,
-            "round": 3,
-            "group": "2-0",
-            "format": "bo3",
-            "teamA": "NIP",
-            "teamB": "Liquid",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400571
-          },
-          {
-            "id": "stage-1-r3-m8",
-            "start": "2026-11-25T10:30:00Z",
-            "no": 8,
-            "round": 3,
-            "group": "0-2",
-            "format": "bo3",
-            "teamA": "BCG",
-            "teamB": "CW",
-            "score": null,
-            "winner": null,
-            "sourceMatchId": 2400572
-          }
-        ]
-      }
+      ]
     },
     "stage-2": {
       "name": "第二阶段",
       "teams": ["FUT", "NAVI", "1W", "MIBR", "Nemiga", "G2", "Astralis", "MongolZ"],
-      "teamsFromAdvanced": [],
+      "teamsFromAdvanced": ["FlyQuest", "NIP", "EF", "PV", "Liquid", "LVG", "Imperial", "100T"],
       "result": {
         "1-0": [],
         "0-1": [],
